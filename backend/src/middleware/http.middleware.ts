@@ -1,7 +1,7 @@
 import ExpressError from '../types/errors'
-import type HttpException from '@/utils/exceptions/http.exception'
+import type HttpException from '../exceptions/http.exception'
 
-export function httpMiddleware (err: HttpException, req: any, res: any, next: any) {
+export function httpMiddleware(err: HttpException, req: any, res: any, next: any) {
   if (typeof err === 'string') { err = new ExpressError(err) }
 
   if (err instanceof ExpressError) {
