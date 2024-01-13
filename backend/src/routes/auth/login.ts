@@ -6,7 +6,7 @@ const login = {
     groupOnly: 'guest'
   },
 
-  async get(req, res, error) {
+  async get (req, res, error) {
     res.send({
       signin: 'penis'
     })

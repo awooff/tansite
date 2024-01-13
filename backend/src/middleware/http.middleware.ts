@@ -1,7 +1,7 @@
 import ExpressError from '../utils/types/error.type'
 import type HttpException from '@/utils/exceptions/http.exception'
 
-export default function httpMiddleware(err: HttpException, req: any, res: any, next: any) {
+export default function httpMiddleware(err: HttpException, req: any, res: any, next: any): void {
   if (typeof err === 'string') { err = new ExpressError(err) }
 
   if (err instanceof ExpressError) {

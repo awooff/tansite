@@ -4,7 +4,6 @@ import { server } from '../index'
 
 const api = server.server
 test('check status', async t => {
-
   const response = await request(api)
     .get('/index')
 

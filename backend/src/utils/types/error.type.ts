@@ -9,7 +9,7 @@ export default class ExpressError extends Error {
     this.status = status
   }
 
-  public toString () {
+  public toString (): Error['message'] {
     return this.message
   }
 }

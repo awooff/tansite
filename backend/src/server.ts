@@ -9,6 +9,7 @@ import expressSession from 'express-session'
 import dotenv from 'dotenv'
 import ExpressError from './utils/types/error.type'
 import httpMiddleware from './middleware/http.middleware'
+import { PrismaClient } from '@prisma/client'
 
 dotenv.config({
   override: true
@@ -17,9 +18,11 @@ dotenv.config({
 class Server {
   public server: Application
   public routes: IRoute[]
+  public prisma: PrismaClient
 
   constructor() {
     this.server = express()
+    this.prisma = new PrismaClient()
     this.routes = []
     this.initialiseRoutes()
     this.initialiseMiddleware()
@@ -27,9 +30,9 @@ class Server {
 
   public start() {
     this.server.listen(process.env.PORT, () => {
-      console.log(`--------------------------------------------------`)
+      console.log('--------------------------------------------------')
       console.log(`(=￣ω￣=) online @ ${process.env.PUBLIC_URL}:${process.env.PORT} ♡ ╮(╯_╰)╭`)
-      console.log(`--------------------------------------------------`)
+      console.log('--------------------------------------------------')
     })
   }
 
@@ -37,7 +40,7 @@ class Server {
    * Initialise all the middlewares we want our server to use.
    * Should also ideally handle authentication checks as well!
    */
-  private initialiseMiddleware() {
+  private initialiseMiddleware(): void {
     this.server.use(helmet())
     this.server.use(morgan('dev'))
     this.server.use(compression())
@@ -49,7 +52,9 @@ class Server {
     }))
 
     this.server.use((err: any, req: any, res: any, next: any) => {
-      if (typeof err === 'string') { err = new ExpressError(err) }
+      if (typeof err === 'string') {
+        err = new ExpressError(err)
+      }
 
       if (err instanceof ExpressError) {
         res.status(err.status).send({
@@ -69,13 +74,15 @@ class Server {
   /**
    * Add all our routes to the public `routes` array.
    */
-  private async initialiseRoutes() {
+  private async initialiseRoutes(): Promise<void> {
     const files = await glob([path.join(__dirname, 'routes', '**/*.ts'), path.join(__dirname, 'routes', '**/*.js')])
     await Promise.all(files.map(async (file) => {
       let route = await require(file) as Route
       route = (route as any).default || (route as any).route
 
-      if ((route?.settings) == null) { route.settings = {} }
+      if ((route?.settings) == null) {
+        route.settings = {}
+      }
 
       if (route.settings?.route === undefined) {
         const parsedPath = path.parse(file)
@@ -95,7 +102,9 @@ class Server {
         newRoute.get(route.get)
       }
 
-      if (route.post != null) { newRoute.post(route.post) }
+      if (route.post != null) {
+        newRoute.post(route.post)
+      }
 
       // console.log(`registered ${typeof route.settings.route === 'string'
       //   ? route.settings.route
@@ -104,7 +113,11 @@ class Server {
       console.table(route.settings.route)
 
       this.routes.push(newRoute)
-    }))
+    })).catch(err => {
+      throw new Error(err)
+    }).then(() => {
+      console.log('All routes initialised~')
+    })
   }
 }
 

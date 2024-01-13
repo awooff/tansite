@@ -10,7 +10,7 @@ const index = {
     ]
   },
 
-  async get(req, res, error) {
+  async get (req, res, error) {
     const newRoutes = {} as any
 
     routes.forEach((route) => {
