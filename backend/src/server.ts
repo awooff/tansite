@@ -97,9 +97,11 @@ class Server {
 
       if (route.post != null) { newRoute.post(route.post) }
 
-      console.log(`registered ${typeof route.settings.route === 'string'
-        ? route.settings.route
-        : JSON.stringify(route.settings.route, null, 2)}`)
+      // console.log(`registered ${typeof route.settings.route === 'string'
+      //   ? route.settings.route
+      //   : JSON.stringify(route.settings.route, null, 2)}`)
+
+      console.table(route.settings.route)
 
       this.routes.push(newRoute)
     }))
