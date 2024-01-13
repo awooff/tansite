@@ -27,7 +27,9 @@ class Server {
 
   public start() {
     this.server.listen(process.env.PORT, () => {
-      console.log(`online @ ${process.env.PUBLIC_URL}:${process.env.PORT}`)
+      console.log(`--------------------------------------------------`)
+      console.log(`(=￣ω￣=) online @ ${process.env.PUBLIC_URL}:${process.env.PORT} ♡ ╮(╯_╰)╭`)
+      console.log(`--------------------------------------------------`)
     })
   }
 
