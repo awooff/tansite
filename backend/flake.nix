@@ -65,18 +65,8 @@
           '';
         };
 
-        defaultPackage = self.packages.${system}.processor;
-
+        defaultPackage = self.packages.${system}.frontend;
         devShells.default = import ./shell.nix { inherit pkgs; };
-        devShell.processor = pkgs.mkShell {
-          buildInputs = [
-            (pkgs.poetry2nix.mkPoetryEnv {
-              inherit python pythonProjectDir pythonOverrides;
-            })
-            pkgs.python310Packages.poetry
-          ];
-        };
-
       }));
 }
 
