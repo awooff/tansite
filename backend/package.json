@@ -1,18 +1,46 @@
 {
   "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Backend API for Syscrack.",
+  "main": "dist/index.js",
+  "_moduleAliases": {
+    "@/": "dist",
+    "@/app": "dist/app",
+    "@/routes": "dist/routes",
+    "@/utils": "dist/utils",
+    "@/middleware": "dist/middleware",
+    "@/types": "dist/types"
+  },
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "test": "ava",
+    "test:watch": "node_modules/.bin/ava --verbose --watch",
+    "postinstall": "tsc",
+    "lint": "ts-standard --fix | snazzy"
   },
-  "keywords": [],
+  "ava": {
+    "typescript": {
+      "rewritePaths": {
+        "./": "dist/"
+      },
+      "compile": false
+    },
+    "require": [
+      "dotenv/config",
+      "babel-register"
+    ]
+  },
+  "keywords": [
+    "rest-api",
+    "ava"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.8.0",
+    "babel-register": "^6.26.0",
     "bcrypt": "^5.1.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -26,6 +54,7 @@
     "prisma": "^5.8.0"
   },
   "devDependencies": {
+    "@ava/typescript": "^4.1.0",
     "@types/bcrypt": "^5.0.2",
     "@types/compression": "^1.7.5",
     "@types/dotenv": "^8.2.0",
@@ -33,7 +62,12 @@
     "@types/express-session": "^1.17.10",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.11.0",
+    "@types/supertest": "^6.0.2",
+    "ava": "^6.0.1",
+    "snazzy": "^9.0.0",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.2",
+    "ts-standard": "^12.0.2",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.3.3"
   }
