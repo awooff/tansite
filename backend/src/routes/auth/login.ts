@@ -1,4 +1,4 @@
-import { Route } from '../../types/route'
+import { Route } from '../../utils/types/route.type'
 
 const login = {
 
@@ -6,7 +6,7 @@ const login = {
     groupOnly: 'guest'
   },
 
-  async get (req, res, error) {
+  async get(req, res, error) {
     res.send({
       signin: 'penis'
     })

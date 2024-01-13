@@ -1,8 +1,7 @@
-import { Route } from '../types/route'
+import type { Route } from '../utils/types/route.type'
 import { routes } from '../index'
 
 const index = {
-
   settings: {
     route: [
       '/',

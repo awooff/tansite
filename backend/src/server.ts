@@ -1,14 +1,14 @@
 import express, { type Application, type IRoute } from 'express'
 import path from 'path'
 import { glob } from 'glob'
-import { Route } from './types/route'
+import { Route } from '@/utils/types/route.type'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
 import expressSession from 'express-session'
 import dotenv from 'dotenv'
-import ExpressError from './types/errors'
-import { httpMiddleware } from './middleware/http.middleware'
+import ExpressError from './utils/types/error.type'
+import httpMiddleware from './middleware/http.middleware'
 
 dotenv.config({
   override: true
@@ -31,12 +31,20 @@ class Server {
     })
   }
 
+  /**
+   * Initialise all the middlewares we want our server to use.
+   * Should also ideally handle authentication checks as well!
+   */
   private initialiseMiddleware() {
     this.server.use(helmet())
     this.server.use(morgan('dev'))
     this.server.use(compression())
-    this.server.use(expressSession({ secret: process.env.SESSION_SECRET }))
     this.server.use(httpMiddleware)
+    this.server.use(expressSession({
+      secret: process.env.SESSION_SECRET,
+      saveUninitialized: false,
+      resave: false
+    }))
 
     this.server.use((err: any, req: any, res: any, next: any) => {
       if (typeof err === 'string') { err = new ExpressError(err) }
@@ -56,6 +64,9 @@ class Server {
     })
   }
 
+  /**
+   * Add all our routes to the public `routes` array.
+   */
   private async initialiseRoutes() {
     const files = await glob([path.join(__dirname, 'routes', '**/*.ts'), path.join(__dirname, 'routes', '**/*.js')])
     await Promise.all(files.map(async (file) => {

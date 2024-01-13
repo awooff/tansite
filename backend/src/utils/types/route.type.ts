@@ -1,7 +1,6 @@
-import { Response, Request, RequestHandler } from 'express'
-import ExpressError from './errors'
+import type { Response, Request, RequestHandler } from 'express'
 
-export interface Route {
+export type Route = {
   settings?: {
     groupOnly?: 'user' | 'guest' | 'admin'
     route?: string | string[]
