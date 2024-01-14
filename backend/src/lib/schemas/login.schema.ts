@@ -1,0 +1,10 @@
+import * as z from 'zod';
+
+export const loginSchema = z.object({
+  username: z.string().trim().min(3).max(24).refine((arg) => {
+    return !arg.includes(" ") && !!!arg.match(/[^a-z0-9]/gm);
+  }),
+  password: z.string().trim().min(4)
+})
+
+export type LoginSchemaType = z.infer<typeof loginSchema>

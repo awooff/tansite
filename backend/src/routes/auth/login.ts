@@ -1,9 +1,10 @@
-import { Route } from '../../utils/types/route.type'
+import { Route } from '../../lib/types/route.type'
 import { server } from '../../index';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { removeFromObject } from '../../utils/helpers';
+import { removeFromObject } from '../../lib/helpers';
 import { Groups } from '@prisma/client';
+import { loginSchema } from '../../lib/schemas/login.schema';
 
 const login = {
 
@@ -13,22 +14,27 @@ const login = {
     description: "will login the user to syscrack"
   },
 
-  async post(req, res, next) {
+  async post(req, res, error) {
 
-    let { email, password } = req.body;
+    let body = await loginSchema.safeParseAsync(req.body)
+
+    if (!body.success)
+      return error(body.error)
+
+    let { username, password } = body.data;
 
     //check if email exists
     let user = await server.prisma.user.findFirst({
       where: {
-        email: email
+        name: username
       }
     })
 
-    if (!user)
-      return next("email doesn't exist")
+    if (user === null)
+      return error("user doesn't exist")
 
     if (await bcrypt.hash(password, user.salt) !== user.password)
-      return next("password incorrect")
+      return error("password incorrect")
 
     //reload the session
     await (new Promise((resolve) => {

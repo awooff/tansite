@@ -1,4 +1,4 @@
-import { Route } from '@/utils/types/route.type'
+import { Route } from 'lib/types/route.type'
 import { server } from '../index';
 import { Request, Response } from 'express';
 import { Groups } from '@prisma/client';

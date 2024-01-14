@@ -15,8 +15,8 @@
 			"@/routes/*": [
 				"resources/*"
 			],
-			"@/utils/*": [
-				"utils/*"
+			"@/libs/*": [
+				"libs/*"
 			],
 			"@/middleware/*": [
 				"middleware/*"
