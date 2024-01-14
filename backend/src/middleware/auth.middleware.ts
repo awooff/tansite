@@ -1,16 +1,14 @@
-import { Route } from 'lib/types/route.type'
-import { server } from '../index';
-import { Request, Response } from 'express';
-import { Groups } from '@prisma/client';
-import jwt from 'jsonwebtoken';
+import { Route } from '@/lib/types/route.type'
+import { server } from '../index'
+import { Request, Response } from 'express'
+import { Groups } from '@prisma/client'
+import jwt from 'jsonwebtoken'
 
 export default async function authMiddleware(route: Route, req: Request, res: Response, next: any): Promise<void> {
-
   if (route.settings?.groupOnly && route.settings?.groupOnly !== Groups.Guest) {
+    const authToken = req.headers.authorization?.toString()
 
-    let authToken = req.headers.authorization?.toString();
-
-    //if no session, no current web token in session, authToken not set in header, currentWebToken is not equal to auth token in header, and there is no db session of this session id, and the JWT is invalid
+    // if no session, no current web token in session, authToken not set in header, currentWebToken is not equal to auth token in header, and there is no db session of this session id, and the JWT is invalid
     if (!req.sessionID || !req.session.currentWebToken || !authToken || req.session.currentWebToken !== authToken || !jwt.verify(authToken, process.env.JWT_SECRET) || !!(server.prisma.session.findFirst({
       where: {
         id: req.sessionID
@@ -20,12 +18,12 @@ export default async function authMiddleware(route: Route, req: Request, res: Re
         body: req.body || {},
         path: req.path,
         headers: req.headers,
-        message: "user is not authorized to view this content"
+        message: 'user is not authorized to view this content'
       })
-      return;
+      return
     }
 
-    //update last action
+    // update last action
     await server.prisma.session.update({
       where: {
         id: req.sessionID
@@ -36,5 +34,5 @@ export default async function authMiddleware(route: Route, req: Request, res: Re
     })
   }
 
-  next();
+  next()
 }

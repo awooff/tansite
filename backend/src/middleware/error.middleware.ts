@@ -1,9 +1,9 @@
-import ExpressError from '../lib/exceptions/express.exception'
-import type HttpException from '../lib/exceptions/http.exception'
+import ExpressError from '@/lib/exceptions/express.exception'
+import type HttpException from '@/lib/exceptions/http.exception'
 import { Request, Response } from 'express'
 
 export default function errorMiddleware(err: HttpException, req: Request, res: Response, next: any): void {
-  console.log("test")
+
   if (typeof err === 'string') { err = new ExpressError(err) }
   if (err instanceof ExpressError) {
     res.status(err.status).send({

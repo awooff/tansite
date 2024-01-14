@@ -1,6 +1,6 @@
 import test from 'ava'
 import request from 'supertest'
-import { server } from '@/index'
+import { server } from '../index'
 
 const api = server.server
 test('check status', async t => {

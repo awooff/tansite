@@ -1,12 +1,11 @@
 import { Groups } from '@prisma/client'
 import type { RequestHandler } from 'express'
 
-
-export type Route = {
+export interface Route {
   settings?: {
-    groupOnly?: Groups,
-    route?: string | string[],
-    title?: string,
+    groupOnly?: Groups
+    route?: string | string[]
+    title?: string
     description?: string
   }
 

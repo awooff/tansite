@@ -9,12 +9,11 @@ const index = {
       '/index',
       '/home'
     ],
-    title: "List API Endpoints",
-    description: "will list all the API endpoints"
+    title: 'List API Endpoints',
+    description: 'will list all the API endpoints'
   },
 
-
-  async get(req, res, error) {
+  async get (req, res, error) {
     const newRoutes = {} as any
 
     routes.forEach((route) => {
@@ -24,7 +23,7 @@ const index = {
             get: (route as any)?.source?.get !== undefined,
             post: (route as any)?.source?.post !== undefined,
             paths: route.path,
-            settings: (route as any).settings,
+            settings: (route as any).settings
           }
         })
       } else {
@@ -32,7 +31,7 @@ const index = {
           get: route.get !== undefined,
           post: route.post !== undefined,
           paths: route.path,
-          settings: (route as any).settings,
+          settings: (route as any).settings
         }
       }
     })
