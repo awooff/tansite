@@ -6,5 +6,6 @@ declare module NodeJS {
     DATABASE_URL: string
     CURRENT_GAME_ID: string
     WEBSITE_TITLE: string
+    JWT_SECRET: string
   }
 }

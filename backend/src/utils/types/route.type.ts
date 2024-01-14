@@ -1,10 +1,6 @@
-import type { Response, Request, RequestHandler } from 'express'
+import { Groups } from '@prisma/client'
+import type { RequestHandler } from 'express'
 
-export enum Groups {
-  GUEST,
-  ADMIN,
-  USER,
-}
 
 export type Route = {
   settings?: {

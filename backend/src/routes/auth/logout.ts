@@ -1,16 +1,30 @@
-import { Groups, Route } from '../../utils/types/route.type'
+import { Route } from '../../utils/types/route.type'
+import { server } from 'index'
+import { Groups } from '@prisma/client';
 
 const login = {
 
   settings: {
-    groupOnly: Groups.USER,
+    groupOnly: Groups.User,
     title: "Logout User",
     description: "will logout the user from syscrack"
   },
 
   async get(req, res, error) {
+
+    await server.prisma.session.deleteMany({
+      where: {
+        id: req.sessionID
+      }
+    })
+
+    //destroy session data
+    await new Promise((resolve) => req.session.destroy(resolve));
+    //regenerate the session
+    await new Promise((resolve) => req.session.regenerate(resolve));
+
     res.send({
-      signin: 'penis'
+      success: true
     })
   }
 } satisfies Route
