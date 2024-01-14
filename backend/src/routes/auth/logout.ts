@@ -3,9 +3,9 @@ import { Groups, Route } from '../../utils/types/route.type'
 const login = {
 
   settings: {
-    groupOnly: Groups.GUEST,
-    title: "Login User",
-    description: "will login the user to syscrack"
+    groupOnly: Groups.USER,
+    title: "Logout User",
+    description: "will logout the user from syscrack"
   },
 
   async get(req, res, error) {

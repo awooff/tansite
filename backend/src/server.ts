@@ -1,7 +1,7 @@
 import express, { type Application, type IRoute } from 'express'
 import path from 'path'
 import { glob } from 'glob'
-import { Route } from '@/utils/types/route.type'
+import { Groups, Route } from './utils/types/route.type'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
@@ -89,15 +89,13 @@ class Server {
         route.settings.route = file.replace(path.join(__dirname, 'routes'), '').replace(parsedPath.ext, '')
       }
 
-      const newRoute = this.server.route(route.settings.route)
+      const newRoute = this.server.route(route.settings.route);
+      // bad
+      (newRoute as any).settings = route.settings;
+      // bad
+      (newRoute as any).source = route;
 
       if (route.get != null) {
-        if (route?.settings?.groupOnly) {
-          newRoute.get((req, res, next) => {
-
-            // check jwt here
-          })
-        }
 
         newRoute.get(route.get)
       }
@@ -106,18 +104,15 @@ class Server {
         newRoute.post(route.post)
       }
 
-      // console.log(`registered ${typeof route.settings.route === 'string'
-      //   ? route.settings.route
-      //   : JSON.stringify(route.settings.route, null, 2)}`)
-
-      console.table(route.settings.route)
-
       this.routes.push(newRoute)
-    })).catch(err => {
-      throw new Error(err)
-    }).then(() => {
-      console.log('All routes initialised~')
-    })
+    }));
+
+    console.table(this.routes.map((route) => {
+      let settings = { ...(route as any).settings }
+
+      settings.groupOnly = Groups[settings.groupOnly]
+      return { ...settings, get: !!(route as any).source?.get, post: !!(route as any).source?.post }
+    }))
   }
 }
 

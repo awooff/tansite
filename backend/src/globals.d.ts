@@ -4,5 +4,7 @@ declare module NodeJS {
     PUBLIC_URL: string
     SESSION_SECRET: string
     DATABASE_URL: string
+    CURRENT_GAME_ID: string
+    WEBSITE_TITLE: string
   }
 }

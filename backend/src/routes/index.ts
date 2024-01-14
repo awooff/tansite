@@ -1,4 +1,4 @@
-import type { Route } from '../utils/types/route.type'
+import { Groups, type Route } from '../utils/types/route.type'
 import { routes } from '../index'
 
 const index = {
@@ -7,31 +7,38 @@ const index = {
       '/',
       '/index',
       '/home'
-    ]
+    ],
+    title: "List API Endpoints",
+    description: "will list all the API endpoints"
   },
 
-  async get (req, res, error) {
+
+  async get(req, res, error) {
     const newRoutes = {} as any
 
     routes.forEach((route) => {
       if (typeof route.path !== 'string') {
         (route.path as string[]).forEach((path) => {
           newRoutes[path] = {
-            get: route.get !== undefined,
-            post: route.post !== undefined,
-            paths: route.path
+            get: (route as any)?.source?.get !== undefined,
+            post: (route as any)?.source?.post !== undefined,
+            paths: route.path,
+            settings: (route as any).settings,
           }
         })
       } else {
         newRoutes[route.path] = {
           get: route.get !== undefined,
           post: route.post !== undefined,
-          paths: route.path
+          paths: route.path,
+          settings: (route as any).settings,
         }
       }
     })
     res.send(
       {
+        title: process.env.WEBSITE_TITLE,
+        currentGameId: process.env.CURRENT_GAME_ID,
         routes: newRoutes
       }
     )

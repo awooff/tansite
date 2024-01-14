@@ -4,8 +4,8 @@ const login = {
 
   settings: {
     groupOnly: Groups.GUEST,
-    title: "Login User",
-    description: "will login the user to syscrack"
+    title: "Register User",
+    description: "will register the user to syscrack"
   },
 
   async get(req, res, error) {
