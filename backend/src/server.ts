@@ -9,7 +9,7 @@ import compression from 'compression'
 import expressSession from 'express-session'
 import dotenv from 'dotenv'
 import ExpressError from './utils/types/error.type'
-import httpMiddleware from './middleware/http.middleware'
+import errorMiddleware from './middleware/error.middleware'
 import { PrismaClient } from '@prisma/client'
 import bodyparse from 'body-parser';
 import authMiddleware from './middleware/auth.middleware'
@@ -40,26 +40,6 @@ class Server {
 
     this.initialiseMiddleware()
     this.initialiseRoutes()
-
-    //error handler route
-    this.server.use((err: any, req: any, res: any, next: any) => {
-      if (typeof err === 'string') {
-        err = new ExpressError(err)
-      }
-
-      if (err instanceof ExpressError) {
-        res.status(err.status).send({
-          body: req.body || {},
-          parameters: req.params,
-          headers: req.headers,
-          message: err.toString()
-        })
-      } else {
-        res.status(err.status).send({
-          error: 'internal server error'
-        })
-      }
-    })
   }
 
   public start() {
@@ -78,7 +58,6 @@ class Server {
     this.server.use(helmet())
     this.server.use(morgan('dev'))
     this.server.use(compression())
-    this.server.use(httpMiddleware)
     this.server.use(expressSession({
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
@@ -118,13 +97,13 @@ class Server {
         newRoute.get((req: Request, res: Response, next: any) => {
           next(route)
         },
-          authMiddleware, route.get)
+          authMiddleware, route.get, errorMiddleware)
 
       if (route.post != null)
         newRoute.post((req: Request, res: Response, next: any) => {
           //send the route class to the next middleware
           next(route)
-        }, authMiddleware, route.post)
+        }, authMiddleware, route.post, errorMiddleware)
 
       this.routes.push(newRoute)
     }));

@@ -1,7 +1,7 @@
 import { Route } from '../../utils/types/route.type'
 import { Groups } from '@prisma/client';
 
-const login = {
+const register = {
 
   settings: {
     groupOnly: Groups.Guest,
@@ -9,7 +9,7 @@ const login = {
     description: "will register the user to syscrack"
   },
 
-  async get(req, res, error) {
+  async post(req, res, error) {
 
     let { username, password, email } = req.body;
 
@@ -17,4 +17,4 @@ const login = {
   }
 } satisfies Route
 
-export default login
+export default register

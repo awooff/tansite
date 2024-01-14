@@ -1,8 +1,8 @@
 import { Route } from '../../utils/types/route.type'
-import { server } from 'index'
+import { server } from '../../index'
 import { Groups } from '@prisma/client';
 
-const login = {
+const logout = {
 
   settings: {
     groupOnly: Groups.User,
@@ -29,4 +29,4 @@ const login = {
   }
 } satisfies Route
 
-export default login
+export default logout
