@@ -5,6 +5,7 @@
 		"outDir": "./dist",
 		"strict": true,
 		"baseUrl": "./src",
+		"resolveJsonModule": true,
 		"paths": {
 			"@": [
 				"./",

@@ -1,0 +1,44 @@
+{
+	"defaultHardwareLimits": {
+		"HDD": 1,
+		"GPU": 1,
+		"CPU": 1,
+		"RAM": 1,
+		"Upload": 1,
+		"Download": 1
+	},
+	"actionNerf": 1.25, //things take 25% slower
+	"cpuNerf": 1.25, //things done by CPU take 25% slower
+	"hddNerf": 1.25, //things done with HDD take 25% slower,
+	"softwareActionsCost": {
+		"install": 600, //400 CPU unuts,
+		"uninstall": 600,
+		"execute": 500,
+		"view": 10,
+		"delete": 800
+	},
+	"operationCost": {
+		"action": 800, //executes an action on a software, this cpu cost is layered ontop of the actions cost
+		"hack": 1000
+	},
+	"defaultSoftware": [
+		{
+			"type": "cracker",
+			"level": 1.0,
+			"installed": true
+		},
+		{
+			"type": "hasher",
+			"level": 1.0,
+			"installed": true
+		}
+	],
+	"defaultHardware": {
+		"HDD": 80,
+		"GPU": 125,
+		"CPU": 866,
+		"RAM": 64,
+		"Upload": 10,
+		"Download": 15
+	}
+}

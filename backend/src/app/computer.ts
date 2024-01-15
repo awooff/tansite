@@ -1,0 +1,169 @@
+import { HardwareTypes, Prisma } from "@prisma/client";
+import { server } from "../index";
+import { Software } from "./software";
+
+export type ComputerData = {
+  title?: string,
+  description?: string,
+  markdown?: string
+  hardwareLimits?: Record<HardwareTypes, number>
+
+}
+
+export class Computer {
+  public readonly computerId: string;
+  public data: ComputerData | undefined;
+  public softwares: Software[] = []
+
+  public computer: Prisma.ComputerGetPayload<{
+    include: {
+      hardware: true,
+      software: true
+    }
+  }> = {} as any
+
+  public constructor(computerId: string) {
+    this.computerId = computerId;
+  }
+
+  public async exists() {
+    return !!await server.prisma.computer.findFirst({
+      where: {
+        id: this.computerId
+      }
+    })
+  }
+
+  public async log(message: string, from?: Computer) {
+    from = from || this;
+  }
+
+  public get ip() {
+    return this.computer.ip
+  }
+
+  public async changeIp(ip: string) {
+    await this.update({
+      ip: ip || generateIpAddress()
+    })
+  }
+
+  public async update(data: Prisma.ComputerUpdateInput) {
+    await server.prisma.computer.update({
+      where: {
+        id: this.computerId
+      }, data: data
+    })
+    await this.load();
+  }
+
+  public async load() {
+    this.computer = await server.prisma.computer.findFirstOrThrow({
+      where: {
+        id: this.computerId
+      },
+      include: {
+        hardware: true,
+        software: true
+      }
+    })
+
+    this.data = JSON.parse(this.computer.data?.toString() || "");
+
+    this.computer.software.forEach((software) => {
+      this.softwares.push(new Software(software.id, software, this))
+    });
+
+    return this.computer;
+  }
+
+  public getSoftware(softwareId: string) {
+    return this.softwares.filter((software) => software.softwareId === softwareId)[0]
+  }
+
+  public getFirstTypeInstalled(type: string) {
+    return this.softwares.filter((software) => software.software.type === type && software.installed)[0]
+  }
+
+  public getInstalled(type: string) {
+    return this.softwares.filter((software) => software.installed)
+  }
+
+  public async addSoftware(data: Prisma.SoftwareCreateManyInput) {
+    let id = await server.prisma.software.create({
+      data: data
+    })
+
+    let software = new Software(id.id, id, this)
+    this.softwares.push(software)
+    return software;
+  }
+
+  public async setHardware(type: HardwareTypes, strength: number) {
+    let previousHardware = this.getFirstHardwareType(type);
+
+    if (previousHardware)
+      await server.prisma.hardware.delete({
+        where: {
+          id: previousHardware.id
+        }
+      })
+
+    await server.prisma.hardware.create({
+      data: {
+        type: type,
+        strength: strength,
+        computerId: this.computerId
+      }
+    })
+  }
+
+  public getCombinedHardwareStrength(type: HardwareTypes) {
+    let result = this.computer.hardware.filter((hardware) => hardware.type === type);
+    let combinedStrength = 0;
+    result.forEach((hardware) => combinedStrength += hardware.strength);
+    return combinedStrength;
+  }
+
+  public getHardware(type: HardwareTypes) {
+    return this.computer.hardware.filter(hardware => hardware.type === type)
+  }
+
+  public getFirstHardwareType(type: HardwareTypes) {
+    return this.computer.hardware.filter((hardware) => hardware.type === type)?.[0]
+  }
+}
+
+export const findComputer = async (ipAddress: string) => {
+  let potentialComputer = await server.prisma.computer.findFirst({
+    where: {
+      ip: ipAddress
+    }
+  })
+
+  return potentialComputer;
+}
+
+export const getComputer = async (computerId: string) => {
+  let computer = new Computer(computerId);
+
+  if (!await computer.exists())
+    return null;
+
+  await computer.load();
+  return computer;
+}
+
+export const generateIpAddress = () => {
+
+  let numbers = []
+
+  for (let i = 0; i < 3; i++) {
+    numbers.push(Math.floor(Math.random() * 256))
+  }
+
+  if (numbers[0] <= 10 || numbers[0] === 192)
+    numbers[0] = 293
+
+  return numbers.join('.')
+}

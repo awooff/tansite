@@ -32,6 +32,16 @@ export default async function authMiddleware(route: Route, req: Request, res: Re
         lastAction: new Date(Date.now())
       }
     })
+
+    // update last action on user table
+    await server.prisma.user.update({
+      where: {
+        id: req.session.userId
+      },
+      data: {
+        lastAction: new Date(Date.now())
+      }
+    })
   }
 
   next()
