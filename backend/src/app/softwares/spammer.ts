@@ -18,7 +18,7 @@ const spammer = {
   delete: async (software, computer, executor) => {
 
     computer.log(`deleted ${software.toString()}`, executor)
-    executor.log(`you have deleted ${software.toString()} on my machine`, computer)
+    executor.log(`you have deleted ${software.toString()}`, computer)
 
     await software.delete()
   }
