@@ -3,7 +3,7 @@ import { SoftwareActions } from '@/lib/types/software.type'
 const defaultSoftware = {
   preDownload: async (software, computer, executor) => {
     let size = 0
-    executor.softwares.forEach((software) => {
+    executor.software.forEach((software) => {
       size += software.software.size
     })
 
@@ -45,7 +45,7 @@ const defaultSoftware = {
   },
   preInstall: async (software, computer, executor) => {
     let size = 0
-    executor.softwares.forEach((software) => {
+    executor.software.forEach((software) => {
       size += software.software.size
     })
 

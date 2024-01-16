@@ -25,16 +25,18 @@
 		{
 			"type": "cracker",
 			"level": 1.0,
+			"size": 1.5,
 			"installed": true
 		},
 		{
 			"type": "hasher",
-			"level": 1.0,
+			"level": 1.5,
+			"size": 1.5,
 			"installed": true
 		}
 	],
 	"defaultHardware": {
-		"HDD": 80,
+		"HDD": 81920,
 		"GPU": 125,
 		"CPU": 866,
 		"RAM": 64,

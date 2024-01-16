@@ -1,10 +1,14 @@
 import { Memory, Prisma } from '@prisma/client'
 import { server } from '../index'
 
-export const canAfford = (bankAccount: Memory, cost: number) => {
-  if (bankAccount.type !== 'bankaccount') { throw new Error('computer memory must be of type bank') }
+export const canAfford = async (bankAccount: string | Memory, cost: number) => {
+  const account = typeof bankAccount === 'string' ? await getBankAccount(bankAccount) : bankAccount
 
-  return (bankAccount?.value || 0) - cost > 0
+  if (account === null) { throw new Error('bank account is ivnalid') }
+
+  if (account.type !== 'bankaccount') { throw new Error('computer memory must be of type bank') }
+
+  return (account?.value || 0) - cost > 0
 }
 
 export const deposit = async (bankAccount: string | Memory, value: number) => {

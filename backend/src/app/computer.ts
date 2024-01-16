@@ -1,6 +1,7 @@
 import { HardwareTypes, Memory, Prisma } from '@prisma/client'
 import { server } from '../index'
 import { Software } from './software'
+import { ComputerProcess } from './process'
 
 export interface ComputerData {
   title?: string
@@ -9,16 +10,17 @@ export interface ComputerData {
   hardwareLimits?: Record<HardwareTypes, number>
 
 }
-
 export class Computer {
   public readonly computerId: string
   public data: ComputerData | undefined
-  public softwares: Software[] = []
+  public software: Software[] = []
+  public process: ComputerProcess[] = []
 
   public computer: Prisma.ComputerGetPayload<{
     include: {
       hardware: true
       software: true
+      process: true
     }
   }> = {} as any
 
@@ -111,7 +113,7 @@ export class Computer {
   }
 
   public async log (message: string, from?: Computer) {
-    from = from || this;
+    const computer = (from == null) ? this : from
   }
 
   public get ip () {
@@ -142,29 +144,36 @@ export class Computer {
       },
       include: {
         hardware: true,
-        software: true
+        software: true,
+        process: true
       }
     })
 
     this.data = JSON.parse(this.computer.data?.toString() || '')
 
+    // software
     this.computer.software.forEach((software) => {
-      this.softwares.push(new Software(software.id, software, this))
+      this.software.push(new Software(software.id, software, this))
+    })
+
+    // processes
+    this.computer.process.forEach((process) => {
+      this.process.push(new ComputerProcess(process.id, process, this))
     })
 
     return this.computer
   }
 
   public getSoftware (softwareId: string) {
-    return this.softwares.filter((software) => software.softwareId === softwareId)[0]
+    return this.software.filter((software) => software.softwareId === softwareId)[0]
   }
 
   public getFirstTypeInstalled (type: string) {
-    return this.softwares.filter((software) => software.software.type === type && software.installed)[0]
+    return this.software.filter((software) => software.software.type === type && software.installed)[0]
   }
 
   public getInstalled (type: string) {
-    return this.softwares.filter((software) => software.installed)
+    return this.software.filter((software) => software.installed)
   }
 
   public async cloneSoftware (computer: Computer, software: Software | string) {
@@ -199,7 +208,7 @@ export class Computer {
     })
 
     const software = new Software(id.id, id, this)
-    this.softwares.push(software)
+    this.software.push(software)
     return software
   }
 

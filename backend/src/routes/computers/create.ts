@@ -51,10 +51,15 @@ const local = {
             id: computer.computerId
           }
         },
+        size: software.size,
         type: software.type,
         level: software.level,
         installed: software.installed,
-        opacity: 0.0
+        opacity: 0.0,
+        data: {
+          name: `Simple ${software.type}`,
+          icon: software.type
+        }
       })
     }))
 

@@ -40,48 +40,50 @@ export class Software {
   }
 
   public async preExecute (action: keyof SoftwareActions, executor?: Computer, data?: any): Promise<boolean> {
+    const computer = (executor == null) ? this.computer : executor
     switch (action) {
       case 'install':
         if ((this.actions?.preInstall) == null) { return true }
-        return await this.actions.preInstall(this, this.computer, executor || this.computer, data)
+        return await this.actions.preInstall(this, this.computer, computer, data)
       case 'uninstall':
         if ((this.actions?.preUninstall) == null) { return true }
-        return await this.actions.preUninstall(this, this.computer, executor || this.computer, data)
+        return await this.actions.preUninstall(this, this.computer, computer, data)
       case 'execute':
         if ((this.actions?.preExecute) == null) { return true }
-        return await this.actions.preExecute(this, this.computer, executor || this.computer, data)
+        return await this.actions.preExecute(this, this.computer, computer, data)
       case 'view':
         if ((this.actions?.preView) == null) { return true }
-        return await this.actions.preView(this, this.computer, executor || this.computer, data)
+        return await this.actions.preView(this, this.computer, computer, data)
       case 'delete':
         if ((this.actions?.preDelete) == null) { return true }
-        return await this.actions.preDelete(this, this.computer, executor || this.computer, data)
+        return await this.actions.preDelete(this, this.computer, computer, data)
       default:
         throw new Error('invalid action')
     }
   }
 
   public async execute (action: keyof SoftwareActions, executor?: Computer, data?: any) {
+    const computer = (executor == null) ? this.computer : executor
     switch (action) {
       case 'install':
         if ((this.actions?.install) == null) { return null }
-        await this.actions.install(this, this.computer, executor || this.computer, data)
+        await this.actions.install(this, this.computer, computer, data)
         break
       case 'uninstall':
         if ((this.actions?.uninstall) == null) { return null }
-        await this.actions.uninstall(this, this.computer, executor || this.computer, data)
+        await this.actions.uninstall(this, this.computer, computer, data)
         break
       case 'execute':
         if ((this.actions?.execute) == null) { return null }
-        await this.actions.execute(this, this.computer, executor || this.computer, data)
+        await this.actions.execute(this, this.computer, computer, data)
         break
       case 'view':
         if ((this.actions?.view) == null) { return null }
-        await this.actions.view(this, this.computer, executor || this.computer, data)
+        await this.actions.view(this, this.computer, computer, data)
         break
       case 'delete':
         if ((this.actions?.delete) == null) { return null }
-        await this.actions.delete(this, this.computer, executor || this.computer, data)
+        await this.actions.delete(this, this.computer, computer, data)
         break
       default:
         throw new Error('invalid action')
@@ -128,15 +130,23 @@ export class Software {
       }
     })
 
-    this.computer = new Computer(this.software.computerId)
-    await this.computer.load()
+    if (!this.computer) {
+      this.computer = new Computer(this.software.computerId)
+      await this.computer.load()
+    } else {
+      this.computer.software = this.computer.software.map((software) => {
+        if (software.softwareId === this.softwareId) { return this }
 
+        return software
+      })
+    }
+
+    // the actions (install, etc) to do for this software
     this.actions = (Softwares as any)?.[this.software.type]
 
     // if no actions for this software, use generic
-    if (!this.actions) { this.actions = Softwares.generic } else
-    // if any missing actions, take them from generic
-    {
+    if (!this.actions) { this.actions = Softwares.generic } else {
+      // if any missing actions, take them from generic
       Object.keys(Softwares.generic).forEach((key) => {
         if (key === 'settings') { return }
 
