@@ -111,7 +111,7 @@ export class Computer {
   }
 
   public async log (message: string, from?: Computer) {
-    from = from || this
+    from = from || this;
   }
 
   public get ip () {
@@ -165,6 +165,32 @@ export class Computer {
 
   public getInstalled (type: string) {
     return this.softwares.filter((software) => software.installed)
+  }
+
+  public async cloneSoftware (computer: Computer, software: Software | string) {
+    software = typeof software === 'string' ? this.getSoftware(software) : software
+
+    return await computer.addSoftware({
+      ...software.software,
+      data: {
+        ...(typeof software.software.data === 'string' ? JSON.parse(software.software.data) : software.software.data)
+      },
+      game: {
+        connect: {
+          id: process.env.CURRENT_GAME_ID
+        }
+      },
+      user: {
+        connect: {
+          id: computer.computer.userId
+        }
+      },
+      computer: {
+        connect: {
+          id: computer.computerId
+        }
+      }
+    })
   }
 
   public async addSoftware (data: Prisma.SoftwareCreateInput) {

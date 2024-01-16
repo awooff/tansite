@@ -35,13 +35,14 @@ const action = {
 
     if (data.custom.action === 'execute' && software.actions.settings?.localExecutionOnly && computer.computerId !== executor.computerId) { throw new GameException('can only be executed on your machine locally') }
 
-    return true
+    // check if the software can do this action
+    return await software.preExecute(data.custom.action, executor, data)
   },
   after: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
     if (computer === null) { throw new Error('no computer') }
 
     const software = computer.getSoftware(data.softwareId)
-    await software.execute(data.custom.action, executor)
+    return await software.execute(data.custom.action, executor)
   }
 } satisfies Process
 export default action

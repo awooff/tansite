@@ -29,5 +29,5 @@ export interface Process {
   settings?: ProcessSettings
   delay?: (computer: Computer | null, executor: Computer, data: any) => Promise<number>
   before: (computer: Computer | null, executor: Computer, data: any) => Promise<boolean>
-  after: (computer: Computer | null, executor: Computer, data: any) => Promise<void>
+  after: (computer: Computer | null, executor: Computer, data: any) => Promise<void | any>
 }

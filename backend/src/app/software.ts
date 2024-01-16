@@ -39,28 +39,49 @@ export class Software {
     return baseCost
   }
 
-  public async execute (action: keyof SoftwareActions, executor?: Computer) {
+  public async preExecute (action: keyof SoftwareActions, executor?: Computer, data?: any): Promise<boolean> {
     switch (action) {
       case 'install':
-        if (!this.actions?.install) { return null }
-        await this.actions.install(this, this.computer, executor || this.computer)
+        if ((this.actions?.preInstall) == null) { return true }
+        return await this.actions.preInstall(this, this.computer, executor || this.computer, data)
+      case 'uninstall':
+        if ((this.actions?.preUninstall) == null) { return true }
+        return await this.actions.preUninstall(this, this.computer, executor || this.computer, data)
+      case 'execute':
+        if ((this.actions?.preExecute) == null) { return true }
+        return await this.actions.preExecute(this, this.computer, executor || this.computer, data)
+      case 'view':
+        if ((this.actions?.preView) == null) { return true }
+        return await this.actions.preView(this, this.computer, executor || this.computer, data)
+      case 'delete':
+        if ((this.actions?.preDelete) == null) { return true }
+        return await this.actions.preDelete(this, this.computer, executor || this.computer, data)
+      default:
+        throw new Error('invalid action')
+    }
+  }
+
+  public async execute (action: keyof SoftwareActions, executor?: Computer, data?: any) {
+    switch (action) {
+      case 'install':
+        if ((this.actions?.install) == null) { return null }
+        await this.actions.install(this, this.computer, executor || this.computer, data)
         break
       case 'uninstall':
-        if (!this.actions?.uninstall) { return null }
-        await this.actions.uninstall(this, this.computer, executor || this.computer)
+        if ((this.actions?.uninstall) == null) { return null }
+        await this.actions.uninstall(this, this.computer, executor || this.computer, data)
         break
       case 'execute':
         if ((this.actions?.execute) == null) { return null }
-        await this.actions.execute(this, this.computer, executor || this.computer)
+        await this.actions.execute(this, this.computer, executor || this.computer, data)
         break
       case 'view':
         if ((this.actions?.view) == null) { return null }
-        await this.actions.view(this, this.computer, executor || this.computer)
+        await this.actions.view(this, this.computer, executor || this.computer, data)
         break
       case 'delete':
-        if (!this.actions?.delete) { return null }
-
-        await this.actions.delete(this, this.computer, executor || this.computer)
+        if ((this.actions?.delete) == null) { return null }
+        await this.actions.delete(this, this.computer, executor || this.computer, data)
         break
       default:
         throw new Error('invalid action')
@@ -112,7 +133,16 @@ export class Software {
 
     this.actions = (Softwares as any)?.[this.software.type]
 
-    if (!this.actions) { this.actions = Softwares.generic }
+    // if no actions for this software, use generic
+    if (!this.actions) { this.actions = Softwares.generic } else
+    // if any missing actions, take them from generic
+    {
+      Object.keys(Softwares.generic).forEach((key) => {
+        if (key === 'settings') { return }
+
+        if (!(this.actions as any)[key]) { (this.actions as any)[key] = (Softwares.generic as any)[key] }
+      })
+    }
 
     return this.software
   }

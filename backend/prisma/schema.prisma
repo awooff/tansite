@@ -119,6 +119,7 @@ model Software {
   gameId     String
   type       String
   level      Float
+  size       Float
   opacity    Float
   installed  Boolean
   data       Json     @default(dbgenerated())
