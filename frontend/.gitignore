@@ -1,3 +1,13 @@
+# Env
+*.env*
+!.env.example
+
+# Nix
+flake.lock
+.direnv
+.devenv
+.nix-shell
+
 # Logs
 logs
 *.log

@@ -1,19 +1,15 @@
-import { create } from 'zustand'
+import { atom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
-type UserAuthState = {
-	username: string
-	jwt: string
+type UserAtom = {
+	username: string,
+	email: string,
+	avatar: string,
+	jwt: string,
 }
 
-type UserAuthAction = {
-	updateUsername: (username: UserAuthState['username']) => void
-	updateJwt: (jwt: UserAuthState['jwt']) => void
-}
-
-export const useUserAuthStore = create<UserAuthState & UserAuthAction>(set => ({
-	username: '',
-	jwt: '',
-	updateUsername: (username) => set(() => ({ username })),
-	updateJwt: (jwt) => set(() => ({ jwt }))
-}))
-
+export const userAtom = atomWithStorage('user', {} as UserAtom)
+export const modifyUserAtom = atom(
+	(get) => get(userAtom),
+	(_get, set, newUser: UserAtom) => set(userAtom, newUser)
+)

@@ -13,7 +13,7 @@ There are two UI libraries in use: [RadixUI](https://radix-ui.com) and [Tailwind
 
 ## State Management
 
-Handling state is done through [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
+Handling state is done through [Jotai](https://jotai.org/docs/guides/composing-atoms)
 
 ## Expanding the ESLint configuration
 
