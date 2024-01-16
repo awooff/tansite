@@ -50,18 +50,20 @@ export class Software {
         await this.actions.uninstall(this, this.computer, executor || this.computer)
         break
       case 'execute':
-        if (!this.actions?.execute) { return null }
-        await this.actions.execute(this, this.computer,  executor || this.computer)
+        if ((this.actions?.execute) == null) { return null }
+        await this.actions.execute(this, this.computer, executor || this.computer)
         break
       case 'view':
-        if (!this.actions?.view) { return null }
-        await this.actions.view(this, this.computer,  executor || this.computer)
+        if ((this.actions?.view) == null) { return null }
+        await this.actions.view(this, this.computer, executor || this.computer)
         break
       case 'delete':
         if (!this.actions?.delete) { return null }
 
-        await this.actions.delete(this, this.computer,  executor || this.computer)
+        await this.actions.delete(this, this.computer, executor || this.computer)
         break
+      default:
+        throw new Error('invalid action')
     }
   }
 

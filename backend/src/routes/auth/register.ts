@@ -3,6 +3,7 @@ import { Groups } from '@prisma/client'
 import { registerSchema } from '../../lib/schemas/register.schema'
 import { server } from '../../index'
 import bcrypt from 'bcrypt'
+import { Preferences } from '@/lib/types/preferences.type'
 
 const register = {
 
@@ -32,12 +33,26 @@ const register = {
     const salt = await bcrypt.genSalt()
     const saltedPassword = await bcrypt.hash(password, salt)
 
-    await server.prisma.user.create({
+    const user = await server.prisma.user.create({
       data: {
         password: saltedPassword,
         salt,
         name: username,
         email
+      }
+    })
+
+    // Create preferences for the user
+    await server.prisma.preferences.create({
+      data: {
+        userId: user.id,
+        gameId: process.env.CURRENT_GAME_ID,
+        data: {
+          tutorial: {
+            currentTutorial: 'welcome',
+            completed: false
+          }
+        } satisfies Preferences
       }
     })
 

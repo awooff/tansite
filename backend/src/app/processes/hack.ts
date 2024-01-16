@@ -1,33 +1,32 @@
-import { Process, ProcessParameters } from '@/lib/types/process.type'
-import { SoftwareActions } from '@/lib/types/software.type'
+import { Process, ProcessData, ProcessSettings } from '@/lib/types/process.type'
 import { Computer } from '../computer'
 import settings from '../../settings'
-
-export interface ExecuteData {
-  softwareId: string
-  action: keyof SoftwareActions
-}
+import GameException from '@/lib/exceptions/game.exception'
 
 const action = {
-  parameters: () => {
-    return {
-      computerId: true
-    } satisfies ProcessParameters
+  settings: {
+    parameters: {
+      computer: true
+    }
   },
-  delay: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+  delay: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
+    if (computer === null) { throw new Error('no computer') }
+
     const hasher = computer.getFirstTypeInstalled('hasher')
     const cracker = executor.getFirstTypeInstalled('cracker')
-    return hasher.getExecutionCost(data.action) + cracker.getExecutionCost('execute') + settings.operationCost.hack
+    return hasher.getExecutionCost('execute') + cracker.getExecutionCost('execute') + settings.operationCost.hack
   },
-  before: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+  before: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
+    if (computer === null) { throw new Error('no computer') }
+
     const hasher = computer.getFirstTypeInstalled('hasher')
     const cracker = executor.getFirstTypeInstalled('cracker')
 
-    if (hasher.level > cracker.level) { return 'your cracker is too weak to hack this' }
+    if (hasher.level > cracker.level) { throw new GameException('your cracker is too weak') }
 
     return true
   },
-  after: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+  after: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
 
   }
 } satisfies Process

@@ -26,27 +26,32 @@ enum HardwareTypes {
 }
 
 model User {
-  id         Int        @id @default(autoincrement())
-  email      String     @unique
-  name       String     @default("User")
-  password   String
-  salt       String
-  lastAction DateTime   @default(now())
-  creation   DateTime   @default(now())
-  group      Groups     @default(User)
-  session    Session[]
-  computer   Computer[]
-  software   Software[]
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  name         String        @default("User")
+  password     String
+  salt         String
+  lastAction   DateTime      @default(now())
+  creation     DateTime      @default(now())
+  group        Groups        @default(User)
+  refreshToken String?       @db.Text
+  session      Session[]
+  computer     Computer[]
+  software     Software[]
+  preferences  Preferences[]
+  memory      Memory[]
 }
 
 model Game {
-  id        String     @id @default(uuid())
-  name      String
-  started   DateTime   @default(now())
-  ended     DateTime?
-  software  Software[]
-  hardware  Hardware[]
-  Computers Computer[]
+  id          String        @id @default(uuid())
+  name        String
+  started     DateTime      @default(now())
+  ended       DateTime?
+  software    Software[]
+  hardware    Hardware[]
+  computer    Computer[]
+  preferences Preferences[]
+  memory      Memory[]
 }
 
 model Session {
@@ -67,17 +72,41 @@ model Hardware {
   strength   Float
 }
 
+model Preferences {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId String
+  data   Json
+}
+
+model Memory {
+  id         String   @id @default(uuid())
+  computer   Computer @relation(fields: [computerId], references: [id])
+  computerId String
+  game       Game     @relation(fields: [gameId], references: [id])
+  gameId     String
+  user     User       @relation(fields: [userId], references: [id])
+  userId   Int
+  type       String
+  key        String
+  value      Float?
+  data       Json     @default(dbgenerated())
+}
+
 model Computer {
   id       String     @id @default(uuid())
   user     User       @relation(fields: [userId], references: [id])
+  userId   Int
   type     String     @default("npc")
   game     Game       @relation(fields: [gameId], references: [id])
   gameId   String
   ip       String
-  userId   Int
-  data     Json
+  data     Json       @default(dbgenerated())
   hardware Hardware[]
   software Software[]
+  memory   Memory[]
 }
 
 model Software {

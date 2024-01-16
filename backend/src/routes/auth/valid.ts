@@ -7,7 +7,7 @@ const valid = {
   settings: {
     groupOnly: Groups.User,
     title: 'Valid',
-    description: 'check if the user is logged in or not, will return session and userobject if true'
+    description: 'check if the user is logged in'
   },
 
   async get (req, res, error) {

@@ -1,36 +1,47 @@
-import { Process, ProcessParameters } from '@/lib/types/process.type'
+import { Process, ProcessData, ProcessSettings } from '@/lib/types/process.type'
 import { SoftwareActions } from '@/lib/types/software.type'
 import { Computer } from '../computer'
 import settings from '../../settings'
+import GameException from '@/lib/exceptions/game.exception'
 
-export interface ExecuteData {
-  softwareId: string
-  action: keyof SoftwareActions
-}
+export type ExecuteData = {
+  custom: {
+    action: keyof SoftwareActions
+  }
+} & ProcessData
 
 const action = {
-  parameters: () => {
-    return {
+  settings: {
+    parameters: {
       custom: {
-        action: 'string'
+        action: (z) => {
+          return z.string().trim().max(16)
+        }
       },
-      softwareId: true
-    } satisfies ProcessParameters
+      softwareId: true,
+      computer: true
+    }
   },
-  delay: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+  delay: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
+    if (computer === null) { throw new Error('no computer') }
+
     const software = computer.getSoftware(data.softwareId)
-    return software.getExecutionCost(data.action) + settings.operationCost.action
+    return software.getExecutionCost(data.custom.action) + settings.operationCost.action
   },
-  before: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+  before: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
+    if (computer === null) { throw new Error('no computer') }
+
     const software = computer.getSoftware(data.softwareId)
 
-    if (data.action === 'execute' && software.actions.settings?.localExecutionOnly && computer.computerId !== executor.computerId) { return 'can only be executed locally' }
+    if (data.custom.action === 'execute' && software.actions.settings?.localExecutionOnly && computer.computerId !== executor.computerId) { throw new GameException('can only be executed on your machine locally') }
 
     return true
   },
-  after: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+  after: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
+    if (computer === null) { throw new Error('no computer') }
+
     const software = computer.getSoftware(data.softwareId)
-    await software.execute(data.action, executor)
+    await software.execute(data.custom.action, executor)
   }
 } satisfies Process
 export default action

@@ -1,4 +1,4 @@
-import { HardwareTypes, Prisma } from '@prisma/client'
+import { HardwareTypes, Memory, Prisma } from '@prisma/client'
 import { server } from '../index'
 import { Software } from './software'
 
@@ -34,8 +34,84 @@ export class Computer {
     })) == null)
   }
 
+  public async addMemory (key: string, type: string, value?: number, data?: any) {
+    return await server.prisma.memory.create({
+      data: {
+        userId: this.computer.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        type,
+        computerId: this.computerId,
+        key,
+        data,
+        value
+      }
+    })
+  }
+
+  public async getUserPreferences () {
+    return await server.prisma.preferences.findFirst({
+      where: {
+        userId: this.computer.userId
+      }
+    })
+  }
+
+  public async findMemory (type: string) {
+    return await server.prisma.memory.findFirst({
+      where: {
+        userId: this.computer.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        type
+      }
+    })
+  }
+
+  public async getMemory (key: string) {
+    return await server.prisma.memory.findFirst({
+      where: {
+        userId: this.computer.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        key
+      }
+    })
+  }
+
+  public async addUserMemory (key: string, type: string, userId: number, data?: any, value?: any) {
+    return await server.prisma.memory.create({
+      data: {
+        userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        type,
+        computerId: this.computerId,
+        key,
+        data,
+        value
+      }
+    })
+  }
+
+  public async findUserMemory (type: string, userId: number) {
+    return await server.prisma.memory.findFirst({
+      where: {
+        userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        type
+      }
+    })
+  }
+
+  public async getUserMemory (key: string, userId: number) {
+    return await server.prisma.memory.findFirst({
+      where: {
+        userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        key
+      }
+    })
+  }
+
   public async log (message: string, from?: Computer) {
-    from = from || this;
+    from = from || this
   }
 
   public get ip () {

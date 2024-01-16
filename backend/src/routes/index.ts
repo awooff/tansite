@@ -22,7 +22,6 @@ const index = {
           newRoutes[path] = {
             get: (route as any)?.source?.get !== undefined,
             post: (route as any)?.source?.post !== undefined,
-            paths: route.path,
             settings: (route as any).settings
           }
         })
@@ -30,7 +29,6 @@ const index = {
         newRoutes[route.path] = {
           get: route.get !== undefined,
           post: route.post !== undefined,
-          paths: route.path,
           settings: (route as any).settings
         }
       }
