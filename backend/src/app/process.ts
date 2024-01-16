@@ -1,20 +1,20 @@
 import { Process } from '@prisma/client'
 import { Computer } from './computer'
-import { server } from 'index'
+import { server } from '../index'
 
 export class ComputerProcess {
   public computer?: Computer
   public processId: string
   public process?: Process
 
-  constructor (processId: string, process?: Process, computer?: Computer) {
+  constructor(processId: string, process?: Process, computer?: Computer) {
     this.processId = processId
 
     if (process != null) { this.process = process }
     if (computer != null) { this.computer = computer }
   }
 
-  public async load () {
+  public async load() {
     this.process = await server.prisma.process.findFirstOrThrow({
       where: {
         id: this.processId,

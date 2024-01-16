@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@stores/';
 import * as Form from '@radix-ui/react-form';
 import { useForm, SubmitHandler } from "react-hook-form"
-import { RegisterSchema } from '../../lib/schemas';
+import { RegisterSchema } from '@schemas/register.schema';
 import { Box, Button, TextField, Checkbox, Flex } from '@radix-ui/themes';
 
 function RegisterForm() {
@@ -17,14 +17,16 @@ function RegisterForm() {
 	const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
 		console.log(data)
 		await fetch('http://localhost:1337/auth/register', {
+			method: 'POST',
 			body: JSON.stringify(data)
 		}).then(response => {
 			if (!response.ok) {
-				return <p>{response.statusText}</p>
+				return <p> Welcome, {user.username} - {response.statusText}</p>
 			}
+
 			const { jwt } = response.body as any
 			const { username, email } = data
-			setUser({username, email, jwt, avatar: ''})
+			setUser({username, email, jwt})
 		}).catch(err => {
 			if (err) {
 				return <p>Something bad happened!</p>
@@ -35,7 +37,7 @@ function RegisterForm() {
 	
 	return (
 	  <Box width={'max-content'}>
-		<Form.Root onSubmit={() => onSubmit(handleSubmit as any)}>
+		<Form.Root onSubmit={handleSubmit(onSubmit)}>
 			<Form.Field name="username">
 				<Form.Label>Username</Form.Label>
 				<Form.Control asChild>
@@ -58,14 +60,14 @@ function RegisterForm() {
 				{errors.password && <Form.FormMessage>{errors.password.message}</Form.FormMessage>}
 				</Form.Field>
 				
-				<Flex dir='col'>
+				{/* <Flex dir='col'>
 					<Flex dir='row' justify={'center'}>
 						<Checkbox {...register('terms')} /> I accept the terms and conditions
 					</Flex>
 					<Flex dir='row' justify={'center'}>
 						<Checkbox {...register('privacy')} /> I accept the privacy policy
 					</Flex>
-				</Flex>
+				</Flex> */}
 			<Button size='3' variant='soft' type="submit"> Submit! </Button>
 		</Form.Root>
 	</Box>

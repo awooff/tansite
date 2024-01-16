@@ -4,7 +4,7 @@ import { atomWithStorage } from 'jotai/utils'
 type UserAtom = {
 	username: string,
 	email: string,
-	avatar: string,
+	avatar?: string,
 	jwt: string,
 }
 
