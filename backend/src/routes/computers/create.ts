@@ -12,33 +12,45 @@ const local = {
     description: 'Creates a new computer'
   },
 
-  async get(req, res, error) {
+  async get (req, res, error) {
+    if (!req.session.userId) { return error('session is invalid') }
 
-    if (!req.session.userId)
-      return error('session is invalid');
-
-    let computerData = await server.prisma.computer.create({
+    const computerData = await server.prisma.computer.create({
       data: {
         userId: req.session.userId,
         ip: generateIpAddress(),
+        gameId: process.env.CURRENT_GAME_ID,
+        type: 'vpc',
         data: {
           title: 'New Computer',
           description: 'A new computer',
           markdown: 'Hello World',
           hardwareLimits: settings.defaultHardwareLimits
-        } as ComputerData
+        } satisfies ComputerData
       }
     })
-    let computer = await getComputer(computerData.id);
+    const computer = await getComputer(computerData.id)
 
-    if (computer === null)
-      return error('did not create computer');
+    if (computer === null) { return error('did not create computer') }
 
-    //set computer
+    // set computer
     await Promise.all(Object.values(settings.defaultSoftware).map(async (software) => {
       await computer?.addSoftware({
-        userId: req.session.userId || 0,
-        computerId: computer.computerId,
+        game: {
+          connect: {
+            id: process.env.CURRENT_GAME_ID
+          }
+        },
+        user: {
+          connect: {
+            id: req.session.userId
+          }
+        },
+        computer: {
+          connect: {
+            id: computer.computerId
+          }
+        },
         type: software.type,
         level: software.level,
         installed: software.installed,
@@ -46,12 +58,12 @@ const local = {
       })
     }))
 
-    //set hardware
+    // set hardware
     await Promise.all(Object.keys(settings.defaultHardware).map(async (hardware: any) => {
       await computer?.setHardware(hardware, (settings.defaultHardware as any)[hardware])
     }))
 
-    await computer.load();
+    await computer.load()
 
     res.send({
       computer: computer.computer

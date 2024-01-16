@@ -2,79 +2,95 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum Groups {
-    User
-    Guest
-    Admin
+  User
+  Guest
+  Admin
 }
 
 enum HardwareTypes {
-    CPU
-    GPU
-    RAM
-    HDD
-    Upload
-    Download
+  CPU
+  GPU
+  RAM
+  HDD
+  Upload
+  Download
 }
 
 model User {
-    id         Int        @id @default(autoincrement())
-    email      String     @unique
-    name       String     @default("User")
-    password   String
-    salt       String
-    group      Groups     @default(User)
-    session    Session[]
-    computer   Computer[]
-    lastAction DateTime   @default(now())
-    creation   DateTime   @default(now())
-    software   Software[]
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  name       String     @default("User")
+  password   String
+  salt       String
+  lastAction DateTime   @default(now())
+  creation   DateTime   @default(now())
+  group      Groups     @default(User)
+  session    Session[]
+  computer   Computer[]
+  software   Software[]
+}
+
+model Game {
+  id        String     @id @default(uuid())
+  name      String
+  started   DateTime   @default(now())
+  ended     DateTime?
+  software  Software[]
+  hardware  Hardware[]
+  Computers Computer[]
 }
 
 model Session {
-    id         String   @id
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    lastAction DateTime
-    creation   DateTime @default(now())
+  id         String   @id
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  lastAction DateTime
+  creation   DateTime @default(now())
 }
 
 model Hardware {
-    id         Int           @id @default(autoincrement())
-    computer   Computer      @relation(fields: [computerId], references: [id])
-    computerId String
-    type       HardwareTypes
-    strength   Float
+  id         Int           @id @default(autoincrement())
+  computer   Computer      @relation(fields: [computerId], references: [id])
+  computerId String
+  game       Game          @relation(fields: [gameId], references: [id])
+  gameId     String
+  type       HardwareTypes
+  strength   Float
 }
 
 model Computer {
-    id       String     @id @default(uuid())
-    user     User       @relation(fields: [userId], references: [id])
-    type     String     @default("npc")
-    ip       String
-    userId   Int
-    data     Json
-    hardware Hardware[]
-    software Software[]
+  id       String     @id @default(uuid())
+  user     User       @relation(fields: [userId], references: [id])
+  type     String     @default("npc")
+  game     Game       @relation(fields: [gameId], references: [id])
+  gameId   String
+  ip       String
+  userId   Int
+  data     Json
+  hardware Hardware[]
+  software Software[]
 }
 
 model Software {
-    id         String   @id @default(uuid())
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    computer   Computer @relation(fields: [computerId], references: [id])
-    computerId String
-    type       String
-    level      Float
-    opacity    Float
-    installed  Boolean
-    data       Json     @default(dbgenerated())
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  computer   Computer @relation(fields: [computerId], references: [id])
+  computerId String
+  game       Game     @relation(fields: [gameId], references: [id])
+  gameId     String
+  type       String
+  level      Float
+  opacity    Float
+  installed  Boolean
+  data       Json     @default(dbgenerated())
 }

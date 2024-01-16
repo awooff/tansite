@@ -12,24 +12,22 @@ const local = {
     description: 'Switch current computer to another computer'
   },
 
-  async get(req, res, error) {
+  async get (req, res, error) {
     const body = await switchSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
 
     const { computerId } = body.data
 
-    let result = await getComputer(computerId)
+    const result = await getComputer(computerId)
 
-    if (result === null)
-      return error('computer does not exist')
+    if (result === null) { return error('computer does not exist') }
 
-    if (result.computer.userId !== req.session.userId)
-      return error('user does not own this computer')
+    if (result.computer.userId !== req.session.userId) { return error('user does not own this computer') }
 
     req.session.currentComputerId = result.computerId
 
-    //logged new login
+    // logged new login
     result.log(`logged on at ${new Date(Date.now()).toString()}`)
 
     res.send({

@@ -1,9 +1,9 @@
-import { Process, ProcessParameters } from "@/lib/types/process.type";
-import { SoftwareActions } from "@/lib/types/software.type";
-import { Computer } from "../computer";
-import settings from "../../settings";
+import { Process, ProcessParameters } from '@/lib/types/process.type'
+import { SoftwareActions } from '@/lib/types/software.type'
+import { Computer } from '../computer'
+import settings from '../../settings'
 
-export type ExecuteData = {
+export interface ExecuteData {
   softwareId: string
   action: keyof SoftwareActions
 }
@@ -15,24 +15,22 @@ const action = {
         action: 'string'
       },
       softwareId: true
-    } as ProcessParameters
+    } satisfies ProcessParameters
   },
   delay: async (computer: Computer, executor: Computer, data: ExecuteData) => {
-    let software = computer.getSoftware(data.softwareId);
+    const software = computer.getSoftware(data.softwareId)
     return software.getExecutionCost(data.action) + settings.operationCost.action
   },
   before: async (computer: Computer, executor: Computer, data: ExecuteData) => {
+    const software = computer.getSoftware(data.softwareId)
 
-    let software = computer.getSoftware(data.softwareId);
+    if (data.action === 'execute' && software.actions.settings?.localExecutionOnly && computer.computerId !== executor.computerId) { return 'can only be executed locally' }
 
-    if (data.action === 'execute' && software.actions.settings?.localExecutionOnly && computer.computerId !== executor.computerId)
-      return "can only be executed locally"
-
-    return true;
+    return true
   },
   after: async (computer: Computer, executor: Computer, data: ExecuteData) => {
-    let software = computer.getSoftware(data.softwareId);
+    const software = computer.getSoftware(data.softwareId)
     await software.execute(data.action, executor)
   }
-} as Process
-export default action;
+} satisfies Process
+export default action

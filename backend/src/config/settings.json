@@ -7,18 +7,18 @@
 		"Upload": 1,
 		"Download": 1
 	},
-	"actionNerf": 1.25, //things take 25% slower
-	"cpuNerf": 1.25, //things done by CPU take 25% slower
-	"hddNerf": 1.25, //things done with HDD take 25% slower,
+	"actionNerf": 1.25,
+	"cpuNerf": 1.25,
+	"hddNerf": 1.25, 
 	"softwareActionsCost": {
-		"install": 600, //400 CPU unuts,
+		"install": 600, 
 		"uninstall": 600,
 		"execute": 500,
 		"view": 10,
 		"delete": 800
 	},
 	"operationCost": {
-		"action": 800, //executes an action on a software, this cpu cost is layered ontop of the actions cost
+		"action": 800,
 		"hack": 1000
 	},
 	"defaultSoftware": [

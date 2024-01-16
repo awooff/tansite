@@ -11,15 +11,12 @@ const current = {
     description: 'The users current local computer'
   },
 
-  async get(req, res, error) {
+  async get (req, res, error) {
+    if (!req.session.currentComputerId) { return error('you do not have a current computer') }
 
-    if (!req.session.currentComputerId)
-      return error("you do not have a current computer")
+    const result = await getComputer(req.session.currentComputerId)
 
-    let result = await getComputer(req.session.currentComputerId)
-
-    if (result === null)
-      return error('computer does not exist')
+    if (result === null) { return error('computer does not exist') }
 
     res.send({
       computer: result.computer

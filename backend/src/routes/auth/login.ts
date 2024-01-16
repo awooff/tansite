@@ -14,7 +14,7 @@ const login = {
     description: 'will login the user to syscrack'
   },
 
-  async post(req, res, error) {
+  async post (req, res, error) {
     const body = await loginSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)

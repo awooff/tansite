@@ -11,14 +11,14 @@ const network = {
     description: 'All the users current computers'
   },
 
-  async get(req, res, error) {
+  async get (req, res, error) {
     const body = await paginationSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
 
     const { page } = body.data
 
-    let computers = await server.prisma.computer.findMany({
+    const computers = await server.prisma.computer.findMany({
       where: {
         userId: req.session.userId
       },
@@ -29,15 +29,15 @@ const network = {
       take: 32
     })
 
-    let count = await server.prisma.computer.count({
+    const count = await server.prisma.computer.count({
       where: {
         userId: req.session.userId
-      },
+      }
     })
 
     res.send({
-      computers: computers,
-      page: page,
+      computers,
+      page,
       count: computers.length,
       pageMax: Math.floor(count / 64) + 1
     })

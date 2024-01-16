@@ -1,4 +1,4 @@
-import action from "./action";
-import hack from "./hack";
+import action from './action'
+import hack from './hack'
 
-export { action, hack };
+export { action, hack }

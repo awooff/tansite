@@ -1,5 +1,4 @@
 import express, { type Application, type IRoute, Request, Response } from 'express'
-import connectPg from 'connect-pg-simple';
 import path from 'path'
 import { glob } from 'glob'
 import { Route } from './lib/types/route.type'
@@ -32,7 +31,7 @@ class Server {
   public routes: IRoute[]
   public prisma: PrismaClient
 
-  constructor() {
+  constructor () {
     this.server = express()
     this.prisma = new PrismaClient()
     this.routes = []
@@ -41,7 +40,7 @@ class Server {
     this.initialiseRoutes()
   }
 
-  public start() {
+  public start () {
     this.server.listen(process.env.PORT, () => {
       console.log('--------------------------------------------------')
       console.log(`(=￣ω￣=) online @ ${process.env.PUBLIC_URL}:${process.env.PORT} ♡ ╮(╯_╰)╭`)
@@ -53,7 +52,7 @@ class Server {
    * Initialise all the middlewares we want our server to use.
    * Should also ideally handle authentication checks as well!
    */
-  private initialiseMiddleware(): void {
+  private initialiseMiddleware (): void {
     this.server.use(helmet())
     this.server.use(morgan('dev'))
     this.server.use(compression())
@@ -71,7 +70,7 @@ class Server {
   /**
    * Add all our routes to the public `routes` array.
    */
-  private async initialiseRoutes(): Promise<void> {
+  private async initialiseRoutes (): Promise<void> {
     const files = await glob([path.join(__dirname, 'routes', '**/*.ts'), path.join(__dirname, 'routes', '**/*.js')])
     await Promise.all(files.map(async (file) => {
       let route = await require(file) as Route
@@ -96,7 +95,7 @@ class Server {
         newRoute.get((req: Request, res: Response, next: any) => {
           next(route)
         },
-          authMiddleware, route.get, errorMiddleware)
+        authMiddleware, route.get, errorMiddleware)
       }
 
       if (route.post != null) {
