@@ -10,7 +10,7 @@ import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 import './styles/index.css'
 import ErrorPage from "./error.page";
-import Layout from './routes/layout';
+import Layout from '@routes/layout';
 import RegisterPage from '@routes/register/register.page';
 
 const router = createBrowserRouter([
