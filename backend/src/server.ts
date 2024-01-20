@@ -13,15 +13,8 @@ import errorMiddleware from './middleware/error.middleware'
 import bodyparse from 'body-parser'
 import authMiddleware from './middleware/auth.middleware'
 
-// extend the session data object with our stuff
-declare module 'express-session' {
-  interface SessionData {
-    userId: number
-    currentComputerId: string
-    currentWebToken: string
-    group: Groups
-  }
-}
+//to extend the express-session type
+import './lib/types/session.type'
 
 dotenv.config({
   override: true

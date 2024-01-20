@@ -16,7 +16,7 @@ export const SessionContextDefault = {
 	loaded: false,
 	data: {
 		userId: -1,
-		currentComputerId: "",
+		connections: [],
 		group: Groups.GUEST
 	},
 	user: {

@@ -5,6 +5,7 @@ import {
 import Index from './pages/Index'
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
+import Game from "./pages/Game";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
    {
     path: '/login',
     element: <Login/>
-  }
+   },
+   {
+     path: '/game',
+     element: <Game/>
+   }
 ]);
 
 export default router;

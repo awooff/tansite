@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { postRequestHandler } from '../../lib/submit';
 import SessionContext from '../../contexts/session.context';
+import GameContext from '../../contexts/game.context';
 
 type Inputs = {
   username: string
@@ -13,6 +14,7 @@ type Inputs = {
 
 export default function Login() {
 	const session = useContext(SessionContext)
+	const game = useContext(GameContext);
 	const {
 		register,
 		handleSubmit,
@@ -25,7 +27,9 @@ export default function Login() {
 		}>('/auth/login', inputs, (result) => {
 			localStorage.setItem('jwt', result.data.token)
 			session.load(() => {
-				navigate('/game')
+				game.load(() => {
+					navigate('/game')
+				})
 			});
 		}, setError);
 	}

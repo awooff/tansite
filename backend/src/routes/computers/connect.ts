@@ -4,15 +4,15 @@ import { Groups } from '@prisma/client'
 import { getComputer } from '@/app/computer'
 import { switchSchema } from '@/lib/schemas/switch.schema'
 
-const local = {
+const connect = {
 
   settings: {
     groupOnly: Groups.User,
-    title: 'Switch Computer',
+    title: 'Connect To Local Computer',
     description: 'Switch current computer to another computer'
   },
 
-  async get (req, res, error) {
+  async post(req, res, error) {
     const body = await switchSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
@@ -25,7 +25,13 @@ const local = {
 
     if (result.computer.userId !== req.session.userId) { return error('user does not own this computer') }
 
-    req.session.currentComputerId = result.computerId
+    req.session.connections = req.session.connections || []
+
+    if (req.session.connections.filter((that) => that.id === result.computerId).length !== 0)
+      return error('already connected4')
+
+    req.session.connections.push(result.computer)
+    req.session.save()
 
     // logged new login
     result.log(`logged on at ${new Date(Date.now()).toString()}`)
@@ -36,4 +42,4 @@ const local = {
   }
 } satisfies Route
 
-export default local
+export default connect

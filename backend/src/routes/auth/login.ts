@@ -29,9 +29,7 @@ const login = {
     })
 
     if (user === null) { return error("user doesn't exist") }
-
     if (await bcrypt.hash(password, user.salt) !== user.password) { return error('password incorrect') }
-
     if (await server.prisma.session.findFirst({
       where: {
         id: req.sessionID

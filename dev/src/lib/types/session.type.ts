@@ -1,7 +1,8 @@
+import { Computer } from "./computer.type"
 import { Groups } from "./groups.type"
 
 export interface SessionData {
 	userId: number
-	currentComputerId: string
+	connections: Computer[]
 	group: Groups
 }

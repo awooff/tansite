@@ -12,7 +12,7 @@ export interface ComputerData {
 }
 export class Computer {
   public readonly computerId: string
-  public data: ComputerData | undefined
+  public data?: ComputerData
   public software: Software[] = []
   public process: ComputerProcess[] = []
 
@@ -24,11 +24,11 @@ export class Computer {
     }
   }> = {} as any
 
-  public constructor (computerId: string) {
+  public constructor(computerId: string) {
     this.computerId = computerId
   }
 
-  public async exists () {
+  public async exists() {
     return !((await server.prisma.computer.findFirst({
       where: {
         id: this.computerId
@@ -36,7 +36,7 @@ export class Computer {
     })) == null)
   }
 
-  public async addMemory (key: string, type: string, value?: number, data?: any) {
+  public async addMemory(key: string, type: string, value?: number, data?: any) {
     return await server.prisma.memory.create({
       data: {
         userId: this.computer.userId,
@@ -50,7 +50,7 @@ export class Computer {
     })
   }
 
-  public async getUserPreferences () {
+  public async getUserPreferences() {
     return await server.prisma.preferences.findFirst({
       where: {
         userId: this.computer.userId
@@ -58,7 +58,7 @@ export class Computer {
     })
   }
 
-  public async findMemory (type: string) {
+  public async findMemory(type: string) {
     return await server.prisma.memory.findFirst({
       where: {
         userId: this.computer.userId,
@@ -68,7 +68,7 @@ export class Computer {
     })
   }
 
-  public async getMemory (key: string) {
+  public async getMemory(key: string) {
     return await server.prisma.memory.findFirst({
       where: {
         userId: this.computer.userId,
@@ -78,7 +78,7 @@ export class Computer {
     })
   }
 
-  public async addUserMemory (key: string, type: string, userId: number, data?: any, value?: any) {
+  public async addUserMemory(key: string, type: string, userId: number, data?: any, value?: any) {
     return await server.prisma.memory.create({
       data: {
         userId,
@@ -92,7 +92,7 @@ export class Computer {
     })
   }
 
-  public async findUserMemory (type: string, userId: number) {
+  public async findUserMemory(type: string, userId: number) {
     return await server.prisma.memory.findFirst({
       where: {
         userId,
@@ -102,7 +102,7 @@ export class Computer {
     })
   }
 
-  public async getUserMemory (key: string, userId: number) {
+  public async getUserMemory(key: string, userId: number) {
     return await server.prisma.memory.findFirst({
       where: {
         userId,
@@ -112,21 +112,21 @@ export class Computer {
     })
   }
 
-  public async log (message: string, from?: Computer) {
+  public async log(message: string, from?: Computer) {
     const computer = (from == null) ? this : from
   }
 
-  public get ip () {
+  public get ip() {
     return this.computer.ip
   }
 
-  public async changeIp (ip: string) {
+  public async changeIp(ip: string) {
     await this.update({
       ip: ip || generateIpAddress()
     })
   }
 
-  public async update (data: Prisma.ComputerUpdateInput) {
+  public async update(data: Prisma.ComputerUpdateInput) {
     await server.prisma.computer.update({
       where: {
         id: this.computerId
@@ -136,7 +136,7 @@ export class Computer {
     await this.load()
   }
 
-  public async load () {
+  public async load() {
     this.computer = await server.prisma.computer.findFirstOrThrow({
       where: {
         id: this.computerId,
@@ -148,8 +148,6 @@ export class Computer {
         process: true
       }
     })
-
-    this.data = JSON.parse(this.computer.data?.toString() || '')
 
     // software
     this.computer.software.forEach((software) => {
@@ -164,19 +162,19 @@ export class Computer {
     return this.computer
   }
 
-  public getSoftware (softwareId: string) {
+  public getSoftware(softwareId: string) {
     return this.software.filter((software) => software.softwareId === softwareId)[0]
   }
 
-  public getFirstTypeInstalled (type: string) {
+  public getFirstTypeInstalled(type: string) {
     return this.software.filter((software) => software.software.type === type && software.installed)[0]
   }
 
-  public getInstalled (type: string) {
+  public getInstalled(type: string) {
     return this.software.filter((software) => software.installed)
   }
 
-  public async cloneSoftware (computer: Computer, software: Software | string) {
+  public async cloneSoftware(computer: Computer, software: Software | string) {
     software = typeof software === 'string' ? this.getSoftware(software) : software
 
     return await computer.addSoftware({
@@ -202,7 +200,7 @@ export class Computer {
     })
   }
 
-  public async addSoftware (data: Prisma.SoftwareCreateInput) {
+  public async addSoftware(data: Prisma.SoftwareCreateInput) {
     const id = await server.prisma.software.create({
       data
     })
@@ -212,7 +210,7 @@ export class Computer {
     return software
   }
 
-  public async setHardware (type: HardwareTypes, strength: number) {
+  public async setHardware(type: HardwareTypes, strength: number) {
     const previousHardware = this.getFirstHardwareType(type)
 
     if (previousHardware) {
@@ -234,18 +232,18 @@ export class Computer {
     })
   }
 
-  public getCombinedHardwareStrength (type: HardwareTypes) {
+  public getCombinedHardwareStrength(type: HardwareTypes) {
     const result = this.computer.hardware.filter((hardware) => hardware.type === type)
     let combinedStrength = 0
     result.forEach((hardware) => combinedStrength += hardware.strength)
     return combinedStrength
   }
 
-  public getHardware (type: HardwareTypes) {
+  public getHardware(type: HardwareTypes) {
     return this.computer.hardware.filter(hardware => hardware.type === type)
   }
 
-  public getFirstHardwareType (type: HardwareTypes) {
+  public getFirstHardwareType(type: HardwareTypes) {
     return this.computer.hardware.filter((hardware) => hardware.type === type)?.[0]
   }
 }

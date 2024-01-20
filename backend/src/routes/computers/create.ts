@@ -12,7 +12,7 @@ const local = {
     description: 'Creates a new computer'
   },
 
-  async get (req, res, error) {
+  async post(req, res, error) {
     if (!req.session.userId) { return error('session is invalid') }
 
     const computerData = await server.prisma.computer.create({

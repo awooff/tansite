@@ -11,7 +11,8 @@ const network = {
     description: 'All the users current computers'
   },
 
-  async get (req, res, error) {
+  async post(req, res, error) {
+
     const body = await paginationSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
@@ -25,7 +26,7 @@ const network = {
       include: {
         hardware: true
       },
-      skip: page * 32,
+      skip: (page) * 32,
       take: 32
     })
 

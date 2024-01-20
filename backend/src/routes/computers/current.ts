@@ -7,19 +7,17 @@ const current = {
 
   settings: {
     groupOnly: Groups.User,
-    title: 'Current Computer',
-    description: 'The users current local computer'
+    title: 'Current Computers',
+    description: 'Returns the current computers the user is connected too'
   },
 
-  async get (req, res, error) {
-    if (!req.session.currentComputerId) { return error('you do not have a current computer') }
+  async get(req, res, error) {
 
-    const result = await getComputer(req.session.currentComputerId)
-
-    if (result === null) { return error('computer does not exist') }
+    if (!req.session?.connections || req.session?.connections?.length === 0)
+      return error('no connections')
 
     res.send({
-      computer: result.computer
+      computers: req.session?.connections
     })
   }
 } satisfies Route
