@@ -2,7 +2,7 @@ import ExpressError from '@/lib/exceptions/express.exception'
 import type HttpException from '@/lib/exceptions/http.exception'
 import { Request, Response } from 'express'
 
-export default function errorMiddleware (err: HttpException, req: Request, res: Response, next: any): void {
+export default function errorMiddleware(err: HttpException, req: Request, res: Response, next: any): void {
   if (typeof err === 'string') { err = new ExpressError(err) }
   if (err instanceof ExpressError) {
     res.status(err.status).send({
@@ -17,7 +17,7 @@ export default function errorMiddleware (err: HttpException, req: Request, res: 
       body: req.body || {},
       path: req.path,
       headers: req.headers,
-      message: 'server error'
+      message: err
     })
   }
 }

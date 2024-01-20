@@ -1,0 +1,77 @@
+import React, { useContext, useState } from 'react'
+import Layout from '../../components/Layout'
+import { Card, Col, Form, Row, Button, Alert } from 'react-bootstrap'
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { postRequestHandler } from '../../lib/submit';
+import SessionContext from '../../contexts/session.context';
+
+type Inputs = {
+  username: string
+  password: string
+}
+
+export default function Login() {
+	const session = useContext(SessionContext)
+	const {
+		register,
+		handleSubmit,
+	} = useForm<Inputs>()
+	const navigate = useNavigate();
+	const [error, setError] = useState<Error | null>(null);
+	const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
+		await postRequestHandler<{
+			token: string
+		}>('/auth/login', inputs, (result) => {
+			localStorage.setItem('jwt', result.data.token)
+			session.load(() => {
+				navigate('/game')
+			});
+		}, setError);
+	}
+
+  	return (
+	  	<Layout>
+			<Row>
+				<Col>
+					<Card body>	
+						<Card.Title>Login To Syscrack</Card.Title>
+						<Card.Text>
+							Please enter login information below!
+						</Card.Text>
+					</Card>
+				</Col>
+				</Row>
+				{error !== null ? <Row>
+					<Col>
+						<Alert variant='danger'>
+							{error ? (error as Error).message : 'invalid response'}
+						</Alert>
+					</Col>
+				</Row> : null}
+				<Row>
+					<Col>
+						<Card body>
+							<Form onSubmit={handleSubmit(onSubmit)}>
+								<Form.Group className="mb-3">
+									<Form.Label>Username</Form.Label>
+									<Form.Control type="text" placeholder="Enter Username" {...register("username", {
+										required: true
+									})} />
+								</Form.Group>
+								<Form.Group className="mb-3">
+									<Form.Label>Password</Form.Label>
+									<Form.Control type="password" placeholder="Password" {...register("password", {
+										required: true
+									})}/>
+								</Form.Group>
+								<Button variant="primary" type="submit">
+									Login
+      							</Button>
+							</Form>
+						</Card>
+					</Col>
+				</Row>
+		</Layout>
+  	)
+}

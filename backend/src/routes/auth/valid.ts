@@ -1,6 +1,7 @@
 import { Route } from '../../lib/types/route.type'
 import { server } from '../../index'
 import { Groups } from '@prisma/client'
+import { removeFromObject } from '@/lib/helpers'
 
 const valid = {
 
@@ -10,8 +11,8 @@ const valid = {
     description: 'check if the user is logged in'
   },
 
-  async get (req, res, error) {
-    const user = server.prisma.user.findFirstOrThrow({
+  async get(req, res, error) {
+    const user = await server.prisma.user.findFirstOrThrow({
       where: {
         id: req.session.userId
       },

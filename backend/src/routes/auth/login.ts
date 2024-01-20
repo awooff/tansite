@@ -14,7 +14,7 @@ const login = {
     description: 'will login the user to syscrack'
   },
 
-  async post (req, res, error) {
+  async post(req, res, error) {
     const body = await loginSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
@@ -32,6 +32,14 @@ const login = {
 
     if (await bcrypt.hash(password, user.salt) !== user.password) { return error('password incorrect') }
 
+    if (await server.prisma.session.findFirst({
+      where: {
+        id: req.sessionID
+      }
+    })) {
+      return error("already logged in")
+    }
+
     // reload the session
     await (new Promise((resolve) => {
       req.session.reload(resolve)
@@ -44,14 +52,16 @@ const login = {
         userEmail: user.email
       },
       process.env.JWT_SECRET,
-      { expiresIn: '24h' }
+      { expiresIn: '7d' }
     )
 
-    // delete previous sessions
+    //delete old sessions that have expired
     await server.prisma.session.deleteMany({
-      where:
-      {
-        userId: user.id
+      where: {
+        userId: user.id,
+        expires: {
+          lt: new Date(Date.now())
+        }
       }
     })
 
@@ -60,14 +70,17 @@ const login = {
       data: {
         id: req.sessionID,
         userId: user.id,
-        lastAction: new Date(Date.now())
+        token: token,
+        lastAction: new Date(Date.now()),
+        expires: new Date(Date.now() + 60 * 60 * 24 * 7)
       }
     })
 
     // set the session data
     req.session.userId = user.id
     req.session.group = user.group
-    req.session.currentWebToken = token
+    //save the session
+    req.session.save();
 
     // send it back
     res.send({

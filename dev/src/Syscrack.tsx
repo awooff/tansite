@@ -1,11 +1,13 @@
 import React from 'react'
 import SessionProvider from './providers/session.provider'
-import Index from './pages/Index'
+import router from './routes'
+import { RouterProvider } from 'react-router-dom'
 
 function Syscrack() {
+
 	return (
 	  	<SessionProvider>
-			<Index/>
+			<RouterProvider router={router}/>
 		</SessionProvider>
   )
 }

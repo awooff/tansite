@@ -9,15 +9,18 @@ function SessionProvider({ children }: {
 	children: unknown
 }) {
 	const [session, setSession] = useState<SessionType>(SessionContextDefault)
-	const load = useCallback(() => {
+	const load = useCallback((after?: () => void) => {				
 		(async () => {
-			const result = await axios.get("http://localhost:1337/auth/valid", {
-				headers: {
-					Authorization: "Bearer " + localStorage.getItem('jwt')
-				}
-			})
 
-			if (result.status === 200) {
+			try
+			{
+				const result = await axios.get("http://localhost:1337/auth/valid", {
+					withCredentials: true,
+					headers: {
+						Authorization: "Bearer " + localStorage.getItem('jwt')
+					}
+				})
+
 				setSession({
 					loaded: true,
 					data: result.data.session,
@@ -25,15 +28,19 @@ function SessionProvider({ children }: {
 					user: result.data.user,
 					load: load
 				})
-				return;
+
+			} catch (error) {
+				setSession(
+					{
+						...SessionContextDefault,
+						loaded: true,
+						load: load
+					}
+				)
 			}
 
-			setSession(
-				{
-					...SessionContextDefault,
-					load: load
-				}
-			)
+			if (after)
+				await after()
 		})();
 	}, [
 		setSession

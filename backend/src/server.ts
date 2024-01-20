@@ -57,14 +57,20 @@ class Server {
     this.server.use(helmet())
     this.server.use(morgan('dev'))
     this.server.use(compression())
-    this.server.use(cors())
+    this.server.use(cors({
+      origin: ["http://localhost:5173", "http://localhost:5174"],
+      optionsSuccessStatus: 200, // For legacy browser support
+      credentials: true
+    }))
     this.server.use(expressSession({
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
       resave: false,
       cookie: {
-        secure: true
-      }
+        sameSite: false,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 24 * 7 * 1000
+      },
     }))
     this.server.use(bodyparse.json())
   }
