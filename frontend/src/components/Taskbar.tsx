@@ -17,7 +17,7 @@ function Navbar() {
 						<NavigationMenu.Trigger />
 						<NavigationMenu.Content>
 						<NavigationMenu.Link>
-									  Sup
+							Sup
 						</NavigationMenu.Link>
 						</NavigationMenu.Content>
 					</NavigationMenu.Item>

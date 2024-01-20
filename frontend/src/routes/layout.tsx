@@ -1,11 +1,12 @@
-import Navbar from '@components/Navbar'
+import Taskbar from '@components/Taskbar'
 import React from 'react'
 
 function Layout(props: {children?: React.ReactNode}) {
   return (
 	  <div>
-		  <Navbar/>
 		  {props.children}
+		  <Taskbar/>
+
 	  </div>
   )
 }

@@ -60,14 +60,14 @@ function RegisterForm() {
 				{errors.password && <Form.FormMessage>{errors.password.message}</Form.FormMessage>}
 				</Form.Field>
 				
-				{/* <Flex dir='col'>
+				<Flex dir='col'>
 					<Flex dir='row' justify={'center'}>
 						<Checkbox {...register('terms')} /> I accept the terms and conditions
 					</Flex>
 					<Flex dir='row' justify={'center'}>
 						<Checkbox {...register('privacy')} /> I accept the privacy policy
 					</Flex>
-				</Flex> */}
+				</Flex>
 			<Button size='3' variant='soft' type="submit"> Submit! </Button>
 		</Form.Root>
 	</Box>
