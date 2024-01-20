@@ -4,28 +4,18 @@ import React, {ReactNode, useCallback, useEffect, useState} from 'react'
 import SessionContext, { SessionContextDefault, SessionType } from '../contexts/session.context'
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 function SessionProvider({ children }: {
 	children: unknown
 }) {
 	const [session, setSession] = useState<SessionType>(SessionContextDefault)
-	const navigate = useNavigate()
 
-	const load = useCallback((after?: () => void) => {				
+	const load = useCallback((after?: (newSession: SessionType) => void) => {				
 		(async () => {
-			
-			if (session.loaded) { 
-				setSession(
-					{
-						...SessionContextDefault,
-						loaded: false,
-						load: load,
-						reload: () => {
-							navigate(0)
-						}
-					}
-				)
+			let newSession = { ...SessionContextDefault };
+
+			if (session.loaded) {
+				setSession(newSession)
 				return;
 			}
 		
@@ -38,35 +28,31 @@ function SessionProvider({ children }: {
 					}
 				})
 
-				setSession({
+				newSession = {
 					loaded: true,
 					data: result.data.session,
 					valid: true,
 					user: result.data.user,
-					load: load,
-					reload: () => {
-							navigate(0)
-						}
-				})
+					load: load
+				}
+				setSession(newSession)
 
 			} catch (error) {
+				newSession = {
+					...SessionContextDefault,
+					loaded: true,
+					load: load
+				}
 				setSession(
-					{
-						...SessionContextDefault,
-						loaded: true,
-						load: load,
-						reload: () => {
-							navigate(0)
-						}
-					}
+					newSession
 				)
 			}
 
 			if (after)
-				await after()
+				await after(newSession)
 		})();
 	}, [
-		setSession, navigate, session.loaded
+		setSession, session.loaded
 	])
 
 	useEffect(() => {
@@ -79,7 +65,7 @@ function SessionProvider({ children }: {
 	])
 
 	return <SessionContext.Provider value={session}>
-		{children as ReactNode }
+		{!session.loaded ? <></> : children as ReactNode }
 	</SessionContext.Provider>
 }
 

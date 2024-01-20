@@ -1,14 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Layout from '../components/Layout'
 import {  Card, Col, Row } from 'react-bootstrap'
-import GameContext from '../contexts/game.context'
 import Computers from '../components/Computers';
 import { Button } from 'react-bootstrap';
 import { postRequestHandler } from '../lib/submit';
+import { useNavigate } from 'react-router-dom';
 
 export default function Game() {
-	const game = useContext(GameContext);
-	
+	const navigate = useNavigate()
   	return (
 	  	<Layout>
 				<Row>
@@ -17,7 +16,7 @@ export default function Game() {
 					</Col>
 				</Row>
 				<Row lg={3} sm={1} className='gy-4'>
-					<Computers />
+					<Computers/>
 					<Col>
 						<Card body>
 						<p className='text-center'>
@@ -26,7 +25,7 @@ export default function Game() {
 						<div className="d-grid">
 							<Button onClick={async () => {
 								await postRequestHandler('/computers/create', {}, async () => {
-									game.reload()
+									navigate(0)
 								}, (error) => {
 									console.log(error)
 								})

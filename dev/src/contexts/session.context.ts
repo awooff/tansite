@@ -9,8 +9,7 @@ export type SessionType = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	user: User,
 	valid: boolean,
-	load: (after?: () => unknown | Promise<unknown>) => unknown
-	reload: () => unknown
+	load: (after?: (newSession: SessionType) => unknown | Promise<unknown>) => unknown
 }
 
 export const SessionContextDefault = {
@@ -29,9 +28,6 @@ export const SessionContextDefault = {
 	valid: false,
 	load: () => {
 	
-	},
-	reload: () => {
-		
 	}
 } as SessionType
 

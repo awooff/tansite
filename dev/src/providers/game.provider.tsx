@@ -1,36 +1,25 @@
 
 
-import React, {ReactNode, useCallback, useContext, useEffect, useState} from 'react'
+import React, {ReactNode, useCallback, useEffect, useState} from 'react'
 import GameContext, { GameContextDefault, GameType } from '../contexts/game.context'
 import PropTypes from 'prop-types';
-import SessionContext from '../contexts/session.context';
 import axios from 'axios';
 import { Computer } from '../lib/types/computer.type';
-import { useNavigate } from 'react-router-dom';
 
 function GameProvider({ children }: {
 	children: unknown
 }) {
-	const session = useContext(SessionContext)
 	const [game, setGame] = useState<GameType>(GameContextDefault)
-	const navigate = useNavigate()
 	
-	const load = useCallback((after?: () => void) => {				
+	const load = useCallback((after?: (newGame: GameType) => void) => {				
 		(async () => {
-			if (game.loaded) {
-				setGame(
-				{
-					...GameContextDefault,
-					loaded: false,
-					load: load,
-					reload: () => {
-							navigate(0)
-						}
-					}
-				)
+			let newGame = { ...GameContextDefault };
+
+			if (game.loaded)
+			{
+				setGame(newGame)
 				return;
 			}
-			
 
 			try
 			{
@@ -43,9 +32,9 @@ function GameProvider({ children }: {
 						Authorization: 'Bearing ' + localStorage.getItem('jwt')
 					}
 				})
-
 				const computers = await axios.post<{
-					computers: Computer[]
+					computers: Computer[],
+					connections: Computer[]
 				}>('http://localhost:1337/computers/network', {
 					page: 0
 				}, {
@@ -55,61 +44,47 @@ function GameProvider({ children }: {
 					}
 				})
 
-				setGame({
+				newGame = {
 					...GameContextDefault,
-					connections: session.data.connections,
+					connections: computers.data.connections,
 					computers: computers.data.computers,
 					title: game.data.title,
 					gameId: game.data.currentGameId,
 					loaded: true,
-					load: load,
-					reload: () => {
-						navigate(0)
-					}
-				})
+					load: load
+				}
+
+				setGame(newGame)
+							
+				if (after)
+					await after(newGame)
 			} catch (error) {
-				setGame(
-					{
+				newGame = {
 						...GameContextDefault,
 						loaded: true,
-						load: load,
-						reload: () => {
-							navigate(0)
-						}
-					}
-				)
-			}
+						load: load
+				}
 
-			if (after)
-				await after()
+				setGame(newGame)
+
+				if (after)
+					await after(newGame)
+			}
 		})();
 	}, [
-		setGame, session, navigate, game.loaded
+		setGame, game.loaded
 	])
 
 	useEffect(() => {
 		if (game.loaded)
 			return;
-
-		if (!session.loaded)
-			return;
-
-		if (!session.valid)
-			setGame(
-					{
-						...GameContextDefault,
-						loaded: true,
-						load: load
-					}
-			)
-		else
-			load();
+		load();
 	}, [
-		load, game, session
+		load, game
 	])
 
 	return <GameContext.Provider value={game}>
-		{children as ReactNode }
+		{game.loaded ? children as ReactNode : <></>}
 	</GameContext.Provider>
 }
 

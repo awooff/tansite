@@ -38,6 +38,7 @@ const network = {
 
     res.send({
       computers,
+      connections: req.session.connections?.slice(0 * page, 64),
       page,
       count: computers.length,
       pageMax: Math.floor(count / 64) + 1

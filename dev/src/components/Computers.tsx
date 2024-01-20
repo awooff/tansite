@@ -1,10 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import GameContext from '../contexts/game.context'
 import { Col, Card, ListGroup, Button } from 'react-bootstrap'
 import { postRequestHandler } from '../lib/submit'
 
 export default function Computers() {
-	const game = useContext(GameContext)
+	const context = useContext(GameContext)
+	const [game, setGame] = useState(context);
+
+	useEffect(() => { 
+		if (!context.loaded)
+			return;
+
+		setGame(context)
+	}, [
+		context
+	])
 
 	return (
 		<>	
@@ -28,7 +38,7 @@ export default function Computers() {
 								await postRequestHandler('/computers/disconnect', {
 									computerId: computer.id
 								}, () => {
-									game.reload()
+									game.load(setGame)
 								}, (error) => {
 									console.log(error)
 								})
@@ -37,7 +47,7 @@ export default function Computers() {
 									await postRequestHandler('/computers/connect', {
 										computerId: computer.id
 									}, () => {
-										game.reload()
+										game.load(setGame)
 									}, (error) => {
 										console.log(error)
 									})

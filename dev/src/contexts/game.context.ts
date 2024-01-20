@@ -16,7 +16,7 @@ export type GameType = {
 	gameId: string,
 	title: string,
 	preferences: object
-	load: (after?: () => unknown | Promise<unknown>) => unknown
+	load: (after?: (newGame: GameType) => unknown | Promise<unknown>) => void
 	reload: () => unknown
 }
 
@@ -36,11 +36,9 @@ export const GameContextDefault = {
 	finance: [],
 	valid: false,
 	load: () => {
-
-	},
-	reload: () => {
 		
-	}
+	},
+	reload: () => {}
 } as GameType
 
 const GameContext = createContext<GameType>(GameContextDefault)
