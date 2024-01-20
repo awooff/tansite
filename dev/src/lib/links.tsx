@@ -7,6 +7,7 @@ export const createLinks = (links: Record<string, {
 	to?: string;
 	capitalize?: boolean;
 	state?: object;
+	className?: string
 }>) => {
 	
 	const components: ReactNode[] = [];
@@ -19,7 +20,7 @@ export const createLinks = (links: Record<string, {
 
 		components.push(
 			<Element>
-				<Link to={links[link].to as string} state={links[link].state ? links[link].state : {}} className="text-black">
+				<Link to={links[link].to as string} state={links[link].state ? links[link].state : {}} className={links[link].className}>
 					{links[link].capitalize ? link.substring(0, 1).toUpperCase() + link.slice(1) : link}
 				</Link>
 			</Element>

@@ -4,14 +4,31 @@ import React, {ReactNode, useCallback, useEffect, useState} from 'react'
 import SessionContext, { SessionContextDefault, SessionType } from '../contexts/session.context'
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SessionProvider({ children }: {
 	children: unknown
 }) {
 	const [session, setSession] = useState<SessionType>(SessionContextDefault)
+	const navigate = useNavigate()
+
 	const load = useCallback((after?: () => void) => {				
 		(async () => {
-
+			
+			if (session.loaded) { 
+				setSession(
+					{
+						...SessionContextDefault,
+						loaded: false,
+						load: load,
+						reload: () => {
+							navigate(0)
+						}
+					}
+				)
+				return;
+			}
+		
 			try
 			{
 				const result = await axios.get("http://localhost:1337/auth/valid", {
@@ -26,7 +43,10 @@ function SessionProvider({ children }: {
 					data: result.data.session,
 					valid: true,
 					user: result.data.user,
-					load: load
+					load: load,
+					reload: () => {
+							navigate(0)
+						}
 				})
 
 			} catch (error) {
@@ -34,7 +54,10 @@ function SessionProvider({ children }: {
 					{
 						...SessionContextDefault,
 						loaded: true,
-						load: load
+						load: load,
+						reload: () => {
+							navigate(0)
+						}
 					}
 				)
 			}
@@ -43,7 +66,7 @@ function SessionProvider({ children }: {
 				await after()
 		})();
 	}, [
-		setSession
+		setSession, navigate, session.loaded
 	])
 
 	useEffect(() => {
@@ -56,7 +79,7 @@ function SessionProvider({ children }: {
 	])
 
 	return <SessionContext.Provider value={session}>
-		{children as ReactNode}
+		{children as ReactNode }
 	</SessionContext.Provider>
 }
 

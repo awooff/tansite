@@ -6,14 +6,31 @@ import PropTypes from 'prop-types';
 import SessionContext from '../contexts/session.context';
 import axios from 'axios';
 import { Computer } from '../lib/types/computer.type';
+import { useNavigate } from 'react-router-dom';
 
 function GameProvider({ children }: {
 	children: unknown
 }) {
 	const session = useContext(SessionContext)
-	const [Game, setGame] = useState<GameType>(GameContextDefault)
+	const [game, setGame] = useState<GameType>(GameContextDefault)
+	const navigate = useNavigate()
+	
 	const load = useCallback((after?: () => void) => {				
 		(async () => {
+			if (game.loaded) {
+				setGame(
+				{
+					...GameContextDefault,
+					loaded: false,
+					load: load,
+					reload: () => {
+							navigate(0)
+						}
+					}
+				)
+				return;
+			}
+			
 
 			try
 			{
@@ -45,14 +62,20 @@ function GameProvider({ children }: {
 					title: game.data.title,
 					gameId: game.data.currentGameId,
 					loaded: true,
-					load: load
+					load: load,
+					reload: () => {
+						navigate(0)
+					}
 				})
 			} catch (error) {
 				setGame(
 					{
 						...GameContextDefault,
 						loaded: true,
-						load: load
+						load: load,
+						reload: () => {
+							navigate(0)
+						}
 					}
 				)
 			}
@@ -61,11 +84,11 @@ function GameProvider({ children }: {
 				await after()
 		})();
 	}, [
-		setGame, session
+		setGame, session, navigate, game.loaded
 	])
 
 	useEffect(() => {
-		if (Game.loaded)
+		if (game.loaded)
 			return;
 
 		if (!session.loaded)
@@ -82,11 +105,11 @@ function GameProvider({ children }: {
 		else
 			load();
 	}, [
-		load, Game, session
+		load, game, session
 	])
 
-	return <GameContext.Provider value={Game}>
-		{children as ReactNode}
+	return <GameContext.Provider value={game}>
+		{children as ReactNode }
 	</GameContext.Provider>
 }
 

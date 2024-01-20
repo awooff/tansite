@@ -26,14 +26,14 @@ const connect = {
 
     req.session.connections = req.session.connections || []
 
-    if (req.session.connections.filter((that) => that.id === computer.computerId).length !== 0)
-      return error('already connected')
+    if (req.session.connections.filter((that) => that.id === computer.computerId).length === 0)
+      return error('not connected to this computer')
 
-    req.session.connections.push(computer.computer)
+    req.session.connections = req.session.connections.filter((that) => that.id !== computer.computerId)
     req.session.save()
 
     // logged new login
-    computer.log(`logged on at ${new Date(Date.now()).toString()}`)
+    computer.log(`logged off at ${new Date(Date.now()).toString()}`)
 
     res.send({
       computer: computer.computer

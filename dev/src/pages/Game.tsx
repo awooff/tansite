@@ -1,56 +1,40 @@
 import React, { useContext } from 'react'
 import Layout from '../components/Layout'
-import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
+import {  Card, Col, Row } from 'react-bootstrap'
 import GameContext from '../contexts/game.context'
-import SessionContext from '../contexts/session.context';
+import Computers from '../components/Computers';
+import { Button } from 'react-bootstrap';
 import { postRequestHandler } from '../lib/submit';
 
 export default function Game() {
 	const game = useContext(GameContext);
-	const session = useContext(SessionContext);
-
+	
   	return (
 	  	<Layout>
-			<Row>
-				<Col>
-					<Card body>	
-							<Card.Title>{game.title}</Card.Title>
-							<Card.Text>
-								Welcome {session.user.name}
-							</Card.Text>
-					</Card>
-				</Col>
+				<Row>
+					<Col>
+						<p className='display-4'>Your Network</p>
+					</Col>
 				</Row>
-				<Row lg={3}>
-					{game.computers.map((computer) => {
-						return <Col>
-							<Card body>
-								<Card.Title>
-									{computer.ip} <span className='badge bg-primary'>{computer.type}</span>
-								</Card.Title>
-								<ListGroup className='mb-2'>
-									{computer.hardware.map((hardware) => {
-										return <ListGroup.Item>
-											{hardware.type} <span className='badge bg-primary'>{hardware.strength}</span>
-										</ListGroup.Item>
-									})}
-								</ListGroup>
-								<div className="d-grid">
-									<Button onClick={async () => {
-										await postRequestHandler('/computers/connect', {
-											computerId: computer.id
-										}, () => {
-											session.load(() => {
-												game.load()
-											})
-										}, (error) => {
-											console.log(error)
-										})
-									}} disabled = { game.connections?.filter((that) => that.id === computer.id).length !== 0 } >Switch</Button>
-								</div>
-							</Card>
-						</Col>
-					})}
+				<Row lg={3} sm={1} className='gy-4'>
+					<Computers />
+					<Col>
+						<Card body>
+						<p className='text-center'>
+							Purchase A Computer
+						</p>
+						<div className="d-grid">
+							<Button onClick={async () => {
+								await postRequestHandler('/computers/create', {}, async () => {
+									game.reload()
+								}, (error) => {
+									console.log(error)
+								})
+							}}>Purchase</Button>
+						</div>
+					</Card>
+					</Col>
+				
 				</Row>
 		</Layout>
   	)

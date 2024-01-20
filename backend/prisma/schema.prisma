@@ -107,7 +107,7 @@ model Computer {
     game     Game       @relation(fields: [gameId], references: [id])
     gameId   String
     ip       String
-    data     Json       @default(dbgenerated())
+    data     Json       @default("{}")
     hardware Hardware[]
     software Software[]
     memory   Memory[]

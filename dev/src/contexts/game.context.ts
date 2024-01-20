@@ -15,8 +15,9 @@ export type GameType = {
 	}[],
 	gameId: string,
 	title: string,
-	preferences: object;
+	preferences: object
 	load: (after?: () => unknown | Promise<unknown>) => unknown
+	reload: () => unknown
 }
 
 export const GameContextDefault = {
@@ -36,6 +37,9 @@ export const GameContextDefault = {
 	valid: false,
 	load: () => {
 
+	},
+	reload: () => {
+		
 	}
 } as GameType
 

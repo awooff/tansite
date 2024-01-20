@@ -11,27 +11,31 @@ export default function Gamebar() {
 				{createLinks({
 					computers: {
 						element: Nav.Link,
-						to: "/computers"
+						to: "/computers",
+						className: 'text-white'
 					},
 					internet: {
 						element: Nav.Link,
-						to: "/browser"
+						to: "/browser",
+						className: 'text-white'
 					},
 					processes: {
 						element: Nav.Link,
-						to: "/processes"
+						to: "/processes",
+						className: 'text-white'
 					},
 					finances: {
 						element: Nav.Link,
-						to: "/finances"
+						to: "/finances",
+						className: 'text-white'
 					},
 				})}
-				<Nav.Link className='text-black'>
+				<Nav.Link className='text-white'>
 					connections
 				</Nav.Link>
 			</Nav>
 			<Nav className='ms-auto'>
-				<Nav.Link>
+				<Nav.Link className='text-white'>
 					{session.user.name}
 				</Nav.Link>
 			</Nav>

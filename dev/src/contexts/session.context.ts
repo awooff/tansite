@@ -10,6 +10,7 @@ export type SessionType = {
 	user: User,
 	valid: boolean,
 	load: (after?: () => unknown | Promise<unknown>) => unknown
+	reload: () => unknown
 }
 
 export const SessionContextDefault = {
@@ -28,6 +29,9 @@ export const SessionContextDefault = {
 	valid: false,
 	load: () => {
 	
+	},
+	reload: () => {
+		
 	}
 } as SessionType
 

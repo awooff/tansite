@@ -9,10 +9,10 @@ function NavbarComponent() {
 	const session = useContext(SessionContext)
 
 	return (
-		<Navbar expand="lg" className="bg-body-tertiary" >
+		<Navbar expand="lg" >
 			<Container fluid={true}>
 				<Navbar.Brand>
-					<Link to={ session.valid ? "/game" : "/"} className='text-black'>
+					<Link to={ session.valid ? "/game" : "/"} className='text-white'>
 						Syscrack
 					</Link>
 				</Navbar.Brand>
@@ -23,11 +23,13 @@ function NavbarComponent() {
 							{createLinks({
 								login: {
 									element: Nav.Link,
-									capitalize: true
+									capitalize: true,
+									className: 'text-white'
 								},
 								register: {
 									element: Nav.Link,
-									capitalize: true
+									capitalize: true,
+									className: 'text-white'
 								}
 							})}
 						</Nav>
