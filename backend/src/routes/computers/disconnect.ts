@@ -32,7 +32,7 @@ const connect = {
     req.session.connections = req.session.connections.filter((that) => that.id !== computer.computerId)
     req.session.save()
 
-    // logged new login
+    // log logout new login
     computer.log(`logged off at ${new Date(Date.now()).toString()}`)
 
     res.send({

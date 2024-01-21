@@ -12,8 +12,8 @@ function NavbarComponent() {
 		<Navbar expand="lg" >
 			<Container fluid={true}>
 				<Navbar.Brand>
-					<Link to={ session.valid ? "/game" : "/"} className='text-white'>
-						Syscrack
+					<Link to={ session.valid ? "/game" : "/"} className='text-success'>
+						~/sysrack <span className='text-secondary'>{session.valid ? session.user.name : "guest"}</span>
 					</Link>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />

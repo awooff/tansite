@@ -6,6 +6,9 @@ import Index from './pages/Index'
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Game from "./pages/Game";
+import Network from "./pages/computers/Network";
+import Logout from "./pages/auth/Logout";
+import Dashboard from "./pages/computers/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -31,10 +34,24 @@ const router = createBrowserRouter([
    },
    {
      path: '/game',
- element: <>
+     element: <>
           <Game />
     </>,
-   }
+  },
+  {
+    path: '/computers/network',
+    element: <>
+      <Network />
+    </>
+  },
+  {
+    path: "/logout",
+    element: <Logout/>
+  },
+    {
+    path: "/computers",
+    element: <Dashboard/>
+  }
 ]);
 
 export default router;

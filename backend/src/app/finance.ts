@@ -6,7 +6,7 @@ export const canAfford = async (bankAccount: string | Memory, cost: number) => {
 
   if (account === null) { throw new Error('bank account is ivnalid') }
 
-  if (account.type !== 'bankaccount') { throw new Error('computer memory must be of type bank') }
+  if (account.type !== 'bank_account') { throw new Error('computer memory must be of type bank') }
 
   return (account?.value || 0) - cost > 0
 }
@@ -20,7 +20,8 @@ export const deposit = async (bankAccount: string | Memory, value: number) => {
 
   return await server.prisma.memory.update({
     where: {
-      id: account.id
+      id: account.id,
+      type: 'bank_account'
     },
     data: {
       value: account.value
@@ -39,7 +40,8 @@ export const withdraw = async (bankAccount: string | Memory, value: number) => {
 
   return await server.prisma.memory.update({
     where: {
-      id: account.id
+      id: account.id,
+      type: 'bank_account'
     },
     data: {
       value: account.value
@@ -50,7 +52,8 @@ export const withdraw = async (bankAccount: string | Memory, value: number) => {
 export const getBankAccount = async (bankAccount: string) => {
   return await server.prisma.memory.findFirst({
     where: {
-      key: bankAccount
+      key: bankAccount,
+      type: 'bank_account'
     }
   })
 }
@@ -59,7 +62,7 @@ export const getUserBankAccount = async (userId: number) => {
   return await server.prisma.memory.findFirst({
     where: {
       userId,
-      type: 'bankaccount'
+      type: 'bank_account'
     }
   })
 }

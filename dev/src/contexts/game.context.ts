@@ -2,17 +2,14 @@ import { createContext } from 'react'
 import { Groups } from '../lib/types/groups.type'
 import { User } from '../lib/types/user.type'
 import { Computer } from '../lib/types/computer.type'
+import { BankAccount } from '../lib/types/account.type'
 
 export type GameType = {
 	loaded: boolean
 	connections: Computer[],
 	computers: Computer[],
 	user: User,
-	finance: {
-		total: number,
-		bankAccount: '0000-0000-0000-0000',
-		computer: Computer
-	}[],
+	bankAccounts: BankAccount[],
 	gameId: string,
 	title: string,
 	preferences: object
@@ -33,7 +30,7 @@ export const GameContextDefault = {
 		email: "",
 		group: Groups.GUEST
 	},
-	finance: [],
+	bankAccounts: [],
 	valid: false,
 	load: () => {
 		

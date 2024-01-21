@@ -10,7 +10,11 @@ const logout = {
     description: 'will logout the user from syscrack'
   },
 
-  async get (req, res, error) {
+  async get(req, res, error) {
+
+    if (!req.session)
+      return error('no sussin')
+
     await server.prisma.session.deleteMany({
       where: {
         id: req.sessionID
@@ -19,8 +23,6 @@ const logout = {
 
     // destroy session data
     await new Promise((resolve) => req.session.destroy(resolve))
-    // regenerate the session
-    await new Promise((resolve) => req.session.regenerate(resolve))
 
     res.send({
       success: true

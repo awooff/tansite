@@ -5,6 +5,7 @@ import GameContext, { GameContextDefault, GameType } from '../contexts/game.cont
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Computer } from '../lib/types/computer.type';
+import { BankAccount } from '../lib/types/account.type';
 
 function GameProvider({ children }: {
 	children: unknown
@@ -44,10 +45,22 @@ function GameProvider({ children }: {
 					}
 				})
 
+				const accounts =await axios.post<{
+					accounts: BankAccount[]
+				}>('http://localhost:1337/finances/accounts', {
+					page: 0
+				}, {
+					withCredentials: true,
+					headers: {
+						Authorization: 'Bearing ' + localStorage.getItem('jwt')
+					}
+				})
+
 				newGame = {
 					...GameContextDefault,
 					connections: computers.data.connections,
 					computers: computers.data.computers,
+					bankAccounts: accounts.data.accounts,
 					title: game.data.title,
 					gameId: game.data.currentGameId,
 					loaded: true,

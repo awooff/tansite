@@ -1,4 +1,6 @@
+import { Hardware, HardwareType } from "./hardware.type";
 import { User } from "./user.type";
+
 
 export type Computer = {
 	id: string
@@ -6,9 +8,11 @@ export type Computer = {
 	user: User
 	ip: string
 	type: string
-	hardware: {
-		type: 'HDD' | 'GPU' | "CPU" | "Upload" | "Download" | "Ram"
-		strength: number
-	}[],
+	hardware: Hardware[],
 	gameId: string
+	data: {
+		hardwareLimits?: Record<HardwareType, number>
+		title?: string
+		markdown?: string
+	}
 }
