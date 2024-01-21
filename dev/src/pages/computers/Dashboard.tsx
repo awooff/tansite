@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
-import { Carousel, Col, Row, Card, Button, ListGroup} from 'react-bootstrap'
+import { Carousel, Col, Row, Card, Button} from 'react-bootstrap'
 import GameContext from '../../contexts/game.context'
 import { useNavigate } from 'react-router-dom'
+import ComputerThumbnail from '../../components/Computer'
 
 export default function Dashboard() {
 	const game = useContext(GameContext)
@@ -47,12 +48,7 @@ export default function Dashboard() {
 					</Carousel>
 				</Col>
 		  </Row>
-		  	  	<Row>
-				<Col>
-					<p className='display-4'>~/dashboard</p>
-				</Col>
-			</Row>
-		  <Row>
+		  <Row className='mt-3'>
 			  <Col lg={4}>
 				  <Row lg={1} className='gy-4'>
 					<Col>
@@ -67,45 +63,53 @@ export default function Dashboard() {
 					<Col>
 						<Card body className='bg-transparent border border-primary'>
 							<div className="d-grid">
-									<Button variant='primary'>
+									<Button variant='primary' onClick={() => {
+									  navigate('/processes')
+									}}>
 										Computer Processes
+									</Button>
+							</div>
+							</Card>
+					  </Col>
+					  	<Col>
+						<Card body className='bg-transparent border border-primary'>
+							<div className="d-grid">
+								  <Button variant='primary' onClick={() => {
+									  navigate('/computers/network')
+									}}>
+										Your Network
 									</Button>
 							</div>
 							</Card>
 					</Col>
 		  		</Row>
-			  </Col>
-			  <Col>
-				  <Card body>
-					  <ListGroup>
-						  {game.computers.map((computer, index) => {
+			</Col>
+				<Col>
+				<Row lg={2} className='gy-4'>
+					{game.computers.map((computer, index) => {
 
-							  if (index === 16)
-								  return <div className='d-grid mt-4'>
-									
-									  <Button variant='success' onClick={() => {
-										  navigate('/computers/network')
-									  }}>
-										    
-										  View Entire Network
-										
-										</Button>
-								  </div>
-							  
-							  if (index > 16)
-								  return <></>
-							  
-							  return <ListGroup.Item>
-								  {computer.data.title} <span className='badge bg-secondary ms-2' style={{
-									  float: 'right'
-								  }}>{computer.ip}</span> <span className='badge bg-success' style={{
-									  float: 'right'
-								  }}>{computer.type}</span>
-							  </ListGroup.Item>
-						})}
-					  </ListGroup>  
-					</Card>
-			  </Col>
+						if (index === 16)
+							return <Col>
+								<Card body className='bg-transparent border border-primary'>
+										<div className='d-grid'>		
+									<Button variant='primary' onClick={() => {
+										navigate('/computers/network')
+									}}>										    
+										View Entire Network		
+									</Button>
+								</div>
+								</Card>
+						
+							</Col>
+						
+						if (index > 16)
+						return <></>
+						
+					return <ComputerThumbnail computer={computer} connections={game.connections} className='bg-transparent border border-primary'/>
+				})}
+				</Row>  
+					
+			</Col>
 		  </Row>
 		
 		</Layout>
