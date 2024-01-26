@@ -1,7 +1,7 @@
 import { Route } from '../../lib/types/route.type'
 import { Groups } from '@prisma/client'
 import { paginationSchema } from '@/lib/schemas/pagination.schema'
-import { AddressBook } from '@/app/addressbook'
+import { AccountBook } from '@/app/accountbook'
 
 const accountBook = {
 
@@ -21,14 +21,17 @@ const accountBook = {
     if (!req.session.userId)
       throw new Error('no userid')
     
-    const addressBook = new AddressBook(req.session.userId);
-    await addressBook.check();
+    const accountBook = new AccountBook(req.session.userId);
+    await accountBook.check();
 
-    const results = await addressBook.fetch(64, page)
+    const results = await accountBook.fetch(64, page)
+    const count = await accountBook.count()
     
     res.send({
       success: true,
-      addresses: results
+      addresses: results,
+      count: count,
+      pages: Math.floor(count / 64) + 1
     })
   }
 } satisfies Route

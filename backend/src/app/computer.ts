@@ -1,15 +1,14 @@
-import { HardwareTypes, Memory, Prisma } from '@prisma/client'
+import { HardwareTypes as HardwareType, Logs, Memory, Prisma } from '@prisma/client'
 import { server } from '../index'
 import { Software } from './software'
 import { ComputerProcess } from './process'
 import { AddressBook } from './addressbook'
-import { Request } from 'express'
 
 export interface ComputerData {
   title?: string
   description?: string
   markdown?: string
-  hardwareLimits?: Record<HardwareTypes, number>
+  hardwareLimits?: Record<HardwareType, number>
 
 }
 export class Computer {
@@ -142,8 +141,59 @@ export class Computer {
     })
   }
 
+  public async getLogs(take: number = 64, page: number = 0) {
+    let result = server.prisma.logs.findMany({
+      where: {
+        gameId: process.env.CURRENT_GAME_ID,
+        computerId: this.computerId
+      },
+      include: {
+        computer: true
+      },
+      take: take,
+      skip: page * take
+    })
+
+    return result;
+  }
+
+  public async deleteLogs(indexes: Logs[] | Logs) { 
+    await server.prisma.logs.deleteMany({
+      where: (indexes as Logs)?.id ? {
+        id: (indexes as Logs)?.id
+      } : (indexes as any).reduce((prev: Logs, current: Logs) => {
+          return {
+            id: current.id,
+            AND: prev
+          }
+      })
+    })
+  }
+
+  public async getLogCount() {
+    return await server.prisma.logs.count({
+      where: {
+        gameId: process.env.CURRENT_GAME_ID,
+        computerId: this.computerId
+      }
+    })
+  }
+
   public async log(message: string, from?: Computer) {
     const computer = (from == null) ? this : from
+
+    if (!computer?.computer)
+      throw new Error('computer not loaded')
+
+    await server.prisma.logs.create({
+      data: {
+        userId: computer.computer.userId,
+        computerId: computer.computerId,
+        senderId: from?.computerId || computer.computerId,
+        gameId: process.env.CURRENT_GAME_ID,
+        message: message
+      }
+    })
   }
 
   public get ip() {
@@ -251,7 +301,7 @@ export class Computer {
     return software
   }
 
-  public async setHardware(type: HardwareTypes, strength: number) {
+  public async setHardware(type: HardwareType, strength: number) {
     const previousHardware = this.getFirstHardwareType(type)
 
     if (previousHardware) {
@@ -273,7 +323,7 @@ export class Computer {
     })
   }
 
-  public getCombinedHardwareStrength(type: HardwareTypes) {
+  public getCombinedHardwareStrength(type: HardwareType) {
     if (!this.computer)
       throw new Error('comptuer not loaded')
   
@@ -283,14 +333,14 @@ export class Computer {
     return combinedStrength
   }
 
-  public getHardware(type: HardwareTypes) {
+  public getHardware(type: HardwareType) {
     if (!this.computer)
       throw new Error('comptuer not loaded')
     
     return this.computer.hardware.filter(hardware => hardware.type === type)
   }
 
-  public getFirstHardwareType(type: HardwareTypes) {
+  public getFirstHardwareType(type: HardwareType) {
     if (!this.computer)
       throw new Error('comptuer not loaded')
 

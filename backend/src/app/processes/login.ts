@@ -1,9 +1,8 @@
-import { Process, ProcessData, ProcessSettings } from '@/lib/types/process.type'
+import { Process, ProcessData } from '@/lib/types/process.type'
 import { Computer } from '../computer'
 import GameException from '@/lib/exceptions/game.exception'
 import { AddressBook } from '../addressbook'
 import { server } from 'index'
-import e from 'express'
 
 const login = {
   settings: {
@@ -17,6 +16,9 @@ const login = {
     if (!computer || !executor.computer)
       throw new Error('invalid computer')
 
+    if (computer.computerId === executor.computerId)
+      throw new GameException('cannot logout of the same computer you own')
+    
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check()
 
@@ -29,10 +31,12 @@ const login = {
     if (!computer?.computer || !executor.computer)
       throw new Error('invalid computer')
 
-    let request = server.request[data.sessionId];
-    request.session.logins = request.session.logins || {}
-    request.session.logins[executor.computerId] = request.session.logins[executor.computerId] || []
-    request.session.logins[executor.computerId].push(computer.computer)
+    let req = server.request[data.sessionId];
+
+    req.session.logins = req.session.logins || {}
+    req.session.logins[executor.computerId] = req.session.logins[executor.computerId] || []
+    req.session.logins[executor.computerId].push(computer.computer)
+    req.session.save()
 
     computer.log('remote session created', executor)
     executor.log('remote session handshake', computer)

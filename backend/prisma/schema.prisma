@@ -53,6 +53,7 @@ model User {
     userQuests   UserQuests[]
     addressBook  AddressBook[]
     accountBook  AccountBook[]
+    Logs         Logs[]
 }
 
 model Game {
@@ -68,6 +69,7 @@ model Game {
     process     Process[]
     quests      Quests[]
     userQuests  UserQuests[]
+    Logs        Logs[]
 }
 
 model Session {
@@ -151,6 +153,7 @@ model Computer {
     process     Process[]
     addressBook AddressBook[]
     accountBook AccountBook[]
+    Logs        Logs[]
 }
 
 model Quests {
@@ -204,4 +207,17 @@ model Process {
     started    DateTime @default(now())
     completion DateTime
     data       Json
+}
+
+model Logs {
+    id         Int      @id @default(autoincrement())
+    user       User     @relation(fields: [userId], references: [id])
+    userId     Int
+    computer   Computer @relation(fields: [computerId], references: [id])
+    computerId String
+    senderId   String
+    game       Game     @relation(fields: [gameId], references: [id])
+    gameId     String
+    message    String
+    created    DateTime @default(now())
 }

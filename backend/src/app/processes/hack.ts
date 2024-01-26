@@ -1,4 +1,4 @@
-import { Process, ProcessData, ProcessSettings } from '@/lib/types/process.type'
+import { Process, ProcessData } from '@/lib/types/process.type'
 import { Computer } from '../computer'
 import settings from '../../settings'
 import GameException from '@/lib/exceptions/game.exception'
@@ -19,6 +19,8 @@ const hack = {
   },
   before: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
     if (computer === null) { throw new Error('no computer') }
+    if (computer.computerId === executor.computerId)
+      throw new GameException('cannot perform this action on your own computer')
 
     const hasher = computer.getFirstTypeInstalled('hasher')
     const cracker = executor.getFirstTypeInstalled('cracker')

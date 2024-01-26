@@ -16,10 +16,13 @@ const logout = {
     if (!computer?.computer || !executor.computer)
       throw new Error('invalid computer')
 
+    if (computer.computerId === executor.computerId)
+      throw new GameException('cannot login to the same computer you own')
+
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check()
 
-    if (!addressBook.findInAddressBook(data.ipAddress))
+    if (!await addressBook.findInAddressBook(data.ipAddress))
       throw new GameException('you must hack this computer first')
 
     let request = server.request[data.sessionId];
@@ -34,14 +37,13 @@ const logout = {
     if (!computer?.computer || !executor.computer)
       throw new Error('invalid computer')
 
-    let request = server.request[data.sessionId];
+    let req = server.request[data.sessionId];
 
-    if (!request.session.logins || !request.session.logins?.[executor.computerId] || !request.session.logins[executor.computerId].find((val) => val.id === computer.computerId))
-    {
-      //
-    } else
-      request.session.logins[executor.computerId] = request.session.logins[executor.computerId].filter((val) => val.id !== computer.computerId)
+    if (req.session.logins && req.session.logins?.[executor.computerId] && req.session.logins[executor.computerId].find((val) => val.id === computer.computerId))
+       req.session.logins[executor.computerId] = req.session.logins[executor.computerId].filter((val) => val.id !== computer.computerId)
 
+    req.session.save()
+  
     executor.log('remote session terminated', computer)
   }
 } satisfies Process

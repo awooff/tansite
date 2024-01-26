@@ -25,10 +25,13 @@ const addressBook = {
     await addressBook.check();
 
     const results = await addressBook.fetch(64, page)
+    const count = await addressBook.count()
     
     res.send({
       success: true,
-      addresses: results
+      addresses: results,
+      count: count,
+      pages: Math.floor(count / 64) + 1
     })
   }
 } satisfies Route

@@ -20,6 +20,7 @@ export const isConnectedToMachine = (req: Request, computer: Computer, targetCom
 
   if (computer.ip !== result.ip) {
     req.session.logins[computer.computerId] = req.session.logins[computer.computerId].filter((val) => val.id !== computer.computerId)
+    req.session.save()
     return false;
   }
 

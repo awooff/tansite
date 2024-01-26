@@ -2,7 +2,7 @@ import { Route } from '../../lib/types/route.type'
 import { server } from '../../index'
 import { Groups } from '@prisma/client'
 import { getComputer } from '@/app/computer'
-import { switchSchema } from '@/lib/schemas/switch.schema'
+import { computerIdSchema } from '@/lib/schemas/computer.schema'
 
 const connect = {
 
@@ -13,20 +13,16 @@ const connect = {
   },
 
   async post(req, res, error) {
-    const body = await switchSchema.safeParseAsync(req.body)
+    const body = await computerIdSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
 
     const { computerId } = body.data
     const computer = await getComputer(computerId)
 
-    if (computer === null) { return error('computer does not exist') }
-
+    if (!computer?.computer) { return error('invalid computer') }
     if (computer.computer.userId !== req.session.userId) { return error('user does not own this computer') }
-
-    req.session.connections = req.session.connections || []
-
-    if (req.session.connections.filter((that) => that.id === computer.computerId).length === 0)
+    if (!req.session.connections || req.session.connections.filter((that) => that.id === computer.computerId).length === 0)
       return error('not connected to this computer')
 
     req.session.connections = req.session.connections.filter((that) => that.id !== computer.computerId)

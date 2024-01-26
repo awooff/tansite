@@ -12,7 +12,7 @@ export interface ProcessData {
 }
 
 export interface ProcessParameters {
-  custom?: Record<string, (z: typeof zod) => zod.ZodString | zod.ZodNumber | zod.ZodBoolean>
+  custom?: Record<string, (z: typeof zod) => zod.ZodString | zod.ZodNumber | zod.ZodBoolean | zod.ZodArray<zod.ZodString> | zod.ZodArray<zod.ZodNumber>>
   userId?: boolean
   sessionId?: boolean
   computer?: boolean
