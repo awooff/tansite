@@ -15,4 +15,12 @@ export type Computer = {
 		title?: string
 		markdown?: string
 	}
+	software: {
+		name: string,
+		level: number,
+		size: number,
+		type: string,
+		userId: number,
+		installed: boolean
+	}[]
 }

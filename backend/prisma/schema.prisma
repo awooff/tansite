@@ -41,6 +41,7 @@ model User {
     preferences  Preferences[]
     memory       Memory[]
     process      Process[]
+    UserQuests   UserQuests[]
 }
 
 model Game {
@@ -54,6 +55,8 @@ model Game {
     preferences Preferences[]
     memory      Memory[]
     process     Process[]
+    quests      Quests[]
+    userQuests  UserQuests[]
 }
 
 model Session {
@@ -112,6 +115,28 @@ model Computer {
     software Software[]
     memory   Memory[]
     process  Process[]
+}
+
+model Quests {
+    id         String       @id @default(uuid())
+    game       Game         @relation(fields: [gameId], references: [id])
+    gameId     String
+    type       String
+    title      String
+    reward     Json?
+    open       Boolean
+    userQuests UserQuests[]
+}
+
+model UserQuests {
+    id        String  @id @default(uuid())
+    quest     Quests  @relation(fields: [questsId], references: [id])
+    questsId  String
+    user      User    @relation(fields: [userId], references: [id])
+    userId    Int
+    game      Game    @relation(fields: [gameId], references: [id])
+    gameId    String
+    completed Boolean
 }
 
 model Software {

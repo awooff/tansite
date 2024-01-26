@@ -10,5 +10,7 @@
 			"path": "dev"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSave": true
+	}
 }

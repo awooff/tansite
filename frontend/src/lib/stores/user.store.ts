@@ -1,15 +1,17 @@
-import { atom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
+import {atom} from 'jotai';
+import {atomWithStorage} from 'jotai/utils';
 
-type UserAtom = {
-	username: string,
-	email: string,
-	avatar?: string,
-	jwt: string,
-}
+export type UserAtom = {
+	username: string;
+	email: string;
+	avatar?: string;
+	jwt: string;
+};
 
-export const userAtom = atomWithStorage('user', {} as UserAtom)
+export const userAtom = atomWithStorage('user', {} as UserAtom);
 export const modifyUserAtom = atom(
-	(get) => get(userAtom),
-	(_get, set, newUser: UserAtom) => set(userAtom, newUser)
-)
+	get => get(userAtom),
+	(_get, set, newUser: UserAtom) => {
+		set(userAtom, newUser);
+	},
+);

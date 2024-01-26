@@ -3,19 +3,22 @@
 		"baseUrl": "./",
 		"paths": {
 			"@/*": [
-				"./src"
+				"./src/*"
 			],
-			"@lib": [
-				"./src/lib"
+			"@lib/*": [
+				"./src/lib/*"
+			],
+			"@contexts/*": [
+				"./src/lib/contexts/*"
 			],
 			"@schemas/*": [
 				"./src/lib/schemas/*"
 			],
 			"@hooks/*": [
-				"./src/lib/hooks"
+				"./src/lib/hooks/*"
 			],
 			"@stores/*": [
-				"./src/lib/stores"
+				"./src/lib/stores/*"
 			],
 			"@routes/*": [
 				"./src/routes/*"

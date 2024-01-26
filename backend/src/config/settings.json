@@ -9,9 +9,9 @@
 	},
 	"actionNerf": 1.25,
 	"cpuNerf": 1.25,
-	"hddNerf": 1.25, 
+	"hddNerf": 1.25,
 	"softwareActionsCost": {
-		"install": 600, 
+		"install": 600,
 		"uninstall": 600,
 		"execute": 500,
 		"view": 10,
@@ -36,7 +36,7 @@
 		}
 	],
 	"defaultHardware": {
-		"HDD": 81920,
+		"HDD": 512,
 		"GPU": 125,
 		"CPU": 866,
 		"RAM": 64,

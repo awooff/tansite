@@ -1,14 +1,18 @@
-import Taskbar from '@components/Taskbar'
-import React from 'react'
+import Taskbar from '../components/Taskbar';
+import React, {type ReactNode, type ReactElement} from 'react';
+import {UserContext} from '../lib/contexts/user.context';
+import {userAtom} from '../lib/stores/user.store';
+import {useAtom} from 'jotai';
 
-function Layout(props: {children?: React.ReactNode}) {
-  return (
-	  <div>
-		  {props.children}
-		  <Taskbar/>
+export function Layout(props: {children?: ReactNode}): ReactElement {
+	const [user] = useAtom(userAtom);
 
-	  </div>
-  )
+	return (
+		<UserContext.Provider value={user}>
+			{props.children}
+			<Taskbar />
+		</UserContext.Provider>
+	);
 }
 
-export default Layout
+export default Layout;
