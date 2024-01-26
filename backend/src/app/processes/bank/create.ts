@@ -11,7 +11,7 @@ const create = {
   },
   before: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
     if (computer === null) { throw new Error('no computer') }
-    if (computer.computer.type !== 'bank') { throw new Error('computer must be a bank') }
+    if (computer?.computer?.type !== 'bank') { throw new Error('computer must be a bank') }
 
     return true
   },

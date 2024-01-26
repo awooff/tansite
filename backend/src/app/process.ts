@@ -1,17 +1,18 @@
-import { Process } from '@prisma/client'
+import { Process as Table } from '@prisma/client'
 import { Computer } from './computer'
 import { server } from '../index'
 import processes from '@/app/processes/'
-import z from 'zod'
-import { ProcessParameters } from '@/lib/types/process.type'
+import z, { ZodRawShape, ZodType } from 'zod'
+import { Process, ProcessParameters } from '@/lib/types/process.type'
+import { Software } from './software'
 export type ProcessType = keyof typeof processes
 
 export class ComputerProcess {
   public computer?: Computer
   public processId: string
-  public process?: Process
+  public process?: Table
 
-  constructor(processId: string, process?: Process, computer?: Computer) {
+  constructor(processId: string, process?: Table, computer?: Computer) {
     this.processId = processId
 
     if (process != null) { this.process = process }
@@ -41,47 +42,51 @@ export class ComputerProcess {
 
 export const zodObjects = {
   'computer': async () => {
-  return { z: z.string(), key: 'computerId' }
+  return  z.string()
   },
   'ipAddress': async () => {
-    return { z: z.string(), key: 'ip' }
+    return z.string()
   },
   'sessionId': async () => {
-  return { z: z.string(), key: 'sessionId' }
+  return z.string()
   },
   'softwareId': async () => {
-      return { z: z.string(), key: 'softwareId' }
+      return  z.string()
   },
   'userId': async () => {
-      return { z: z.number(), key: 'userId' }
+      return  z.string()
   },
-  'custom': async (data) => {
+} as Record<keyof ProcessParameters, (data?: any) => Promise<z.ZodString | z.ZodNumber>>
 
-    let custom = {} as any
-
-    await Promise.all(Object.keys(data).map(async (key) => {
-      custom[key] = await data[key]()
-    }))
-
-    return {
-      z: z.object(custom), key: 'custom' }
-  }
-} as Record<keyof ProcessParameters, (data?: any) => Promise<{
-  z: unknown,
-  key: string
-}>>
-
-export const getProcessZodObject = async (type: ProcessType, executor?: Computer) => {
-  let process = processes[type];
+export const getProcessZodObject = async (type: ProcessType, extend?: ProcessParameters) => {
+  let process = processes[type] as Process;
   let obj: any = {};
 
   if (!process.settings?.parameters)
     return z.object({})
 
-  await Promise.all(Object.keys(process.settings?.parameters).map(async (key, index) => {
-    let result = await zodObjects[key as keyof ProcessParameters](process.settings?.parameters)
-    obj[result.key] = result.z;
+  let settingsParameters = {
+    ...process.settings.parameters,
+    ...extend
+  }
+
+  await Promise.all(Object.keys(settingsParameters).map(async (key) => {
+    let result = await zodObjects[key as keyof ProcessParameters](settingsParameters)
+    obj[key] = result
   }));
 
+  if (settingsParameters?.custom) {
+    let custom = {} as any;
+
+    await Promise.all(Object.keys(settingsParameters.custom).map(async (key) => {
+        custom[key] = await settingsParameters.custom?.[key](z);
+    }))
+    
+    obj = {
+      ...obj,
+      ...custom
+    }
+  }
+  
   return z.object(obj)
 }

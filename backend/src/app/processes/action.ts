@@ -19,7 +19,7 @@ const action = {
         }
       },
       softwareId: true,
-      computer: true
+      ipAddress: true
     }
   },
   delay: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
@@ -31,9 +31,16 @@ const action = {
   before: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
     if (computer === null) { throw new Error('no computer') }
 
-    const software = computer.getSoftware(data.softwareId)
+    let software;
+    if (data.custom.action === 'upload')
+      software = executor.getSoftware(data.softwareId)
+    else
+      software = computer.getSoftware(data.softwareId);
 
-    if (data.custom.action === 'execute' && software.action<SoftwareAction>().settings?.localExecutionOnly && computer.computerId !== executor.computerId) { throw new GameException('can only be executed on your machine locally') }
+    if (!software)
+      throw new GameException('invalid software');
+
+    if (data.custom.action === 'execute' && software.action.settings?.localExecutionOnly && computer.computerId !== executor.computerId) { throw new GameException('can only be executed on your machine locally') }
 
     // check if the software can do this action
     return await software.preExecute(data.custom.action, executor, data)
@@ -41,7 +48,12 @@ const action = {
   after: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
     if (computer === null) { throw new Error('no computer') }
 
-    const software = computer.getSoftware(data.softwareId)
+    let software;
+    if (data.custom.action === 'upload')
+      software = executor.getSoftware(data.softwareId)
+    else
+      software = computer.getSoftware(data.softwareId);
+
     return await software.execute(data.custom.action, executor)
   }
 } satisfies Process

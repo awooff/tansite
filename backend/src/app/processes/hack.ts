@@ -6,7 +6,7 @@ import GameException from '@/lib/exceptions/game.exception'
 const hack = {
   settings: {
     parameters: {
-      computer: true
+      ipAddress: true
     }
   },
   delay: async (computer: Computer | null, executor: Computer, data: ProcessData) => {

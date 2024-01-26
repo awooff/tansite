@@ -2,7 +2,7 @@ import express, { type Application, type IRoute, Request, Response } from 'expre
 import path from 'path'
 import { glob } from 'glob'
 import { Route } from './lib/types/route.type'
-import { Groups, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import compression from 'compression'
@@ -24,6 +24,8 @@ class Server {
   public server: Application
   public routes: IRoute[]
   public prisma: PrismaClient
+  public request: Record<string, Request> = {}
+  public response: Record<string, Response> = {}
 
   constructor() {
     this.server = express()
@@ -66,6 +68,11 @@ class Server {
       },
     }))
     this.server.use(bodyparse.json())
+    this.server.use((req, res, next) => {
+      this.request[req.sessionID] = req;
+      this.response[req.sessionID] = res;
+      next()
+    })
   }
 
   /**

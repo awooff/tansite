@@ -21,11 +21,10 @@ const addressBook = {
     if (!req.session.userId)
       throw new Error('no userid')
     
-    let addressBook = new AddressBook(req.session.userId);
+    const addressBook = new AddressBook(req.session.userId);
     await addressBook.check();
 
-    let results = await addressBook.fetch(64, page)
-  
+    const results = await addressBook.fetch(64, page)
     
     res.send({
       success: true,

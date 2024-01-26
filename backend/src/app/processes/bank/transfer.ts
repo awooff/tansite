@@ -24,7 +24,7 @@ const transfer = {
   before: async (computer: Computer | null, executor: Computer, data: TransferData) => {
     if (computer === null) { throw new Error('no computer') }
 
-    if (computer.computer.type !== 'bank') { throw new Error('computer must be a bank') }
+    if (computer?.computer?.type !== 'bank') { throw new Error('computer must be a bank') }
 
     const bankAccount = await getBankAccount(data.custom.bankAccount)
 

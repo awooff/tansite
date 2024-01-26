@@ -197,6 +197,7 @@ model Process {
     userId     Int
     computer   Computer @relation(fields: [computerId], references: [id])
     computerId String
+    ip         String?
     game       Game     @relation(fields: [gameId], references: [id])
     gameId     String
     type       String

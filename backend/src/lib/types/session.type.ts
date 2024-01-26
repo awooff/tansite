@@ -5,6 +5,7 @@ declare module 'express-session' {
   interface SessionData {
     userId: number
     connections: Computer[];
+    logins: Record<string, Computer[]>;
     group: Groups
   }
 }

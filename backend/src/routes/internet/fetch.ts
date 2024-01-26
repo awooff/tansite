@@ -17,8 +17,7 @@ const fetch = {
     if (!body.success) return error(body.error)
 
     const { ip } = body.data
-
-    let computer = await findComputer(ip)
+    const computer = await findComputer(ip)
 
     if (computer === null)
       return error('computer not found');

@@ -3,6 +3,7 @@ import { server } from '../index'
 import { Software } from './software'
 import { ComputerProcess } from './process'
 import { AddressBook } from './addressbook'
+import { Request } from 'express'
 
 export interface ComputerData {
   title?: string
@@ -20,16 +21,21 @@ export class Computer {
    * The owner of this computers address book
    */
   public addressBook?: AddressBook;
-
-  public computer: Prisma.ComputerGetPayload<{
+  public computer?: Prisma.ComputerGetPayload<{
     include: {
       hardware: true
       software: true
       process: true
     }
-  }> = {} as any
-
-  public constructor(computerId: string) {
+  }>
+  
+  public constructor(computerId: string, computer?: Prisma.ComputerGetPayload<{
+    include: {
+      hardware: true
+      software: true
+      process: true
+    }
+  }>) {
     this.computerId = computerId
   }
 
@@ -47,6 +53,10 @@ export class Computer {
   }
 
   public async addMemory(key: string, type: string, value?: number, data?: any) {
+
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+
     return await server.prisma.memory.create({
       data: {
         userId: this.computer.userId,
@@ -61,6 +71,9 @@ export class Computer {
   }
 
   public async getUserPreferences() {
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+    
     return await server.prisma.preferences.findFirst({
       where: {
         userId: this.computer.userId
@@ -69,6 +82,10 @@ export class Computer {
   }
 
   public async findMemory(type: string) {
+
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+    
     return await server.prisma.memory.findFirst({
       where: {
         userId: this.computer.userId,
@@ -79,6 +96,9 @@ export class Computer {
   }
 
   public async getMemory(key: string) {
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+    
     return await server.prisma.memory.findFirst({
       where: {
         userId: this.computer.userId,
@@ -127,6 +147,9 @@ export class Computer {
   }
 
   public get ip() {
+      if (!this.computer)
+        throw new Error('comptuer not loaded')
+    
     return this.computer.ip
   }
 
@@ -207,7 +230,7 @@ export class Computer {
       },
       user: {
         connect: {
-          id: computer.computer.userId
+          id: computer.computer?.userId
         }
       },
       computer: {
@@ -251,6 +274,9 @@ export class Computer {
   }
 
   public getCombinedHardwareStrength(type: HardwareTypes) {
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+  
     const result = this.computer.hardware.filter((hardware) => hardware.type === type)
     let combinedStrength = 0
     result.forEach((hardware) => combinedStrength += hardware.strength)
@@ -258,10 +284,16 @@ export class Computer {
   }
 
   public getHardware(type: HardwareTypes) {
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+    
     return this.computer.hardware.filter(hardware => hardware.type === type)
   }
 
   public getFirstHardwareType(type: HardwareTypes) {
+    if (!this.computer)
+      throw new Error('comptuer not loaded')
+
     return this.computer.hardware.filter((hardware) => hardware.type === type)?.[0]
   }
 }
@@ -270,6 +302,11 @@ export const findComputer = async (ip: string) => {
   const potentialComputer = await server.prisma.computer.findFirst({
     where: {
       ip: ip
+    },
+    include: {
+      hardware: true,
+      software: true,
+      process: true
     }
   })
 

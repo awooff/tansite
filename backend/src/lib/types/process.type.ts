@@ -22,6 +22,7 @@ export interface ProcessParameters {
 
 export interface ProcessSettings {
   localProcessOnly?: boolean
+  external?: boolean
   parameters?: ProcessParameters
 }
 
