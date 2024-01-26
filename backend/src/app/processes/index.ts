@@ -1,4 +1,10 @@
 import action from './action'
 import hack from './hack'
+import exploit from './exploit'
 
-export { action, hack }
+const index = { action, hack, exploit }
+export type ProcessTypes = keyof typeof index
+
+export default {
+  ...index
+}

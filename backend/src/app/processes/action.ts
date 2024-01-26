@@ -1,12 +1,12 @@
 import { Process, ProcessData, ProcessSettings } from '@/lib/types/process.type'
-import { SoftwareActions } from '@/lib/types/software.type'
+import { SoftwareAction } from '@/lib/types/software.type'
 import { Computer } from '../computer'
 import settings from '../../settings'
 import GameException from '@/lib/exceptions/game.exception'
 
 export type ExecuteData = {
   custom: {
-    action: keyof SoftwareActions
+    action: keyof SoftwareAction
   }
 } & ProcessData
 
@@ -33,7 +33,7 @@ const action = {
 
     const software = computer.getSoftware(data.softwareId)
 
-    if (data.custom.action === 'execute' && software.actions.settings?.localExecutionOnly && computer.computerId !== executor.computerId) { throw new GameException('can only be executed on your machine locally') }
+    if (data.custom.action === 'execute' && software.action<SoftwareAction>().settings?.localExecutionOnly && computer.computerId !== executor.computerId) { throw new GameException('can only be executed on your machine locally') }
 
     // check if the software can do this action
     return await software.preExecute(data.custom.action, executor, data)

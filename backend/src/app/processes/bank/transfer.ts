@@ -10,7 +10,7 @@ export type TransferData = {
   }
 } & ProcessData
 
-const create = {
+const transfer = {
   settings: {
     parameters: {
       computer: true,
@@ -36,4 +36,4 @@ const create = {
 
   }
 } satisfies Process
-export default create
+export default transfer

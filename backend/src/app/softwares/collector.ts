@@ -1,4 +1,4 @@
-import { SoftwareActions } from '@/lib/types/software.type'
+import { SoftwareAction } from '@/lib/types/software.type'
 import { deposit, getBankAccount } from '../finance'
 import { ProcessData } from '@/lib/types/process.type'
 import GameException from '@/lib/exceptions/game.exception'
@@ -40,6 +40,6 @@ const collector = {
       profit: 10
     }
   }
-} satisfies SoftwareActions
+} satisfies SoftwareAction
 
 export default collector

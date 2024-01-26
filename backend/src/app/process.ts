@@ -1,6 +1,10 @@
 import { Process } from '@prisma/client'
 import { Computer } from './computer'
 import { server } from '../index'
+import processes from '@/app/processes/'
+import z from 'zod'
+import { ProcessParameters } from '@/lib/types/process.type'
+export type ProcessType = keyof typeof processes
 
 export class ComputerProcess {
   public computer?: Computer
@@ -33,4 +37,51 @@ export class ComputerProcess {
       })
     }
   }
+}
+
+export const zodObjects = {
+  'computer': async () => {
+  return { z: z.string(), key: 'computerId' }
+  },
+  'ipAddress': async () => {
+    return { z: z.string(), key: 'ip' }
+  },
+  'sessionId': async () => {
+  return { z: z.string(), key: 'sessionId' }
+  },
+  'softwareId': async () => {
+      return { z: z.string(), key: 'softwareId' }
+  },
+  'userId': async () => {
+      return { z: z.number(), key: 'userId' }
+  },
+  'custom': async (data) => {
+
+    let custom = {} as any
+
+    await Promise.all(Object.keys(data).map(async (key) => {
+      custom[key] = await data[key]()
+    }))
+
+    return {
+      z: z.object(custom), key: 'custom' }
+  }
+} as Record<keyof ProcessParameters, (data?: any) => Promise<{
+  z: unknown,
+  key: string
+}>>
+
+export const getProcessZodObject = async (type: ProcessType, executor?: Computer) => {
+  let process = processes[type];
+  let obj: any = {};
+
+  if (!process.settings?.parameters)
+    return z.object({})
+
+  await Promise.all(Object.keys(process.settings?.parameters).map(async (key, index) => {
+    let result = await zodObjects[key as keyof ProcessParameters](process.settings?.parameters)
+    obj[result.key] = result.z;
+  }));
+
+  return z.object(obj)
 }

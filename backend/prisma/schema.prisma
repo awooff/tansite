@@ -10,6 +10,8 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+// Enums
+
 enum Groups {
     User
     Guest
@@ -25,6 +27,13 @@ enum HardwareTypes {
     Download
 }
 
+enum AccessLevel {
+    GOD
+    FTP
+}
+
+// Models
+
 model User {
     id           Int           @id @default(autoincrement())
     email        String        @unique
@@ -33,15 +42,17 @@ model User {
     salt         String
     lastAction   DateTime      @default(now())
     creation     DateTime      @default(now())
-    group        Groups        @default(User)
     refreshToken String?       @db.Text
+    group        Groups        @default(User)
     session      Session[]
     computer     Computer[]
     software     Software[]
     preferences  Preferences[]
     memory       Memory[]
     process      Process[]
-    UserQuests   UserQuests[]
+    userQuests   UserQuests[]
+    addressBook  AddressBook[]
+    accountBook  AccountBook[]
 }
 
 model Game {
@@ -79,42 +90,67 @@ model Hardware {
     strength   Float
 }
 
+model AddressBook {
+    id         Int         @id @default(autoincrement())
+    user       User        @relation(fields: [userId], references: [id])
+    userId     Int
+    access     AccessLevel
+    computer   Computer    @relation(fields: [computerId], references: [id])
+    computerId String
+    ip         String
+    data       Json        @default("{}")
+}
+
+model AccountBook {
+    id         Int      @id @default(autoincrement())
+    user       User     @relation(fields: [userId], references: [id])
+    userId     Int
+    computer   Computer @relation(fields: [computerId], references: [id])
+    computerId String
+    memory     Memory   @relation(fields: [memoryId], references: [id])
+    memoryId   String
+    data       Json     @default("{}")
+}
+
 model Preferences {
     id     Int    @id @default(autoincrement())
     user   User   @relation(fields: [userId], references: [id])
     userId Int
     game   Game   @relation(fields: [gameId], references: [id])
     gameId String
-    data   Json
+    data   Json   @default("{}")
 }
 
 model Memory {
-    id         String   @id @default(uuid())
-    computer   Computer @relation(fields: [computerId], references: [id])
-    computerId String
-    game       Game     @relation(fields: [gameId], references: [id])
-    gameId     String
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    type       String
-    key        String
-    value      Float?
-    data       Json     @default(dbgenerated())
+    id          String        @id @default(uuid())
+    computer    Computer      @relation(fields: [computerId], references: [id])
+    computerId  String
+    game        Game          @relation(fields: [gameId], references: [id])
+    gameId      String
+    user        User          @relation(fields: [userId], references: [id])
+    userId      Int
+    type        String
+    key         String
+    value       Float?
+    data        Json          @default("{}")
+    accountBook AccountBook[]
 }
 
 model Computer {
-    id       String     @id @default(uuid())
-    user     User       @relation(fields: [userId], references: [id])
-    userId   Int
-    type     String     @default("npc")
-    game     Game       @relation(fields: [gameId], references: [id])
-    gameId   String
-    ip       String
-    data     Json       @default("{}")
-    hardware Hardware[]
-    software Software[]
-    memory   Memory[]
-    process  Process[]
+    id          String        @id @default(uuid())
+    user        User          @relation(fields: [userId], references: [id])
+    userId      Int
+    type        String        @default("npc")
+    game        Game          @relation(fields: [gameId], references: [id])
+    gameId      String
+    ip          String
+    data        Json          @default("{}")
+    hardware    Hardware[]
+    software    Software[]
+    memory      Memory[]
+    process     Process[]
+    addressBook AddressBook[]
+    accountBook AccountBook[]
 }
 
 model Quests {
@@ -163,4 +199,8 @@ model Process {
     computerId String
     game       Game     @relation(fields: [gameId], references: [id])
     gameId     String
+    type       String
+    started    DateTime @default(now())
+    completion DateTime
+    data       Json
 }

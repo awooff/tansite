@@ -2,7 +2,7 @@ import { Computer } from '@/app/computer'
 import { Software } from '@/app/software'
 import { ProcessParameters } from './process.type'
 
-export interface SoftwareActions {
+export interface SoftwareAction {
   settings?: {
     complexity?: number // how complex this software is, effects how long it takes to install/uninstall or execute
     bloat?: number // how much more hard drive space to take up (in percentage)

@@ -1,4 +1,4 @@
-import { SoftwareActions } from '@/lib/types/software.type'
+import { SoftwareAction } from '@/lib/types/software.type'
 
 const defaultSoftware = {
   preDownload: async (software, computer, executor) => {
@@ -66,6 +66,6 @@ const defaultSoftware = {
 
     await software.delete()
   }
-} satisfies SoftwareActions
+} satisfies SoftwareAction
 
 export default defaultSoftware

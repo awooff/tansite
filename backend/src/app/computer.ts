@@ -2,6 +2,7 @@ import { HardwareTypes, Memory, Prisma } from '@prisma/client'
 import { server } from '../index'
 import { Software } from './software'
 import { ComputerProcess } from './process'
+import { AddressBook } from './addressbook'
 
 export interface ComputerData {
   title?: string
@@ -15,6 +16,10 @@ export class Computer {
   public data?: ComputerData
   public software: Software[] = []
   public process: ComputerProcess[] = []
+  /**
+   * The owner of this computers address book
+   */
+  public addressBook?: AddressBook;
 
   public computer: Prisma.ComputerGetPayload<{
     include: {
@@ -28,10 +33,15 @@ export class Computer {
     this.computerId = computerId
   }
 
-  public async exists() {
+  /**
+   * Can be used to check if the comptuter exits
+   * @param computerId 
+   * @returns 
+   */
+  public static async exists(computerId: string) {
     return !((await server.prisma.computer.findFirst({
       where: {
-        id: this.computerId
+        id: computerId
       }
     })) == null)
   }
@@ -159,6 +169,11 @@ export class Computer {
       this.process.push(new ComputerProcess(process.id, process, this))
     })
 
+    // the owners address book
+    this.addressBook = new AddressBook(this.computer.userId);
+    //this will throw if the user for some reason is bad, but it won't be
+    await this.addressBook.check()
+
     return this.computer
   }
 
@@ -167,7 +182,7 @@ export class Computer {
   }
 
   public getFirstTypeInstalled(type: string) {
-    return this.software.filter((software) => software.software.type === type && software.installed)[0]
+    return this.software.filter((software) => software?.software?.type === type && software.installed)[0]
   }
 
   public getInstalled(type: string) {
@@ -176,6 +191,9 @@ export class Computer {
 
   public async cloneSoftware(computer: Computer, software: Software | string) {
     software = typeof software === 'string' ? this.getSoftware(software) : software
+
+    if (!software.software)
+      throw new Error('software class is not loaded')
 
     return await computer.addSoftware({
       ...software.software,
@@ -248,10 +266,10 @@ export class Computer {
   }
 }
 
-export const findComputer = async (ipAddress: string) => {
+export const findComputer = async (ip: string) => {
   const potentialComputer = await server.prisma.computer.findFirst({
     where: {
-      ip: ipAddress
+      ip: ip
     }
   })
 
@@ -259,11 +277,11 @@ export const findComputer = async (ipAddress: string) => {
 }
 
 export const getComputer = async (computerId: string) => {
+  if (!await Computer.exists(computerId)) { return null }
+  
   const computer = new Computer(computerId)
-
-  if (!await computer.exists()) { return null }
-
   await computer.load()
+
   return computer
 }
 

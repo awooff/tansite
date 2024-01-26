@@ -1,16 +1,16 @@
 import { Prisma } from '@prisma/client'
 import { Computer } from './computer'
 import { server } from '../index'
-import { SoftwareActions } from '@/lib/types/software.type'
-import * as Softwares from './softwares'
+import { SoftwareAction } from '@/lib/types/software.type'
+import softwares, { SoftwareType } from './softwares'
 import settings from '../settings'
 
 export class Software {
-  public software: Prisma.SoftwareGetPayload<{}> = {} as any
-  public computer: Computer = null as any
-  public actions: SoftwareActions = null as any
-
+  public software?: Prisma.SoftwareGetPayload<{}>
+  public computer?: Computer
   public readonly softwareId: string
+
+  private _action?: SoftwareAction
   public constructor (softwareId: string, software?: Prisma.SoftwareGetPayload<{}>, computer?: Computer) {
     this.softwareId = softwareId
     if (software != null) { this.software = software }
@@ -29,9 +29,17 @@ export class Software {
     })
   }
 
-  public getExecutionCost (action: keyof SoftwareActions): number {
+  public action<T>() {
+    return this._action as T
+  }
+
+  public getExecutionCost(action: keyof SoftwareAction): number {
+    
+    if (!this._action)
+      throw new Error('no software actions present')
+
     let baseCost = (settings.softwareActionsCost as any)[action] || 10
-    baseCost = baseCost * (this.actions.settings?.complexity || 1)
+    baseCost = baseCost * (this._action.settings?.complexity || 1)
     baseCost = Math.floor(baseCost * settings.actionNerf * settings.cpuNerf)
 
     if (action === 'delete' || action === 'uninstall' || action === 'view') { baseCost = Math.floor(baseCost * settings.hddNerf) }
@@ -39,62 +47,71 @@ export class Software {
     return baseCost
   }
 
-  public async preExecute (action: keyof SoftwareActions, executor?: Computer, data?: any): Promise<boolean> {
+  public async preExecute (action: keyof SoftwareAction, executor?: Computer, data?: any): Promise<boolean> {
     const computer = (executor == null) ? this.computer : executor
+
+    if (!computer)
+      throw new Error('invalid executor')
+
     switch (action) {
       case 'install':
-        if ((this.actions?.preInstall) == null) { return true }
-        return await this.actions.preInstall(this, this.computer, computer, data)
+        if ((this._action?.preInstall) == null) { return true }
+        return await this._action.preInstall(this, this.computer || computer, computer, data)
       case 'uninstall':
-        if ((this.actions?.preUninstall) == null) { return true }
-        return await this.actions.preUninstall(this, this.computer, computer, data)
+        if ((this._action?.preUninstall) == null) { return true }
+        return await this._action.preUninstall(this, this.computer || computer, computer, data)
       case 'execute':
-        if ((this.actions?.preExecute) == null) { return true }
-        return await this.actions.preExecute(this, this.computer, computer, data)
+        if ((this._action?.preExecute) == null) { return true }
+        return await this._action.preExecute(this, this.computer || computer, computer, data)
       case 'view':
-        if ((this.actions?.preView) == null) { return true }
-        return await this.actions.preView(this, this.computer, computer, data)
+        if ((this._action?.preView) == null) { return true }
+        return await this._action.preView(this, this.computer || computer, computer, data)
       case 'delete':
-        if ((this.actions?.preDelete) == null) { return true }
-        return await this.actions.preDelete(this, this.computer, computer, data)
+        if ((this._action?.preDelete) == null) { return true }
+        return await this._action.preDelete(this, this.computer || computer, computer, data)
       default:
         throw new Error('invalid action')
     }
   }
 
-  public async execute (action: keyof SoftwareActions, executor?: Computer, data?: any) {
+  public async execute (action: keyof SoftwareAction, executor?: Computer, data?: any) {
     const computer = (executor == null) ? this.computer : executor
+
+    if (!computer)
+      throw new Error('invalid executor')
+
     switch (action) {
       case 'install':
-        if ((this.actions?.install) == null) { return null }
-        await this.actions.install(this, this.computer, computer, data)
-        break
+        if ((this._action?.install) == null) { return null }
+        return await this._action.install(this, this.computer || computer, computer, data)
       case 'uninstall':
-        if ((this.actions?.uninstall) == null) { return null }
-        await this.actions.uninstall(this, this.computer, computer, data)
-        break
+        if ((this._action?.uninstall) == null) { return null }
+        return await this._action.uninstall(this, this.computer || computer, computer, data)
       case 'execute':
-        if ((this.actions?.execute) == null) { return null }
-        await this.actions.execute(this, this.computer, computer, data)
-        break
+        if ((this._action?.execute) == null) { return null }
+        return await this._action.execute(this, this.computer || computer, computer, data)
       case 'view':
-        if ((this.actions?.view) == null) { return null }
-        await this.actions.view(this, this.computer, computer, data)
-        break
+        if ((this._action?.view) == null) { return null }
+        return await this._action.view(this, this.computer || computer, computer, data)
       case 'delete':
-        if ((this.actions?.delete) == null) { return null }
-        await this.actions.delete(this, this.computer, computer, data)
-        break
+        if ((this._action?.delete) == null) { return null }
+        return await this._action.delete(this, this.computer || computer, computer, data)
       default:
         throw new Error('invalid action')
     }
   }
 
-  public get level () {
+  public get level() {
+    if (!this.software)
+      throw new Error('no software')
+
     return this.software.level
   }
 
-  public get installed () {
+  public get installed() {
+    if (!this.software)
+      throw new Error('no software')
+    
     return this.software.installed
   }
 
@@ -117,8 +134,20 @@ export class Software {
     })
     await this.load()
   }
+  
 
-  public toString () {
+  public get type() {
+
+    if (!this.software)
+      throw new Error('no software')
+
+    return this.software.type as SoftwareType
+  }
+
+  public toString() {
+      if (!this.software)
+        throw new Error('no software')
+    
     return `[${this.software.type}] (${this.software.level})`
   }
 
@@ -142,15 +171,15 @@ export class Software {
     }
 
     // the actions (install, etc) to do for this software
-    this.actions = (Softwares as any)?.[this.software.type]
+    this._action = (softwares as any)?.[this.software.type]
 
     // if no actions for this software, use generic
-    if (!this.actions) { this.actions = Softwares.generic } else {
+    if (!this._action) { this._action = softwares.generic } else {
       // if any missing actions, take them from generic
-      Object.keys(Softwares.generic).forEach((key) => {
+      Object.keys(softwares.generic).forEach((key) => {
         if (key === 'settings') { return }
 
-        if (!(this.actions as any)[key]) { (this.actions as any)[key] = (Softwares.generic as any)[key] }
+        if (!(this._action as any)[key]) { (this._action as any)[key] = (softwares.generic as any)[key] }
       })
     }
 
