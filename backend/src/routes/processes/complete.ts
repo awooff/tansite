@@ -17,7 +17,7 @@ const create = {
     description: 'Will create a process'
   },
 
-  async get (req, res, error) {
+  async post (req, res, error) {
     const body = await processCompleteSchema.safeParseAsync(req.body)
 
     if(!body.success) return error(body.error)

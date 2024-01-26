@@ -51,6 +51,10 @@ export class AddressBook {
   }
 
   public async addToAddressBook(computer: Computer, access: AccessLevel) {
+    if (!computer.computer)
+      throw new Error('computer not loaded')
+
+    
     return await server.prisma.addressBook.create({
       data: {
         computerId: computer.computerId,

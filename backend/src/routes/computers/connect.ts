@@ -22,7 +22,7 @@ const connect = {
     if (!computer?.computer) { return error('invalid computer') }
     if (computer?.computer?.userId !== req.session.userId) { return error('user does not own this computer') }
 
-    if (req.session?.connections?.filter((that) => that.id === computer.computerId).length !== 0)
+    if (req.session?.connections && req.session?.connections?.filter((that) => that.id === computer.computerId).length !== 0)
       return error('already connected to this computer')
 
     req.session.connections = req.session.connections || []

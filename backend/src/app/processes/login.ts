@@ -7,7 +7,7 @@ import { server } from 'index'
 const login = {
   settings: {
     parameters: {
-      ipAddress: true,
+      ip: true,
       sessionId: true
     }
   },
@@ -22,7 +22,7 @@ const login = {
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check()
 
-    if (!addressBook.findInAddressBook(data.ipAddress))
+    if (!addressBook.findInAddressBook(data.ip))
       throw new GameException('you must hack this computer first')
 
     return true

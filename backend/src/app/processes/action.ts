@@ -19,7 +19,7 @@ const action = {
         }
       },
       softwareId: true,
-      ipAddress: true
+      ip: true
     }
   },
   delay: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
@@ -30,7 +30,7 @@ const action = {
   },
   before: async (computer: Computer | null, executor: Computer, data: ExecuteData) => {
     if (computer === null) { throw new Error('no computer') }
-
+    
     let software;
     if (data.custom.action === 'upload')
       software = executor.getSoftware(data.softwareId)

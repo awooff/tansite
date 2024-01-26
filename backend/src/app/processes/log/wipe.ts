@@ -8,7 +8,7 @@ import { server } from '../../../index'
 const wipe = {
   settings: {
     parameters: {
-      ipAddress: true,
+      ip: true,
     }
   },
   before: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
@@ -19,7 +19,7 @@ const wipe = {
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check()
 
-    if (!await addressBook.findInAddressBook(data.ipAddress) && executor.computerId !== computer.computerId)
+    if (!await addressBook.findInAddressBook(data.ip) && executor.computerId !== computer.computerId)
       throw new GameException('you must hack this computer first')
 
     if (await computer.getLogCount() === 0)

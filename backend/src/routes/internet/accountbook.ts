@@ -11,7 +11,7 @@ const accountBook = {
     description: 'Will fetch a users account book, is paged'
   },
 
-  async get (req, res, error) {
+  async post (req, res, error) {
     const body = await paginationSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)

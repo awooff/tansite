@@ -9,11 +9,11 @@ const fetch = {
   settings: {
     groupOnly: Groups.User,
     title: 'Fetch Computer',
-    description: 'Used to externally view a computer, you must already be logged into that computer and have it in your address book'
+    description: 'Used to externally view a computer'
   },
 
-  async get (req, res, error) {
-  const body = await connectionSchema.safeParseAsync(req.body)
+  async post (req, res, error) {
+    const body = await connectionSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
     if(!req.session.userId) return error('no user')

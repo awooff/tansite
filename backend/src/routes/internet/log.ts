@@ -13,7 +13,7 @@ const fetch = {
     description: 'Used in the internet browser'
   },
 
-  async get (req, res, error) {
+  async post (req, res, error) {
     const body = await connectionSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)

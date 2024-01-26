@@ -4,7 +4,7 @@ export const processCreateSchema = z.object({
   type: z.string().trim().max(24).refine((arg) => {
     return !arg.includes(' ')
   }),
-  connectionId: z.string().trim().max(24).refine((arg) => {
+  connectionId: z.string().trim().min(12).refine((arg) => {
     return !arg.includes(' ')
   }),
 })

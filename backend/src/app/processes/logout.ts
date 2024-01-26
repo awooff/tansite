@@ -7,7 +7,7 @@ import { server } from 'index'
 const logout = {
   settings: {
     parameters: {
-      ipAddress: true,
+      ip: true,
       sessionId: true
     }
   },
@@ -22,7 +22,7 @@ const logout = {
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check()
 
-    if (!await addressBook.findInAddressBook(data.ipAddress))
+    if (!await addressBook.findInAddressBook(data.ip))
       throw new GameException('you must hack this computer first')
 
     let request = server.request[data.sessionId];

@@ -24,7 +24,8 @@ const network = {
         userId: req.session.userId
       },
       include: {
-        hardware: true
+        hardware: true,
+        process: true
       },
       skip: (page) * 32,
       take: 32

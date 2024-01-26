@@ -14,13 +14,18 @@ export type Computer = {
 		hardwareLimits?: Record<HardwareType, number>
 		title?: string
 		markdown?: string
-	}
+	},
+	process: {
+		id: string
+		type: string
+	}[],
 	software: {
 		name: string,
 		level: number,
 		size: number,
 		type: string,
 		userId: number,
+		id: string,
 		installed: boolean
 	}[]
 }

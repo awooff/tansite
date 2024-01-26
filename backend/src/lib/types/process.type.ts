@@ -8,7 +8,7 @@ export interface ProcessData {
   sessionId: string
   computer: string
   softwareId: string
-  ipAddress: string
+  ip: string
 }
 
 export interface ProcessParameters {
@@ -17,7 +17,7 @@ export interface ProcessParameters {
   sessionId?: boolean
   computer?: boolean
   softwareId?: boolean
-  ipAddress?: boolean
+  ip?: boolean
 }
 
 export interface ProcessSettings {

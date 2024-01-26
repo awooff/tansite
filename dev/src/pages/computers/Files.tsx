@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Table, Button, ProgressBar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { postRequestHandler } from "../../lib/submit";
 
 export default function Files() {
   const game = useContext(GameContext);
@@ -161,7 +162,21 @@ export default function Files() {
                     <td>{software.size}</td>
                     <td>
                       {software.installed ? (
-                        <Button variant="secondary" className="ms-2" size="sm">
+                        <Button
+                          variant="secondary"
+                          className="ms-2"
+                          size="sm"
+                          onClick={async () => {
+                            await postRequestHandler("/processes/create", {
+                              type: "action",
+                              action: "uninstall",
+                              ip: computer.ip,
+                              softwareId: software.id,
+                              connectionId: computer.id,
+                            });
+                            game.load();
+                          }}
+                        >
                           Uninstall
                         </Button>
                       ) : (
@@ -170,6 +185,16 @@ export default function Files() {
                             variant="secondary"
                             className="ms-2"
                             size="sm"
+                            onClick={async () => {
+                              await postRequestHandler("/processes/create", {
+                                type: "action",
+                                action: "install",
+                                ip: computer.ip,
+                                softwareId: software.id,
+                                connectionId: computer.id,
+                              });
+                              game.load();
+                            }}
                           >
                             Install
                           </Button>
@@ -177,12 +202,36 @@ export default function Files() {
                             variant="secondary"
                             className="ms-2"
                             size="sm"
+                            onClick={async () => {
+                              await postRequestHandler("/processes/create", {
+                                type: "action",
+                                action: "delete",
+                                ip: computer.ip,
+                                softwareId: software.id,
+                                connectionId: computer.id,
+                              });
+                              game.load();
+                            }}
                           >
                             Delete
                           </Button>
                         </>
                       )}
-                      <Button variant="secondary" className="ms-2" size="sm">
+                      <Button
+                        variant="secondary"
+                        className="ms-2"
+                        size="sm"
+                        onClick={async () => {
+                          await postRequestHandler("/processes/create", {
+                            type: "action",
+                            action: "inspect",
+                            ip: computer.ip,
+                            softwareId: software.id,
+                            connectionId: computer.id,
+                          });
+                          game.load();
+                        }}
+                      >
                         Inspect
                       </Button>
                     </td>

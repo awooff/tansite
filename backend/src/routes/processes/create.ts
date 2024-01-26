@@ -19,7 +19,7 @@ const create = {
     description: 'Will create a process'
   },
 
-  async get (req, res, error) {
+  async post (req, res, error) {
     const body = await processCreateSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
@@ -32,12 +32,12 @@ const create = {
 
     const gameProcess = processes[type as ProcessType] as Process
     let validation = await getProcessZodObject(type as ProcessType)
-    let input = await validation.safeParseAsync(body.data)
+    let input = await validation.safeParseAsync(req.body)
 
     if (!input.success)
       return error(input.error)
 
-    let data = { ...input.data } as ProcessData
+    let data = { ...input.data, custom: input.data } as ProcessData
 
     if (gameProcess.settings?.parameters?.softwareId && data.softwareId && data.custom.action)  {
       
@@ -47,7 +47,7 @@ const create = {
       if (!software.software)
         throw new Error('bad software');
 
-      let actions = (software.action?.settings?.parameters as any)[data.custom.action] as ProcessParameters
+      let actions = (software.action?.settings?.parameters as any)?.[data.custom.action] as ProcessParameters
 
       if (actions) {
           validation = await getProcessZodObject(type as ProcessType, actions)
@@ -56,7 +56,7 @@ const create = {
           if (!input.success)
             return error(input.error)
 
-          data = { ...input.data } as ProcessData
+        data = { ...data, ...input.data, custom: { ...data.custom, ...input.data } } as ProcessData
       }
     }
 
@@ -72,35 +72,30 @@ const create = {
     if (gameProcess?.settings?.parameters?.computer && data.computer)
       target = await getComputer(data.computer)
 
-    if (gameProcess?.settings?.parameters?.ipAddress && data.ipAddress)
+    if (gameProcess?.settings?.parameters?.ip && data.ip)
     {
-         
-      let computer = await findComputer(data.ipAddress)
+      
+      let computer = await findComputer(data.ip)
 
       if (!computer)
         return error('bad computer')
       
       target = new Computer(computer.id, computer)
+      await target.load(computer)
     }
 
     if (gameProcess.settings?.parameters?.sessionId)
       data.sessionId = req.sessionID
 
-    if (target && !gameProcess.settings?.external && !isConnectedToMachine(req, executor, target)) 
+    if (target && !gameProcess.settings?.external && !isConnectedToMachine(req, executor, target) && target.computerId !== executor.computerId) 
       return error('your current computer must be connected to this computer')
 
-    const before = await gameProcess.before(target, executor, {
-      data,
-      custom: data
-    } as any)
+    const before = await gameProcess.before(target, executor, data)
 
     if (!before)
       throw new GameException('process failed to start')
 
-    const delay = gameProcess.delay ? await gameProcess.delay(target, executor, {
-      ...input.data,
-      custom: input.data
-    } as any) : 0
+    const delay = gameProcess.delay ? await gameProcess.delay(target, executor, data) : 0
 
     const result = await server.prisma.process.create({
       data: {

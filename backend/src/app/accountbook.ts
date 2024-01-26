@@ -50,7 +50,11 @@ export class AccountBook {
     })
   }
 
-  public async addToAccountBook(computer: Computer, memory: Memory, data?: any ) {
+  public async addToAccountBook(computer: Computer, memory: Memory, data?: any) {
+    
+    if (!computer.computer)
+      throw new Error('computer not loaded')
+
     return await server.prisma.accountBook.create({
       data: {
         computerId: computer.computerId,

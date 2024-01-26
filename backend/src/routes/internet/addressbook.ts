@@ -11,7 +11,7 @@ const addressBook = {
     description: 'Will fetch a users address book, is paged'
   },
 
-  async get (req, res, error) {
+  async post (req, res, error) {
     const body = await paginationSchema.safeParseAsync(req.body)
 
     if (!body.success) return error(body.error)
@@ -26,7 +26,7 @@ const addressBook = {
 
     const results = await addressBook.fetch(64, page)
     const count = await addressBook.count()
-    
+
     res.send({
       success: true,
       addresses: results,

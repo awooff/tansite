@@ -19,8 +19,8 @@ export class ComputerProcess {
     if (computer != null) { this.computer = computer }
   }
 
-  public async load() {
-    this.process = await server.prisma.process.findFirstOrThrow({
+  public async load(data?: Table) {
+    this.process = data || await server.prisma.process.findFirstOrThrow({
       where: {
         id: this.processId,
         gameId: process.env.CURRENT_GAME_ID
@@ -33,9 +33,11 @@ export class ComputerProcess {
     } else {
       this.computer.process = this.computer.process.map((process) => {
         if (process.processId === this.processId) { return this }
-
         return process
       })
+
+      if (!this.computer.process.find((val) => val.processId === this.processId))
+        this.computer.process.push(this)
     }
   }
 }
@@ -44,7 +46,7 @@ export const zodObjects = {
   'computer': async () => {
   return  z.string()
   },
-  'ipAddress': async () => {
+  'ip': async () => {
     return z.string()
   },
   'sessionId': async () => {
@@ -71,7 +73,9 @@ export const getProcessZodObject = async (type: ProcessType, extend?: ProcessPar
   }
 
   await Promise.all(Object.keys(settingsParameters).map(async (key) => {
-    let result = await zodObjects[key as keyof ProcessParameters](settingsParameters)
+    if (key === 'custom')
+      return;
+    let result = await zodObjects?.[key as keyof ProcessParameters]?.(settingsParameters)
     obj[key] = result
   }));
 

@@ -87,14 +87,25 @@ export default function ComputerThumbnail({
               </Link>
               <br />
               <hr />
+
               <span
                 style={{
                   fontSize: 12,
                 }}
               >
-                <span className="text-danger">Zero</span> Active Processes
+                <span
+                  className={
+                    !computer.process || computer.process.length === 0
+                      ? "text-danger"
+                      : "text-success"
+                  }
+                >
+                  {computer.process ? computer.process.length : 0}
+                </span>{" "}
+                Active Processes
                 <br />
               </span>
+
               <span
                 style={{
                   fontSize: 10,

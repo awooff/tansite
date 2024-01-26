@@ -13,7 +13,7 @@ export type ModifyData = {
 const modify = {
   settings: {
     parameters: {
-      ipAddress: true,
+      ip: true,
     }
   },
   before: async (computer: Computer | null, executor: Computer, data: ModifyData) => {
@@ -24,7 +24,7 @@ const modify = {
     let addressBook = new AddressBook(executor.computer?.userId);
     await addressBook.check()
 
-    if (!await addressBook.findInAddressBook(data.ipAddress) && executor.computerId !== computer.computerId)
+    if (!await addressBook.findInAddressBook(data.ip) && executor.computerId !== computer.computerId)
       throw new GameException('you must hack this computer first')
 
     let logs = [] as any[];

@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { Prisma, Software as Table} from '@prisma/client'
 import { Computer } from './computer'
 import { server } from '../index'
 import { SoftwareAction } from '@/lib/types/software.type'
@@ -12,8 +12,8 @@ export class Software {
   public action: SoftwareAction = softwares.generic
   public constructor (softwareId: string, software?: Prisma.SoftwareGetPayload<{}>, computer?: Computer) {
     this.softwareId = softwareId
-    if (software != null) { this.software = software }
-    if (computer != null) { this.computer }
+    if (software) { this.software = software }
+    if (computer) { this.computer = computer }
   }
 
   public async uninstall () {
@@ -146,8 +146,8 @@ export class Software {
     return `[${this.software.type}] (${this.software.level})`
   }
 
-  public async load () {
-    this.software = await server.prisma.software.findFirstOrThrow({
+  public async load(data?: Table) {
+    this.software = data || await server.prisma.software.findFirstOrThrow({
       where: {
         id: this.softwareId,
         gameId: process.env.CURRENT_GAME_ID
@@ -160,9 +160,11 @@ export class Software {
     } else {
       this.computer.software = this.computer.software.map((software) => {
         if (software.softwareId === this.softwareId) { return this }
-
         return software
       })
+
+      if (!this.computer.software.find((val) => val.softwareId === this.softwareId))
+        this.computer.software.push(this)
     }
 
     // the actions (install, etc) to do for this software

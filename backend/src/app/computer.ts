@@ -36,6 +36,7 @@ export class Computer {
     }
   }>) {
     this.computerId = computerId
+    this.computer = computer
   }
 
   /**
@@ -219,8 +220,14 @@ export class Computer {
     await this.load()
   }
 
-  public async load() {
-    this.computer = await server.prisma.computer.findFirstOrThrow({
+  public async load(data?: Prisma.ComputerGetPayload<{
+    include: {
+      hardware: true
+      software: true
+      process: true
+    }
+  }>) {
+    this.computer = data || await server.prisma.computer.findFirstOrThrow({
       where: {
         id: this.computerId,
         gameId: process.env.CURRENT_GAME_ID
@@ -230,18 +237,24 @@ export class Computer {
         software: true,
         process: true
       }
-    })
+    }) 
 
     // software
     this.computer.software.forEach((software) => {
       this.software.push(new Software(software.id, software, this))
     })
-
+    
+    for (let i = 0; i < this.software.length; i++){
+      await this.software[i].load(this.software[i].software);
+    }
     // processes
     this.computer.process.forEach((process) => {
       this.process.push(new ComputerProcess(process.id, process, this))
     })
 
+    for (let i = 0; i < this.process.length; i++){
+      await this.process[i].load(this.process[i].process);
+    }
     // the owners address book
     this.addressBook = new AddressBook(this.computer.userId);
     //this will throw if the user for some reason is bad, but it won't be
@@ -351,7 +364,8 @@ export class Computer {
 export const findComputer = async (ip: string) => {
   const potentialComputer = await server.prisma.computer.findFirst({
     where: {
-      ip: ip
+      ip: ip,
+      gameId: process.env.CURRENT_GAME_ID
     },
     include: {
       hardware: true,
@@ -375,7 +389,7 @@ export const getComputer = async (computerId: string) => {
 export const generateIpAddress = () => {
   const numbers = []
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 4; i++) {
     numbers.push(Math.floor(Math.random() * 256))
   }
 
