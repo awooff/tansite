@@ -27,9 +27,14 @@ export default function Browser() {
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("Unknown");
   const [valid, setValid] = useState(false);
-  const [connectionId, setConnectionId] = useState(game.connections?.[0]?.id);
+  const [connectionId, setConnectionId] = useState(
+    game?.connections?.find(
+      (that) => that.id === localStorage.getItem("currentConnectionId")
+    )?.id || game.connections?.[0]?.id
+  );
   const [history, setHistory] = useState<Record<string, string>>({});
-  const [currentIp, setCurrentIp] = useState("");
+  const [currentIp, setCurrentIp] = useState<string | null>(null);
+  const [currentAddress, setCurrentAddress] = useState<string>("");
 
   const fetchHomepage = useCallback(
     async (ip: string, connectionId: string) => {
@@ -48,20 +53,29 @@ export default function Browser() {
   );
 
   useEffect(() => {
+    let newIp;
+    if (!ip && !currentIp) newIp = history[connectionId] || "0.0.0.0";
+    else newIp = currentIp || ip || "0.0.0.0";
+
+    setCurrentIp(newIp);
+  }, [ip, currentIp, connectionId, history]);
+
+  useEffect(() => {
     if (!fetchHomepage) return;
-    if (!ip) return;
     if (!connectionId) return;
 
     const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
     setHistory(history);
-    setCurrentIp(history?.[connectionId] || ip);
 
-    const promise = fetchHomepage(ip, connectionId).then((data) => {
+    if (!currentIp) return;
+    setCurrentAddress(currentIp);
+
+    const promise = fetchHomepage(currentIp, connectionId).then((data) => {
       if (!data) setValid(false);
       else {
         setHistory({
           ...history,
-          [connectionId]: ip,
+          [connectionId]: currentIp,
         });
         setComputer(data.computer);
         setMarkdown(data.markdown);
@@ -72,17 +86,17 @@ export default function Browser() {
           "history",
           JSON.stringify({
             ...history,
-            [connectionId]: ip,
+            [connectionId]: currentIp,
           })
         );
       }
     });
     toast.promise(promise, {
-      loading: "Fetching " + ip,
+      loading: "Fetching " + currentIp,
       success: "Success",
       error: "Failure",
     });
-  }, [fetchHomepage, ip, connectionId]);
+  }, [fetchHomepage, currentIp, connectionId]);
 
   return (
     <Layout fluid={true}>
@@ -97,43 +111,31 @@ export default function Browser() {
                       ? game.connections.find(
                           (that) => that.id === connectionId
                         )?.ip
-                      : "?"}
+                      : "NO CONNECTIONS"}
                   </span>
                 }
               >
                 {game.connections.map((connection) => (
                   <NavDropdown.Item
                     onClick={() => {
-                      setConnectionId(connection.id);
-                      if (history[connection.id]) {
+                      localStorage.setItem(
+                        "currentConnectionId",
+                        connection.id
+                      );
+
+                      if (
+                        history[connection.id] &&
+                        currentIp !== history[connection.id]
+                      ) {
                         setValid(false);
-                        fetchHomepage(
-                          history[connection.id],
-                          connection.id
-                        ).then((data) => {
-                          if (!data) setValid(false);
-                          else {
-                            setComputer(data.computer);
-                            setMarkdown(data.markdown);
-                            setTitle(data.title);
-                            setCurrentIp(data.computer.ip);
-                            setValid(true);
-
-                            localStorage.setItem(
-                              "history",
-                              JSON.stringify({
-                                ...history,
-                                [connectionId]: ip,
-                              })
-                            );
-                          }
-
-                          setValid(true);
-                        });
+                        setCurrentIp(history[connection.id]);
                       } else {
-                        setCurrentIp("");
+                        setCurrentIp("0.0.0.0");
+                        setCurrentAddress("0.0.0.0");
                         setValid(false);
                       }
+
+                      setConnectionId(connection.id);
                     }}
                     className={
                       connectionId === connection.id ? "bg-success" : ""
@@ -176,10 +178,10 @@ export default function Browser() {
                       type="text"
                       className="rounded-0"
                       placeholder={computer?.ip || ""}
-                      value={currentIp}
+                      value={currentAddress}
                       name="addressbar"
                       onChange={(e) => {
-                        setCurrentIp(e.target.value);
+                        setCurrentAddress(e.target.value);
                       }}
                       aria-label="Input group example"
                       aria-describedby="btnGroupAddon"
@@ -187,39 +189,11 @@ export default function Browser() {
                     <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                       <Button
                         onClick={() => {
-                          if (!currentIp) return;
+                          if (currentAddress.trim() === currentIp?.trim())
+                            return;
+
                           setValid(false);
-
-                          const promise = fetchHomepage(
-                            currentIp.trim(),
-                            connectionId
-                          ).then((data) => {
-                            if (!data) setValid(false);
-                            else {
-                              setComputer(data.computer);
-                              setMarkdown(data.markdown);
-                              setTitle(data.title);
-                              setHistory({
-                                ...history,
-                                [connectionId]: currentIp,
-                              });
-                              setValid(true);
-
-                              localStorage.setItem(
-                                "history",
-                                JSON.stringify({
-                                  ...history,
-                                  [connectionId]: ip,
-                                })
-                              );
-                            }
-                            setValid(true);
-                          });
-                          toast.promise(promise, {
-                            loading: "Fetching " + currentIp,
-                            success: "Success",
-                            error: "Failure",
-                          });
+                          setCurrentIp(currentAddress);
                         }}
                         size="sm"
                         className="rounded-0 bg-transparent border-0"

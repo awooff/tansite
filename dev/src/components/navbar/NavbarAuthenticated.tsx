@@ -50,7 +50,10 @@ export default function NavbarAuthenticated() {
         <Nav.Link className="text-white">
           <span className="badge bg-secondary">0 NOTIFICATIONS</span>
         </Nav.Link>
-        <Nav.Link className="text-white">
+        <Nav.Link
+          className="text-white"
+          href="#navigate:/computers/connections"
+        >
           <span
             className={
               game?.connections && game?.connections?.length !== 0
