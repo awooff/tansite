@@ -53,21 +53,31 @@ export default function Browser() {
   );
 
   useEffect(() => {
-    let newIp;
-    if (!ip && !currentIp) newIp = history[connectionId] || "0.0.0.0";
-    else newIp = currentIp || ip || "0.0.0.0";
+    const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
+    const newIp = currentIp || ip || history[connectionId] || "0.0.0.0";
 
+    setHistory((prev) => {
+      return {
+        ...prev,
+        ...history,
+      };
+    });
     setCurrentIp(newIp);
   }, [ip, currentIp, connectionId, history]);
 
   useEffect(() => {
     if (!fetchHomepage) return;
     if (!connectionId) return;
+    if (!currentIp) return;
 
     const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
-    setHistory(history);
 
-    if (!currentIp) return;
+    setHistory((prev) => {
+      return {
+        ...prev,
+        ...history,
+      };
+    });
     setCurrentAddress(currentIp);
 
     const promise = fetchHomepage(currentIp, connectionId).then((data) => {
@@ -123,11 +133,10 @@ export default function Browser() {
                         connection.id
                       );
 
-                      if (
-                        history[connection.id] &&
-                        currentIp !== history[connection.id]
-                      ) {
-                        setValid(false);
+                      if (history[connection.id]) {
+                        if (currentIp !== history[connection.id])
+                          setValid(false);
+
                         setCurrentIp(history[connection.id]);
                       } else {
                         setCurrentIp("0.0.0.0");
