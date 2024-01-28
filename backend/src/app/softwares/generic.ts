@@ -88,7 +88,7 @@ const defaultSoftware = {
   },
   uninstall: async (software, computer, executor) => {
     computer.log(`software remotely uninstalled => ${software.toString()}`, executor)
-    executor.log(`software installed remotely => ${software.toString()}`, computer)
+    executor.log(`software uninstalled remotely => ${software.toString()}`, computer)
 
     await software.uninstall()
   },

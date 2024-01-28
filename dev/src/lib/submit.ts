@@ -18,7 +18,7 @@ export const postRequestHandler = <T>(route: string, data: object, onSuccess?: (
 				if(onSuccess)
 					await onSuccess(result)
 
-				resolve(true);
+				resolve(result);
 			} catch (error) {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const axiosError = error as AxiosError<any, any>;
@@ -44,5 +44,5 @@ export const postRequestHandler = <T>(route: string, data: object, onSuccess?: (
 				reject(issue)
 			}
 		})();
-	})
+	}) as Promise<AxiosResponse<T>>
 }

@@ -24,7 +24,7 @@ export class Software {
 
   public async install () {
     await this.update({
-      installed: false
+      installed: true
     })
   }
 
@@ -110,13 +110,17 @@ export class Software {
     return this.software.installed
   }
 
-  public async delete () {
+  public async delete() {
+    
     await server.prisma.software.delete({
       where: {
-        id: this.softwareId
+        id: this.softwareId,
+        gameId: process.env.CURRENT_GAME_ID
       }
     })
-    await this.load()
+    
+    if (this.computer)
+      this.computer.software = this.computer.software.filter((that) => that.softwareId !== this.softwareId)
   }
 
   public async update (data: Prisma.SoftwareUpdateInput) {

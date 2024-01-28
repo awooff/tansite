@@ -3,6 +3,7 @@ import { Computer } from '../../computer'
 import GameException from '@/lib/exceptions/game.exception'
 import { AddressBook } from '../../addressbook'
 import { server } from '../../../index'
+import settings from '../../../settings'
 
 
 const wipe = {
@@ -10,6 +11,9 @@ const wipe = {
     parameters: {
       ip: true,
     }
+  },
+  delay: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
+    return Math.abs((( computer?.getCombinedHardwareStrength('HDD') || 5120 ) * settings.hddNerf) - ((executor.getCombinedHardwareStrength('CPU') || 124) / settings.cpuNerf)) * 1000
   },
   before: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
 

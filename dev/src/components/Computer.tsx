@@ -120,7 +120,7 @@ export default function ComputerThumbnail({
             </Card>
           </Col>
         </Row>
-        <ListGroup className="mb-2 mt-4">
+        <ListGroup className="mb-2 mt-3">
           {(() => {
             const hardwares = {} as Record<HardwareType, Hardware>;
             const counts = {} as Record<HardwareType, number>;

@@ -102,13 +102,11 @@ class Server {
       if (route.get != null) {
         newRoute.get((req: Request, res: Response, next: any) => {
           next(route)
-        },
-          authMiddleware, route.get, errorMiddleware)
+        },authMiddleware, route.get, errorMiddleware)
       }
 
       if (route.post != null) {
         newRoute.post((req: Request, res: Response, next: any) => {
-          // send the route class to the next middleware
           next(route)
         }, authMiddleware, route.post, errorMiddleware)
       }

@@ -3,10 +3,12 @@ import Index from "./pages/Index";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Game from "./pages/Game";
-import Network from "./pages/computers/Network";
+import Connections from "./pages/computers/Connections";
 import Logout from "./pages/auth/Logout";
 import Dashboard from "./pages/computers/Dashboard";
 import Files from "./pages/computers/Files";
+import Logs from "./pages/computers/Logs";
+import Browser from "./pages/internet/Browser";
 
 const router = createBrowserRouter([
   {
@@ -42,16 +44,28 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/computers/network",
+    path: "/computers/connections",
     element: (
       <>
-        <Network />
+        <Connections />
       </>
     ),
   },
   {
     path: "/computers/files/:computerId",
     element: <Files />,
+  },
+  {
+    path: "/computers/logs/:computerId",
+    element: <Logs />,
+  },
+  {
+    path: "/internet/browser/:ip",
+    element: <Browser />,
+  },
+  {
+    path: "/internet/browser/",
+    element: <Browser />,
   },
   {
     path: "/logout",

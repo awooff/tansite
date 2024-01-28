@@ -10,6 +10,7 @@
 	"actionNerf": 1.25,
 	"cpuNerf": 1.25,
 	"hddNerf": 1.25,
+	"globalProcessNerf": 1.25,
 	"softwareActionsCost": {
 		"install": 600,
 		"uninstall": 600,

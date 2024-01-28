@@ -1,7 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Container, Stack, Row, Col } from "react-bootstrap";
-import NavbarComponent from "./Navbar";
+import NavbarComponent from "./navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Layout({
   children,
@@ -12,16 +13,32 @@ function Layout({
   fluid?: boolean;
   gap?: number;
 }) {
+  const navigate = useNavigate();
+  const [hasInit, setHasInit] = useState(false);
+
+  //allows for hash code to redirect so we can do react router dom things with hrefs
+  useEffect(() => {
+    if (hasInit) return;
+
+    window.addEventListener("hashchange", () => {
+      if (location.hash.includes("navigate:"))
+        navigate(location.hash.split("navigate:")[1]);
+    });
+    setHasInit(true);
+  }, [hasInit, navigate]);
+
   return (
-    <Container fluid={fluid}>
+    <>
       <NavbarComponent />
-      <Stack gap={gap ? gap : 2} className="pt-2">
-        {children as ReactNode[]}
-      </Stack>
-      <Row className="mt-4 mb-5 pt-4 pb-4">
-        <Col></Col>
-      </Row>
-    </Container>
+      <Container fluid={fluid}>
+        <Stack gap={gap ? gap : 2} className="pt-2">
+          {children as ReactNode[]}
+        </Stack>
+        <Row className="mt-4 mb-5 pt-4 pb-4">
+          <Col></Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 

@@ -4,14 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Table, Button, ProgressBar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { postRequestHandler } from "../../lib/submit";
+import { createProcess } from "../../lib/process";
 
 export default function Files() {
   const game = useContext(GameContext);
   const { computerId } = useParams();
-  const computer = game.connections.find((val) => val.id === computerId);
+  const computer = game.computers.find((val) => val.id === computerId);
   const navigate = useNavigate();
-  if (!computer)
+
+  //if no computer or not connected
+  if (!computer || !game.connections?.find((val) => val.id === computer?.id))
     return (
       <Layout>
         <Row>
@@ -20,7 +22,7 @@ export default function Files() {
               body
               className="bg-transparent border border-danger text-center text-white"
             >
-              Invalid Computer
+              This computer is invalid. Have you tried connecting to it?
             </Card>
           </Col>
         </Row>
@@ -45,16 +47,20 @@ export default function Files() {
       };
     }).strength;
 
-  const hddUsage = computer.software.reduce((prev, cur) => {
-    return {
-      ...prev,
-      size: cur.size + prev.size,
-    };
-  }).size;
+  const hddUsage =
+    computer.software.length === 0
+      ? 0
+      : computer.software.reduce((prev, cur) => {
+          return {
+            ...prev,
+            size: cur.size + prev.size,
+          };
+        }).size;
 
-  const ramUsage = computer.software
-    .filter((software) => software.installed)
-    .reduce((prev, cur) => {
+  const installed = computer.software.filter((software) => software.installed);
+  let ramUsage = 0;
+  if (installed.length !== 0)
+    ramUsage = installed.reduce((prev, cur) => {
       return {
         ...prev,
         size: cur.size + prev.size,
@@ -65,8 +71,9 @@ export default function Files() {
     <Layout>
       <Row>
         <Col>
-          <p className="display-4">
-            ~/<Link to="/computers/">computers</Link>/files/{computer.ip}
+          <p className="display-4 border-bottom pb-3 border-success">
+            ~/<Link to="/computers/">computers</Link>/files/
+            {computer.ip.replace(/\./g, "_")}/
           </p>
         </Col>
       </Row>
@@ -109,22 +116,46 @@ export default function Files() {
             ></ProgressBar>
           </Card>
           <Card body className="bg-transparent border border-primary mt-4">
-            <div className="d-grid gap-4">
+            <div className="d-grid gap-2">
               <Button
                 variant="primary"
                 onClick={() => {
-                  navigate("/computers/log/" + computer.id);
+                  navigate("/computers/logs/" + computer.id);
                 }}
               >
-                View Logs
+                Logs
               </Button>
               <Button
                 variant="primary"
                 onClick={() => {
-                  navigate("/computers/log/" + computer.id);
+                  navigate("/computers/logs/" + computer.id);
                 }}
               >
-                View Processes
+                Processes{" "}
+                <span className="badge bg-danger">
+                  {computer.process.length}
+                </span>
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/computers/logs/" + computer.id);
+                }}
+              >
+                Hardware{" "}
+                <span className="badge bg-secondary">
+                  🛠️{" "}
+                  {Math.floor(
+                    computer.hardware.reduce((prev, cur) => {
+                      return {
+                        ...prev,
+                        strength: Math.round(cur.strength + prev.strength),
+                      };
+                    }).strength /
+                      computer.hardware.length /
+                      24
+                  )}
+                </span>
               </Button>
             </div>
           </Card>
@@ -133,7 +164,6 @@ export default function Files() {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th></th>
                 <th>type</th>
                 <th>name</th>
                 <th>level</th>
@@ -142,102 +172,138 @@ export default function Files() {
               </tr>
             </thead>
             <tbody>
-              {computer.software.map((software) => {
-                return (
-                  <tr>
-                    <td>{software.installed ? "✅" : ""}</td>
-                    <td>{software.type}</td>
-                    <td
-                      className={
-                        software.userId === game.user.id ? "bg-success" : ""
-                      }
-                    >
-                      {software.installed ? (
-                        <u>{software.name || "Unknown " + software.type}</u>
-                      ) : (
-                        <>{software.name || "Unknown " + software.type}</>
-                      )}
-                    </td>
-                    <td>{software.level}</td>
-                    <td>{software.size}</td>
-                    <td>
-                      {software.installed ? (
+              {computer.software
+                .sort((a, b) => a.type.charCodeAt(0) - b.type.charCodeAt(0))
+                .map((software) => {
+                  return (
+                    <tr>
+                      <td>{software.type}</td>
+                      <td
+                        className={
+                          software.userId === game.user.id ? "bg-secondary" : ""
+                        }
+                      >
+                        {software.installed ? (
+                          <span
+                            style={{
+                              borderBottom: "2px dashed gray",
+                            }}
+                          >
+                            {software.name || "Unknown " + software.type}
+                          </span>
+                        ) : (
+                          <>{software.name || "Unknown " + software.type}</>
+                        )}
+                      </td>
+                      <td>{software.level}</td>
+                      <td>{software.size}</td>
+                      <td>
+                        {software.installed ? (
+                          <Button
+                            variant="secondary"
+                            className="ms-2"
+                            size="sm"
+                            onClick={async (e) => {
+                              const target = e.currentTarget;
+                              target.setAttribute("disabled", "true");
+                              await createProcess(
+                                "action",
+                                {
+                                  action: "uninstall",
+                                  ip: computer.ip,
+                                  softwareId: software.id,
+                                  connectionId: computer.id,
+                                },
+                                true
+                              ).finally(() => {
+                                target.setAttribute("disabled", "false");
+                              });
+
+                              game.load();
+                            }}
+                          >
+                            Uninstall
+                          </Button>
+                        ) : (
+                          <>
+                            <Button
+                              variant="secondary"
+                              className="ms-2"
+                              size="sm"
+                              onClick={async (e) => {
+                                const target = e.currentTarget;
+                                target.setAttribute("disabled", "true");
+                                await createProcess(
+                                  "action",
+                                  {
+                                    action: "install",
+                                    ip: computer.ip,
+                                    softwareId: software.id,
+                                    connectionId: computer.id,
+                                  },
+                                  true
+                                ).finally(() => {
+                                  target.setAttribute("disabled", "false");
+                                });
+                                game.load();
+                              }}
+                            >
+                              Install
+                            </Button>
+                            <Button
+                              variant="secondary"
+                              className="ms-2"
+                              size="sm"
+                              onClick={async (e) => {
+                                const target = e.currentTarget;
+                                target.setAttribute("disabled", "true");
+                                await createProcess(
+                                  "action",
+                                  {
+                                    action: "delete",
+                                    ip: computer.ip,
+                                    softwareId: software.id,
+                                    connectionId: computer.id,
+                                  },
+                                  true
+                                ).finally(() => {
+                                  target.setAttribute("disabled", "false");
+                                });
+                                game.load();
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </>
+                        )}
                         <Button
                           variant="secondary"
                           className="ms-2"
                           size="sm"
-                          onClick={async () => {
-                            await postRequestHandler("/processes/create", {
-                              type: "action",
-                              action: "uninstall",
-                              ip: computer.ip,
-                              softwareId: software.id,
-                              connectionId: computer.id,
+                          onClick={async (e) => {
+                            const target = e.currentTarget;
+                            target.setAttribute("disabled", "true");
+                            await createProcess(
+                              "action",
+                              {
+                                action: "inspect",
+                                ip: computer.ip,
+                                softwareId: software.id,
+                                connectionId: computer.id,
+                              },
+                              true
+                            ).finally(() => {
+                              target.setAttribute("disabled", "false");
                             });
                             game.load();
                           }}
                         >
-                          Uninstall
+                          Inspect
                         </Button>
-                      ) : (
-                        <>
-                          <Button
-                            variant="secondary"
-                            className="ms-2"
-                            size="sm"
-                            onClick={async () => {
-                              await postRequestHandler("/processes/create", {
-                                type: "action",
-                                action: "install",
-                                ip: computer.ip,
-                                softwareId: software.id,
-                                connectionId: computer.id,
-                              });
-                              game.load();
-                            }}
-                          >
-                            Install
-                          </Button>
-                          <Button
-                            variant="secondary"
-                            className="ms-2"
-                            size="sm"
-                            onClick={async () => {
-                              await postRequestHandler("/processes/create", {
-                                type: "action",
-                                action: "delete",
-                                ip: computer.ip,
-                                softwareId: software.id,
-                                connectionId: computer.id,
-                              });
-                              game.load();
-                            }}
-                          >
-                            Delete
-                          </Button>
-                        </>
-                      )}
-                      <Button
-                        variant="secondary"
-                        className="ms-2"
-                        size="sm"
-                        onClick={async () => {
-                          await postRequestHandler("/processes/create", {
-                            type: "action",
-                            action: "inspect",
-                            ip: computer.ip,
-                            softwareId: software.id,
-                            connectionId: computer.id,
-                          });
-                          game.load();
-                        }}
-                      >
-                        Inspect
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </Table>
         </Col>

@@ -19,16 +19,23 @@ const network = {
 
     const { page } = body.data
 
-    const computers = await server.prisma.computer.findMany({
+    let computers = await server.prisma.computer.findMany({
       where: {
         userId: req.session.userId
       },
       include: {
         hardware: true,
-        process: true
+        process: true,
+        software: true
       },
       skip: (page) * 32,
       take: 32
+    })
+
+    computers = computers.map((computer) => {
+      if (!req.session.connections?.find((val) => val.id === computer.id))
+        computer['software'] = []
+      return computer
     })
 
     const count = await server.prisma.computer.count({

@@ -9,7 +9,7 @@ import GameException from '@/lib/exceptions/game.exception'
 import { Process, ProcessData, ProcessParameters  } from '@/lib/types/process.type'
 import { isConnectedToMachine } from '@/lib/helpers'
 import { Software } from '@/app/software'
-import { SoftwareAction } from '@/lib/types/software.type'
+import settings from '../../settings'
 
 const create = {
 
@@ -104,7 +104,7 @@ const create = {
         gameId: process.env.CURRENT_GAME_ID,
         type: type,
         ip: target ? target.ip : executor.ip,
-        completion: new Date(Date.now() + delay),
+        completion: new Date(Date.now() + (delay * settings.globalProcessNerf)),
         data: {
           ...input.data,
           custom: input.data

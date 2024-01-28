@@ -151,6 +151,9 @@ export class Computer {
       include: {
         computer: true
       },
+      orderBy: {
+        id: 'desc'
+      },
       take: take,
       skip: page * take
     })
@@ -377,11 +380,17 @@ export const findComputer = async (ip: string) => {
   return potentialComputer
 }
 
-export const getComputer = async (computerId: string) => {
+export const getComputer = async (computerId: string, data?: Prisma.ComputerGetPayload<{
+    include: {
+      hardware: true
+      software: true
+      process: true
+    }
+  }>) => {
   if (!await Computer.exists(computerId)) { return null }
   
-  const computer = new Computer(computerId)
-  await computer.load()
+  const computer = new Computer(computerId, data)
+  await computer.load(data)
 
   return computer
 }

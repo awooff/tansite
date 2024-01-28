@@ -30,7 +30,7 @@ export default function Game() {
                 }}
               >
                 <h3>You own {game.computers?.length || 0} computers</h3>
-                <p>You can purchase more at the networks page</p>
+                <a href="#navigate:/computers">View Your Computers</a>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item
@@ -48,8 +48,17 @@ export default function Game() {
                   backgroundColor: "black",
                 }}
               >
-                <h3>0 Active Processes</h3>
-                <p>You are doing a lot or not a lot</p>
+                <h3>
+                  {(() => {
+                    let count = 0;
+                    game.computers.forEach(
+                      (val) => (count = count + val.process.length)
+                    );
+                    return count;
+                  })()}{" "}
+                  Active Processes
+                </h3>
+                <a href="#navigate:/computers/processes">View Your Processes</a>
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
@@ -65,7 +74,7 @@ export default function Game() {
                 <Button
                   variant="success"
                   onClick={() => {
-                    navigate("/browser");
+                    navigate("/internet/browser");
                   }}
                 >
                   View Browser

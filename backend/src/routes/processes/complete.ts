@@ -39,6 +39,7 @@ const create = {
 
     const executor = await getComputer(processData?.computerId)
     let target = null;
+    
 
     if (processData.ip)
       target = await findComputer(processData.ip)
@@ -47,14 +48,17 @@ const create = {
       return error('invalid executing computer')
 
     const gameProcess = processes[processData.type as ProcessType]
+
+    if (!req.session.connections?.find((element) => element.id === executor.computerId))
+      return error('you need to connect to this computer to finish this process')
     
-    if (target && !(gameProcess.settings as ProcessSettings).external && !isConnectedToMachine(req, executor, new Computer(target.id, target))) 
+    if (target && !(gameProcess.settings as ProcessSettings).external && !isConnectedToMachine(req, executor, new Computer(target.id, target)) && target.id !== executor.computerId) 
       return error('your current computer must be connected to this computer')
 
     if (new Date(processData.completion).getMilliseconds() >= Date.now())
       return error('process not ready to complete')
-
-    const result = await gameProcess.after(target ? new Computer(target.id, target) : null, executor, processData.data as any)
+    
+    const result = await gameProcess.after(target ? await getComputer(target.id, target) : null, executor, processData.data as any)
     
     await server.prisma.process.delete({
       where: {
