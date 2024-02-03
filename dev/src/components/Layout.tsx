@@ -34,7 +34,7 @@ function Layout({
         <Stack gap={gap ? gap : 2} className="pt-2">
           {children as ReactNode[]}
         </Stack>
-        <Row className="mt-4 mb-5 pt-4 pb-4">
+        <Row className="mt-2 mb-2">
           <Col></Col>
         </Row>
       </Container>

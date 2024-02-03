@@ -47,7 +47,7 @@ export default function Login() {
           </Card>
         </Col>
       </Row>
-      {location.state.message ? (
+      {location?.state?.message ? (
         <Row>
           <Col>
             <Alert variant="primary">{location.state.message}</Alert>
