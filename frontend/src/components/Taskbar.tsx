@@ -1,51 +1,23 @@
-import React from 'react'
-import { Box, Flex, Heading } from '@radix-ui/themes'
-import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { SunIcon } from '@radix-ui/react-icons'
-function Navbar() {
-  return (
-	  <Box>
-		  <Flex dir='row' justify={'between'}>
-			  <Flex dir='row' gap={'2'} align={'center'}>
-				  <SunIcon />
-				  <Heading>Syscrack</Heading>
-			  </Flex>
-			  <Flex dir='row' gap='2'>
-				    <NavigationMenu.Root>
-					<NavigationMenu.List>
-					<NavigationMenu.Item>
-						<NavigationMenu.Trigger />
-						<NavigationMenu.Content>
-						<NavigationMenu.Link>
-							Sup
-						</NavigationMenu.Link>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
+import React from 'react';
+import {Avatar, Box, Flex, Heading, IconButton, Text, Tooltip} from '@radix-ui/themes';
+import {AvatarIcon, SunIcon} from '@radix-ui/react-icons';
+import {userStore} from '@/lib/stores';
 
-					<NavigationMenu.Item>
-						<NavigationMenu.Link />
-					</NavigationMenu.Item>
+function Taskbar() {
+	const {name, email, avatar} = userStore(state => state.user);
 
-					<NavigationMenu.Item>
-						<NavigationMenu.Trigger />
-						<NavigationMenu.Content>
-						<NavigationMenu.Sub>
-							<NavigationMenu.List />
-							<NavigationMenu.Viewport />
-						</NavigationMenu.Sub>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
-
-					<NavigationMenu.Indicator />
-					</NavigationMenu.List>
-
-					<NavigationMenu.Viewport />
-				</NavigationMenu.Root>
-
-			  </Flex>
-		  </Flex>
-	</Box>
-  )
+	return (
+		<Flex dir={'row'} className='border-solid border-4 border-green-800'>
+			<Tooltip content='User Settings'>
+				<IconButton>
+					<Avatar fallback={ <AvatarIcon/>} />
+				</IconButton>
+			</Tooltip>
+			<Box>
+				<Text>Welcome, {name === '' ? 'user' : name}</Text>
+			</Box>
+		</Flex>
+	);
 }
 
-export default Navbar
+export default Taskbar;

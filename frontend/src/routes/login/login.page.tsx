@@ -1,16 +1,37 @@
 import React, {Fragment} from 'react';
 import Form from './form';
-import {Heading} from '@radix-ui/themes';
+import {Flex, Heading} from '@radix-ui/themes';
 
-function RegisterPage() {
+function LoginPage(): React.ReactElement {
+	const session = useContext(SessionContext)
+	const game = useContext(GameContext);
+	const {
+		register,
+		handleSubmit,
+	} = useForm<Inputs>()
+	const navigate = useNavigate();
+	const [error, setError] = useState<Error | null>(null);
+	const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
+		await postRequestHandler<{
+			token: string
+		}>('/auth/login', inputs, (result) => {
+			localStorage.setItem('jwt', result.data.token)
+			session.load(() => {
+				game.load(() => {
+					navigate('/game')
+				})
+			});
+		}, setError);
+	}
+	
 	return (
 		<Fragment>
-			<Heading>RegisterPage</Heading>
-			<div className='my-12 flex max-w-md align-center items-center justify-center'>
+			<Heading>Login</Heading>
+			<Flex className='my-12 max-w-md align-center items-center justify-center'>
 				<Form />
-			</div>
+			</Flex>
 		</Fragment>
 	);
 }
 
-export default RegisterPage;
+export default LoginPage;

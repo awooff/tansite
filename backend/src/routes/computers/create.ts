@@ -24,7 +24,6 @@ const local = {
         data: {
           title: 'New Computer',
           description: 'A new computer',
-          markdown: 'Hello World',
           hardwareLimits: settings.defaultHardwareLimits
         } satisfies ComputerData
       }

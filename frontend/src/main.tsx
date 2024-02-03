@@ -8,10 +8,13 @@ import {
 import Root from './routes/root';
 import {Theme} from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
+import './styles/fonts.css';
 import './styles/index.css';
+import './styles/theme-config.css';
 import ErrorPage from './error.page';
 import Layout from './routes/layout';
 import RegisterPage from './routes/register/register.page';
+import LoginPage from './routes/login/login.page';
 
 const router = createBrowserRouter([
 	{
@@ -27,14 +30,16 @@ const router = createBrowserRouter([
 				path: '/user/register',
 				element: <RegisterPage/>,
 			},
+			{
+				path: '/user/login',
+				element: <LoginPage/>,
+			},
 		],
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<Theme>
-			<RouterProvider router={router} />
-		</Theme>
+		<RouterProvider router={router} />
 	</React.StrictMode>,
 );

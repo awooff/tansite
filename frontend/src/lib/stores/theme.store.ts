@@ -1,8 +1,26 @@
-import { atom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
+import {create} from 'zustand';
+import {persist, createJSONStorage} from 'zustand/middleware';
 
-export const themeAtom = atomWithStorage('theme', 'dark')
-export const modifyThemeAtom = atom(
-	(get) => get(themeAtom),
-	(_get, set, newTheme: string) => set(themeAtom, newTheme)
-)
+type ThemeType = 'dark' | 'light';
+type State = {
+	theme: ThemeType;
+};
+
+type Action = {
+	updateTheme: (theme: State['theme']) => void;
+};
+
+export const useThemeStore = create<State & Action>()(
+	persist(
+		(set, get) => ({
+			theme: 'dark',
+			updateTheme() {
+				set({theme: get().theme});
+			},
+		}),
+		{
+			name: 'syscrack__theme-storage',
+			storage: createJSONStorage(() => localStorage),
+		},
+	),
+);

@@ -8,6 +8,7 @@ export interface ComputerData {
   title?: string
   description?: string
   markdown?: string
+  homepage?: string
   hardwareLimits?: Record<HardwareType, number>
 
 }
@@ -402,7 +403,7 @@ export const generateIpAddress = () => {
     numbers.push(Math.floor(Math.random() * 256))
   }
 
-  if (numbers[0] <= 10 || numbers[0] === 192) { numbers[0] = 293 }
+  if (numbers[0] <= 10 || numbers[0] === 192) { numbers[0] = 64 }
 
   return numbers.join('.')
 }

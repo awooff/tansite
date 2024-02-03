@@ -115,10 +115,10 @@ export default function Files() {
               variant={100 * (ramUsage / ramSpace) > 90 ? "danger" : "success"}
             ></ProgressBar>
           </Card>
-          <Card body className="bg-transparent border border-primary mt-4">
+          <Card body className="bg-transparent border border-secondary mt-4">
             <div className="d-grid gap-2">
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   navigate("/computers/logs/" + computer.id);
                 }}
@@ -126,7 +126,7 @@ export default function Files() {
                 Logs
               </Button>
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   navigate("/computers/logs/" + computer.id);
                 }}
@@ -137,7 +137,7 @@ export default function Files() {
                 </span>
               </Button>
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   navigate("/computers/logs/" + computer.id);
                 }}
@@ -161,7 +161,14 @@ export default function Files() {
           </Card>
         </Col>
         <Col lg>
-          <Table striped bordered hover>
+          <Table
+            striped
+            bordered
+            hover
+            style={{
+              fontSize: "12px",
+            }}
+          >
             <thead>
               <tr>
                 <th>type</th>

@@ -91,6 +91,7 @@ export default function Logs() {
               <Card body className="bg-transparent border border-danger">
                 <div className="d-grid">
                   <Button
+                    size="sm"
                     variant="danger"
                     disabled={logs.length === 0}
                     onClick={async (e) => {
@@ -112,10 +113,10 @@ export default function Logs() {
               </Card>
             </Col>
           </Row>
-          <Card body className="bg-transparent border border-primary mt-3">
+          <Card body className="bg-transparent border border-secondary mt-3">
             <div className="d-grid gap-2">
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   navigate("/computers/files/" + computer.id);
                 }}
@@ -123,7 +124,7 @@ export default function Logs() {
                 Files
               </Button>
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   navigate("/computers/logs/" + computer.id);
                 }}
@@ -134,13 +135,13 @@ export default function Logs() {
                 </span>
               </Button>
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   navigate("/computers/logs/" + computer.id);
                 }}
               >
                 Hardware{" "}
-                <span className="badge bg-secondary">
+                <span className="badge bg-black">
                   🛠️{" "}
                   {Math.floor(
                     computer.hardware.reduce((prev, cur) => {
@@ -158,52 +159,50 @@ export default function Logs() {
           </Card>
         </Col>
         <Col>
-          <Card body>
-            <Alert className="bg-transparent border border-danger">
-              {count} total logs{" "}
-              <span
+          <Alert className="bg-transparent border border-danger">
+            {count} total logs{" "}
+            <span
+              style={{
+                float: "right",
+              }}
+              className="badge bg-black"
+            >
+              page {page + 1}/{pageMax}
+            </span>
+          </Alert>
+          <Row>
+            <Col>
+              <Table
+                striped
+                bordered
+                hover
                 style={{
-                  float: "right",
+                  fontSize: "12px",
                 }}
-                className="badge bg-danger"
               >
-                page {page + 1}/{pageMax}
-              </span>
-            </Alert>
-            <Row>
-              <Col>
-                <Table
-                  striped
-                  bordered
-                  hover
-                  style={{
-                    fontSize: "12px",
-                  }}
-                >
-                  <thead>
-                    <tr>
-                      <th>message</th>
-                      <th>from</th>
-                      <th>time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {logs
-                      .sort((a, b) => b.id - a.id)
-                      .map((log) => {
-                        return (
-                          <tr>
-                            <td>{log.message}</td>
-                            <td>{log.computer.ip}</td>
-                            <td>{new Date(log.created).toString()}</td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </Table>
-              </Col>
-            </Row>
-          </Card>
+                <thead>
+                  <tr>
+                    <th>message</th>
+                    <th>from</th>
+                    <th>time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {logs
+                    .sort((a, b) => b.id - a.id)
+                    .map((log) => {
+                      return (
+                        <tr>
+                          <td>{log.message}</td>
+                          <td>{log.computer.ip}</td>
+                          <td>{new Date(log.created).toString()}</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Layout>

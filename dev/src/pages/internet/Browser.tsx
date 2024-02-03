@@ -1,31 +1,25 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import {
-  Button,
-  ButtonToolbar,
-  Card,
-  Col,
-  Container,
-  Form,
-  InputGroup,
-  Nav,
-  Navbar,
-  Row,
-  NavDropdown,
-  Alert,
-} from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Computer } from "../../lib/types/computer.type";
 import GameContext from "../../contexts/game.context";
 import { postRequestHandler } from "../../lib/submit";
 import toast from "react-hot-toast";
+import Display from "../../components/Display";
+
+export type HomepageRequest = {
+  computer: Computer;
+  markdown: string;
+  title: string;
+  access?: object;
+};
 
 export default function Browser() {
   const game = useContext(GameContext);
   const { ip } = useParams();
   const [computer, setComputer] = useState<Computer | null>(null);
   const [markdown, setMarkdown] = useState("");
-  const [title, setTitle] = useState("Unknown");
   const [valid, setValid] = useState(false);
   const [connectionId, setConnectionId] = useState(
     game?.connections?.find(
@@ -34,18 +28,17 @@ export default function Browser() {
   );
   const [history, setHistory] = useState<Record<string, string>>({});
   const [currentIp, setCurrentIp] = useState<string | null>(null);
-  const [currentAddress, setCurrentAddress] = useState<string>("");
+  const [access, setAccess] = useState<object | null>(null);
 
   const fetchHomepage = useCallback(
     async (ip: string, connectionId: string) => {
-      const result = await postRequestHandler<{
-        computer: Computer;
-        markdown: string;
-        title: string;
-      }>("/internet/homepage", {
-        ip,
-        connectionId,
-      });
+      const result = await postRequestHandler<HomepageRequest>(
+        "/internet/homepage",
+        {
+          ip,
+          connectionId,
+        }
+      );
 
       return result.data;
     },
@@ -53,17 +46,15 @@ export default function Browser() {
   );
 
   useEffect(() => {
-    const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
-    const newIp = currentIp || ip || history[connectionId] || "0.0.0.0";
-
-    setHistory((prev) => {
-      return {
-        ...prev,
-        ...history,
-      };
-    });
-    setCurrentIp(newIp);
-  }, [ip, currentIp, connectionId, history]);
+    const newIp = ip || currentIp || "0.0.0.0";
+    if (
+      (newIp !== currentIp && !currentIp) ||
+      (currentIp === "0.0.0.0" && ip !== "0.0.0.0")
+    ) {
+      setValid(false);
+      setCurrentIp(newIp);
+    }
+  }, [ip, fetchHomepage, connectionId, currentIp]);
 
   useEffect(() => {
     if (!fetchHomepage) return;
@@ -78,29 +69,35 @@ export default function Browser() {
         ...history,
       };
     });
-    setCurrentAddress(currentIp);
 
-    const promise = fetchHomepage(currentIp, connectionId).then((data) => {
-      if (!data) setValid(false);
-      else {
-        setHistory({
-          ...history,
-          [connectionId]: currentIp,
-        });
-        setComputer(data.computer);
-        setMarkdown(data.markdown);
-        setTitle(data.title);
-        setValid(true);
+    if (currentIp === "0.0.0.0" && history[connectionId]) {
+      setCurrentIp(history[connectionId]);
+      return;
+    }
 
-        localStorage.setItem(
-          "history",
-          JSON.stringify({
+    const promise = fetchHomepage(currentIp, connectionId).then(
+      (data: HomepageRequest) => {
+        if (!data) setValid(false);
+        else {
+          setHistory({
             ...history,
             [connectionId]: currentIp,
-          })
-        );
+          });
+          setComputer(data.computer);
+          setMarkdown(data.markdown);
+          setAccess(data.access || null);
+          setValid(true);
+
+          localStorage.setItem(
+            "history",
+            JSON.stringify({
+              ...history,
+              [connectionId]: currentIp,
+            })
+          );
+        }
       }
-    });
+    );
     toast.promise(promise, {
       loading: "Fetching " + currentIp,
       success: "Success",
@@ -112,142 +109,35 @@ export default function Browser() {
     <Layout fluid={true}>
       <Row>
         <Col>
-          <Navbar bg="dark" data-bs-theme="dark">
-            <Container fluid>
-              <NavDropdown
-                title={
-                  <span className="badge bg-success m-2">
-                    {connectionId
-                      ? game.connections.find(
-                          (that) => that.id === connectionId
-                        )?.ip
-                      : "NO CONNECTIONS"}
-                  </span>
-                }
-              >
-                {game.connections.map((connection) => (
-                  <NavDropdown.Item
-                    onClick={() => {
-                      localStorage.setItem(
-                        "currentConnectionId",
-                        connection.id
-                      );
+          <Display
+            computer={computer}
+            connectionId={connectionId}
+            valid={valid}
+            access={access}
+            history={history}
+            ip={currentIp || "0.0.0.0"}
+            markdown={markdown}
+            onVisit={(currentAddress) => {
+              if (currentAddress.trim() === currentIp?.trim()) return;
 
-                      if (history[connection.id]) {
-                        if (currentIp !== history[connection.id])
-                          setValid(false);
+              setValid(false);
+              setCurrentIp(currentAddress);
+            }}
+            onConnectionSwitch={(connection) => {
+              localStorage.setItem("currentConnectionId", connection.id);
 
-                        setCurrentIp(history[connection.id]);
-                      } else {
-                        setCurrentIp("0.0.0.0");
-                        setCurrentAddress("0.0.0.0");
-                        setValid(false);
-                      }
+              if (history[connection.id]) {
+                if (currentIp !== history[connection.id]) setValid(false);
 
-                      setConnectionId(connection.id);
-                    }}
-                    className={
-                      connectionId === connection.id ? "bg-success" : ""
-                    }
-                  >
-                    {connection.ip}{" "}
-                    {history[connection.id] ? (
-                      <span
-                        className={
-                          " ms-2 badge " +
-                          (connectionId === connection.id
-                            ? "bg-secondary"
-                            : "bg-danger")
-                        }
-                      >
-                        {history[connection.id]}
-                      </span>
-                    ) : (
-                      <></>
-                    )}
-                  </NavDropdown.Item>
-                ))}
-              </NavDropdown>
-              <Nav className="me-auto mx-auto">
-                <ButtonToolbar aria-label="Toolbar with Button groups">
-                  <InputGroup
-                    style={{
-                      width: "75vw",
-                    }}
-                  >
-                    <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                      <Button
-                        size="sm"
-                        className="rounded-0 bg-transparent border-0"
-                      >
-                        Reload
-                      </Button>
-                    </InputGroup.Text>
-                    <Form.Control
-                      type="text"
-                      className="rounded-0"
-                      placeholder={computer?.ip || ""}
-                      value={currentAddress}
-                      name="addressbar"
-                      onChange={(e) => {
-                        setCurrentAddress(e.target.value);
-                      }}
-                      aria-label="Input group example"
-                      aria-describedby="btnGroupAddon"
-                    />
-                    <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                      <Button
-                        onClick={() => {
-                          if (currentAddress.trim() === currentIp?.trim())
-                            return;
+                setCurrentIp(history[connection.id]);
+              } else {
+                setCurrentIp("0.0.0.0");
+                setValid(false);
+              }
 
-                          setValid(false);
-                          setCurrentIp(currentAddress);
-                        }}
-                        size="sm"
-                        className="rounded-0 bg-transparent border-0"
-                      >
-                        Visit
-                      </Button>
-                    </InputGroup.Text>
-                  </InputGroup>
-                </ButtonToolbar>
-              </Nav>
-            </Container>
-          </Navbar>
-          <Card body className="rounded-0 bg-transparent border-secondary p-1">
-            {!valid ? (
-              <Alert
-                variant="danger"
-                className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
-                style={{ fontFamily: "initial" }}
-              >
-                <p className="display-2">404</p>
-                <p>This website does not exist</p>
-              </Alert>
-            ) : (
-              <div
-                className="d-grid bg-black border border-success p-3"
-                style={{ fontFamily: "initial" }}
-              >
-                {!markdown || markdown.length === 0 ? (
-                  <>
-                    <h1 className="text-black">Default Homepage</h1>
-                    <p>Please contact the administrator</p>
-                  </>
-                ) : (
-                  <>{markdown}</>
-                )}
-              </div>
-            )}
-          </Card>
-          {valid ? (
-            <p className="text-white bg-secondary pb-1 ps-1">
-              <span className="badge bg-black rounded-0">PC NAME: {title}</span>
-            </p>
-          ) : (
-            <></>
-          )}
+              setConnectionId(connection.id);
+            }}
+          />
         </Col>
       </Row>
     </Layout>

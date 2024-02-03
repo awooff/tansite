@@ -70,6 +70,8 @@ model Game {
     quests      Quests[]
     userQuests  UserQuests[]
     Logs        Logs[]
+    addressBook AddressBook[]
+    accountBook AccountBook[]
 }
 
 model Session {
@@ -99,8 +101,10 @@ model AddressBook {
     access     AccessLevel
     computer   Computer    @relation(fields: [computerId], references: [id])
     computerId String
+    game       Game        @relation(fields: [gameId], references: [id])
     ip         String
     data       Json        @default("{}")
+    gameId     String
 }
 
 model AccountBook {
@@ -111,7 +115,9 @@ model AccountBook {
     computerId String
     memory     Memory   @relation(fields: [memoryId], references: [id])
     memoryId   String
+    game       Game     @relation(fields: [gameId], references: [id])
     data       Json     @default("{}")
+    gameId     String
 }
 
 model Preferences {

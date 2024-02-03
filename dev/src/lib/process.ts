@@ -40,7 +40,7 @@ export const createProcess = async <T>(
 			resolve(process.data);
 		} else 
 			resolve({})
-      },
+    },
       new Date(result.data.process.completion).getTime() - Date.now()
     );
   });

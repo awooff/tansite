@@ -12,6 +12,20 @@ export class AccountBook {
   }
 
   /**
+   * 
+   * @param ip 
+   * @returns 
+   */
+  public async get(memoryId: string) {
+    return await server.prisma.accountBook.findFirst({
+      where: {
+        userId: this.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        memoryId: memoryId
+      }
+    })
+  }
+  /**
    * @throws
    */
   public async check() {
@@ -26,7 +40,8 @@ export class AccountBook {
   public async fetch(take?: number, page?: number) {
     return await server.prisma.accountBook.findMany({
       where: {
-        userId: this.userId
+        userId: this.userId,
+        gameId: process.env.CURRENT_GAME_ID
       },
       take: take || 64,
       skip: take && page ? take * page : 0
@@ -60,6 +75,7 @@ export class AccountBook {
         computerId: computer.computerId,
         userId: computer.computer.userId,
         memoryId: memory.id,
+        gameId: process.env.CURRENT_GAME_ID,
         data: data
       }
     })

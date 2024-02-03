@@ -50,6 +50,21 @@ export class AddressBook {
     })
   }
 
+   /**
+   * 
+   * @param ip 
+   * @returns 
+   */
+  public async get(ip: string) {
+    return await server.prisma.addressBook.findFirst({
+      where: {
+        userId: this.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        ip: ip
+      }
+    })
+  }
+
   public async addToAddressBook(computer: Computer, access: AccessLevel) {
     if (!computer.computer)
       throw new Error('computer not loaded')
@@ -60,6 +75,7 @@ export class AddressBook {
         computerId: computer.computerId,
         userId: computer.computer.userId,
         access: access,
+        gameId: process.env.CURRENT_GAME_ID,
         ip: computer.ip
       }
     })
