@@ -9,6 +9,7 @@ import Dashboard from "./pages/computers/Dashboard";
 import Files from "./pages/computers/Files";
 import Logs from "./pages/computers/Logs";
 import Browser from "./pages/internet/Browser";
+import ProtectedLayout from "./components/ProtectedLayout";
 
 const router = createBrowserRouter([
   {
@@ -38,42 +39,66 @@ const router = createBrowserRouter([
   {
     path: "/game",
     element: (
-      <>
+      <ProtectedLayout>
         <Game />
-      </>
+      </ProtectedLayout>
     ),
   },
   {
     path: "/computers/connections",
     element: (
-      <>
+      <ProtectedLayout>
         <Connections />
-      </>
+      </ProtectedLayout>
     ),
   },
   {
     path: "/computers/files/:computerId",
-    element: <Files />,
+    element: (
+      <ProtectedLayout>
+        <Files />
+      </ProtectedLayout>
+    ),
   },
   {
     path: "/computers/logs/:computerId",
-    element: <Logs />,
+    element: (
+      <ProtectedLayout>
+        <Logs />
+      </ProtectedLayout>
+    ),
   },
   {
     path: "/internet/browser/:ip",
-    element: <Browser />,
+    element: (
+      <ProtectedLayout>
+        <Browser />
+      </ProtectedLayout>
+    ),
   },
   {
     path: "/internet/browser/",
-    element: <Browser />,
+    element: (
+      <ProtectedLayout>
+        <Browser />
+      </ProtectedLayout>
+    ),
   },
   {
     path: "/logout",
-    element: <Logout />,
+    element: (
+      <ProtectedLayout>
+        <Logout />
+      </ProtectedLayout>
+    ),
   },
   {
     path: "/computers",
-    element: <Dashboard />,
+    element: (
+      <ProtectedLayout>
+        <Dashboard />
+      </ProtectedLayout>
+    ),
   },
 ]);
 

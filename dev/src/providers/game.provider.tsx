@@ -74,9 +74,9 @@ function GameProvider({ children }: { children: unknown }) {
 
           newGame = {
             ...GameContextDefault,
-            connections: computers.data.connections,
-            computers: computers.data.computers,
-            bankAccounts: accounts.data.accounts,
+            connections: computers.data.connections || [],
+            computers: computers.data.computers || [],
+            bankAccounts: accounts.data.accounts || [],
             title: game.data.title,
             user: user.data.user,
             gameId: game.data.currentGameId,

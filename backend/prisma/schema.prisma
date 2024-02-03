@@ -53,7 +53,7 @@ model User {
     userQuests   UserQuests[]
     addressBook  AddressBook[]
     accountBook  AccountBook[]
-    Logs         Logs[]
+    logs         Logs[]
 }
 
 model Game {
