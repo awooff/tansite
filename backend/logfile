@@ -1,0 +1,9 @@
+2024-02-03 17:52:05.059 GMT [38048] LOG:  starting PostgreSQL 14.10 on aarch64-apple-darwin22.6.0, compiled by clang version 16.0.6, 64-bit
+2024-02-03 17:52:05.059 GMT [38048] LOG:  listening on Unix socket "/Users/Cass/Projects/Syscrack/backend/.nix-shell/db/.s.PGSQL.5432"
+2024-02-03 17:52:05.063 GMT [38049] LOG:  database system was shut down at 2024-02-03 17:51:57 GMT
+2024-02-03 17:52:05.065 GMT [38048] LOG:  database system is ready to accept connections
+2024-02-03 17:52:08.103 GMT [38048] LOG:  received fast shutdown request
+2024-02-03 17:52:08.104 GMT [38048] LOG:  aborting any active transactions
+2024-02-03 17:52:08.105 GMT [38048] LOG:  background worker "logical replication launcher" (PID 38055) exited with exit code 1
+2024-02-03 17:52:08.105 GMT [38050] LOG:  shutting down
+2024-02-03 17:52:08.109 GMT [38048] LOG:  database system is shut down

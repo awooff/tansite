@@ -6,6 +6,7 @@ import {Button} from '@radix-ui/themes';
 
 function LogoutButton() {
 	const jwt = userStore(store => store.user.jwt);
+	const user = userStore(store => store.user);
 	const navigate = useNavigate();
 
 	return (
@@ -15,9 +16,11 @@ function LogoutButton() {
 				headers: {
 					Authorization: 'Bearer ' + jwt,
 				},
-			});
-
-			navigate('/');
+			})
+				.then(() => {
+					userStore().removeUserData(user);
+					navigate('/');
+				});
 		}}>
 			Logout
 		</Button>

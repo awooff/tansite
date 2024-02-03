@@ -6,13 +6,14 @@ import {Box, Button, TextField, Checkbox, Flex} from '@radix-ui/themes';
 import {userStore} from '@/lib/stores';
 import axios, {type AxiosError} from 'axios';
 import toast, {Toaster} from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterForm() {
-	const user = userStore((state => state.user));
 	const jwt = userStore(state => state.user.jwt);
-	const { updateUser } = userStore()
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 	const alertError = () => toast('An error happened!' + error);
+	const alertSuccess = () => toast('You\'ve registered! Congrats :)' + error);
 	const {
 		register,
 		handleSubmit,
@@ -28,21 +29,9 @@ function RegisterForm() {
 			},
 		})
 			.then(async response => {
-				if (response.status !== 500) {
-					setError(response.statusText)
-					alertError();
-				}
-
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				const { username, email } = data;
-				updateUser({
-					username,
-					email,
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					jwt: '',
-					avatar: '',
-					group: 'GUEST',
-				});
+				alertSuccess();
+				
+				navigate('/user/login')
 			})
 			.catch(error => {
 				const axiosError = error as AxiosError<any, any>;

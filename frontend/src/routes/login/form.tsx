@@ -33,7 +33,8 @@ export const RegisterForm: React.FC<Props> = () => {
 		})
 			.then(async response => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				const { jwt, email, group, name } = response.data.user;
+				const { email, group, name } = response.data.user;
+				const { token } = response.data;
 				if (user.jwt !== '') {
 					removeUserData(user)
 				}
@@ -42,7 +43,7 @@ export const RegisterForm: React.FC<Props> = () => {
 					username: name,
 					email,
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					jwt,
+					jwt: token,
 					group,
 					avatar: '',
 				})
