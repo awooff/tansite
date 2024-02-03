@@ -564,6 +564,21 @@ export default function Browser() {
                 >
                   View Your HDD
                 </span>
+                <span
+                  className="ms-1 badge bg-info rounded-0"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/computers/logs/" + connectionId, {
+                      state: {
+                        return: "/internet/browser/" + currentIp,
+                      },
+                    });
+                  }}
+                >
+                  View Your Logs
+                </span>
                 {access ? (
                   <span
                     className="me-1 mt-1 badge bg-success rounded-0"
