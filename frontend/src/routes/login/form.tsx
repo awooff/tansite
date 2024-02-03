@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import * as Form from '@radix-ui/react-form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { Box, Button, TextField, Checkbox, Flex } from '@radix-ui/themes';
+import { Box, Button, TextField } from '@radix-ui/themes';
 import { userStore } from '@stores/user.store';
 import axios, { type AxiosError } from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { LoginSchema } from '@schemas/login.schema';
 
-function RegisterForm() {
+type Props = {};
+
+export const RegisterForm: React.FC<Props> = () => {
 	const user = userStore((state => state.user));
+	const jwt = userStore(state => state.user.jwt)
+	const {removeUserData, updateUser} = userStore();
 	const [error, setError] = useState('');
 	const alertSuccess = () => toast('Welcome user! Let\'s get you back :)')
 	const alertError = () => toast('An error happened!' + error);
@@ -24,35 +28,24 @@ function RegisterForm() {
 		await axios.post('http://localhost:1337/auth/login', data, {
 			withCredentials: true,
 			headers: {
-				Authorization: 'Bearer ' + userStore(state => state.user.jwt),
+				Authorization: 'Bearer ' + jwt,
 			},
 		})
 			.then(async response => {
-				if (response.status !== 500) {
-					return (
-						<p>
-							{' '}
-							Welcome, {user.username} - {response.statusText}
-						</p>
-					);
-				}
-
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				const { jwt } = response.data;
-				const { username } = data;
+				const { jwt, email, group, name } = response.data.user;
 				if (user.jwt !== '') {
-					userStore(state => state.removeUserData(state.user));
+					removeUserData(user)
 				}
 				
-				userStore(state => {
-					state.updateUser({
-						username,
-						email: state.user.email,
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-						jwt,
-						avatar: state.user.avatar,
-					});
-				});
+				updateUser({
+					username: name,
+					email,
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					jwt,
+					group,
+					avatar: '',
+				})
 
 				alertSuccess();
 			})

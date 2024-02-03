@@ -9,9 +9,10 @@ import toast, {Toaster} from 'react-hot-toast';
 
 function RegisterForm() {
 	const user = userStore((state => state.user));
+	const jwt = userStore(state => state.user.jwt);
+	const { updateUser } = userStore()
 	const [error, setError] = useState('');
 	const alertError = () => toast('An error happened!' + error);
-
 	const {
 		register,
 		handleSubmit,
@@ -23,30 +24,24 @@ function RegisterForm() {
 		await axios.post('http://localhost:1337/auth/register', data, {
 			withCredentials: true,
 			headers: {
-				Authorization: 'Bearer ' + userStore(state => state.user.jwt),
+				Authorization: 'Bearer ' + jwt,
 			},
 		})
 			.then(async response => {
 				if (response.status !== 500) {
-					return (
-						<p>
-							{' '}
-							Welcome, {user.username} - {response.statusText}
-						</p>
-					);
+					setError(response.statusText)
+					alertError();
 				}
 
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				const {jwt} = response.data;
-				const {username, email} = data;
-				userStore(state => {
-					state.updateUser({
-						username,
-						email,
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-						jwt,
-						avatar: '',
-					});
+				const { username, email } = data;
+				updateUser({
+					username,
+					email,
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					jwt: '',
+					avatar: '',
+					group: 'GUEST',
 				});
 			})
 			.catch(error => {

@@ -5,6 +5,7 @@ import {Text} from '@radix-ui/themes';
 import * as Menubar from '@radix-ui/react-menubar';
 import {CheckIcon, ChevronRightIcon, DotFilledIcon} from '@radix-ui/react-icons';
 import {userStore} from '@stores/user.store';
+import LogoutButton from './ui/LogoutButton';
 
 const RADIO_ITEMS = ['Andy', 'Benoît', 'Luis'];
 const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs'];
@@ -207,6 +208,11 @@ function Navbar() {
 							</Menubar.Item>
 						</Menubar.Content>
 					</Menubar.Portal>
+				</Menubar.Menu>
+
+				{/* LOGOUT BUTTON OMG THIS IS BAD */}
+				<Menubar.Menu>
+					<LogoutButton/>
 				</Menubar.Menu>
 
 				<Menubar.Menu>
