@@ -92,7 +92,7 @@ function RegisterForm() {
 					</Form.Control>
 					{errors.username && (
 						<Form.FormMessage>
-							{errors.username.message}
+							{errors.username.message?.toString()}
 						</Form.FormMessage>
 					)}
 				</Form.Field>
@@ -106,7 +106,7 @@ function RegisterForm() {
 					</Form.Control>
 					{errors.password && (
 						<Form.FormMessage>
-							{errors.password.message}
+							{errors.password.message?.toString()}
 						</Form.FormMessage>
 					)}
 				</Form.Field>
