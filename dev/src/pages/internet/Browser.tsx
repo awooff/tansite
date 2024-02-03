@@ -321,7 +321,7 @@ export default function Browser() {
                           ) - 1
                         ] ||
                           session?.[connectionId]?.[
-                            session[connectionId].length - 1
+                            session?.[connectionId].length - 1
                           ]
                       );
                     }}
@@ -349,7 +349,7 @@ export default function Browser() {
                           ) + 1
                         ] ||
                           session?.[connectionId]?.[
-                            session[connectionId].length - 1
+                            session?.[connectionId].length - 1
                           ]
                       );
                     }}
