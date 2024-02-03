@@ -83,19 +83,12 @@ function Hacking({
           <Button className="rounded-0" variant="danger" size="sm">
             Hack
           </Button>
-          <div
-            className="d-grid bg-black border border-danger p-3"
-            style={{
-              minHeight: "68vh",
-              maxHeight: "74vh",
-              height: "100%",
-            }}
-          >
+          <div className="d-grid bg-black border border-danger p-3">
             <Alert
               variant="danger"
               className="bg-transparent border-secondary border rounded-0 text-center"
             >
-              <p className="display-4 mt-4">
+              <p className="display-4 mt-2 mb-5">
                 {computer.data.title}
                 <br />
                 <b
@@ -106,7 +99,7 @@ function Hacking({
                   {computer.ip}
                 </b>
               </p>
-              <span className="badge bg-success">AVAILABLE TO HACK</span>
+              <span className="badge bg-success mb-3">AVAILABLE TO HACK</span>
             </Alert>
             <Row>
               <Col>

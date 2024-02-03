@@ -52,6 +52,7 @@ export default function Browser() {
   const [access, setAccess] = useState<object | null>(null);
   const [currentAddress, setCurrentAddress] = useState("");
   const [tab, setTab] = useState("homepage");
+  const [session, setSession] = useState<Record<string, string[]>>({});
 
   const fetchHomepage = useCallback(
     async (ip: string, connectionId: string) => {
@@ -115,7 +116,7 @@ export default function Browser() {
       (data: HomepageRequest) => {
         if (!data) setValid(false);
         else {
-          setTab(history[connectionId]?.tab || "homepage");
+          setTab(history[connectionId]?.tab || tab || "homepage");
           setHistory({
             ...history,
             [connectionId]: {
@@ -128,13 +129,23 @@ export default function Browser() {
           setAccess(data.access || null);
           setValid(true);
           setCurrentAddress(currentIp);
+
+          setSession((prev) => {
+            if (!prev[connectionId]) prev[connectionId] = [];
+
+            if (!prev[connectionId].includes(currentIp))
+              prev[connectionId].push(currentIp);
+
+            return prev;
+          });
+
           localStorage.setItem(
             "history",
             JSON.stringify({
               ...history,
               [connectionId]: {
                 ip: currentIp,
-                tab: tab,
+                tab: history[connectionId]?.tab || tab || "homepage",
               },
             })
           );
@@ -148,6 +159,7 @@ export default function Browser() {
     });
   }, [fetchHomepage, currentIp, connectionId]);
 
+  console.log(session);
   return (
     <Layout fluid={true}>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -229,10 +241,10 @@ export default function Browser() {
             ))}
           </NavDropdown>
           <Nav className="me-auto mx-auto">
-            <ButtonToolbar aria-label="Toolbar with Button groups">
+            <ButtonToolbar aria-label="Search Bar">
               <InputGroup
                 style={{
-                  width: "72vw",
+                  width: "62vw",
                 }}
               >
                 <InputGroup.Text id="btnGroupAddon" className="rounded-0">
@@ -270,6 +282,81 @@ export default function Browser() {
                     className="rounded-0 bg-transparent border-0"
                   >
                     Visit
+                  </Button>
+                </InputGroup.Text>
+              </InputGroup>
+            </ButtonToolbar>
+          </Nav>
+          <Nav className="me-auto mx-auto">
+            <NavDropdown title={"📖"}>
+              {session?.[connectionId]?.map((session, index) => (
+                <NavDropdown.Item
+                  onClick={() => {
+                    setCurrentIp(session);
+                  }}
+                >
+                  <span className="badge bg-secondary me-2">{index}</span>
+                  {session}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+          </Nav>
+          <Nav className="me-auto mx-auto">
+            <ButtonToolbar aria-label="Search Bar">
+              <InputGroup>
+                <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                  <Button
+                    disabled={
+                      session?.[connectionId]?.length === 1 || currentIp
+                        ? session?.[connectionId]?.indexOf(
+                            currentIp !== null ? currentIp : "0.0.0.0"
+                          ) === 0
+                        : false
+                    }
+                    onClick={() => {
+                      setCurrentIp(
+                        session?.[connectionId]?.[
+                          session?.[connectionId]?.indexOf(
+                            currentIp !== null ? currentIp : "0.0.0.0"
+                          ) - 1
+                        ] ||
+                          session?.[connectionId]?.[
+                            session[connectionId].length - 1
+                          ]
+                      );
+                    }}
+                    size="sm"
+                    className="rounded-0 bg-transparent border-0"
+                  >
+                    Back
+                  </Button>
+                </InputGroup.Text>
+                <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                  <Button
+                    disabled={
+                      session?.[connectionId]?.length === 1 || currentIp
+                        ? session?.[connectionId]?.indexOf(
+                            currentIp !== null ? currentIp : "0.0.0.0"
+                          ) ===
+                          session?.[connectionId]?.length - 1
+                        : false
+                    }
+                    onClick={() => {
+                      setCurrentIp(
+                        session?.[connectionId]?.[
+                          session?.[connectionId]?.indexOf(
+                            currentIp !== null ? currentIp : "0.0.0.0"
+                          ) + 1
+                        ] ||
+                          session?.[connectionId]?.[
+                            session[connectionId].length - 1
+                          ]
+                      );
+                    }}
+                    size="sm"
+                    className="rounded-0 bg-transparent border-0"
+                  >
+                    Foward
                   </Button>
                 </InputGroup.Text>
               </InputGroup>

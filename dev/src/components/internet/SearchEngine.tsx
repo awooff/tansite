@@ -132,12 +132,15 @@ function SearchEngine({
                     </div>
                     <Row className="mt-4 justify-content-center">
                       <Col lg={4}>
+                        <Alert variant="primary" className="text-center">
+                          Search for things on the internet!
+                        </Alert>
                         <InputGroup className="border">
-                          <InputGroup.Text>Query</InputGroup.Text>
+                          <InputGroup.Text>🔍</InputGroup.Text>
                           <Form.Control
                             type="text"
                             className="rounded-0"
-                            placeholder={computer?.ip || ""}
+                            placeholder={"Enter anything..."}
                             value={searchQuery}
                             name="addressbar"
                             onKeyUp={(e) => {
@@ -148,7 +151,6 @@ function SearchEngine({
                                   error: "Failed to fetch search results",
                                   success: "Success!",
                                 });
-                                game.load();
                               }
                             }}
                             onChange={(e) => {
@@ -165,7 +167,6 @@ function SearchEngine({
                                 error: "Failed to fetch search results",
                                 success: "Success!",
                               });
-                              game.load();
                             }}
                             size="sm"
                             variant="success"
@@ -189,11 +190,11 @@ function SearchEngine({
                       <Row className="mt-4 justify-content-center">
                         <Col>
                           <InputGroup className="border">
-                            <InputGroup.Text>Query</InputGroup.Text>
+                            <InputGroup.Text>🔍</InputGroup.Text>
                             <Form.Control
                               type="text"
                               className="rounded-0"
-                              placeholder={computer?.ip || ""}
+                              placeholder={"Search for anything..."}
                               value={searchQuery}
                               name="addressbar"
                               onKeyUp={(e) => {
