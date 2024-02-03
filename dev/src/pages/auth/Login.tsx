@@ -19,19 +19,19 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState<Error | null>(null);
+
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     await postRequestHandler<{
       token: string;
     }>(
       "/auth/login",
       inputs,
-      (result) => {
+      async (result) => {
         localStorage.setItem("jwt", result.data.token);
-        session.load(() => {
-          game.load(() => {
-            navigate("/game");
-          });
-        });
+
+        await session.load();
+        await game.load();
+        navigate("/game");
       },
       setError
     );
