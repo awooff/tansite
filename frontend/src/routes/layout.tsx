@@ -4,7 +4,7 @@ import {UserContext} from '@contexts/user.context';
 import {userStore} from '@stores/user.store';
 import {Theme} from '@radix-ui/themes';
 import {useThemeStore} from '@stores/theme.store';
-import Navbar from '@/components/Navbar';
+import Navbar from '@components/Navbar';
 
 export function Layout(props: {children?: ReactNode}): ReactElement {
 	const user = userStore(state => state.user);
@@ -13,7 +13,7 @@ export function Layout(props: {children?: ReactNode}): ReactElement {
 	return (
 		<UserContext.Provider value={user}>
 			<Theme appearance={theme}>
-				<Navbar/>
+				<Navbar />
 				{props.children}
 				<Taskbar />
 			</Theme>

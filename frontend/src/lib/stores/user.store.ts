@@ -2,9 +2,10 @@ import {create} from 'zustand';
 import {persist, createJSONStorage} from 'zustand/middleware';
 
 export type User = {
-	name: string;
+	username: string;
 	email: string;
 	avatar: string;
+	jwt: string;
 };
 
 type State = {
@@ -12,24 +13,36 @@ type State = {
 };
 
 type Action = {
-	updateUser: (name: State['user']) => void;
+	updateUser: (user: State['user']) => void;
+	removeUserData: (user: State['user']) => void;
 };
 
 export const userStore = create<State & Action>()(
 	persist(
 		(set, get) => ({
 			user: {
-				name: '',
+				username: '',
 				email: '',
 				avatar: '',
+				jwt: '',
 			},
 			updateUser() {
 				set({user: get().user});
 			},
+			removeUserData() {
+				set({
+					user: {
+						email: '',
+						username: '',
+						avatar: '',
+						jwt: '',
+					},
+				});
+			},
 		}),
 		{
 			name: 'syscrack__user-storage', // Name of the item in the storage (must be unique)
-			storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+			storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
 		},
 	),
 

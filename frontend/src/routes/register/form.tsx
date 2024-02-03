@@ -1,52 +1,86 @@
-import React from "react";
-import * as Form from "@radix-ui/react-form";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { RegisterSchema } from "@schemas/register.schema";
-import { Box, Button, TextField, Checkbox, Flex } from "@radix-ui/themes";
+import React, {useState} from 'react';
+import * as Form from '@radix-ui/react-form';
+import {useForm, type SubmitHandler} from 'react-hook-form';
+import {type RegisterSchema} from '@schemas/register.schema';
+import {Box, Button, TextField, Checkbox, Flex} from '@radix-ui/themes';
+import {userStore} from '@/lib/stores';
+import axios, {type AxiosError} from 'axios';
+import toast, {Toaster} from 'react-hot-toast';
 
 function RegisterForm() {
+	const user = userStore((state => state.user));
+	const [error, setError] = useState('');
+	const alertError = () => toast('An error happened!' + error);
+
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: {errors},
 	} = useForm<RegisterSchema>();
 
-	const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
+	const onSubmit: SubmitHandler<RegisterSchema> = async data => {
 		console.log(data);
-		await fetch("http://localhost:1337/auth/register", {
-			method: "POST",
-			body: JSON.stringify(data),
+		await axios.post('http://localhost:1337/auth/register', data, {
+			withCredentials: true,
+			headers: {
+				Authorization: 'Bearer ' + userStore(state => state.user.jwt),
+			},
 		})
-			.then((response) => {
-				if (!response.ok) {
+			.then(async response => {
+				if (response.status !== 500) {
 					return (
 						<p>
-							{" "}
+							{' '}
 							Welcome, {user.username} - {response.statusText}
 						</p>
 					);
 				}
 
-				const { jwt } = response.body as any;
-				const { username, email } = data;
-				setUser({ username, email, jwt });
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				const {jwt} = response.data;
+				const {username, email} = data;
+				userStore(state => {
+					state.updateUser({
+						username,
+						email,
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+						jwt,
+						avatar: '',
+					});
+				});
 			})
-			.catch((err) => {
-				if (err) {
-					return <p>Something bad happened!</p>;
-				}
+			.catch(error => {
+				const axiosError = error as AxiosError<any, any>;
+				const result = axiosError.response;
+				const resultError = result?.data?.error || result?.data || error;
+
+				let issue = "";
+				if (!resultError.message) {
+					// Zod Error
+					if (resultError.issues)
+						issue = resultError.issues.map((issue: any) => {
+							return issue.message
+						}).join('\n')
+					else
+						issue = "internal server error"
+				} else
+					issue = resultError.message
+				
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+				setError(issue);
+				alertError();
 			});
 	};
 
 	return (
-		<Box width={"max-content"}>
+		<Box width={'max-content'}>
 			<Form.Root onSubmit={handleSubmit(onSubmit)}>
-				<Form.Field name="username">
-					<Form.Label>Username</Form.Label>
+				<Form.Field name='username'>
+					<Form.Label htmlFor=''>Username</Form.Label>
 					<Form.Control asChild>
 						<TextField.Input
-							type="text"
-							{...register("username", { required: true })}
+							type='text'
+							{...register('username', {required: true})}
 						/>
 					</Form.Control>
 					{errors.username && (
@@ -55,12 +89,12 @@ function RegisterForm() {
 						</Form.FormMessage>
 					)}
 				</Form.Field>
-				<Form.Field name="email">
+				<Form.Field name='email'>
 					<Form.Label>Email</Form.Label>
 					<Form.Control asChild>
 						<TextField.Input
-							type="email"
-							{...register("email", { required: true })}
+							type='email'
+							{...register('email', {required: true})}
 						/>
 					</Form.Control>
 					{errors.email && (
@@ -69,12 +103,12 @@ function RegisterForm() {
 						</Form.FormMessage>
 					)}
 				</Form.Field>
-				<Form.Field name="password">
+				<Form.Field name='password'>
 					<Form.Label>Password</Form.Label>
 					<Form.Control asChild>
 						<TextField.Input
-							type="password"
-							{...register("password", { required: true })}
+							type='password'
+							{...register('password', {required: true})}
 						/>
 					</Form.Control>
 					{errors.password && (
@@ -84,21 +118,22 @@ function RegisterForm() {
 					)}
 				</Form.Field>
 
-				<Flex dir="col">
-					<Flex dir="row" justify={"center"}>
-						<Checkbox {...register("terms")} /> I accept the terms
+				<Flex dir='col'>
+					<Flex dir='row' justify={'center'}>
+						<Checkbox {...register('terms')} /> I accept the terms
 						and conditions
 					</Flex>
-					<Flex dir="row" justify={"center"}>
-						<Checkbox {...register("privacy")} /> I accept the
+					<Flex dir='row' justify={'center'}>
+						<Checkbox {...register('privacy')} /> I accept the
 						privacy policy
 					</Flex>
 				</Flex>
-				<Button size="3" variant="soft" type="submit">
-					{" "}
-					Submit!{" "}
+				<Button size='3' variant='soft' type='submit'>
+					{' '}
+					Submit!{' '}
 				</Button>
 			</Form.Root>
+			<Toaster/>
 		</Box>
 	);
 }
