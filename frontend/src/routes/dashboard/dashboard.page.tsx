@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {Fragment} from 'react';
 
 function DashboadRoot() {
-  return (
-	<div>DashboadRoot</div>
-  )
+	return (
+		<Fragment>DashboadRoot</Fragment>
+	);
 }
 
-export default DashboadRoot
+export default DashboadRoot;

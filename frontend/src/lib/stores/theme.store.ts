@@ -13,9 +13,9 @@ type Action = {
 export const useThemeStore = create<State & Action>()(
 	persist(
 		(set, get) => ({
-			theme: 'dark',
-			updateTheme() {
-				set({theme: get().theme});
+			theme: 'light',
+			updateTheme(theme: ThemeType) {
+				set({theme});
 			},
 		}),
 		{

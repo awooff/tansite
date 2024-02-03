@@ -13,7 +13,7 @@ const register = {
     description: 'will register the user to syscrack'
   },
 
-  async post (req, res, error) {
+  async post(req, res, error) {
     const body = await registerSchema.safeParseAsync(req.body)
 
     if (!body.success) { return error(body.error) }

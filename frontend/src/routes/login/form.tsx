@@ -1,110 +1,115 @@
-import React from "react";
-import { userStore } from "@stores/user.store";
-import * as Form from "@radix-ui/react-form";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { type RegisterSchema } from "@schemas/register.schema";
-import { Box, Button, TextField, Checkbox, Flex } from "@radix-ui/themes";
+import React, { useState } from 'react';
+import * as Form from '@radix-ui/react-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { Box, Button, TextField } from '@radix-ui/themes';
+import { userStore } from '@stores/user.store';
+import axios, { type AxiosError } from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import { LoginSchema } from '@schemas/login.schema';
 
-function RegisterForm() {
-	const [user, setUser] = useAtom<UserAtom>(userAtom);
+type Props = {};
+
+export const RegisterForm: React.FC<Props> = () => {
+	const user = userStore((state => state.user));
+	const jwt = userStore(state => state.user.jwt)
+	const {removeUserData, updateUser} = userStore();
+	const [error, setError] = useState('');
+	const alertSuccess = () => toast('Welcome user! Let\'s get you back :)')
+	const alertError = () => toast('An error happened!' + error);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<RegisterSchema>();
+	} = useForm<LoginSchema>();
 
-	const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
+	const onSubmit: SubmitHandler<LoginSchema> = async data => {
 		console.log(data);
-		await fetch("http://localhost:1337/auth/register", {
-			method: "POST",
-			body: JSON.stringify(data),
-			headers: {},
+		await axios.post('http://localhost:1337/auth/login', data, {
+			withCredentials: true,
+			headers: {
+				Authorization: 'Bearer ' + jwt,
+			},
 		})
-			.then((response) => {
-				if (!response.ok) {
-					return (
-						<p>
-							{" "}
-							Welcome, {user.username} - {response.statusText}
-						</p>
-					);
+			.then(async response => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				const { email, group, name } = response.data.user;
+				const { token } = response.data;
+				if (user.jwt !== '') {
+					removeUserData(user)
 				}
+				
+				updateUser({
+					username: name,
+					email,
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					jwt: token,
+					group,
+					avatar: '',
+				})
 
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				const { jwt } = response.body as any;
-				const { username, email } = data;
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				setUser({ username, email, jwt });
+				alertSuccess();
 			})
-			.catch((err) => {
-				if (err) {
-					return <p>Something bad happened!</p>;
-				}
+			.catch(error => {
+				const axiosError = error as AxiosError<any, any>;
+				const result = axiosError.response;
+				const resultError = result?.data?.error || result?.data || error;
+
+				let issue = "";
+				if (!resultError.message) {
+					// Zod Error
+					if (resultError.issues)
+						issue = resultError.issues.map((issue: any) => {
+							return issue.message
+						}).join('\n')
+					else
+						issue = "internal server error"
+				} else
+					issue = resultError.message
+
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+				setError(issue);
+				alertError();
 			});
 	};
 
 	return (
-		<Box width={"max-content"}>
+		<Box width={'max-content'}>
 			<Form.Root onSubmit={handleSubmit(onSubmit)}>
-				<Form.Field name="username">
-					<Form.Label>Username</Form.Label>
+				<Form.Field name='username'>
+					<Form.Label htmlFor=''>Username</Form.Label>
 					<Form.Control asChild>
 						<TextField.Input
-							type="text"
-							{...register("username", { required: true })}
+							type='text'
+							{...register('username', { required: true })}
 						/>
 					</Form.Control>
 					{errors.username && (
 						<Form.FormMessage>
-							{errors.username.message}
+							{errors.username.message?.toString()}
 						</Form.FormMessage>
 					)}
 				</Form.Field>
-				<Form.Field name="email">
-					<Form.Label>Email</Form.Label>
-					<Form.Control asChild>
-						<TextField.Input
-							type="email"
-							{...register("email", { required: true })}
-						/>
-					</Form.Control>
-					{errors.email && (
-						<Form.FormMessage>
-							{errors.email.message}
-						</Form.FormMessage>
-					)}
-				</Form.Field>
-				<Form.Field name="password">
+				<Form.Field name='password'>
 					<Form.Label>Password</Form.Label>
 					<Form.Control asChild>
 						<TextField.Input
-							type="password"
-							{...register("password", { required: true })}
+							type='password'
+							{...register('password', { required: true })}
 						/>
 					</Form.Control>
 					{errors.password && (
 						<Form.FormMessage>
-							{errors.password.message}
+							{errors.password.message?.toString()}
 						</Form.FormMessage>
 					)}
 				</Form.Field>
-
-				<Flex dir="col">
-					<Flex dir="row" justify={"center"}>
-						<Checkbox {...register("terms")} /> I accept the terms
-						and conditions
-					</Flex>
-					<Flex dir="row" justify={"center"}>
-						<Checkbox {...register("privacy")} /> I accept the
-						privacy policy
-					</Flex>
-				</Flex>
-				<Button size="3" variant="soft" type="submit">
-					{" "}
-					Submit!{" "}
+				<Button size='3' variant='soft' type='submit'>
+					{' '}
+					Submit!{' '}
 				</Button>
 			</Form.Root>
+			<Toaster />
 		</Box>
 	);
 }

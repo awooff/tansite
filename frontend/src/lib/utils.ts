@@ -1,4 +1,10 @@
 import axios, {type AxiosError, type AxiosResponse } from 'axios';
+import {type ClassValue, clsx} from 'clsx';
+import {twMerge} from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
+}
 
 export const apiUrl = require('process').env.API_URL || 'http://localhost:1337';
 
