@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import Layout from "../../components/Layout";
 import { Card, Col, Form, Row, Button, Alert } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -20,22 +20,27 @@ export default function Login() {
   const location = useLocation();
   const [error, setError] = useState<Error | null>(null);
 
-  const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
-    await postRequestHandler<{
-      token: string;
-    }>(
-      "/auth/login",
-      inputs,
-      async (result) => {
-        localStorage.setItem("jwt", result.data.token);
+  const onSubmit: SubmitHandler<Inputs> = useCallback(
+    async (inputs) => {
+      await postRequestHandler<{
+        token: string;
+      }>(
+        "/auth/login",
+        inputs,
+        async (result) => {
+          localStorage.setItem("jwt", result.data.token);
 
-        await session.load();
-        await game.load();
-        navigate("/game");
-      },
-      setError
-    );
-  };
+          await session.load();
+          await game.load();
+
+          if (location?.state.return) navigate(location.state.return);
+          else navigate("/game");
+        },
+        setError
+      );
+    },
+    [location]
+  );
 
   return (
     <Layout>

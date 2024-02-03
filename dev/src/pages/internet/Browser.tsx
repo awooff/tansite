@@ -1,8 +1,15 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Layout from "../../components/Layout";
 import {
   Button,
   ButtonToolbar,
+  Alert,
   Col,
   Container,
   Form,
@@ -12,7 +19,7 @@ import {
   Navbar,
   Row,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Computer } from "../../lib/types/computer.type";
 import GameContext from "../../contexts/game.context";
 import { postRequestHandler } from "../../lib/submit";
@@ -20,6 +27,7 @@ import toast from "react-hot-toast";
 import Homepage from "../../components/internet/Homepage";
 import SearchEngine from "../../components/internet/SearchEngine";
 import Hacking from "../../components/internet/Hacking";
+import Login from "../../components/internet/Login";
 
 export type HomepageRequest = {
   computer: Computer;
@@ -31,13 +39,16 @@ export type HomepageRequest = {
 export default function Browser() {
   const game = useContext(GameContext);
   const { ip } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [computer, setComputer] = useState<Computer | null>(null);
   const [markdown, setMarkdown] = useState("");
   const [valid, setValid] = useState(false);
   const [connectionId, setConnectionId] = useState(
-    game?.connections?.find(
-      (that) => that.id === localStorage.getItem("currentConnectionId")
-    )?.id || game.connections?.[0]?.id
+    location?.state?.connectionId ||
+      game?.connections?.find(
+        (that) => that.id === localStorage.getItem("currentConnectionId")
+      )?.id
   );
   const [history, setHistory] = useState<
     Record<
@@ -50,7 +61,7 @@ export default function Browser() {
   >({});
   const [currentIp, setCurrentIp] = useState<string | null>(null);
   const [access, setAccess] = useState<object | null>(null);
-  const [currentAddress, setCurrentAddress] = useState("");
+  const currentAddress = useRef<HTMLInputElement>(null);
   const [tab, setTab] = useState("homepage");
   const [session, setSession] = useState<Record<string, string[]>>({});
 
@@ -90,7 +101,9 @@ export default function Browser() {
       setValid(false);
       setCurrentIp(newIp);
     }
-  }, [ip, connectionId, currentIp]);
+
+    if (currentAddress.current) currentAddress.current.value = newIp;
+  }, [ip, currentIp, location]);
 
   useEffect(() => {
     if (!fetchHomepage) return;
@@ -116,19 +129,26 @@ export default function Browser() {
       (data: HomepageRequest) => {
         if (!data) setValid(false);
         else {
-          setTab(history[connectionId]?.tab || tab || "homepage");
+          setAccess(data.access || null);
+
+          if (data.access && history[connectionId]?.tab === "hack")
+            history[connectionId].tab = "login";
+          else if (!data.access && history[connectionId]?.tab === "login")
+            history[connectionId].tab = "homepage";
+
+          setTab(history[connectionId]?.tab || "homepage");
           setHistory({
             ...history,
             [connectionId]: {
               ip: currentIp,
-              tab: history[connectionId]?.tab || tab || "homepage",
+              tab: history[connectionId]?.tab || "homepage",
             },
           });
           setComputer(data.computer);
           setMarkdown(data.markdown);
-          setAccess(data.access || null);
           setValid(true);
-          setCurrentAddress(currentIp);
+
+          if (currentAddress.current) currentAddress.current.value = currentIp;
 
           setSession((prev) => {
             if (!prev[connectionId]) prev[connectionId] = [];
@@ -159,7 +179,6 @@ export default function Browser() {
     });
   }, [fetchHomepage, currentIp, connectionId]);
 
-  console.log(session);
   return (
     <Layout fluid={true}>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -186,7 +205,7 @@ export default function Browser() {
             }
           >
             {game.connections.map((connection, index) => (
-              <div className="d-grid">
+              <div className="d-grid" key={index}>
                 <NavDropdown.Item
                   style={{
                     fontSize: 12,
@@ -199,7 +218,10 @@ export default function Browser() {
                         setValid(false);
 
                       setCurrentIp(history[connection.id].ip);
-                      setCurrentAddress(history[connection.id].ip);
+
+                      if (currentAddress.current)
+                        currentAddress.current.value =
+                          history[connection.id].ip;
                     } else {
                       setCurrentIp("0.0.0.0");
                       setValid(false);
@@ -254,29 +276,39 @@ export default function Browser() {
                   type="text"
                   className="rounded-0"
                   placeholder={computer?.ip || ""}
-                  value={currentAddress}
                   name="addressbar"
                   onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                      if (currentAddress.trim() === currentIp?.trim()) return;
+                    if (e.key === "Enter" && currentAddress.current) {
+                      if (
+                        currentAddress.current.value.trim() ===
+                        currentIp?.trim()
+                      )
+                        return;
+
+                      if (access) setTab("homepage");
 
                       setValid(false);
-                      setCurrentIp(currentAddress);
+                      setCurrentIp(currentAddress.current.value);
                     }
                   }}
-                  onChange={(e) => {
-                    setCurrentAddress(e.target.value);
-                  }}
+                  ref={currentAddress}
                   aria-label="Input group example"
                   aria-describedby="btnGroupAddon"
                 />
                 <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                   <Button
                     onClick={() => {
-                      if (currentAddress.trim() === currentIp?.trim()) return;
+                      if (
+                        !currentAddress.current?.value ||
+                        currentAddress.current.value.trim() ===
+                          currentIp?.trim()
+                      )
+                        return;
+
+                      if (access) setTab("homepage");
 
                       setValid(false);
-                      setCurrentIp(currentAddress);
+                      setCurrentIp(currentAddress?.current?.value);
                     }}
                     size="sm"
                     className="rounded-0 bg-transparent border-0"
@@ -291,6 +323,7 @@ export default function Browser() {
             <NavDropdown title={"📖"}>
               {session?.[connectionId]?.map((session, index) => (
                 <NavDropdown.Item
+                  key={index}
                   onClick={() => {
                     setCurrentIp(session);
                   }}
@@ -364,115 +397,207 @@ export default function Browser() {
           </Nav>
         </Container>
       </Navbar>
-      <Row className="mt-1">
-        <Col>
-          {computer?.type === "search_engine" && tab === "homepage" ? (
-            <SearchEngine
-              computer={computer}
-              connectionId={connectionId}
-              valid={valid}
-              access={access}
-              setCurrentIp={setCurrentIp}
-              ip={currentIp || "0.0.0.0"}
-              markdown={markdown}
-              setTab={(tab: string) => {
-                let newHistory = {
-                  ...history,
-                  [connectionId]: {
-                    ...history[connectionId],
-                    tab: tab,
-                  },
-                };
-                localStorage.setItem("history", JSON.stringify(newHistory));
-                setTab(tab);
-                setHistory(history);
-              }}
-            />
-          ) : (
-            <>
-              {(() => {
-                if (tab === "homepage")
-                  return (
-                    <Homepage
-                      computer={computer}
-                      connectionId={connectionId}
-                      valid={valid}
-                      access={access}
-                      ip={currentIp || "0.0.0.0"}
-                      markdown={markdown}
-                      setTab={(tab: string) => {
-                        let newHistory = {
-                          ...history,
-                          [connectionId]: {
-                            ...history[connectionId],
-                            tab: tab,
-                          },
-                        };
-                        localStorage.setItem(
-                          "history",
-                          JSON.stringify(newHistory)
-                        );
-                        setTab(tab);
-                        setHistory(newHistory);
-                      }}
-                    />
-                  );
+      {game.connections.length === 0 ? (
+        <Row>
+          <Col>
+            <Alert
+              variant="danger"
+              className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
+              style={{ fontFamily: "initial" }}
+            >
+              <p className="display-2">403</p>
+              <p>
+                You need to select which computer you would like to surf the
+                internet with!
+              </p>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/computers/connections", {
+                    state: {
+                      return: "/internet/browser/" + currentIp,
+                    },
+                  });
+                }}
+              >
+                View your connections
+              </a>
+            </Alert>
+          </Col>
+        </Row>
+      ) : (
+        <Row className="mt-1">
+          <Col>
+            {computer?.type === "search_engine" && tab === "homepage" ? (
+              <SearchEngine
+                computer={computer}
+                connectionId={connectionId}
+                valid={valid}
+                access={access}
+                setCurrentIp={setCurrentIp}
+                ip={currentIp || "0.0.0.0"}
+                markdown={markdown}
+                setTab={(tab: string) => {
+                  let newHistory = {
+                    ...history,
+                    [connectionId]: {
+                      ...history[connectionId],
+                      tab: tab,
+                    },
+                  };
+                  localStorage.setItem("history", JSON.stringify(newHistory));
+                  setTab(tab);
+                  setHistory(history);
+                }}
+              />
+            ) : (
+              <>
+                {(() => {
+                  if (tab === "homepage")
+                    return (
+                      <Homepage
+                        computer={computer}
+                        connectionId={connectionId}
+                        valid={valid}
+                        access={access}
+                        ip={currentIp || "0.0.0.0"}
+                        markdown={markdown}
+                        setTab={(tab: string) => {
+                          setHistory((history) => {
+                            let newHistory = {
+                              ...history,
+                              [connectionId]: {
+                                ...history[connectionId],
+                                tab: tab,
+                              },
+                            };
+                            localStorage.setItem(
+                              "history",
+                              JSON.stringify(newHistory)
+                            );
+                            return newHistory;
+                          });
+                          setTab(tab);
+                        }}
+                      />
+                    );
 
-                if (tab === "hack")
-                  return (
-                    <Hacking
-                      computer={computer}
-                      connectionId={connectionId}
-                      valid={valid}
-                      access={access}
-                      ip={currentIp || "0.0.0.0"}
-                      markdown={markdown}
-                      setTab={(tab: string) => {
-                        let newHistory = {
-                          ...history,
-                          [connectionId]: {
-                            ...history[connectionId],
-                            tab: tab,
-                          },
-                        };
-                        localStorage.setItem(
-                          "history",
-                          JSON.stringify(newHistory)
-                        );
-                        setTab(tab);
-                        setHistory(newHistory);
-                      }}
-                    />
-                  );
-              })()}
-            </>
-          )}
-          {valid && computer ? (
-            <p className="text-white bg-secondary pb-1 ps-1">
-              <span className="badge bg-black rounded-0">
-                PC NAME: {computer.data.title}
-              </span>
-              {access ? (
-                <span className="ms-1 badge bg-success rounded-0">
-                  Hacked (
-                  {
-                    (
-                      access as {
-                        access: "GOD" | "FTP";
-                      }
-                    )?.access
-                  }
-                  )
+                  if (tab === "login")
+                    return (
+                      <Login
+                        computer={computer}
+                        connectionId={connectionId}
+                        valid={valid}
+                        access={access}
+                        ip={currentIp || "0.0.0.0"}
+                        markdown={markdown}
+                        setTab={(tab: string) => {
+                          setHistory((history) => {
+                            let newHistory = {
+                              ...history,
+                              [connectionId]: {
+                                ...history[connectionId],
+                                tab: tab,
+                              },
+                            };
+                            localStorage.setItem(
+                              "history",
+                              JSON.stringify(newHistory)
+                            );
+                            return newHistory;
+                          });
+                          setTab(tab);
+                        }}
+                      />
+                    );
+
+                  if (tab === "hack")
+                    return (
+                      <Hacking
+                        computer={computer}
+                        connectionId={connectionId}
+                        valid={valid}
+                        access={access}
+                        fetchHomepage={fetchHomepage}
+                        ip={currentIp || "0.0.0.0"}
+                        markdown={markdown}
+                        setTab={(tab: string) => {
+                          setHistory((history) => {
+                            let newHistory = {
+                              ...history,
+                              [connectionId]: {
+                                ...history[connectionId],
+                                tab: tab,
+                              },
+                            };
+                            localStorage.setItem(
+                              "history",
+                              JSON.stringify(newHistory)
+                            );
+                            return newHistory;
+                          });
+                          setTab(tab);
+                        }}
+                      />
+                    );
+                })()}
+              </>
+            )}
+            {valid && computer ? (
+              <p className="text-white bg-secondary pb-1 ps-1">
+                <span className="badge bg-black rounded-0">
+                  {computer.type}
                 </span>
-              ) : (
-                <span className="ms-1 badge bg-danger rounded-0">Unhacked</span>
-              )}
-            </p>
-          ) : (
-            <></>
-          )}
-        </Col>
-      </Row>
+                <span
+                  className="ms-1 badge bg-primary rounded-0"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/computers/files/" + connectionId, {
+                      state: {
+                        return: "/internet/browser/" + currentIp,
+                      },
+                    });
+                  }}
+                >
+                  View Your HDD
+                </span>
+                {access ? (
+                  <span
+                    className="me-1 mt-1 badge bg-success rounded-0"
+                    style={{
+                      float: "right",
+                    }}
+                  >
+                    Hacked (
+                    {
+                      (
+                        access as {
+                          access: "GOD" | "FTP";
+                        }
+                      )?.access
+                    }
+                    )
+                  </span>
+                ) : (
+                  <span
+                    className="me-1 mt-1 badge bg-danger rounded-0"
+                    style={{
+                      float: "right",
+                    }}
+                  >
+                    Unhacked
+                  </span>
+                )}
+              </p>
+            ) : (
+              <></>
+            )}
+          </Col>
+        </Row>
+      )}
     </Layout>
   );
 }

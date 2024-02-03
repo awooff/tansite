@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import SessionContext from "../contexts/session.context";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Layout from "./Layout";
 import { Alert } from "react-bootstrap";
 
 function ProtectedLayout({ children }: { children: any }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const session = useContext(SessionContext);
   const [valid, setValid] = useState(true);
 
@@ -19,7 +20,8 @@ function ProtectedLayout({ children }: { children: any }) {
   if (!valid) {
     navigate("/login", {
       state: {
-        message: "Please login",
+        message: "Please login!",
+        return: location.pathname,
       },
     });
     return (

@@ -51,7 +51,7 @@ function Homepage({
               <Button
                 className="rounded-0"
                 size="sm"
-                variant="success"
+                variant="primary"
                 onClick={() => {
                   setTab("login");
                 }}
@@ -60,7 +60,7 @@ function Homepage({
               </Button>
               <Button
                 className="rounded-0"
-                variant="success"
+                variant="warning"
                 size="sm"
                 disabled
                 onClick={() => {
@@ -68,6 +68,17 @@ function Homepage({
                 }}
               >
                 Files
+              </Button>
+              <Button
+                className="rounded-0"
+                variant="info"
+                size="sm"
+                disabled
+                onClick={() => {
+                  setTab("logs");
+                }}
+              >
+                Logs
               </Button>
             </>
           )}

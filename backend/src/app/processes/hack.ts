@@ -7,7 +7,9 @@ const hack = {
   settings: {
     parameters: {
       ip: true
-    }
+      
+    },
+    external: true
   },
   delay: async (computer: Computer | null, executor: Computer, data: ProcessData) => {
     if (computer === null) { throw new Error('no computer') }

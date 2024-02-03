@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Table, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ export default function Logs() {
   const game = useContext(GameContext);
   const { computerId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [logs, setLogs] = useState<Log[]>([]);
   const [valid, setValid] = useState(false);
   const [page, setPage] = useState(0);
@@ -84,6 +85,28 @@ export default function Logs() {
           </p>
         </Col>
       </Row>
+      {location?.state?.return ? (
+        <Row>
+          <Col>
+            <Alert
+              variant="primary"
+              className="bg-transparent border border-primary"
+            >
+              <p>Would you like to return to the previous page?</p>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate(location.state.return);
+                }}
+              >
+                Return
+              </Button>
+            </Alert>
+          </Col>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row>
         <Col lg={4}>
           <Row>
@@ -190,9 +213,9 @@ export default function Logs() {
                 <tbody>
                   {logs
                     .sort((a, b) => b.id - a.id)
-                    .map((log) => {
+                    .map((log, index) => {
                       return (
-                        <tr>
+                        <tr key={index}>
                           <td>{log.message}</td>
                           <td>{log.computer.ip}</td>
                           <td>{new Date(log.created).toString()}</td>

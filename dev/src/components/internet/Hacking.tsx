@@ -5,6 +5,7 @@ import { Alert, Button, Card, ListGroup, Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { Process } from "../../lib/types/process.type";
 import { createProcess } from "../../lib/process";
+import { HomepageRequest } from "../../pages/internet/Browser";
 
 function Hacking({
   connectionId,
@@ -14,6 +15,7 @@ function Hacking({
   valid,
   access,
   setTab,
+  fetchHomepage,
 }: {
   connectionId: string;
   ip: string;
@@ -22,6 +24,7 @@ function Hacking({
   valid: boolean;
   access: object | null;
   setTab: (tab: string) => void;
+  fetchHomepage: (ip: string, connectionId: string) => Promise<HomepageRequest>;
 }) {
   const game = useContext(GameContext);
   const [process, setProcess] = useState<Process | null>(null);
@@ -57,6 +60,33 @@ function Hacking({
           ) : (
             <></>
           )}
+          {process ? (
+            <Alert
+              variant="primary"
+              className="bg-transparent border-primary border pb-2"
+            >
+              <Row>
+                <Col className="display-4 text-center">⚙️</Col>
+                <Col lg={10}>
+                  <h5>Executing {process.type}</h5>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                    }}
+                  >
+                    Time remaining:{" "}
+                    {Math.floor(
+                      (new Date(process.completion).getTime() - Date.now()) /
+                        1000
+                    )}{" "}
+                    seconds
+                  </p>
+                </Col>
+              </Row>
+            </Alert>
+          ) : (
+            <></>
+          )}
           {computer.type === "search_engine" ? (
             <Button
               className="rounded-0"
@@ -86,7 +116,7 @@ function Hacking({
           <div className="d-grid bg-black border border-danger p-3">
             <Alert
               variant="danger"
-              className="bg-transparent border-secondary border rounded-0 text-center"
+              className="bg-transparent border-success border rounded-0 text-center"
             >
               <p className="display-4 mt-2 mb-5">
                 {computer.data.title}
@@ -164,25 +194,28 @@ function Hacking({
                       }
                       onClick={async () => {
                         setError(null);
-                        await createProcess(
-                          "hack",
-                          {
-                            ip: computer.ip,
-                            connectionId: connectionId,
-                          },
-                          true,
-                          (process) => {
-                            setProcess(process);
-                          }
-                        ).catch((err) => {
+                        try {
+                          await createProcess(
+                            "hack",
+                            {
+                              ip: computer.ip,
+                              connectionId: connectionId,
+                            },
+                            true,
+                            (process) => {
+                              setProcess(process);
+                            }
+                          ).finally(() => {
+                            setProcess(null);
+                          });
+                          fetchHomepage(ip, connectionId);
+                          setTab("login");
+                        } catch (err: any) {
                           setError(new Error(err));
-                          setProcess(null);
-
                           setTimeout(() => {
                             setError(null);
                           }, 3000);
-                        });
-                        await game.load();
+                        }
                       }}
                       variant={!installedCracker ? "secondary" : "primary"}
                     >
@@ -248,6 +281,31 @@ function Hacking({
                     </Card>
                     <Button
                       variant={!installedExploiter ? "secondary" : "primary"}
+                      onClick={async () => {
+                        setError(null);
+                        try {
+                          await createProcess(
+                            "exploit",
+                            {
+                              ip: computer.ip,
+                              connectionId: connectionId,
+                            },
+                            true,
+                            (process) => {
+                              setProcess(process);
+                            }
+                          ).finally(() => {
+                            setProcess(null);
+                          });
+                          fetchHomepage(ip, connectionId);
+                          setTab("login");
+                        } catch (err: any) {
+                          setError(new Error(err));
+                          setTimeout(() => {
+                            setError(null);
+                          }, 3000);
+                        }
+                      }}
                       disabled={
                         !installedExploiter ||
                         (process !== null && process.type === "exploit")

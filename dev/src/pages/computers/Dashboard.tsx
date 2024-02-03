@@ -101,13 +101,13 @@ export default function Dashboard() {
               <tbody>
                 {game.computers
                   .sort((a, b) => a.ip.charCodeAt(0) - b.ip.charCodeAt(0))
-                  .map((computer) => {
+                  .map((computer, index) => {
                     const connected =
                       game.connections &&
                       game.connections.filter((that) => that.id === computer.id)
                         .length !== 0;
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>{computer.type}</td>
                         <td>{computer.ip}</td>
                         <td>{computer.data.title}</td>

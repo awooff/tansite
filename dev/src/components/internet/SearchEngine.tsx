@@ -1,5 +1,4 @@
-import { useCallback, useContext, useState } from "react";
-import GameContext from "../../contexts/game.context";
+import { useCallback, useContext, useRef, useState } from "react";
 import { Computer } from "../../lib/types/computer.type";
 import {
   Alert,
@@ -35,9 +34,8 @@ function SearchEngine({
   setCurrentIp: (tab: string) => void;
   setTab: (tab: string) => void;
 }) {
-  const game = useContext(GameContext);
+  const searchQuery = useRef<HTMLInputElement>(null);
   const [results, setResults] = useState<DNS[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
 
@@ -105,6 +103,17 @@ function SearchEngine({
               >
                 Files
               </Button>
+              <Button
+                className="rounded-0"
+                variant="info"
+                size="sm"
+                disabled
+                onClick={() => {
+                  setTab("logs");
+                }}
+              >
+                Logs
+              </Button>
             </>
           )}
           <div
@@ -141,11 +150,17 @@ function SearchEngine({
                             type="text"
                             className="rounded-0"
                             placeholder={"Enter anything..."}
-                            value={searchQuery}
+                            ref={searchQuery}
                             name="addressbar"
                             onKeyUp={(e) => {
-                              if (e.key === "Enter") {
-                                let promise = fetchResults(searchQuery, page);
+                              if (
+                                e.key === "Enter" &&
+                                searchQuery.current?.value
+                              ) {
+                                let promise = fetchResults(
+                                  searchQuery.current.value,
+                                  page
+                                );
                                 toast.promise(promise, {
                                   loading: "Fetching search results",
                                   error: "Failed to fetch search results",
@@ -153,15 +168,17 @@ function SearchEngine({
                                 });
                               }
                             }}
-                            onChange={(e) => {
-                              setSearchQuery(e.target.value);
-                            }}
                             aria-label="Input group example"
                             aria-describedby="btnGroupAddon"
                           />
                           <Button
                             onClick={() => {
-                              let promise = fetchResults(searchQuery, page);
+                              if (!searchQuery.current?.value) return;
+
+                              let promise = fetchResults(
+                                searchQuery.current?.value,
+                                page
+                              );
                               toast.promise(promise, {
                                 loading: "Fetching search results",
                                 error: "Failed to fetch search results",
@@ -194,35 +211,41 @@ function SearchEngine({
                             <Form.Control
                               type="text"
                               className="rounded-0"
-                              placeholder={"Search for anything..."}
-                              value={searchQuery}
+                              placeholder={"Enter anything..."}
+                              ref={searchQuery}
                               name="addressbar"
                               onKeyUp={(e) => {
-                                if (e.key === "Enter") {
-                                  let promise = fetchResults(searchQuery, page);
+                                if (
+                                  e.key === "Enter" &&
+                                  searchQuery.current?.value
+                                ) {
+                                  let promise = fetchResults(
+                                    searchQuery.current.value,
+                                    page
+                                  );
                                   toast.promise(promise, {
                                     loading: "Fetching search results",
                                     error: "Failed to fetch search results",
                                     success: "Success!",
                                   });
-                                  game.load();
                                 }
-                              }}
-                              onChange={(e) => {
-                                setSearchQuery(e.target.value);
                               }}
                               aria-label="Input group example"
                               aria-describedby="btnGroupAddon"
                             />
                             <Button
                               onClick={() => {
-                                let promise = fetchResults(searchQuery, page);
+                                if (!searchQuery.current?.value) return;
+
+                                let promise = fetchResults(
+                                  searchQuery.current?.value,
+                                  page
+                                );
                                 toast.promise(promise, {
                                   loading: "Fetching search results",
                                   error: "Failed to fetch search results",
                                   success: "Success!",
                                 });
-                                game.load();
                               }}
                               size="sm"
                               variant="success"
@@ -240,7 +263,7 @@ function SearchEngine({
                     </p>
                     {results.map((result, index) => {
                       return (
-                        <Row>
+                        <Row key={index}>
                           <Col>
                             <div
                               className={"d-grid p-2"}

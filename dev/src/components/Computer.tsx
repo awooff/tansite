@@ -4,7 +4,7 @@ import { Computer } from "../lib/types/computer.type";
 import { Hardware, HardwareType } from "../lib/types/hardware.type";
 import GameContext, { GameType } from "../contexts/game.context";
 import SessionContext, { SessionType } from "../contexts/session.context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ComputerThumbnail({
   computer,
@@ -26,6 +26,7 @@ export default function ComputerThumbnail({
 }) {
   const game = useContext(GameContext);
   const session = useContext(SessionContext);
+  const navigate = useNavigate();
   const connected =
     connections &&
     connections?.filter((that) => that.id === computer.id).length !== 0;
@@ -50,7 +51,28 @@ export default function ComputerThumbnail({
           <span className="badge bg-secondary me-2">{computer.type}</span>
           {computer.data.title}
           {session.user.id === computer.userId ? (
-            <span className="ms-2">✏️</span>
+            <>
+              <span className="ms-2">✏️</span>
+              {connected ? (
+                <span
+                  className="ms-2"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/internet/browser", {
+                      state: {
+                        connectionId: computer.id,
+                      },
+                    });
+                  }}
+                >
+                  🌎
+                </span>
+              ) : (
+                <></>
+              )}
+            </>
           ) : (
             ""
           )}
@@ -134,9 +156,9 @@ export default function ComputerThumbnail({
               counts[hardware.type] += 1;
             });
 
-            return Object.values(hardwares).map((hardware) => {
+            return Object.values(hardwares).map((hardware, index) => {
               return (
-                <ListGroup.Item>
+                <ListGroup.Item key={index}>
                   <span className="badge bg-secondary me-4">
                     {counts[hardware.type]} /{" "}
                     {computer.data?.hardwareLimits?.[hardware.type] || -1}

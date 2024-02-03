@@ -28,7 +28,7 @@ export default function Computers({
   return (
     <>
       {thumbnail &&
-        game.computers.map((computer) => {
+        game.computers.map((computer, index) => {
           if (
             onlyDisconnected &&
             game.connections.find((val) => val.id === computer.id)
@@ -42,6 +42,7 @@ export default function Computers({
 
           return (
             <ComputerThumbnail
+              key={index}
               computer={computer}
               connections={game.connections}
               render={render}

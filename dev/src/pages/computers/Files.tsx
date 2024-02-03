@@ -1,8 +1,16 @@
 import React, { useContext } from "react";
 import Layout from "../../components/Layout";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
-import { Card, Col, Row, Table, Button, ProgressBar } from "react-bootstrap";
+import {
+  Card,
+  Col,
+  Row,
+  Table,
+  Button,
+  ProgressBar,
+  Alert,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { createProcess } from "../../lib/process";
 
@@ -11,6 +19,7 @@ export default function Files() {
   const { computerId } = useParams();
   const computer = game.computers.find((val) => val.id === computerId);
   const navigate = useNavigate();
+  const location = useLocation();
 
   //if no computer or not connected
   if (!computer || !game.connections?.find((val) => val.id === computer?.id))
@@ -77,6 +86,28 @@ export default function Files() {
           </p>
         </Col>
       </Row>
+      {location?.state?.return ? (
+        <Row>
+          <Col>
+            <Alert
+              variant="primary"
+              className="bg-transparent border border-primary"
+            >
+              <p>Would you like to return to the previous page?</p>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate(location.state.return);
+                }}
+              >
+                Return
+              </Button>
+            </Alert>
+          </Col>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row>
         <Col lg={4}>
           <Card body className="bg-transparent border border-success">
@@ -181,9 +212,9 @@ export default function Files() {
             <tbody>
               {computer.software
                 .sort((a, b) => a.type.charCodeAt(0) - b.type.charCodeAt(0))
-                .map((software) => {
+                .map((software, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{software.type}</td>
                       <td
                         className={

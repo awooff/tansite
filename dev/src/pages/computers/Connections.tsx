@@ -4,11 +4,14 @@ import { Alert, ButtonGroup, Col, Row } from "react-bootstrap";
 import Computers from "../../components/Computers";
 import { Button } from "react-bootstrap";
 import { postRequestHandler } from "../../lib/submit";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 
 export default function Connections() {
   const game = useContext(GameContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <Layout>
       <Row>
@@ -18,6 +21,28 @@ export default function Connections() {
           </p>
         </Col>
       </Row>
+      {location?.state?.return ? (
+        <Row>
+          <Col>
+            <Alert
+              variant="primary"
+              className="bg-transparent border border-primary"
+            >
+              <p>Would you like to return to the previous page?</p>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate(location.state.return);
+                }}
+              >
+                Return
+              </Button>
+            </Alert>
+          </Col>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row>
         <Col>
           <Alert variant="info" className="bg-transparent border border-danger">
