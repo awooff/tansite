@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import * as Form from '@radix-ui/react-form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Box, Button, TextField } from '@radix-ui/themes';
@@ -9,7 +9,7 @@ import { LoginSchema } from '@schemas/login.schema';
 
 type Props = {};
 
-export const RegisterForm: React.FC<Props> = () => {
+export const RegisterForm: React.FC<Props> = (): ReactElement => {
 	const user = userStore(state => state.user);
 	const jwt = userStore(state => state.user.jwt)
 	const {removeUserData, updateUser} = userStore();
