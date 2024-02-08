@@ -41,7 +41,7 @@ function Files({
 
   return (
     <>
-      {!valid || !computer ? (
+      {!valid || !computer || !computer.hardware || !computer.software ? (
         <Alert
           variant="danger"
           className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
@@ -155,6 +155,7 @@ function Files({
           >
             <FileComponent
               computer={computer}
+              connectionId={connectionId}
               onCreation={(process) => setProcess(process)}
               onError={(error) => setError(error)}
             />

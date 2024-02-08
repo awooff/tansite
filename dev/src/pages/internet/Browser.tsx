@@ -473,7 +473,11 @@ export default function Browser() {
                   if (tab === "homepage")
                     return (
                       <Homepage
-                        computer={computer}
+                        computer={
+                          session.data?.logins?.[connectionId]?.find(
+                            (that) => that.id === computer?.id
+                          ) || computer
+                        }
                         connectionId={connectionId}
                         valid={valid}
                         access={access}
@@ -502,7 +506,7 @@ export default function Browser() {
                     return (
                       <Connection
                         computer={
-                          session.data?.logins[connectionId].find(
+                          session.data?.logins?.[connectionId]?.find(
                             (that) => that.id === computer?.id
                           ) || computer
                         }
@@ -534,7 +538,7 @@ export default function Browser() {
                     return (
                       <Hacking
                         computer={
-                          session.data?.logins[connectionId].find(
+                          session.data?.logins?.[connectionId]?.find(
                             (that) => that.id === computer?.id
                           ) || computer
                         }
@@ -574,7 +578,7 @@ export default function Browser() {
                     return (
                       <Logs
                         computer={
-                          session.data?.logins[connectionId].find(
+                          session.data?.logins?.[connectionId]?.find(
                             (that) => that.id === computer?.id
                           ) || computer
                         }
@@ -606,7 +610,7 @@ export default function Browser() {
                     return (
                       <Files
                         computer={
-                          session.data?.logins[connectionId].find(
+                          session.data?.logins?.[connectionId]?.find(
                             (that) => that.id === computer?.id
                           ) || computer
                         }

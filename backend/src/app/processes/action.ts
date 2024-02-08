@@ -48,7 +48,7 @@ const action = {
     if (data.custom.action === "upload" && software.software) {
       return (
         (software.software.size * 10) /
-          computer.getCombinedHardwareStrength("Download") +
+          computer.getCombinedHardwareStrength("Upload") +
         settings.processDelay.action * 1000
       );
     }

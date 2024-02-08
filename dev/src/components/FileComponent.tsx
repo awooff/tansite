@@ -19,9 +19,11 @@ function FileComponent({
   computer,
   onCreation,
   onError,
+  connectionId,
 }: {
   children?: any;
   computer: Computer;
+  connectionId?: string;
   onCreation?: (process: Process) => void;
   onError?: (error: Error) => void;
 }) {
@@ -166,7 +168,7 @@ function FileComponent({
                                   action: "uninstall",
                                   ip: computer.ip,
                                   softwareId: software.id,
-                                  connectionId: computer.id,
+                                  connectionId: connectionId || computer.id,
                                 },
                                 true,
                                 onCreation,
@@ -195,7 +197,7 @@ function FileComponent({
                                     action: "install",
                                     ip: computer.ip,
                                     softwareId: software.id,
-                                    connectionId: computer.id,
+                                    connectionId: connectionId || computer.id,
                                   },
                                   true,
                                   onCreation,
@@ -221,7 +223,7 @@ function FileComponent({
                                     action: "delete",
                                     ip: computer.ip,
                                     softwareId: software.id,
-                                    connectionId: computer.id,
+                                    connectionId: connectionId || computer.id,
                                   },
                                   true,
                                   onCreation,
@@ -249,7 +251,7 @@ function FileComponent({
                                 action: "inspect",
                                 ip: computer.ip,
                                 softwareId: software.id,
-                                connectionId: computer.id,
+                                connectionId: connectionId || computer.id,
                               },
                               true,
                               onCreation,
