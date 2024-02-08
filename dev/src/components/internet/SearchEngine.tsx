@@ -14,6 +14,7 @@ import {
 import { DNS } from "../../lib/types/dns.type";
 import { postRequestHandler } from "../../lib/submit";
 import toast from "react-hot-toast";
+import SessionContext from "../../contexts/session.context";
 
 function SearchEngine({
   connectionId,
@@ -34,6 +35,7 @@ function SearchEngine({
   setCurrentIp: (tab: string) => void;
   setTab: (tab: string) => void;
 }) {
+  const session = useContext(SessionContext);
   const searchQuery = useRef<HTMLInputElement>(null);
   const [results, setResults] = useState<DNS[]>([]);
   const [page, setPage] = useState(0);
@@ -85,18 +87,22 @@ function SearchEngine({
               <Button
                 className="rounded-0"
                 size="sm"
-                variant="success"
+                variant="primary"
                 onClick={() => {
-                  setTab("login");
+                  setTab("connection");
                 }}
               >
-                Login
+                Connection
               </Button>
               <Button
                 className="rounded-0"
+                variant="warning"
                 size="sm"
-                disabled
-                variant="success"
+                disabled={
+                  session.data.logins?.[connectionId]?.find(
+                    (login) => login.id === computer.id
+                  ) === undefined
+                }
                 onClick={() => {
                   setTab("files");
                 }}
@@ -107,7 +113,11 @@ function SearchEngine({
                 className="rounded-0"
                 variant="info"
                 size="sm"
-                disabled
+                disabled={
+                  session.data.logins?.[connectionId]?.find(
+                    (login) => login.id === computer.id
+                  ) === undefined
+                }
                 onClick={() => {
                   setTab("logs");
                 }}

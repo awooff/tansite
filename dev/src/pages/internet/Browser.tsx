@@ -27,7 +27,10 @@ import toast from "react-hot-toast";
 import Homepage from "../../components/internet/Homepage";
 import SearchEngine from "../../components/internet/SearchEngine";
 import Hacking from "../../components/internet/Hacking";
-import Login from "../../components/internet/Login";
+import Connection from "../../components/internet/Connection";
+import SessionContext from "../../contexts/session.context";
+import Logs from "../../components/internet/Logs";
+import Files from "../../components/internet/Files";
 
 export type HomepageRequest = {
   computer: Computer;
@@ -38,6 +41,7 @@ export type HomepageRequest = {
 
 export default function Browser() {
   const game = useContext(GameContext);
+  const session = useContext(SessionContext);
   const { ip } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -63,7 +67,9 @@ export default function Browser() {
   const [access, setAccess] = useState<object | null>(null);
   const currentAddress = useRef<HTMLInputElement>(null);
   const [tab, setTab] = useState("homepage");
-  const [session, setSession] = useState<Record<string, string[]>>({});
+  const [browserSession, setBrowserSession] = useState<
+    Record<string, string[]>
+  >({});
 
   const fetchHomepage = useCallback(
     async (ip: string, connectionId: string) => {
@@ -150,7 +156,7 @@ export default function Browser() {
 
           if (currentAddress.current) currentAddress.current.value = currentIp;
 
-          setSession((prev) => {
+          setBrowserSession((prev) => {
             if (!prev[connectionId]) prev[connectionId] = [];
 
             if (!prev[connectionId].includes(currentIp))
@@ -258,6 +264,20 @@ export default function Browser() {
                   ) : (
                     <></>
                   )}
+                  {session.data.logins?.[connection.id]?.map((connection) => (
+                    <>
+                      <br />
+                      <span className={"mt-1 badge rounded-0 "}>
+                        ✅ Active Connection @{" "}
+                        <a
+                          className="text-white"
+                          href={"#navigate:/internet/browser/" + connection.ip}
+                        >
+                          <u>{connection.ip}</u>
+                        </a>
+                      </span>
+                    </>
+                  ))}
                 </NavDropdown.Item>
               </div>
             ))}
@@ -321,7 +341,7 @@ export default function Browser() {
           </Nav>
           <Nav className="me-auto mx-auto">
             <NavDropdown title={"📖"}>
-              {session?.[connectionId]?.map((session, index) => (
+              {browserSession?.[connectionId]?.map((session, index) => (
                 <NavDropdown.Item
                   key={index}
                   onClick={() => {
@@ -340,21 +360,21 @@ export default function Browser() {
                 <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                   <Button
                     disabled={
-                      session?.[connectionId]?.length === 1 || currentIp
-                        ? session?.[connectionId]?.indexOf(
+                      browserSession?.[connectionId]?.length === 1 || currentIp
+                        ? browserSession?.[connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) === 0
                         : false
                     }
                     onClick={() => {
                       setCurrentIp(
-                        session?.[connectionId]?.[
-                          session?.[connectionId]?.indexOf(
+                        browserSession?.[connectionId]?.[
+                          browserSession?.[connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) - 1
                         ] ||
-                          session?.[connectionId]?.[
-                            session?.[connectionId].length - 1
+                          browserSession?.[connectionId]?.[
+                            browserSession?.[connectionId].length - 1
                           ]
                       );
                     }}
@@ -367,22 +387,22 @@ export default function Browser() {
                 <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                   <Button
                     disabled={
-                      session?.[connectionId]?.length === 1 || currentIp
-                        ? session?.[connectionId]?.indexOf(
+                      browserSession?.[connectionId]?.length === 1 || currentIp
+                        ? browserSession?.[connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) ===
-                          session?.[connectionId]?.length - 1
+                          browserSession?.[connectionId]?.length - 1
                         : false
                     }
                     onClick={() => {
                       setCurrentIp(
-                        session?.[connectionId]?.[
-                          session?.[connectionId]?.indexOf(
+                        browserSession?.[connectionId]?.[
+                          browserSession?.[connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) + 1
                         ] ||
-                          session?.[connectionId]?.[
-                            session?.[connectionId].length - 1
+                          browserSession?.[connectionId]?.[
+                            browserSession?.[connectionId].length - 1
                           ]
                       );
                     }}
@@ -482,10 +502,9 @@ export default function Browser() {
                         }}
                       />
                     );
-
-                  if (tab === "login")
+                  else if (tab === "connection")
                     return (
-                      <Login
+                      <Connection
                         computer={computer}
                         connectionId={connectionId}
                         valid={valid}
@@ -511,8 +530,7 @@ export default function Browser() {
                         }}
                       />
                     );
-
-                  if (tab === "hack")
+                  else if (tab === "hack")
                     return (
                       <Hacking
                         computer={computer}
@@ -540,6 +558,83 @@ export default function Browser() {
                           setTab(tab);
                         }}
                       />
+                    );
+                  else if (tab === "logs")
+                    return (
+                      <Logs
+                        computer={computer}
+                        connectionId={connectionId}
+                        valid={valid}
+                        access={access}
+                        ip={currentIp || "0.0.0.0"}
+                        markdown={markdown}
+                        setTab={(tab: string) => {
+                          setHistory((history) => {
+                            let newHistory = {
+                              ...history,
+                              [connectionId]: {
+                                ...history[connectionId],
+                                tab: tab,
+                              },
+                            };
+                            localStorage.setItem(
+                              "history",
+                              JSON.stringify(newHistory)
+                            );
+                            return newHistory;
+                          });
+                          setTab(tab);
+                        }}
+                      />
+                    );
+                  else if (tab === "files")
+                    return (
+                      <Files
+                        computer={computer}
+                        connectionId={connectionId}
+                        valid={valid}
+                        access={access}
+                        ip={currentIp || "0.0.0.0"}
+                        markdown={markdown}
+                        setTab={(tab: string) => {
+                          setHistory((history) => {
+                            let newHistory = {
+                              ...history,
+                              [connectionId]: {
+                                ...history[connectionId],
+                                tab: tab,
+                              },
+                            };
+                            localStorage.setItem(
+                              "history",
+                              JSON.stringify(newHistory)
+                            );
+                            return newHistory;
+                          });
+                          setTab(tab);
+                        }}
+                      />
+                    );
+                  else
+                    return (
+                      <>
+                        <Alert
+                          variant="danger"
+                          className="bg-transparent border-danger border"
+                        >
+                          Invalid tab
+                          <br />
+                          <Button
+                            className="mt-2"
+                            variant="danger"
+                            onClick={() => {
+                              setTab("homepage");
+                            }}
+                          >
+                            Go back to homepage
+                          </Button>
+                        </Alert>
+                      </>
                     );
                 })()}
               </>

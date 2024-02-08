@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Alert, Button, Card } from "react-bootstrap";
 import { Computer } from "../../lib/types/computer.type";
+import SessionContext from "../../contexts/session.context";
 
 function Homepage({
   connectionId,
@@ -19,6 +20,7 @@ function Homepage({
   access: object | null;
   setTab: (tab: string) => void;
 }) {
+  const session = useContext(SessionContext);
   return (
     <>
       {!valid || !computer ? (
@@ -53,16 +55,20 @@ function Homepage({
                 size="sm"
                 variant="primary"
                 onClick={() => {
-                  setTab("login");
+                  setTab("connection");
                 }}
               >
-                Login
+                Connection
               </Button>
               <Button
                 className="rounded-0"
                 variant="warning"
                 size="sm"
-                disabled
+                disabled={
+                  session.data.logins?.[connectionId]?.find(
+                    (login) => login.id === computer.id
+                  ) === undefined
+                }
                 onClick={() => {
                   setTab("files");
                 }}
@@ -73,7 +79,11 @@ function Homepage({
                 className="rounded-0"
                 variant="info"
                 size="sm"
-                disabled
+                disabled={
+                  session.data.logins?.[connectionId]?.find(
+                    (login) => login.id === computer.id
+                  ) === undefined
+                }
                 onClick={() => {
                   setTab("logs");
                 }}
