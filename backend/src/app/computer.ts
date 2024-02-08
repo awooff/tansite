@@ -201,14 +201,14 @@ export class Computer {
   }
 
   public async log(message: string, from?: Computer) {
-    const computer = from == null ? this : from;
+    const computer = from || this;
 
     if (!computer?.computer) throw new Error("computer not loaded");
 
     await server.prisma.logs.create({
       data: {
         userId: computer.computer.userId,
-        computerId: computer.computerId,
+        computerId: this.computerId,
         senderId: from?.computerId || computer.computerId,
         senderIp: from?.ip || computer.ip,
         gameId: process.env.CURRENT_GAME_ID,

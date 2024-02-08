@@ -84,11 +84,12 @@ function LogComponent({
             bordered
             hover
             style={{
-              fontSize: "12px",
+              fontSize: "14px",
             }}
           >
             <thead>
               <tr>
+                <th></th>
                 <th>message</th>
                 <th>sender</th>
                 <th>time</th>
@@ -100,9 +101,24 @@ function LogComponent({
                 .map((log, index) => {
                   return (
                     <tr key={index}>
+                      <td className="bg-light">
+                        {(index + 1) * Math.max(1, page)}
+                      </td>
                       <td>{log.message}</td>
                       <td>
-                        <a>{log.senderIp}</a>
+                        <a
+                          className={
+                            !local
+                              ? log.senderId === connectionId
+                                ? "text-danger"
+                                : "text-white"
+                              : log.senderId !== computerId
+                                ? "text-danger"
+                                : "text-white"
+                          }
+                        >
+                          {log.senderIp}
+                        </a>
                       </td>
                       <td>{new Date(log.created).toString()}</td>
                     </tr>

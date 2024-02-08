@@ -13,7 +13,7 @@ export default function Connections() {
   const location = useLocation();
 
   return (
-    <Layout>
+    <Layout fluid>
       <Row>
         <Col>
           <p className="display-4 border-bottom pb-3 border-success">
@@ -50,7 +50,7 @@ export default function Connections() {
           </Alert>
         </Col>
       </Row>
-      <Row lg={3} sm={1} className="gy-4">
+      <Row lg={4} sm={1} className="gy-4">
         <Computers
           thumbnail
           onlyConnected={true}
@@ -136,7 +136,7 @@ export default function Connections() {
           </Alert>
         </Col>
       </Row>
-      <Row lg={3} sm={1} className="gy-3">
+      <Row lg={4} sm={1} className="gy-3">
         <Computers
           thumbnail
           onlyDisconnected={true}

@@ -4,6 +4,7 @@ import { Computer } from "../../lib/types/computer.type";
 import { Process } from "../../lib/types/process.type";
 import { createProcess } from "../../lib/process";
 import SessionContext from "../../contexts/session.context";
+import FileComponent from "../FileComponent";
 
 function Files({
   connectionId,
@@ -152,7 +153,11 @@ function Files({
               height: "100%",
             }}
           >
-            <Row></Row>
+            <FileComponent
+              computer={computer}
+              onCreation={(process) => setProcess(process)}
+              onError={(error) => setError(error)}
+            />
           </div>
         </>
       )}

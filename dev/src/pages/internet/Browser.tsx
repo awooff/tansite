@@ -501,7 +501,11 @@ export default function Browser() {
                   else if (tab === "connection")
                     return (
                       <Connection
-                        computer={computer}
+                        computer={
+                          session.data?.logins[connectionId].find(
+                            (that) => that.id === computer?.id
+                          ) || computer
+                        }
                         connectionId={connectionId}
                         valid={valid}
                         access={access}
@@ -529,7 +533,11 @@ export default function Browser() {
                   else if (tab === "hack")
                     return (
                       <Hacking
-                        computer={computer}
+                        computer={
+                          session.data?.logins[connectionId].find(
+                            (that) => that.id === computer?.id
+                          ) || computer
+                        }
                         connectionId={connectionId}
                         valid={valid}
                         access={access}
@@ -565,7 +573,11 @@ export default function Browser() {
                   else if (tab === "logs")
                     return (
                       <Logs
-                        computer={computer}
+                        computer={
+                          session.data?.logins[connectionId].find(
+                            (that) => that.id === computer?.id
+                          ) || computer
+                        }
                         connectionId={connectionId}
                         valid={valid}
                         access={access}
@@ -593,7 +605,11 @@ export default function Browser() {
                   else if (tab === "files")
                     return (
                       <Files
-                        computer={computer}
+                        computer={
+                          session.data?.logins[connectionId].find(
+                            (that) => that.id === computer?.id
+                          ) || computer
+                        }
                         connectionId={connectionId}
                         valid={valid}
                         access={access}

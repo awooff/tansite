@@ -156,7 +156,7 @@ function Logs({
             <Row>
               <Col>
                 {computer.id ? (
-                  <LogComponent ip={computer.ip} connectionId={connectionId} />
+                  <LogComponent ip={ip} connectionId={connectionId} />
                 ) : (
                   <Alert variant="danger">Invalid computer</Alert>
                 )}

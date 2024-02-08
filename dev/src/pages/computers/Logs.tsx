@@ -32,7 +32,7 @@ export default function Logs() {
     );
 
   return (
-    <Layout>
+    <Layout fluid>
       <Row>
         <Col>
           <p className="display-4 border-bottom pb-3 border-success">
@@ -64,7 +64,7 @@ export default function Logs() {
         <></>
       )}
       <Row>
-        <Col lg={4}>
+        <Col lg={3}>
           <Row>
             <Col>
               <Card body className="bg-transparent border border-danger">

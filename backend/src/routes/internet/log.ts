@@ -1,62 +1,58 @@
-import { Route } from '../../lib/types/route.type'
-import { Groups } from '@prisma/client'
-import { Computer, findComputer, getComputer } from '@/app/computer'
-import { connectionSchema } from '@/lib/schemas/connection.schema'
-import { isConnectedToMachine } from '@/lib/helpers'
-import { paginationSchema } from '@/lib/schemas/pagination.schema'
+import { Route } from "../../lib/types/route.type";
+import { Groups } from "@prisma/client";
+import { Computer, findComputer, getComputer } from "@/app/computer";
+import { connectionSchema } from "@/lib/schemas/connection.schema";
+import { isConnectedToMachine } from "@/lib/helpers";
+import { paginationSchema } from "@/lib/schemas/pagination.schema";
 
 const fetch = {
-
   settings: {
     groupOnly: Groups.User,
-    title: 'Fetch Computer',
-    description: 'Used in the internet browser'
+    title: "Fetch Computer",
+    description: "Used in the internet browser",
   },
 
-  async post (req, res, error) {
-    const body = await connectionSchema.safeParseAsync(req.body)
+  async post(req, res, error) {
+    const body = await connectionSchema.safeParseAsync(req.body);
 
-    if (!body.success) return error(body.error)
-    if(!req.session.userId) return error('no user')
+    if (!body.success) return error(body.error);
+    if (!req.session.userId) return error("no user");
 
-    const { ip, connectionId } = body.data
-    const computer = await findComputer(ip)
+    const { ip, connectionId } = body.data;
+    const computer = await findComputer(ip);
     const pagination = await paginationSchema.safeParseAsync(req.body);
-   
-    if (!pagination.success)
-      return error(pagination.error)
 
-    const { page } = pagination.data
+    if (!pagination.success) return error(pagination.error);
 
-    if (!computer)
-      return error('computer invalid')
+    const { page } = pagination.data;
 
-    if (!req.session.connections?.find((element) => element.id === connectionId))
-      return error('not connected to that current computer')
+    if (!computer) return error("computer invalid");
+
+    if (
+      !req.session.connections?.find((element) => element.id === connectionId)
+    )
+      return error("not connected to that current computer");
 
     let target = null;
-    if (!req.session.connections?.find((element) => element.id === connectionId))
-      return error('not connected to that current computer')
-    
-    const executor = await getComputer(connectionId)
 
-    if (!executor)
-      throw new Error('bad computer')
+    const executor = await getComputer(connectionId);
 
-    target = new Computer(computer?.id, computer)
+    if (!executor) throw new Error("bad computer");
+
+    target = new Computer(computer?.id, computer);
 
     if (!isConnectedToMachine(req, executor, target))
-      return error('your current computer must be connected to this computer')
+      return error("your current computer must be connected to this computer");
 
-    let logs = await executor.getLogs(64, page);
-    let count = await executor.getLogCount();
-    
+    let logs = await target.getLogs(64, page);
+    let count = await target.getLogCount();
+
     res.send({
       logs,
       count,
-      pages: Math.floor(count / 64) + 1
-    })
-  }
-} satisfies Route
+      pages: Math.floor(count / 64) + 1,
+    });
+  },
+} satisfies Route;
 
-export default fetch
+export default fetch;
