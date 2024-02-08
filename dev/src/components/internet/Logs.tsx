@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Card, Col, Row } from "react-bootstrap";
 import { Computer } from "../../lib/types/computer.type";
 import { Process } from "../../lib/types/process.type";
 import { createProcess } from "../../lib/process";
 import SessionContext from "../../contexts/session.context";
+import LogComponent from "../LogComponent";
 
 function Logs({
   connectionId,
@@ -25,6 +26,18 @@ function Logs({
   const session = useContext(SessionContext);
   const [process, setProcess] = useState<Process | null>(null);
   const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    if (!computer) return;
+    if (!session.loaded) return;
+
+    if (
+      !session.data.logins[connectionId]?.find(
+        (that) => that.id === computer.id
+      )
+    )
+      setTab("homepage");
+  }, [session, computer]);
 
   return (
     <>
@@ -140,7 +153,15 @@ function Logs({
               height: "100%",
             }}
           >
-            <Row></Row>
+            <Row>
+              <Col>
+                {computer.id ? (
+                  <LogComponent ip={computer.ip} connectionId={connectionId} />
+                ) : (
+                  <Alert variant="danger">Invalid computer</Alert>
+                )}
+              </Col>
+            </Row>
           </div>
         </>
       )}

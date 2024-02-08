@@ -208,8 +208,9 @@ function Hacking({
                           ).finally(() => {
                             setProcess(null);
                           });
-                          fetchHomepage(ip, connectionId);
-                          setTab("login");
+                          fetchHomepage(ip, connectionId).then(() => {
+                            setTab("connection");
+                          });
                         } catch (err: any) {
                           setError(new Error(err));
                           setTimeout(() => {
@@ -297,8 +298,9 @@ function Hacking({
                           ).finally(() => {
                             setProcess(null);
                           });
-                          fetchHomepage(ip, connectionId);
-                          setTab("login");
+                          fetchHomepage(ip, connectionId).then(() => {
+                            setTab("connection");
+                          });
                         } catch (err: any) {
                           setError(new Error(err));
                           setTimeout(() => {

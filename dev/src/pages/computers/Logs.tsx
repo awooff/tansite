@@ -2,64 +2,20 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
-import { Card, Col, Row, Table, Button, Alert } from "react-bootstrap";
+import { Card, Col, Row, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { postRequestHandler } from "../../lib/submit";
-import { Log } from "../../lib/types/log.type";
-import { Computer } from "../../lib/types/computer.type";
 import { createProcess } from "../../lib/process";
+import LogComponent from "../../components/LogComponent";
 
 export default function Logs() {
   const game = useContext(GameContext);
   const { computerId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [logs, setLogs] = useState<Log[]>([]);
-  const [valid, setValid] = useState(false);
-  const [page, setPage] = useState(0);
-  const [pageMax, setPages] = useState(0);
-  const [count, setCount] = useState(0);
-  const [computer, setComputer] = useState<Computer | null>(null);
-
-  const fetchLogs = useCallback(async () => {
-    if (!computerId) return;
-
-    const result = await postRequestHandler<{
-      logs: Log[];
-      pages: number;
-      count: number;
-    }>("/computers/log", {
-      computerId: computerId,
-      page: page,
-    });
-
-    return result.data;
-  }, [computerId, page]);
-
-  useEffect(() => {
-    if (!game.loaded) return;
-    if (!fetchLogs) return;
-
-    const computer =
-      game.computers.find((val) => val.id === computerId) || null;
-    setComputer(computer);
-
-    if (!computer || !game.connections?.find((val) => val.id === computer?.id))
-      setValid(false);
-
-    fetchLogs().then((data) => {
-      if (!data) setValid(false);
-      else {
-        setPages(data.pages);
-        setCount(data.count);
-        setLogs(data.logs || []);
-        setValid(true);
-      }
-    });
-  }, [game, computerId, fetchLogs]);
+  const computer = game.computers.find((val) => val.id === computerId);
 
   //if no computer or not connected
-  if (!valid || !computer)
+  if (!computer || !game.connections?.find((val) => val.id === computer?.id))
     return (
       <Layout>
         <Row>
@@ -116,7 +72,6 @@ export default function Logs() {
                   <Button
                     size="sm"
                     variant="danger"
-                    disabled={logs.length === 0}
                     onClick={async (e) => {
                       e.currentTarget.setAttribute("disabled", "true");
                       await createProcess(
@@ -182,50 +137,11 @@ export default function Logs() {
           </Card>
         </Col>
         <Col>
-          <Alert className="bg-transparent border border-danger">
-            {count} total logs{" "}
-            <span
-              style={{
-                float: "right",
-              }}
-              className="badge bg-black"
-            >
-              page {page + 1}/{pageMax}
-            </span>
-          </Alert>
-          <Row>
-            <Col>
-              <Table
-                striped
-                bordered
-                hover
-                style={{
-                  fontSize: "12px",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th>message</th>
-                    <th>from</th>
-                    <th>time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {logs
-                    .sort((a, b) => b.id - a.id)
-                    .map((log, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{log.message}</td>
-                          <td>{log.computer.ip}</td>
-                          <td>{new Date(log.created).toString()}</td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </Table>
-            </Col>
-          </Row>
+          {computerId ? (
+            <LogComponent computerId={computerId} local={true} />
+          ) : (
+            <Alert variant="danger">Invalid computer</Alert>
+          )}
         </Col>
       </Row>
     </Layout>

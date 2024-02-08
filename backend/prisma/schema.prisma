@@ -239,6 +239,7 @@ model Logs {
     computer   Computer @relation(fields: [computerId], references: [id])
     computerId String
     senderId   String
+    senderIp  String
     game       Game     @relation(fields: [gameId], references: [id])
     gameId     String
     message    String

@@ -42,7 +42,7 @@ export type HomepageRequest = {
 export default function Browser() {
   const game = useContext(GameContext);
   const session = useContext(SessionContext);
-  const { ip } = useParams();
+  const { ip: target } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [computer, setComputer] = useState<Computer | null>(null);
@@ -63,7 +63,7 @@ export default function Browser() {
       }
     >
   >({});
-  const [currentIp, setCurrentIp] = useState<string | null>(null);
+  const [currentIp, setCurrentIp] = useState<string | null>("0.0.0.0");
   const [access, setAccess] = useState<object | null>(null);
   const currentAddress = useRef<HTMLInputElement>(null);
   const [tab, setTab] = useState("homepage");
@@ -99,25 +99,72 @@ export default function Browser() {
   );
 
   useEffect(() => {
-    const newIp = ip || currentIp || "0.0.0.0";
-    if (
-      (newIp !== currentIp && !currentIp) ||
-      (currentIp === "0.0.0.0" && ip !== "0.0.0.0")
-    ) {
-      setValid(false);
-      setCurrentIp(newIp);
-    }
-
-    if (currentAddress.current) currentAddress.current.value = newIp;
-  }, [ip, currentIp, location]);
-
-  useEffect(() => {
-    if (!fetchHomepage) return;
-    if (!connectionId) return;
+    if (!target) return;
     if (!currentIp) return;
 
-    const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
+    if (currentIp === "0.0.0.0" && currentIp !== target) {
+      setValid(false);
+      setCurrentIp(target);
+    }
+  }, [target, currentIp]);
 
+  const loadBrowser = useCallback(
+    async (ip: string) => {
+      let data = await fetchHomepage(ip, connectionId);
+
+      if (!data) setValid(false);
+      else {
+        setAccess(data.access || null);
+
+        if (data.access && history[connectionId]?.tab === "hack")
+          history[connectionId].tab = "login";
+        else if (!data.access && history[connectionId]?.tab === "login")
+          history[connectionId].tab = "homepage";
+
+        setTab(history[connectionId]?.tab || "homepage");
+        setHistory({
+          ...history,
+          [connectionId]: {
+            ip: ip,
+            tab: history[connectionId]?.tab || "homepage",
+          },
+        });
+        setComputer(data.computer);
+        setMarkdown(data.markdown);
+        setBrowserSession((prev) => {
+          if (!prev[connectionId]) prev[connectionId] = [];
+
+          if (!prev[connectionId].includes(ip)) prev[connectionId].push(ip);
+
+          return prev;
+        });
+
+        if (currentAddress.current && currentAddress?.current?.value !== ip)
+          currentAddress.current.value = ip;
+
+        localStorage.setItem(
+          "history",
+          JSON.stringify({
+            ...history,
+            [connectionId]: {
+              ip: ip,
+              tab: history[connectionId]?.tab || tab || "homepage",
+            },
+          })
+        );
+
+        setValid(true);
+
+        return data;
+      }
+    },
+    [history]
+  );
+
+  useEffect(() => {
+    if (!connectionId) return;
+
+    const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
     setHistory((prev) => {
       return {
         ...prev,
@@ -125,65 +172,24 @@ export default function Browser() {
       };
     });
 
-    if (currentIp === "0.0.0.0" && history[connectionId]) {
+    if (
+      !currentIp ||
+      (currentIp == "0.0.0.0" &&
+        history[connectionId] &&
+        currentIp !== history[connectionId].ip)
+    ) {
       setCurrentIp(history[connectionId].ip);
       setTab(history[connectionId].tab || "homepage");
       return;
     }
 
-    const promise = fetchHomepage(currentIp, connectionId).then(
-      (data: HomepageRequest) => {
-        if (!data) setValid(false);
-        else {
-          setAccess(data.access || null);
-
-          if (data.access && history[connectionId]?.tab === "hack")
-            history[connectionId].tab = "login";
-          else if (!data.access && history[connectionId]?.tab === "login")
-            history[connectionId].tab = "homepage";
-
-          setTab(history[connectionId]?.tab || "homepage");
-          setHistory({
-            ...history,
-            [connectionId]: {
-              ip: currentIp,
-              tab: history[connectionId]?.tab || "homepage",
-            },
-          });
-          setComputer(data.computer);
-          setMarkdown(data.markdown);
-          setValid(true);
-
-          if (currentAddress.current) currentAddress.current.value = currentIp;
-
-          setBrowserSession((prev) => {
-            if (!prev[connectionId]) prev[connectionId] = [];
-
-            if (!prev[connectionId].includes(currentIp))
-              prev[connectionId].push(currentIp);
-
-            return prev;
-          });
-
-          localStorage.setItem(
-            "history",
-            JSON.stringify({
-              ...history,
-              [connectionId]: {
-                ip: currentIp,
-                tab: history[connectionId]?.tab || tab || "homepage",
-              },
-            })
-          );
-        }
-      }
-    );
-    toast.promise(promise, {
-      loading: "Fetching " + currentIp,
-      success: "Success",
-      error: "Failure",
-    });
-  }, [fetchHomepage, currentIp, connectionId]);
+    if (currentIp)
+      toast.promise(loadBrowser(currentIp), {
+        loading: "Fetching " + currentIp,
+        success: "Success",
+        error: "Failure",
+      });
+  }, [currentIp, connectionId]);
 
   return (
     <Layout fluid={true}>
@@ -218,22 +224,9 @@ export default function Browser() {
                   }}
                   onClick={() => {
                     localStorage.setItem("currentConnectionId", connection.id);
-
-                    if (history[connection.id]) {
-                      if (currentIp !== history[connection.id].ip)
-                        setValid(false);
-
-                      setCurrentIp(history[connection.id].ip);
-
-                      if (currentAddress.current)
-                        currentAddress.current.value =
-                          history[connection.id].ip;
-                    } else {
-                      setCurrentIp("0.0.0.0");
-                      setValid(false);
-                    }
-
                     setConnectionId(connection.id);
+                    setCurrentIp("0.0.0.0");
+                    setValid(false);
                   }}
                   className={connectionId === connection.id ? "bg-success" : ""}
                 >
@@ -346,6 +339,7 @@ export default function Browser() {
                   key={index}
                   onClick={() => {
                     setCurrentIp(session);
+                    setValid(false);
                   }}
                 >
                   <span className="badge bg-secondary me-2">{index}</span>
@@ -377,6 +371,7 @@ export default function Browser() {
                             browserSession?.[connectionId].length - 1
                           ]
                       );
+                      setValid(false);
                     }}
                     size="sm"
                     className="rounded-0 bg-transparent border-0"
@@ -405,6 +400,7 @@ export default function Browser() {
                             browserSession?.[connectionId].length - 1
                           ]
                       );
+                      setValid(false);
                     }}
                     size="sm"
                     className="rounded-0 bg-transparent border-0"
@@ -537,7 +533,14 @@ export default function Browser() {
                         connectionId={connectionId}
                         valid={valid}
                         access={access}
-                        fetchHomepage={fetchHomepage}
+                        fetchHomepage={async (ip, connectionId) => {
+                          setConnectionId(connectionId);
+
+                          let result = await loadBrowser(ip);
+                          if (!result) throw new Error("invalid fetch");
+
+                          return result;
+                        }}
                         ip={currentIp || "0.0.0.0"}
                         markdown={markdown}
                         setTab={(tab: string) => {
@@ -643,7 +646,8 @@ export default function Browser() {
               <p className="text-white bg-secondary pb-1 ps-1">
                 <span className="badge bg-black rounded-0">
                   {computer.type}
-                </span>
+                </span>{" "}
+                |
                 <span
                   className="ms-1 badge bg-primary rounded-0"
                   style={{
@@ -660,7 +664,7 @@ export default function Browser() {
                   View Your HDD
                 </span>
                 <span
-                  className="ms-1 badge bg-info rounded-0"
+                  className="ms-1 badge bg-primary rounded-0"
                   style={{
                     cursor: "pointer",
                   }}
@@ -673,7 +677,28 @@ export default function Browser() {
                   }}
                 >
                   View Your Logs
-                </span>
+                </span>{" "}
+                |
+                {session.data.logins?.[connectionId]?.length !== 0 ? (
+                  session.data.logins?.[connectionId]?.map((login) => (
+                    <span
+                      className="ms-1 badge bg-success rounded-0"
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setCurrentIp(login.ip);
+                      }}
+                    >
+                      🌎 {login.ip}{" "}
+                      <span className="badge bg-black rounded-0">
+                        {login.data?.title || "Unknown"}
+                      </span>
+                    </span>
+                  ))
+                ) : (
+                  <></>
+                )}
                 {access ? (
                   <span
                     className="me-1 mt-1 badge bg-success rounded-0"
