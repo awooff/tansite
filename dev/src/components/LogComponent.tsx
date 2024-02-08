@@ -1,7 +1,8 @@
-import { Alert, Col, Row, Table } from "react-bootstrap";
+import { Alert, Button, Card, Col, Row, Table } from "react-bootstrap";
 import { Computer } from "../lib/types/computer.type";
 import { useCallback, useEffect, useState } from "react";
 import { postRequestHandler } from "../lib/submit";
+import { createProcess } from "../lib/process";
 
 type Log = {
   computer: Computer;
@@ -27,6 +28,7 @@ function LogComponent({
   const [page, setPage] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [pages, setPages] = useState<number>(0);
+
   const fetchLogs = useCallback(
     async (
       page: number,
@@ -40,7 +42,7 @@ function LogComponent({
         count: number;
       }>(local ? "/computers/log" : "/internet/log", {
         ...(local ? { computerId: computerId } : { ip: ip }),
-        connectionId,
+        connectionId: connectionId || computerId,
         page: page || 0,
       });
 
@@ -62,6 +64,35 @@ function LogComponent({
 
   return (
     <>
+      <Row className="mb-3">
+        <Col>
+          <div className="d-grid">
+            <Button
+              size="sm"
+              variant="danger"
+              disabled={logs.length === 0}
+              onClick={async (e) => {
+                const target = e.currentTarget;
+                target.setAttribute("disabled", "true");
+                await createProcess(
+                  "wipe",
+                  {
+                    ip: ip,
+                    connectionId: connectionId || computerId,
+                  },
+                  true
+                );
+                target.setAttribute("disabled", "false");
+                setLogs([]);
+                setCount(0);
+                setPages(0);
+              }}
+            >
+              Wipe Log
+            </Button>
+          </div>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <Alert className="bg-transparent border border-danger">

@@ -51,7 +51,11 @@ export default function Files() {
               <Button
                 variant="primary"
                 onClick={() => {
-                  navigate(location.state.return);
+                  navigate(location.state.return, {
+                    state: {
+                      connectionId: computer.id,
+                    },
+                  });
                 }}
               >
                 Return
@@ -62,7 +66,12 @@ export default function Files() {
       ) : (
         <></>
       )}
-      <FileComponent computer={computer}>
+      <FileComponent
+        computer={computer}
+        onCompletion={(process) => {
+          game.load();
+        }}
+      >
         <Card body className="bg-transparent border border-secondary mt-4">
           <div className="d-grid gap-2">
             <Button

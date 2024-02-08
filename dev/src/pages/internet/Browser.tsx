@@ -48,6 +48,7 @@ export default function Browser() {
   const [computer, setComputer] = useState<Computer | null>(null);
   const [markdown, setMarkdown] = useState("");
   const [valid, setValid] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [connectionId, setConnectionId] = useState(
     location?.state?.connectionId ||
       game?.connections?.find(
@@ -110,6 +111,8 @@ export default function Browser() {
 
   const loadBrowser = useCallback(
     async (ip: string) => {
+      setLoading(true);
+
       let data = await fetchHomepage(ip, connectionId);
 
       if (!data) setValid(false);
@@ -154,6 +157,7 @@ export default function Browser() {
         );
 
         setValid(true);
+        setLoading(false);
 
         return data;
       }
@@ -443,315 +447,332 @@ export default function Browser() {
           </Col>
         </Row>
       ) : (
-        <Row className="mt-1">
-          <Col>
-            {computer?.type === "search_engine" && tab === "homepage" ? (
-              <SearchEngine
-                computer={computer}
-                connectionId={connectionId}
-                valid={valid}
-                access={access}
-                setCurrentIp={setCurrentIp}
-                ip={currentIp || "0.0.0.0"}
-                markdown={markdown}
-                setTab={(tab: string) => {
-                  let newHistory = {
-                    ...history,
-                    [connectionId]: {
-                      ...history[connectionId],
-                      tab: tab,
-                    },
-                  };
-                  localStorage.setItem("history", JSON.stringify(newHistory));
-                  setTab(tab);
-                  setHistory(history);
-                }}
-              />
-            ) : (
-              <>
-                {(() => {
-                  if (tab === "homepage")
-                    return (
-                      <Homepage
-                        computer={
-                          session.data?.logins?.[connectionId]?.find(
-                            (that) => that.id === computer?.id
-                          ) || computer
-                        }
-                        connectionId={connectionId}
-                        valid={valid}
-                        access={access}
-                        ip={currentIp || "0.0.0.0"}
-                        markdown={markdown}
-                        setTab={(tab: string) => {
-                          setHistory((history) => {
-                            let newHistory = {
-                              ...history,
-                              [connectionId]: {
-                                ...history[connectionId],
-                                tab: tab,
-                              },
-                            };
-                            localStorage.setItem(
-                              "history",
-                              JSON.stringify(newHistory)
-                            );
-                            return newHistory;
-                          });
-                          setTab(tab);
-                        }}
-                      />
-                    );
-                  else if (tab === "connection")
-                    return (
-                      <Connection
-                        computer={
-                          session.data?.logins?.[connectionId]?.find(
-                            (that) => that.id === computer?.id
-                          ) || computer
-                        }
-                        connectionId={connectionId}
-                        valid={valid}
-                        access={access}
-                        ip={currentIp || "0.0.0.0"}
-                        markdown={markdown}
-                        setTab={(tab: string) => {
-                          setHistory((history) => {
-                            let newHistory = {
-                              ...history,
-                              [connectionId]: {
-                                ...history[connectionId],
-                                tab: tab,
-                              },
-                            };
-                            localStorage.setItem(
-                              "history",
-                              JSON.stringify(newHistory)
-                            );
-                            return newHistory;
-                          });
-                          setTab(tab);
-                        }}
-                      />
-                    );
-                  else if (tab === "hack")
-                    return (
-                      <Hacking
-                        computer={
-                          session.data?.logins?.[connectionId]?.find(
-                            (that) => that.id === computer?.id
-                          ) || computer
-                        }
-                        connectionId={connectionId}
-                        valid={valid}
-                        access={access}
-                        fetchHomepage={async (ip, connectionId) => {
-                          setConnectionId(connectionId);
-
-                          let result = await loadBrowser(ip);
-                          if (!result) throw new Error("invalid fetch");
-
-                          return result;
-                        }}
-                        ip={currentIp || "0.0.0.0"}
-                        markdown={markdown}
-                        setTab={(tab: string) => {
-                          setHistory((history) => {
-                            let newHistory = {
-                              ...history,
-                              [connectionId]: {
-                                ...history[connectionId],
-                                tab: tab,
-                              },
-                            };
-                            localStorage.setItem(
-                              "history",
-                              JSON.stringify(newHistory)
-                            );
-                            return newHistory;
-                          });
-                          setTab(tab);
-                        }}
-                      />
-                    );
-                  else if (tab === "logs")
-                    return (
-                      <Logs
-                        computer={
-                          session.data?.logins?.[connectionId]?.find(
-                            (that) => that.id === computer?.id
-                          ) || computer
-                        }
-                        connectionId={connectionId}
-                        valid={valid}
-                        access={access}
-                        ip={currentIp || "0.0.0.0"}
-                        markdown={markdown}
-                        setTab={(tab: string) => {
-                          setHistory((history) => {
-                            let newHistory = {
-                              ...history,
-                              [connectionId]: {
-                                ...history[connectionId],
-                                tab: tab,
-                              },
-                            };
-                            localStorage.setItem(
-                              "history",
-                              JSON.stringify(newHistory)
-                            );
-                            return newHistory;
-                          });
-                          setTab(tab);
-                        }}
-                      />
-                    );
-                  else if (tab === "files")
-                    return (
-                      <Files
-                        computer={
-                          session.data?.logins?.[connectionId]?.find(
-                            (that) => that.id === computer?.id
-                          ) || computer
-                        }
-                        connectionId={connectionId}
-                        valid={valid}
-                        access={access}
-                        ip={currentIp || "0.0.0.0"}
-                        markdown={markdown}
-                        setTab={(tab: string) => {
-                          setHistory((history) => {
-                            let newHistory = {
-                              ...history,
-                              [connectionId]: {
-                                ...history[connectionId],
-                                tab: tab,
-                              },
-                            };
-                            localStorage.setItem(
-                              "history",
-                              JSON.stringify(newHistory)
-                            );
-                            return newHistory;
-                          });
-                          setTab(tab);
-                        }}
-                      />
-                    );
-                  else
-                    return (
-                      <>
-                        <Alert
-                          variant="danger"
-                          className="bg-transparent border-danger border"
-                        >
-                          Invalid tab
-                          <br />
-                          <Button
-                            className="mt-2"
-                            variant="danger"
-                            onClick={() => {
-                              setTab("homepage");
+        <>
+          {!loading ? (
+            <Row className="mt-1">
+              <Col>
+                {computer?.type === "search_engine" && tab === "homepage" ? (
+                  <SearchEngine
+                    computer={computer}
+                    connectionId={connectionId}
+                    valid={valid}
+                    access={access}
+                    setCurrentIp={setCurrentIp}
+                    ip={currentIp || "0.0.0.0"}
+                    markdown={markdown}
+                    setTab={(tab: string) => {
+                      let newHistory = {
+                        ...history,
+                        [connectionId]: {
+                          ...history[connectionId],
+                          tab: tab,
+                        },
+                      };
+                      localStorage.setItem(
+                        "history",
+                        JSON.stringify(newHistory)
+                      );
+                      setTab(tab);
+                      setHistory(history);
+                    }}
+                  />
+                ) : (
+                  <>
+                    {(() => {
+                      if (tab === "homepage")
+                        return (
+                          <Homepage
+                            computer={
+                              session.data?.logins?.[connectionId]?.find(
+                                (that) => that.id === computer?.id
+                              ) || computer
+                            }
+                            connectionId={connectionId}
+                            valid={valid}
+                            access={access}
+                            ip={currentIp || "0.0.0.0"}
+                            markdown={markdown}
+                            setTab={(tab: string) => {
+                              setHistory((history) => {
+                                let newHistory = {
+                                  ...history,
+                                  [connectionId]: {
+                                    ...history[connectionId],
+                                    tab: tab,
+                                  },
+                                };
+                                localStorage.setItem(
+                                  "history",
+                                  JSON.stringify(newHistory)
+                                );
+                                return newHistory;
+                              });
+                              setTab(tab);
                             }}
-                          >
-                            Go back to homepage
-                          </Button>
-                        </Alert>
-                      </>
-                    );
-                })()}
-              </>
-            )}
-            {valid && computer ? (
-              <p className="text-white bg-secondary pb-1 ps-1">
-                <span className="badge bg-black rounded-0">
-                  {computer.type}
-                </span>{" "}
-                |
-                <span
-                  className="ms-1 badge bg-primary rounded-0"
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/computers/files/" + connectionId, {
-                      state: {
-                        return: "/internet/browser/" + currentIp,
-                      },
-                    });
-                  }}
-                >
-                  View Your HDD
-                </span>
-                <span
-                  className="ms-1 badge bg-primary rounded-0"
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    navigate("/computers/logs/" + connectionId, {
-                      state: {
-                        return: "/internet/browser/" + currentIp,
-                      },
-                    });
-                  }}
-                >
-                  View Your Logs
-                </span>{" "}
-                |
-                {session.data.logins?.[connectionId]?.length !== 0 ? (
-                  session.data.logins?.[connectionId]?.map((login) => (
+                          />
+                        );
+                      else if (tab === "connection")
+                        return (
+                          <Connection
+                            computer={
+                              session.data?.logins?.[connectionId]?.find(
+                                (that) => that.id === computer?.id
+                              ) || computer
+                            }
+                            connectionId={connectionId}
+                            valid={valid}
+                            access={access}
+                            ip={currentIp || "0.0.0.0"}
+                            markdown={markdown}
+                            setTab={(tab: string) => {
+                              setHistory((history) => {
+                                let newHistory = {
+                                  ...history,
+                                  [connectionId]: {
+                                    ...history[connectionId],
+                                    tab: tab,
+                                  },
+                                };
+                                localStorage.setItem(
+                                  "history",
+                                  JSON.stringify(newHistory)
+                                );
+                                return newHistory;
+                              });
+                              setTab(tab);
+                            }}
+                          />
+                        );
+                      else if (tab === "hack")
+                        return (
+                          <Hacking
+                            computer={
+                              session.data?.logins?.[connectionId]?.find(
+                                (that) => that.id === computer?.id
+                              ) || computer
+                            }
+                            connectionId={connectionId}
+                            valid={valid}
+                            access={access}
+                            fetchHomepage={async (ip, connectionId) => {
+                              setConnectionId(connectionId);
+
+                              let result = await loadBrowser(ip);
+                              if (!result) throw new Error("invalid fetch");
+
+                              return result;
+                            }}
+                            ip={currentIp || "0.0.0.0"}
+                            markdown={markdown}
+                            setTab={(tab: string) => {
+                              setHistory((history) => {
+                                let newHistory = {
+                                  ...history,
+                                  [connectionId]: {
+                                    ...history[connectionId],
+                                    tab: tab,
+                                  },
+                                };
+                                localStorage.setItem(
+                                  "history",
+                                  JSON.stringify(newHistory)
+                                );
+                                return newHistory;
+                              });
+                              setTab(tab);
+                            }}
+                          />
+                        );
+                      else if (tab === "logs")
+                        return (
+                          <Logs
+                            computer={
+                              session.data?.logins?.[connectionId]?.find(
+                                (that) => that.id === computer?.id
+                              ) || computer
+                            }
+                            connectionId={connectionId}
+                            valid={valid}
+                            access={access}
+                            ip={currentIp || "0.0.0.0"}
+                            markdown={markdown}
+                            setTab={(tab: string) => {
+                              setHistory((history) => {
+                                let newHistory = {
+                                  ...history,
+                                  [connectionId]: {
+                                    ...history[connectionId],
+                                    tab: tab,
+                                  },
+                                };
+                                localStorage.setItem(
+                                  "history",
+                                  JSON.stringify(newHistory)
+                                );
+                                return newHistory;
+                              });
+                              setTab(tab);
+                            }}
+                          />
+                        );
+                      else if (tab === "files")
+                        return (
+                          <Files
+                            connectionId={connectionId}
+                            valid={valid}
+                            access={access}
+                            ip={currentIp || "0.0.0.0"}
+                            markdown={markdown}
+                            setTab={(tab: string) => {
+                              setHistory((history) => {
+                                let newHistory = {
+                                  ...history,
+                                  [connectionId]: {
+                                    ...history[connectionId],
+                                    tab: tab,
+                                  },
+                                };
+                                localStorage.setItem(
+                                  "history",
+                                  JSON.stringify(newHistory)
+                                );
+                                return newHistory;
+                              });
+                              setTab(tab);
+                            }}
+                          />
+                        );
+                      else
+                        return (
+                          <>
+                            <Alert
+                              variant="danger"
+                              className="bg-transparent border-danger border"
+                            >
+                              Invalid tab
+                              <br />
+                              <Button
+                                className="mt-2"
+                                variant="danger"
+                                onClick={() => {
+                                  setTab("homepage");
+                                }}
+                              >
+                                Go back to homepage
+                              </Button>
+                            </Alert>
+                          </>
+                        );
+                    })()}
+                  </>
+                )}
+                {valid && computer ? (
+                  <p className="text-white bg-secondary pb-1 ps-1">
+                    <span className="badge bg-black rounded-0">
+                      {computer.type}
+                    </span>{" "}
+                    |
                     <span
-                      className="ms-1 badge bg-success rounded-0"
+                      className="ms-1 badge bg-primary rounded-0"
                       style={{
                         cursor: "pointer",
                       }}
                       onClick={() => {
-                        setCurrentIp(login.ip);
+                        navigate("/computers/files/" + connectionId, {
+                          state: {
+                            return: "/internet/browser/" + currentIp,
+                          },
+                        });
                       }}
                     >
-                      🌎 {login.ip}{" "}
-                      <span className="badge bg-black rounded-0">
-                        {login.data?.title || "Unknown"}
-                      </span>
+                      View Your HDD
                     </span>
-                  ))
+                    <span
+                      className="ms-1 badge bg-primary rounded-0"
+                      style={{
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        navigate("/computers/logs/" + connectionId, {
+                          state: {
+                            return: "/internet/browser/" + currentIp,
+                          },
+                        });
+                      }}
+                    >
+                      View Your Logs
+                    </span>{" "}
+                    |
+                    {session.data.logins?.[connectionId]?.length !== 0 ? (
+                      session.data.logins?.[connectionId]?.map((login) => (
+                        <span
+                          className="ms-1 badge bg-success rounded-0"
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            setCurrentIp(login.ip);
+                          }}
+                        >
+                          🌎 {login.ip}{" "}
+                          <span className="badge bg-black rounded-0">
+                            {login.data?.title || "Unknown"}
+                          </span>
+                        </span>
+                      ))
+                    ) : (
+                      <></>
+                    )}
+                    {access ? (
+                      <span
+                        className="me-1 mt-1 badge bg-success rounded-0"
+                        style={{
+                          float: "right",
+                        }}
+                      >
+                        Hacked (
+                        {
+                          (
+                            access as {
+                              access: "GOD" | "FTP";
+                            }
+                          )?.access
+                        }
+                        )
+                      </span>
+                    ) : (
+                      <span
+                        className="me-1 mt-1 badge bg-danger rounded-0"
+                        style={{
+                          float: "right",
+                        }}
+                      >
+                        Unhacked
+                      </span>
+                    )}
+                  </p>
                 ) : (
                   <></>
                 )}
-                {access ? (
-                  <span
-                    className="me-1 mt-1 badge bg-success rounded-0"
-                    style={{
-                      float: "right",
-                    }}
-                  >
-                    Hacked (
-                    {
-                      (
-                        access as {
-                          access: "GOD" | "FTP";
-                        }
-                      )?.access
-                    }
-                    )
-                  </span>
-                ) : (
-                  <span
-                    className="me-1 mt-1 badge bg-danger rounded-0"
-                    style={{
-                      float: "right",
-                    }}
-                  >
-                    Unhacked
-                  </span>
-                )}
-              </p>
-            ) : (
-              <></>
-            )}
-          </Col>
-        </Row>
+              </Col>
+            </Row>
+          ) : (
+            <>
+              <Alert
+                variant="danger"
+                className="text-center bg-transparent border-info border mt-0 mb-0 rounded-0"
+              >
+                <Row className="justify-content-center mb-4">
+                  <Col lg={3}>
+                    <img src="/icons/query.png" className="mx-auto img-fluid" />
+                  </Col>
+                </Row>
+                <p className="display-2">Fetching {currentIp}</p>
+                <p>Please wait for the index.html to be downloaded...</p>
+              </Alert>
+            </>
+          )}
+        </>
       )}
     </Layout>
   );

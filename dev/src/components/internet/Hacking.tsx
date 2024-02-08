@@ -42,9 +42,9 @@ function Hacking({
     (software) => software.installed && software.type === "ftpr"
   );
 
-  return (
-    <>
-      {!valid || !computer ? (
+  if (!valid)
+    return (
+      <>
         <Alert
           variant="danger"
           className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
@@ -52,6 +52,24 @@ function Hacking({
         >
           <p className="display-2">404</p>
           <p>This website does not exist</p>
+        </Alert>
+      </>
+    );
+
+  return (
+    <>
+      {!computer ? (
+        <Alert
+          variant="danger"
+          className="text-center bg-transparent border-info border mt-0 mb-0 rounded-0"
+        >
+          <Row className="justify-content-center mb-4">
+            <Col lg={3}>
+              <img src="/icons/info.png" className="mx-auto img-fluid" />
+            </Col>
+          </Row>
+          <p className="display-2">LOADING</p>
+          <p>Please await for the hacking interface to be initialized...</p>
         </Alert>
       ) : (
         <>
@@ -113,7 +131,7 @@ function Hacking({
           <Button className="rounded-0" variant="danger" size="sm">
             Hack
           </Button>
-          <div className="d-grid bg-black border border-danger p-3">
+          <div className="d-grid bg-black border border-danger p-3 browser-frame">
             <Alert
               variant="danger"
               className="bg-transparent border-success border rounded-0 text-center"

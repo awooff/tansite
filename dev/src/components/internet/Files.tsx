@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Alert, Button, Card, Col, Row } from "react-bootstrap";
 import { Computer } from "../../lib/types/computer.type";
 import { Process } from "../../lib/types/process.type";
 import { createProcess } from "../../lib/process";
 import SessionContext from "../../contexts/session.context";
 import FileComponent from "../FileComponent";
+import { postRequestHandler } from "../../lib/submit";
 
 function Files({
   connectionId,
   ip,
-  computer,
   markdown,
   valid,
   access,
@@ -17,7 +17,6 @@ function Files({
 }: {
   connectionId: string;
   ip: string;
-  computer: Computer | null;
   markdown: string;
   valid: boolean;
   access: object | null;
@@ -26,22 +25,34 @@ function Files({
   const session = useContext(SessionContext);
   const [process, setProcess] = useState<Process | null>(null);
   const [error, setError] = useState<Error | null>(null);
+  const [computer, setComputer] = useState<Computer>();
 
   useEffect(() => {
-    if (!computer) return;
-    if (!session.loaded) return;
-
-    if (
-      !session.data.logins[connectionId]?.find(
-        (that) => that.id === computer.id
-      )
-    )
+    if (!ip) return;
+    if (!connectionId) return;
+    if (!session.data.logins[connectionId]?.find((that) => that.ip === ip))
       setTab("homepage");
   }, [session, computer]);
 
-  return (
-    <>
-      {!valid || !computer || !computer.hardware || !computer.software ? (
+  const fetchFiles = useCallback(async (ip: string, connectionId: string) => {
+    let result = await postRequestHandler<{
+      computer: Computer;
+    }>("/internet/fetch", {
+      ip,
+      connectionId,
+    });
+    return result.data.computer;
+  }, []);
+
+  useEffect(() => {
+    if (!ip || !connectionId) return;
+
+    fetchFiles(ip, connectionId).then((computer) => setComputer(computer));
+  }, [ip, connectionId]);
+
+  if (!valid)
+    return (
+      <>
         <Alert
           variant="danger"
           className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
@@ -49,6 +60,24 @@ function Files({
         >
           <p className="display-2">404</p>
           <p>This website does not exist</p>
+        </Alert>
+      </>
+    );
+
+  return (
+    <>
+      {!computer?.software ? (
+        <Alert
+          variant="danger"
+          className="text-center bg-transparent border-info border mt-0 mb-0 rounded-0"
+        >
+          <Row className="justify-content-center mb-4">
+            <Col lg={3}>
+              <img src="/icons/info.png" className="mx-auto img-fluid" />
+            </Col>
+          </Row>
+          <p className="display-2">LOADING</p>
+          <p>Please wait for the file tree to be downloaded...</p>
         </Alert>
       ) : (
         <>
@@ -144,16 +173,14 @@ function Files({
           >
             Logs
           </Button>
-          <div
-            className="d-grid bg-black border border-warning p-3"
-            style={{
-              minHeight: "68vh",
-              overflowY: "auto",
-              maxHeight: "74vh",
-              height: "100%",
-            }}
-          >
+          <div className="d-grid bg-black border border-warning p-3 browser-frame">
             <FileComponent
+              onCompletion={() => {
+                fetchFiles(ip, connectionId).then((computer) =>
+                  setComputer(computer)
+                );
+                setProcess(null);
+              }}
               computer={computer}
               connectionId={connectionId}
               onCreation={(process) => setProcess(process)}

@@ -4,7 +4,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { createProcess } from "../../lib/process";
 import LogComponent from "../../components/LogComponent";
 
 export default function Logs() {
@@ -52,7 +51,11 @@ export default function Logs() {
               <Button
                 variant="primary"
                 onClick={() => {
-                  navigate(location.state.return);
+                  navigate(location.state.return, {
+                    state: {
+                      connectionId: computer.id,
+                    },
+                  });
                 }}
               >
                 Return
@@ -65,33 +68,7 @@ export default function Logs() {
       )}
       <Row>
         <Col lg={3}>
-          <Row>
-            <Col>
-              <Card body className="bg-transparent border border-danger">
-                <div className="d-grid">
-                  <Button
-                    size="sm"
-                    variant="danger"
-                    onClick={async (e) => {
-                      e.currentTarget.setAttribute("disabled", "true");
-                      await createProcess(
-                        "wipe",
-                        {
-                          ip: computer.ip,
-                          connectionId: computer.id,
-                        },
-                        true
-                      );
-                      game.load();
-                    }}
-                  >
-                    Wipe Log
-                  </Button>
-                </div>
-              </Card>
-            </Col>
-          </Row>
-          <Card body className="bg-transparent border border-secondary mt-3">
+          <Card body className="bg-transparent border border-secondary">
             <div className="d-grid gap-2">
               <Button
                 variant="secondary"
@@ -138,7 +115,11 @@ export default function Logs() {
         </Col>
         <Col>
           {computerId ? (
-            <LogComponent computerId={computerId} local={true} />
+            <LogComponent
+              computerId={computerId}
+              ip={computer.ip}
+              local={true}
+            />
           ) : (
             <Alert variant="danger">Invalid computer</Alert>
           )}

@@ -164,7 +164,7 @@ export class Computer {
         computerId: this.computerId,
       },
       include: {
-        computer: true,
+        computer: false,
       },
       orderBy: {
         id: "desc",

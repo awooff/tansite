@@ -19,6 +19,7 @@ function FileComponent({
   computer,
   onCreation,
   onError,
+  onCompletion,
   connectionId,
 }: {
   children?: any;
@@ -26,9 +27,9 @@ function FileComponent({
   connectionId?: string;
   onCreation?: (process: Process) => void;
   onError?: (error: Error) => void;
+  onCompletion?: (process: Process) => void;
 }) {
   const game = useContext(GameContext);
-  const navigate = useNavigate();
   const hddSpace = computer.hardware
     .filter((val) => val.type === "HDD")
     .reduce((prev, cur) => {
@@ -162,7 +163,9 @@ function FileComponent({
                             onClick={async (e) => {
                               const target = e.currentTarget;
                               target.setAttribute("disabled", "true");
-                              await createProcess(
+                              let result = await createProcess<{
+                                process: Process;
+                              }>(
                                 "action",
                                 {
                                   action: "uninstall",
@@ -176,8 +179,8 @@ function FileComponent({
                               ).finally(() => {
                                 target.setAttribute("disabled", "false");
                               });
-
-                              game.load();
+                              if (onCompletion)
+                                onCompletion(result.data.process);
                             }}
                           >
                             Uninstall
@@ -191,7 +194,9 @@ function FileComponent({
                               onClick={async (e) => {
                                 const target = e.currentTarget;
                                 target.setAttribute("disabled", "true");
-                                await createProcess(
+                                let result = await createProcess<{
+                                  process: Process;
+                                }>(
                                   "action",
                                   {
                                     action: "install",
@@ -205,7 +210,8 @@ function FileComponent({
                                 ).finally(() => {
                                   target.setAttribute("disabled", "false");
                                 });
-                                game.load();
+                                if (onCompletion)
+                                  onCompletion(result.data.process);
                               }}
                             >
                               Install
@@ -217,7 +223,9 @@ function FileComponent({
                               onClick={async (e) => {
                                 const target = e.currentTarget;
                                 target.setAttribute("disabled", "true");
-                                await createProcess(
+                                let result = await createProcess<{
+                                  process: Process;
+                                }>(
                                   "action",
                                   {
                                     action: "delete",
@@ -231,7 +239,8 @@ function FileComponent({
                                 ).finally(() => {
                                   target.setAttribute("disabled", "false");
                                 });
-                                game.load();
+                                if (onCompletion)
+                                  onCompletion(result.data.process);
                               }}
                             >
                               Delete
@@ -245,10 +254,12 @@ function FileComponent({
                           onClick={async (e) => {
                             const target = e.currentTarget;
                             target.setAttribute("disabled", "true");
-                            await createProcess(
+                            let result = await createProcess<{
+                              process: Process;
+                            }>(
                               "action",
                               {
-                                action: "inspect",
+                                action: "view",
                                 ip: computer.ip,
                                 softwareId: software.id,
                                 connectionId: connectionId || computer.id,
@@ -259,10 +270,10 @@ function FileComponent({
                             ).finally(() => {
                               target.setAttribute("disabled", "false");
                             });
-                            game.load();
+                            if (onCompletion) onCompletion(result.data.process);
                           }}
                         >
-                          Inspect
+                          View
                         </Button>
                       </td>
                     </tr>

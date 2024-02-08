@@ -1,6 +1,7 @@
 import { postRequestHandler } from "./submit";
 import toast from "react-hot-toast";
 import { Process } from "./types/process.type";
+import { AxiosResponse } from "axios";
 
 export const createProcess = async <T>(
   type: string,
@@ -23,11 +24,19 @@ export const createProcess = async <T>(
 
   if (onCreation) onCreation(result.data.process);
 
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise<
+    AxiosResponse<
+      | T
+      | {
+          process: Process;
+        },
+      any
+    >
+  >((resolve, reject) => {
     setTimeout(
       async () => {
         if (autoComplete) {
-          const process = await postRequestHandler(
+          const process = await postRequestHandler<T>(
             "/processes/complete",
             {
               ...(data || {}),
@@ -36,8 +45,8 @@ export const createProcess = async <T>(
             undefined,
             reject
           );
-          resolve(process.data);
-        } else resolve({});
+          resolve(process);
+        } else resolve(result);
       },
       new Date(result.data.process.completion).getTime() - Date.now()
     );
@@ -68,5 +77,5 @@ export const createProcess = async <T>(
       result.data.process.ip,
   });
 
-  return (await promise) as Promise<T>;
+  return promise as Promise<AxiosResponse<T, any>>;
 };

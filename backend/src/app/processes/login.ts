@@ -4,6 +4,7 @@ import GameException from "@/lib/exceptions/game.exception";
 import { AddressBook } from "../addressbook";
 import { server } from "../../index";
 import settings from "../../settings";
+import { removeFromObject } from "@/lib/helpers";
 
 const login = {
   settings: {
@@ -45,7 +46,9 @@ const login = {
     req.session.logins = req.session.logins || {};
     req.session.logins[executor.computerId] =
       req.session.logins[executor.computerId] || [];
-    req.session.logins[executor.computerId].push(computer.computer);
+    req.session.logins[executor.computerId].push(
+      removeFromObject(computer.computer, ["software", "process"])
+    );
     req.session.save();
 
     computer.log("remote session created", executor);
