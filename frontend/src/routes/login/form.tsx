@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import * as Form from '@radix-ui/react-form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Box, Button, TextField } from '@radix-ui/themes';
@@ -9,8 +9,8 @@ import { LoginSchema } from '@schemas/login.schema';
 
 type Props = {};
 
-export const RegisterForm: React.FC<Props> = () => {
-	const user = userStore((state => state.user));
+export const RegisterForm: React.FC<Props> = (): ReactElement => {
+	const user = userStore(state => state.user);
 	const jwt = userStore(state => state.user.jwt)
 	const {removeUserData, updateUser} = userStore();
 	const [error, setError] = useState('');
@@ -35,7 +35,7 @@ export const RegisterForm: React.FC<Props> = () => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const { email, group, name } = response.data.user;
 				const { token } = response.data;
-				if (user.jwt !== '') {
+				if (user.jwt) {
 					removeUserData(user)
 				}
 				

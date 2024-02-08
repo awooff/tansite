@@ -10,7 +10,7 @@ const logout = {
     description: 'will logout the user from syscrack'
   },
 
-  async get(req, res, error) {
+  async post(req, res, error) {
 
     if (!req.session)
       return error('no sussin')
