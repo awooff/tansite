@@ -6,6 +6,7 @@ import { createProcess } from "../../lib/process";
 import SessionContext from "../../contexts/session.context";
 import FileComponent from "../FileComponent";
 import { postRequestHandler } from "../../lib/submit";
+import { useProcessStore } from "../../lib/stores/process.store";
 
 function Files({
   connectionId,
@@ -24,6 +25,7 @@ function Files({
 }) {
   const session = useContext(SessionContext);
   const [process, setProcess] = useState<Process | null>(null);
+  const processStore = useProcessStore();
   const [error, setError] = useState<Error | null>(null);
   const [computer, setComputer] = useState<Computer>();
 
@@ -196,7 +198,12 @@ function Files({
           </Button>
           <div className="d-grid bg-black border border-warning p-3 browser-frame">
             <FileComponent
-              onCompletion={() => {
+              onCreation={(process) => {
+                setProcess(process);
+                processStore.addProcess(process);
+              }}
+              onCompletion={(process) => {
+                processStore.removeProcess(process);
                 fetchFiles(ip, connectionId).then((computer) =>
                   setComputer(computer)
                 );
@@ -204,7 +211,6 @@ function Files({
               }}
               computer={computer}
               connectionId={connectionId}
-              onCreation={(process) => setProcess(process)}
               onError={(error) => setError(error)}
             />
           </div>

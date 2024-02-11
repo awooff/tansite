@@ -113,53 +113,58 @@ export default function Browser() {
     async (ip: string) => {
       setLoading(true);
 
-      let data = await fetchHomepage(ip, connectionId);
+      try {
+        let data = await fetchHomepage(ip, connectionId);
+        if (!data) setValid(false);
+        else {
+          setAccess(data.access || null);
 
-      if (!data) setValid(false);
-      else {
-        setAccess(data.access || null);
+          if (data.access && history[connectionId]?.tab === "hack")
+            history[connectionId].tab = "login";
+          else if (!data.access && history[connectionId]?.tab === "login")
+            history[connectionId].tab = "homepage";
 
-        if (data.access && history[connectionId]?.tab === "hack")
-          history[connectionId].tab = "login";
-        else if (!data.access && history[connectionId]?.tab === "login")
-          history[connectionId].tab = "homepage";
-
-        setTab(history[connectionId]?.tab || "homepage");
-        setHistory({
-          ...history,
-          [connectionId]: {
-            ip: ip,
-            tab: history[connectionId]?.tab || "homepage",
-          },
-        });
-        setComputer(data.computer);
-        setMarkdown(data.markdown);
-        setBrowserSession((prev) => {
-          if (!prev[connectionId]) prev[connectionId] = [];
-
-          if (!prev[connectionId].includes(ip)) prev[connectionId].push(ip);
-
-          return prev;
-        });
-
-        if (currentAddress.current && currentAddress?.current?.value !== ip)
-          currentAddress.current.value = ip;
-
-        localStorage.setItem(
-          "history",
-          JSON.stringify({
+          setTab(history[connectionId]?.tab || "homepage");
+          setHistory({
             ...history,
             [connectionId]: {
               ip: ip,
-              tab: history[connectionId]?.tab || tab || "homepage",
+              tab: history[connectionId]?.tab || "homepage",
             },
-          })
-        );
+          });
+          setComputer(data.computer);
+          setMarkdown(data.markdown);
+          setBrowserSession((prev) => {
+            if (!prev[connectionId]) prev[connectionId] = [];
 
-        setValid(true);
+            if (!prev[connectionId].includes(ip)) prev[connectionId].push(ip);
+
+            return prev;
+          });
+
+          if (currentAddress.current && currentAddress?.current?.value !== ip)
+            currentAddress.current.value = ip;
+
+          localStorage.setItem(
+            "history",
+            JSON.stringify({
+              ...history,
+              [connectionId]: {
+                ip: ip,
+                tab: history[connectionId]?.tab || tab || "homepage",
+              },
+            })
+          );
+
+          setValid(true);
+
+          return data;
+        }
+      } catch (error) {
+        console.log(error);
+        setValid(false);
+      } finally {
         setLoading(false);
-
-        return data;
       }
     },
     [history]
@@ -425,7 +430,7 @@ export default function Browser() {
           </Nav>
         </Container>
       </Navbar>
-      {game.connections.length === 0 ? (
+      {game.connections.length === 0 || !connectionId ? (
         <Row>
           <Col>
             <Alert
@@ -438,6 +443,25 @@ export default function Browser() {
                 You need to select which computer you would like to surf the
                 internet with!
               </p>
+              {game.connections.length !== 0 ? (
+                game.connections.map((connection) => (
+                  <>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setConnectionId(connection.id);
+                      }}
+                    >
+                      Connect to {connection.ip} ({connection.data.title})
+                    </a>
+                    <br />
+                  </>
+                ))
+              ) : (
+                <></>
+              )}
+              <br />
               <a
                 href="#"
                 onClick={(e) => {

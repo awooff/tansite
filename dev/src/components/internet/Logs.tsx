@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Card, Col, Row } from "react-bootstrap";
 import { Computer } from "../../lib/types/computer.type";
 import { Process } from "../../lib/types/process.type";
-import { createProcess } from "../../lib/process";
 import SessionContext from "../../contexts/session.context";
 import LogComponent from "../LogComponent";
 

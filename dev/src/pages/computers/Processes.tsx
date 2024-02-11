@@ -1,22 +1,41 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Layout from "../../components/Layout";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
-import { Card, Col, Row, Button, Alert, Stack } from "react-bootstrap";
+import {
+  Card,
+  Col,
+  Row,
+  Button,
+  Alert,
+  Stack,
+  ListGroup,
+  ProgressBar,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LogComponent from "../../components/LogComponent";
 import { postRequestHandler } from "../../lib/submit";
 import { Process } from "../../lib/types/process.type";
+import { useProcessStore } from "../../lib/stores/process.store";
 
 export default function Processes() {
   const game = useContext(GameContext);
   const { computerId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [processes, setProcesses] = useState<Process[]>([]);
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
+  const [time, setTime] = useState(Date.now());
   const [pages, setPages] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const interval = useRef<number>();
+  const processStore = useProcessStore();
 
   const computer = game.computers.find((val) => val.id === computerId);
   const connected =
@@ -37,6 +56,16 @@ export default function Processes() {
   }, [computerId]);
 
   useEffect(() => {
+    interval.current = setInterval(() => {
+      setTime(Date.now());
+    }, 1000);
+
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, []);
+
+  useEffect(() => {
     if (
       !game.loaded ||
       !computerId ||
@@ -44,10 +73,12 @@ export default function Processes() {
     )
       return;
 
+    setLoading(true);
     fetchProcesses().then((result) => {
-      setProcesses(result?.processes || []);
+      processStore.setProcesses(result?.processes || processStore.processes);
       setCount(result?.processes.length || 0);
       setPages(result?.pages || 0);
+      setLoading(false);
     });
   }, [computerId, game]);
 
@@ -123,7 +154,27 @@ export default function Processes() {
       )}
       <Row>
         <Col lg={3}>
-          <Card body className="bg-transparent border border-secondary">
+          <Card body className="bg-transparent border border-primary">
+            <div className="d-grid gap-2">
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/computers/");
+                }}
+              >
+                View Computers
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/computers/connections");
+                }}
+              >
+                View Connections
+              </Button>
+            </div>
+          </Card>
+          <Card body className="bg-transparent border border-secondary mt-3">
             <div className="d-grid gap-2">
               <Button
                 variant="secondary"
@@ -149,7 +200,11 @@ export default function Processes() {
               >
                 Processes{" "}
                 <span className="badge bg-danger">
-                  {computer.process.length}
+                  {
+                    processStore.processes.filter(
+                      (that) => that.computerId === computer.id
+                    ).length
+                  }
                 </span>
               </Button>
               <Button
@@ -175,43 +230,126 @@ export default function Processes() {
               </Button>
             </div>
           </Card>
-          <Card body className="bg-transparent border border-primary mt-3">
-            <div className="d-grid gap-2">
-              <Button
-                variant="primary"
-                onClick={() => {
-                  navigate("/computers/");
-                }}
-              >
-                View Computers
-              </Button>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  navigate("/computers/connections");
-                }}
-              >
-                View Connections
-              </Button>
-            </div>
-          </Card>
         </Col>
         <Col>
           <div className="d-grid border border-primary p-4">
-            {processes.length !== 0 ? (
-              <Stack gap={2}>
-                {processes.map((process) => {
-                  return (
-                    <Row>
-                      <Col>
-                        <Card body>{process.type}</Card>
-                      </Col>
-                    </Row>
-                  );
-                })}
-              </Stack>
+            {loading && processStore.processes.length === 0 ? (
+              <Alert
+                variant="danger"
+                className="text-center bg-transparent border-secondary border mt-0 mb-0 rounded-0"
+              >
+                <Row className="justify-content-center mb-4">
+                  <Col lg={3}>
+                    <img src="/icons/info.png" className="mx-auto img-fluid" />
+                  </Col>
+                </Row>
+                <p className="display-2">LOADING</p>
+                <p>Please wait for your proceses to be loaded...</p>
+              </Alert>
             ) : (
-              <Alert variant="danger">No Processes Available</Alert>
+              <>
+                {processStore.processes.length !== 0 ? (
+                  <Stack gap={4}>
+                    {processStore.processes.map((process) => {
+                      return (
+                        <Row>
+                          <Col>
+                            <Card
+                              body
+                              className="bg-transparent border border-secondary"
+                            >
+                              <Row>
+                                <Col lg={2}>
+                                  {(() => {
+                                    switch (process.type) {
+                                      case "hack":
+                                        return (
+                                          <img
+                                            src="/icons/hack.png"
+                                            className="img-fluid mx-auto"
+                                          ></img>
+                                        );
+                                      default:
+                                        return (
+                                          <img
+                                            src="/icons/message.png"
+                                            className="img-fluid mx-auto"
+                                          ></img>
+                                        );
+                                    }
+                                  })()}
+                                </Col>
+                                <Col>
+                                  <div className="d-grid">
+                                    <h5 className="pb-2 border-bottom border-secondary">
+                                      {process.type}@{process.ip}
+                                    </h5>
+                                  </div>
+                                  <Row className="mt-5">
+                                    <Col>
+                                      <div className="d-grid">
+                                        <Button
+                                          variant="danger"
+                                          className="bg-transparent border-danger"
+                                        >
+                                          Cancel
+                                        </Button>
+                                      </div>
+                                    </Col>
+                                    <Col>
+                                      <div className="d-grid">
+                                        <Button
+                                          variant="success"
+                                          disabled={
+                                            time <
+                                            new Date(
+                                              process.completion
+                                            ).getTime()
+                                          }
+                                          className="bg-transparent border-success"
+                                        >
+                                          Complete
+                                        </Button>
+                                      </div>
+                                    </Col>
+                                  </Row>
+                                  <Row className="mt-4">
+                                    <Col>
+                                      <ProgressBar
+                                        now={Math.floor(
+                                          ((time -
+                                            new Date(
+                                              process.started
+                                            ).getTime()) /
+                                            (new Date(
+                                              process.completion
+                                            ).getTime() -
+                                              new Date(
+                                                process.started
+                                              ).getTime())) *
+                                            100
+                                        )}
+                                      />
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </Row>
+                            </Card>
+                          </Col>
+                        </Row>
+                      );
+                    })}
+                  </Stack>
+                ) : (
+                  <Alert
+                    variant="danger"
+                    className="text-center bg-transparent border border-danger mb-0"
+                  >
+                    <img src="/icons/hack.png"></img>
+                    <p>No Processes Available</p>
+                  </Alert>
+                )}
+              </>
             )}
           </div>
         </Col>

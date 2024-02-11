@@ -3,6 +3,8 @@ import { Computer } from "../lib/types/computer.type";
 import { useCallback, useEffect, useState } from "react";
 import { postRequestHandler } from "../lib/submit";
 import { createProcess } from "../lib/process";
+import { useProcessStore } from "../lib/stores/process.store";
+import { Process } from "../lib/types/process.type";
 
 type Log = {
   computer: Computer;
@@ -28,6 +30,8 @@ function LogComponent({
   const [page, setPage] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [pages, setPages] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>();
+  const processStore = useProcessStore();
 
   const fetchLogs = useCallback(
     async (
@@ -55,13 +59,30 @@ function LogComponent({
     if (local && !computerId) return;
     if (!local && !ip) return;
 
+    setLoading(true);
     fetchLogs(page, computerId, ip, connectionId).then((data) => {
       setLogs(data.logs);
       setCount(data.count);
       setPages(data.pages);
+      setLoading(false);
     });
   }, [page, computerId, ip, local, connectionId]);
 
+  if (loading)
+    return (
+      <Alert
+        variant="danger"
+        className="text-center bg-transparent border-secondary border mt-0 mb-0 rounded-0"
+      >
+        <Row className="justify-content-center mb-4">
+          <Col lg={3}>
+            <img src="/icons/mail.png" className="mx-auto img-fluid" />
+          </Col>
+        </Row>
+        <p className="display-2">LOADING</p>
+        <p>Please wait for the logs to be downloaded...</p>
+      </Alert>
+    );
   return (
     <>
       <Row className="mb-3">
@@ -74,14 +95,20 @@ function LogComponent({
               onClick={async (e) => {
                 const target = e.currentTarget;
                 target.setAttribute("disabled", "true");
-                await createProcess(
+                let result = await createProcess<{
+                  process: Process;
+                }>(
                   "wipe",
                   {
                     ip: ip,
                     connectionId: connectionId || computerId,
                   },
-                  true
+                  true,
+                  (process) => {
+                    processStore.addProcess(process);
+                  }
                 );
+                processStore.removeProcess(result.data.process);
                 target.setAttribute("disabled", "false");
                 setLogs([]);
                 setCount(0);

@@ -5,11 +5,13 @@ import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import FileComponent from "../../components/FileComponent";
+import { useProcessStore } from "../../lib/stores/process.store";
 
 export default function Files() {
   const game = useContext(GameContext);
   const { computerId } = useParams();
   const navigate = useNavigate();
+  const processStore = useProcessStore();
   const location = useLocation();
   const computer = game.computers.find((val) => val.id === computerId);
   const connected =
@@ -87,7 +89,27 @@ export default function Files() {
       )}
       <Row>
         <Col lg={3}>
-          <Card body className="bg-transparent border border-secondary">
+          <Card body className="bg-transparent border border-warning">
+            <div className="d-grid gap-2">
+              <Button
+                variant="warning"
+                onClick={() => {
+                  navigate("/computers/");
+                }}
+              >
+                View Computers
+              </Button>
+              <Button
+                variant="warning"
+                onClick={() => {
+                  navigate("/computers/connections");
+                }}
+              >
+                View Connections
+              </Button>
+            </div>
+          </Card>
+          <Card body className="bg-transparent border border-secondary mt-3">
             <div className="d-grid gap-2">
               <Button
                 variant="secondary"
@@ -113,7 +135,11 @@ export default function Files() {
               >
                 Processes{" "}
                 <span className="badge bg-danger">
-                  {computer.process.length}
+                  {
+                    processStore.processes.filter(
+                      (that) => that.computerId === computer.id
+                    ).length
+                  }
                 </span>
               </Button>
               <Button
@@ -139,33 +165,17 @@ export default function Files() {
               </Button>
             </div>
           </Card>
-          <Card body className="bg-transparent border border-warning mt-3">
-            <div className="d-grid gap-2">
-              <Button
-                variant="warning"
-                onClick={() => {
-                  navigate("/computers/");
-                }}
-              >
-                View Computers
-              </Button>
-              <Button
-                variant="warning"
-                onClick={() => {
-                  navigate("/computers/connections");
-                }}
-              >
-                View Connections
-              </Button>
-            </div>
-          </Card>
         </Col>
         <Col>
           <div className="d-grid border border-warning p-4">
             <FileComponent
               computer={computer}
               uploadTargetIp={location?.state?.uploadTargetIp}
+              onCreation={(process) => {
+                processStore.addProcess(process);
+              }}
               onCompletion={(process) => {
+                processStore.removeProcess(process);
                 game.load();
               }}
             ></FileComponent>

@@ -5,12 +5,14 @@ import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LogComponent from "../../components/LogComponent";
+import { useProcessStore } from "../../lib/stores/process.store";
 
 export default function Logs() {
   const game = useContext(GameContext);
   const { computerId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const processStore = useProcessStore();
 
   const computer = game.computers.find((val) => val.id === computerId);
   const connected =
@@ -88,7 +90,27 @@ export default function Logs() {
       )}
       <Row>
         <Col lg={3}>
-          <Card body className="bg-transparent border border-secondary">
+          <Card body className="bg-transparent border border-info">
+            <div className="d-grid gap-2">
+              <Button
+                variant="info"
+                onClick={() => {
+                  navigate("/computers/");
+                }}
+              >
+                View Computers
+              </Button>
+              <Button
+                variant="info"
+                onClick={() => {
+                  navigate("/computers/connections");
+                }}
+              >
+                View Connections
+              </Button>
+            </div>
+          </Card>
+          <Card body className="bg-transparent border border-secondary mt-3">
             <div className="d-grid gap-2">
               <Button
                 variant="secondary"
@@ -114,7 +136,11 @@ export default function Logs() {
               >
                 Processes{" "}
                 <span className="badge bg-danger">
-                  {computer.process.length}
+                  {
+                    processStore.processes.filter(
+                      (that) => that.computerId === computer.id
+                    ).length
+                  }
                 </span>
               </Button>
               <Button
@@ -137,26 +163,6 @@ export default function Logs() {
                       24
                   )}
                 </span>
-              </Button>
-            </div>
-          </Card>
-          <Card body className="bg-transparent border border-info mt-3">
-            <div className="d-grid gap-2">
-              <Button
-                variant="info"
-                onClick={() => {
-                  navigate("/computers/");
-                }}
-              >
-                View Computers
-              </Button>
-              <Button
-                variant="info"
-                onClick={() => {
-                  navigate("/computers/connections");
-                }}
-              >
-                View Connections
               </Button>
             </div>
           </Card>

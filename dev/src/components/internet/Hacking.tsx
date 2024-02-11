@@ -7,6 +7,7 @@ import { Process } from "../../lib/types/process.type";
 import { createProcess } from "../../lib/process";
 import { HomepageRequest } from "../../pages/internet/Browser";
 import SessionContext from "../../contexts/session.context";
+import { useProcessStore } from "../../lib/stores/process.store";
 
 function Hacking({
   connectionId,
@@ -29,6 +30,7 @@ function Hacking({
 }) {
   const game = useContext(GameContext);
   const session = useContext(SessionContext);
+  const processStore = useProcessStore();
   const [process, setProcess] = useState<Process | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
@@ -236,7 +238,9 @@ function Hacking({
                       onClick={async () => {
                         setError(null);
                         try {
-                          await createProcess(
+                          let result = await createProcess<{
+                            process: Process;
+                          }>(
                             "hack",
                             {
                               ip: computer.ip,
@@ -244,11 +248,13 @@ function Hacking({
                             },
                             true,
                             (process) => {
+                              processStore.addProcess(process);
                               setProcess(process);
                             }
                           ).finally(() => {
                             setProcess(null);
                           });
+                          processStore.removeProcess(result.data.process);
                           fetchHomepage(ip, connectionId).then(() => {
                             setTab("connection");
                           });
@@ -326,7 +332,9 @@ function Hacking({
                       onClick={async () => {
                         setError(null);
                         try {
-                          await createProcess(
+                          let result = await createProcess<{
+                            process: Process;
+                          }>(
                             "exploit",
                             {
                               ip: computer.ip,
@@ -334,11 +342,13 @@ function Hacking({
                             },
                             true,
                             (process) => {
+                              processStore.addProcess(process);
                               setProcess(process);
                             }
                           ).finally(() => {
                             setProcess(null);
                           });
+                          processStore.removeProcess(result.data.process);
                           fetchHomepage(ip, connectionId).then(() => {
                             setTab("connection");
                           });
