@@ -25,12 +25,15 @@ export const useBrowserStore = create<State & Action>()(
     (set, get) => ({
       history: {},
       updateTab(connectionId: string, index: number, tab: string) {
-        let newHistory = this.history[connectionId];
+        let updatedHistory = this.history[connectionId];
 
-        newHistory[index].tab = tab;
+        if (!updatedHistory) return;
+
+        updatedHistory[index].tab = tab;
         set({
           history: {
-            [connectionId]: newHistory,
+            ...this.history,
+            [connectionId]: updatedHistory,
           },
         });
       },
@@ -40,7 +43,7 @@ export const useBrowserStore = create<State & Action>()(
         });
       },
       addHistory(
-        connectonId: string,
+        connectionId: string,
         tab: string,
         computer: Computer,
         domain?: string
@@ -48,7 +51,7 @@ export const useBrowserStore = create<State & Action>()(
         set({
           history: {
             ...this.history,
-            [connectonId]: [{ ...computer, tab: tab, domain: domain }],
+            [connectionId]: [{ ...computer, tab: tab, domain: domain }],
           },
         });
       },

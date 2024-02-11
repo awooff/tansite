@@ -121,10 +121,6 @@ export default function Browser() {
             browserStore.history?.[browserStore.connectionId]?.[0]?.tab ||
             "homepage";
 
-          if (!data.access && tab === "hack") tab = "connection";
-          else if (data.access && tab === "connection") tab = "logs";
-          else if (tab === "login") tab = "connection";
-
           setTab(tab || "homepage");
           setComputer(data.computer);
           setMarkdown(data.markdown);
@@ -139,27 +135,28 @@ export default function Browser() {
             return prev;
           });
 
-          if (currentAddress.current && currentAddress?.current?.value !== ip)
-            currentAddress.current.value = ip;
-
           browserStore.addHistory(
             browserStore.connectionId,
             tab,
             data.computer,
             ip.startsWith("www") ? ip : undefined
           );
+
+          if (currentAddress.current && currentAddress?.current?.value !== ip)
+            currentAddress.current.value = ip;
+
           setValid(true);
 
           return data;
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setValid(false);
       } finally {
         setLoading(false);
       }
     },
-    [history]
+    [browserStore.connectionId]
   );
 
   useEffect(() => {
