@@ -8,7 +8,7 @@ function Taskbar() {
 	const {name, email, avatar} = userStore(state => state.user);
 
 	return (
-		<Flex dir={'row'} m={'auto'} justify={'between'} className='border-solid border-4 border-green-800'>
+		<Flex dir={'row'} m={'auto'} justify={'between'} className='border-solid border-t-2'>
 			<Flex dir={'row'} align={'center'}>
 				<Tooltip content='User Settings'>
 					<IconButton>

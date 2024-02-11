@@ -3,7 +3,6 @@ import { resolve } from 'path'
 import react from '@vitejs/plugin-react-swc'
 
 const root = resolve(__dirname, 'src')
-console.log(root)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +11,8 @@ export default defineConfig({
 		alias: {
 			"@": resolve(root),
 			"@components": resolve(root, 'components'),
+			"@ui": resolve(root, 'components/ui'),
+			"@layouts": resolve(root, 'components/layouts'),
 			"@lib": resolve(root, 'lib'),
 			"@schemas": resolve(root, 'lib/schemas'),
 			"@stores": resolve(root, 'lib/stores'),

@@ -1,22 +1,21 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {userStore} from '@/lib/stores';
+import {userStore} from '@stores/user.store';
 import {Button} from '@radix-ui/themes';
 
 type Props = Record<string, unknown>;
 const LogoutButton: React.FC<Props> = () => {
-	const jwt = userStore(store => store.user.jwt);
 	const user = userStore(store => store.user);
 	const {removeUserData} = userStore();
 	const navigate = useNavigate();
 
 	return (
 		<Button onClick={async () => {
-			await axios.post('http://localhost:1337/auth/logout', {
+			await axios.post('http://localhost:1337/auth/logout', {}, {
 				withCredentials: true,
 				headers: {
-					Authorization: 'Bearer ' + jwt,
+					Authorization: 'Bearer ' + user.jwt,
 				},
 			})
 				.catch(err => {
