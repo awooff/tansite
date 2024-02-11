@@ -101,6 +101,19 @@ export default function ComputerThumbnail({
               body
               className="bg-transparent border border-primary text-center mt-2 text-white"
             >
+              {connected ? (
+                <img
+                  src="/icons/connect.png"
+                  className="img-fluid mx-auto w-50"
+                ></img>
+              ) : (
+                <img
+                  src="/icons/disconnect.png"
+                  className="img-fluid mx-auto w-50"
+                ></img>
+              )}
+              <br />
+              <hr />
               <Link
                 className="text-white"
                 to={connected ? "/computers/files/" + computer.id : ""}
@@ -108,8 +121,6 @@ export default function ComputerThumbnail({
                 {computer.ip}
               </Link>
               <br />
-              <hr />
-
               <span
                 style={{
                   fontSize: 12,
@@ -122,15 +133,16 @@ export default function ComputerThumbnail({
                       : "text-success"
                   }
                 >
-                  {computer.process ? computer.process.length : 0}
-                </span>{" "}
-                Active Processes
+                  <Link to={"/computers/processes/" + computer.id}>
+                    {computer.process ? computer.process.length : 0} Active
+                    Processes
+                  </Link>
+                </span>
                 <br />
               </span>
-
               <span
                 style={{
-                  fontSize: 10,
+                  fontSize: 8,
                 }}
               >
                 {connected ? (
@@ -142,7 +154,12 @@ export default function ComputerThumbnail({
             </Card>
           </Col>
         </Row>
-        <ListGroup className="mb-2 mt-3">
+        <ListGroup
+          className="mb-2 mt-3"
+          style={{
+            fontSize: 12,
+          }}
+        >
           {(() => {
             const hardwares = {} as Record<HardwareType, Hardware>;
             const counts = {} as Record<HardwareType, number>;
@@ -165,7 +182,7 @@ export default function ComputerThumbnail({
                   </span>
                   {hardware.type}{" "}
                   <span
-                    className="badge bg-primary"
+                    className="badge bg-dark"
                     style={{
                       float: "right",
                     }}

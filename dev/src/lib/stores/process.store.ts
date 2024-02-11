@@ -3,7 +3,7 @@ import { Process } from "../types/process.type";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type State = {
-  processes: Process[];
+  processes: Record<string, Process[]>;
 };
 
 type Action = {
@@ -15,21 +15,55 @@ type Action = {
 export const useProcessStore = create<State & Action>()(
   persist(
     (set, get) => ({
-      processes: [],
+      processes: {},
       addProcess(process: Process) {
-        if (this.processes.find((that) => that.id === process.id)) return;
+        if (!this.processes[process.computerId])
+          set({
+            processes: {
+              ...this.processes,
+              [process.computerId]: [],
+            },
+          });
+
+        if (
+          this.processes[process.computerId].find(
+            (that) => that.id === process.id
+          )
+        )
+          return;
         set({
-          processes: [...get().processes, process],
+          processes: {
+            [process.computerId]: [
+              ...get().processes[process.computerId],
+              process,
+            ],
+          },
         });
       },
       removeProcess(process: Process) {
         set({
-          processes: get().processes.filter((that) => that.id !== process.id),
+          processes: {
+            [process.computerId]: this.processes[process.computerId].filter(
+              (that) => that.id !== process.id
+            ),
+          },
         });
       },
       setProcesses(processes: Process[]) {
+        if (processes.length === 0) return;
+        if (!this.processes[processes[0].computerId])
+          set({
+            processes: {
+              ...this.processes,
+              [processes[0].computerId]: [],
+            },
+          });
+
         set({
-          processes: processes,
+          processes: {
+            ...this.processes,
+            [processes[0].computerId]: processes,
+          },
         });
       },
     }),

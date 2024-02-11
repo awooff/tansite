@@ -64,7 +64,7 @@ export class Software {
           this.computer.getCombinedHardwareStrength("RAM") / 12) *
         Math.max(1, this.software?.size || 1);
 
-    return (baseCost * 1000) / 2;
+    return ((baseCost * 1000) / 2) * this.level;
   }
 
   public async preExecute(

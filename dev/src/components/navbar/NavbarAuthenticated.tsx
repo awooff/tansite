@@ -9,19 +9,8 @@ export default function NavbarAuthenticated() {
     <>
       <Nav className="me-auto">
         <NavDropdown title="🖥️">
-          <NavDropdown.Item href="#navigate:/computers/connections">
-            Connections{" "}
-            <span
-              className="badge bg-danger ms-2"
-              style={{
-                float: "right",
-              }}
-            >
-              {game?.connections?.length || 0}
-            </span>
-          </NavDropdown.Item>
           <NavDropdown.Item href="#navigate:/computers">
-            All Computers{" "}
+            Computers{" "}
             <span
               className="badge bg-danger ms-2"
               style={{
@@ -29,6 +18,34 @@ export default function NavbarAuthenticated() {
               }}
             >
               {game?.computers?.length || 0}
+            </span>
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#navigate:/computers">
+            Processes
+            <span
+              className="badge bg-danger ms-2"
+              style={{
+                float: "right",
+              }}
+            >
+              {(() => {
+                let count = 0;
+                game.computers.forEach(
+                  (val) => (count = count + val.process.length)
+                );
+                return count;
+              })()}
+            </span>
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#navigate:/computers/network">
+            Network{" "}
+            <span
+              className="badge bg-danger ms-2"
+              style={{
+                float: "right",
+              }}
+            >
+              {game?.connections?.length || 0}
             </span>
           </NavDropdown.Item>
           <NavDropdown.Divider />
@@ -50,10 +67,7 @@ export default function NavbarAuthenticated() {
         <Nav.Link className="text-white">
           <span className="badge bg-secondary">0 NOTIFICATIONS</span>
         </Nav.Link>
-        <Nav.Link
-          className="text-white"
-          href="#navigate:/computers/connections"
-        >
+        <Nav.Link className="text-white" href="#navigate:/computers/network">
           <span
             className={
               game?.connections && game?.connections?.length !== 0

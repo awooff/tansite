@@ -56,7 +56,7 @@ export default function Files() {
       <Row>
         <Col>
           <p className="display-4 border-bottom pb-3 border-success">
-            ~/<Link to="/computers/">computers</Link>/files/
+            ~/<Link to="/computers/">computers</Link>/home/
             {computer.ip.replace(/\./g, "_")}/
           </p>
         </Col>
@@ -68,9 +68,11 @@ export default function Files() {
               variant="primary"
               className="bg-transparent border border-primary"
             >
-              <p>Would you like to return to the previous page?</p>
+              Would you like to return to the previous page?
+              <br />
               <Button
                 variant="primary"
+                className="mt-2"
                 onClick={() => {
                   navigate(location.state.return, {
                     state: {
@@ -88,80 +90,88 @@ export default function Files() {
         <></>
       )}
       <Row>
+        <Col>
+          <div className="hstack gap-2 mb-3">
+            <Button
+              variant="warning"
+              onClick={() => {
+                navigate("/computers/files/" + computer.id);
+              }}
+            >
+              View Files
+            </Button>
+            <Button
+              variant="info"
+              onClick={() => {
+                navigate("/computers/logs/" + computer.id);
+              }}
+            >
+              View Logs
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                navigate("/computers/processes/" + computer.id);
+              }}
+            >
+              View Processes{" "}
+              <span className="badge bg-danger">
+                {processStore.processes?.[computer.id]?.length || 0}
+              </span>
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                navigate("/computers/logs/" + computer.id);
+              }}
+            >
+              View/Modify Hardware{" "}
+              <span className="badge bg-black">
+                🛠️{" "}
+                {Math.floor(
+                  computer.hardware.reduce((prev, cur) => {
+                    return {
+                      ...prev,
+                      strength: Math.round(cur.strength + prev.strength),
+                    };
+                  }).strength /
+                    computer.hardware.length /
+                    24
+                )}
+              </span>
+            </Button>
+          </div>
+        </Col>
+      </Row>
+      <Row>
         <Col lg={3}>
           <Card body className="bg-transparent border border-warning">
             <div className="d-grid gap-2">
               <Button
                 variant="warning"
                 onClick={() => {
-                  navigate("/computers/");
+                  navigate("/computers/network");
                 }}
               >
-                View Computers
+                <img
+                  src="/icons/network.png"
+                  className="mx-auto img-fluid w-50"
+                ></img>
+                <br />
+                View Network
               </Button>
               <Button
                 variant="warning"
                 onClick={() => {
-                  navigate("/computers/connections");
+                  navigate("/computers/");
                 }}
               >
-                View Connections
-              </Button>
-            </div>
-          </Card>
-          <Card body className="bg-transparent border border-secondary mt-3">
-            <div className="d-grid gap-2">
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  navigate("/computers/files/" + computer.id);
-                }}
-              >
-                Files
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  navigate("/computers/logs/" + computer.id);
-                }}
-              >
-                Logs
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  navigate("/computers/processes/" + computer.id);
-                }}
-              >
-                Processes{" "}
-                <span className="badge bg-danger">
-                  {
-                    processStore.processes.filter(
-                      (that) => that.computerId === computer.id
-                    ).length
-                  }
-                </span>
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  navigate("/computers/logs/" + computer.id);
-                }}
-              >
-                Hardware{" "}
-                <span className="badge bg-black">
-                  🛠️{" "}
-                  {Math.floor(
-                    computer.hardware.reduce((prev, cur) => {
-                      return {
-                        ...prev,
-                        strength: Math.round(cur.strength + prev.strength),
-                      };
-                    }).strength /
-                      computer.hardware.length /
-                      24
-                  )}
-                </span>
+                <img
+                  src="/icons/query.png"
+                  className="mx-auto img-fluid w-50"
+                ></img>
+                <br />
+                View Computers
               </Button>
             </div>
           </Card>

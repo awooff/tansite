@@ -7,24 +7,14 @@
 		"baseUrl": "./src",
 		"resolveJsonModule": true,
 		"paths": {
-			"@": [
-				"./",
-			],
-			"@/app/*": [
-				"app/*"
-			],
-			"@/routes/*": [
-				"resources/*"
-			],
-			"@/lib/*": [
-				"lib/*"
-			],
-			"@/middleware/*": [
-				"middleware/*"
-			]
-		}, /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-		"esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
-		"skipLibCheck": true, /* Skip type checking of declaration files. */
+			"@": ["./"],
+			"@/app/*": ["app/*"],
+			"@/routes/*": ["resources/*"],
+			"@/lib/*": ["lib/*"],
+			"@/middleware/*": ["middleware/*"]
+		} /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
+		"esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+		"skipLibCheck": true /* Skip type checking of declaration files. */,
 		"forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-	},
+	}
 }

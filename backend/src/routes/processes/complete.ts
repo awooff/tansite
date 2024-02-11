@@ -27,6 +27,7 @@ const create = {
     const processData = await server.prisma.process.findUnique({
       where: {
         id: processId,
+        userId: req.session.userId,
       },
       include: {
         computer: true,

@@ -21,6 +21,60 @@ export default function Dashboard() {
         <Col lg={3}>
           <Row lg={1} className="gy-4">
             <Col>
+              <Card body className="bg-transparent border border-secondary">
+                <div className="d-grid gap-2">
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      navigate("/computers/network");
+                    }}
+                  >
+                    <img
+                      src="/icons/network.png"
+                      className="mx-auto img-fluid w-50"
+                    />
+                    <br />
+                    View Network
+                    <br />
+                    <span
+                      className={
+                        "badge " +
+                        (game?.connections?.length !== 0
+                          ? "bg-success"
+                          : "bg-secondary")
+                      }
+                    >
+                      {game?.connections?.length || 0} ACTIVE CONNECTIONS
+                    </span>
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      navigate("/computers/processes");
+                    }}
+                  >
+                    <img
+                      src="/icons/hack.png"
+                      className="mx-auto img-fluid w-50"
+                    />
+                    <br />
+                    View Processes
+                    <br />
+                    <span className="badge bg-black">
+                      {(() => {
+                        let count = 0;
+                        game.computers.forEach(
+                          (val) => (count = count + val.process.length)
+                        );
+                        return count;
+                      })()}{" "}
+                      ACTIVE GLOBALLY
+                    </span>
+                  </Button>
+                </div>
+              </Card>
+            </Col>
+            <Col>
               <Card body className="bg-transparent border-success">
                 <p className="text-center text-white">
                   You can <u>obtain a new computer</u> by purchasing one from a
@@ -44,49 +98,6 @@ export default function Dashboard() {
                     }}
                   >
                     Purchase A Computer
-                  </Button>
-                </div>
-              </Card>
-            </Col>
-            <Col>
-              <Card body className="bg-transparent border border-secondary">
-                <div className="d-grid gap-2">
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      navigate("/computers/connections");
-                    }}
-                  >
-                    Connections
-                    <br />
-                    <span
-                      className={
-                        "badge " +
-                        (game?.connections?.length !== 0
-                          ? "bg-success"
-                          : "bg-secondary")
-                      }
-                    >
-                      {game?.connections?.length || 0} ACTIVE CONNECTIONS
-                    </span>
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      navigate("/computers/processes");
-                    }}
-                  >
-                    Processes <br />
-                    <span className="badge bg-black">
-                      {(() => {
-                        let count = 0;
-                        game.computers.forEach(
-                          (val) => (count = count + val.process.length)
-                        );
-                        return count;
-                      })()}{" "}
-                      ACTIVE GLOBALLY
-                    </span>
                   </Button>
                 </div>
               </Card>

@@ -31,6 +31,7 @@ import Connection from "../../components/internet/Connection";
 import SessionContext from "../../contexts/session.context";
 import Logs from "../../components/internet/Logs";
 import Files from "../../components/internet/Files";
+import { useBrowserStore } from "../../lib/stores/brower.store";
 
 export type HomepageRequest = {
   computer: Computer;
@@ -45,25 +46,11 @@ export default function Browser() {
   const { ip: target } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const browserStore = useBrowserStore();
   const [computer, setComputer] = useState<Computer | null>(null);
   const [markdown, setMarkdown] = useState("");
   const [valid, setValid] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [connectionId, setConnectionId] = useState(
-    location?.state?.connectionId ||
-      game?.connections?.find(
-        (that) => that.id === localStorage.getItem("currentConnectionId")
-      )?.id
-  );
-  const [history, setHistory] = useState<
-    Record<
-      string,
-      {
-        ip: string;
-        tab: string;
-      }
-    >
-  >({});
   const [currentIp, setCurrentIp] = useState<string | null>("0.0.0.0");
   const [access, setAccess] = useState<object | null>(null);
   const currentAddress = useRef<HTMLInputElement>(null);
@@ -100,6 +87,15 @@ export default function Browser() {
   );
 
   useEffect(() => {
+    if (!location.state) return;
+    if (
+      location.state.connectionId &&
+      browserStore.connectionId !== location.state.connectionId
+    )
+      browserStore.setConnectionId(location.state.connectionId);
+  }, [location]);
+
+  useEffect(() => {
     if (!target) return;
     if (!currentIp) return;
 
@@ -111,33 +107,34 @@ export default function Browser() {
 
   const loadBrowser = useCallback(
     async (ip: string) => {
+      if (!browserStore.connectionId) return;
+
       setLoading(true);
 
       try {
-        let data = await fetchHomepage(ip, connectionId);
+        let data = await fetchHomepage(ip, browserStore.connectionId);
         if (!data) setValid(false);
         else {
           setAccess(data.access || null);
 
-          if (data.access && history[connectionId]?.tab === "hack")
-            history[connectionId].tab = "login";
-          else if (!data.access && history[connectionId]?.tab === "login")
-            history[connectionId].tab = "homepage";
+          let tab =
+            browserStore.history?.[browserStore.connectionId]?.[0]?.tab ||
+            "homepage";
 
-          setTab(history[connectionId]?.tab || "homepage");
-          setHistory({
-            ...history,
-            [connectionId]: {
-              ip: ip,
-              tab: history[connectionId]?.tab || "homepage",
-            },
-          });
+          if (!data.access && tab === "hack") tab = "connection";
+          else if (data.access && tab === "connection") tab = "logs";
+          else if (tab === "login") tab = "connection";
+
+          setTab(tab || "homepage");
           setComputer(data.computer);
           setMarkdown(data.markdown);
           setBrowserSession((prev) => {
-            if (!prev[connectionId]) prev[connectionId] = [];
+            if (!browserStore.connectionId) return prev;
 
-            if (!prev[connectionId].includes(ip)) prev[connectionId].push(ip);
+            if (!prev[browserStore.connectionId])
+              prev[browserStore.connectionId] = [];
+            if (!prev[browserStore.connectionId].includes(ip))
+              prev[browserStore.connectionId].push(ip);
 
             return prev;
           });
@@ -145,17 +142,12 @@ export default function Browser() {
           if (currentAddress.current && currentAddress?.current?.value !== ip)
             currentAddress.current.value = ip;
 
-          localStorage.setItem(
-            "history",
-            JSON.stringify({
-              ...history,
-              [connectionId]: {
-                ip: ip,
-                tab: history[connectionId]?.tab || tab || "homepage",
-              },
-            })
+          browserStore.addHistory(
+            browserStore.connectionId,
+            tab,
+            data.computer,
+            ip.startsWith("www") ? ip : undefined
           );
-
           setValid(true);
 
           return data;
@@ -171,24 +163,21 @@ export default function Browser() {
   );
 
   useEffect(() => {
-    if (!connectionId) return;
-
-    const history = JSON.parse(localStorage.getItem("history") || "{}") || {};
-    setHistory((prev) => {
-      return {
-        ...prev,
-        ...history,
-      };
-    });
+    if (!browserStore.connectionId) return;
 
     if (
       !currentIp ||
       (currentIp == "0.0.0.0" &&
-        history[connectionId] &&
-        currentIp !== history[connectionId].ip)
+        browserStore.history?.[browserStore.connectionId] &&
+        currentIp !== browserStore.history?.[browserStore.connectionId][0].ip)
     ) {
-      setCurrentIp(history[connectionId].ip);
-      setTab(history[connectionId].tab || "homepage");
+      setCurrentIp(
+        browserStore.history?.[browserStore.connectionId][0].domain ||
+          browserStore.history?.[browserStore.connectionId][0].ip
+      );
+      setTab(
+        browserStore.history?.[browserStore.connectionId][0].tab || "homepage"
+      );
       return;
     }
 
@@ -198,7 +187,7 @@ export default function Browser() {
         success: "Success",
         error: "Failure",
       });
-  }, [currentIp, connectionId]);
+  }, [currentIp, browserStore.connectionId]);
 
   return (
     <Layout fluid={true}>
@@ -208,15 +197,17 @@ export default function Browser() {
             title={
               <span className="badge bg-success m-2 rounded-0">
                 👤{" "}
-                {connectionId ? (
+                {browserStore.connectionId ? (
                   <>
                     {
-                      game.connections.find((that) => that.id === connectionId)
-                        ?.ip
+                      game.connections.find(
+                        (that) => that.id === browserStore.connectionId
+                      )?.ip
                     }{" "}
                     <span className="badge bg-black rounded-0">
-                      {game.connections.find((that) => that.id === connectionId)
-                        ?.data?.title || "Unknown Computer"}
+                      {game.connections.find(
+                        (that) => that.id === browserStore.connectionId
+                      )?.data?.title || "Unknown Computer"}
                     </span>
                   </>
                 ) : (
@@ -232,12 +223,15 @@ export default function Browser() {
                     fontSize: 12,
                   }}
                   onClick={() => {
-                    localStorage.setItem("currentConnectionId", connection.id);
-                    setConnectionId(connection.id);
+                    browserStore.setConnectionId(connection.id);
                     setCurrentIp("0.0.0.0");
                     setValid(false);
                   }}
-                  className={connectionId === connection.id ? "bg-success" : ""}
+                  className={
+                    browserStore.connectionId === connection.id
+                      ? "bg-success"
+                      : ""
+                  }
                 >
                   <span className={"me-2 badge rounded-0 bg-transparent"}>
                     #{index}
@@ -248,19 +242,22 @@ export default function Browser() {
                   <span className={"badge rounded-0 bg-black"}>
                     {connection.data?.title}
                   </span>
-                  {history[connection.id] ? (
+                  {browserStore?.history?.[connection.id] &&
+                  browserStore.history[connection.id].length !== 0 ? (
                     <>
                       <br />
                       <span
                         className={
                           "mt-1 badge rounded-0 " +
-                          (connectionId === connection.id
+                          (browserStore.connectionId === connection.id
                             ? "bg-transparent"
                             : "bg-transparent")
                         }
                       >
-                        📄 On tab {history[connection.id].tab} @{" "}
-                        {history[connection.id].ip}
+                        📄 On tab {browserStore.history?.[connection.id][0].tab}{" "}
+                        @{" "}
+                        {browserStore.history?.[connection.id][0].domain ||
+                          browserStore.history?.[connection.id][0].ip}
                       </span>
                     </>
                   ) : (
@@ -307,8 +304,6 @@ export default function Browser() {
                       )
                         return;
 
-                      if (access) setTab("homepage");
-
                       setValid(false);
                       setCurrentIp(currentAddress.current.value);
                     }
@@ -327,8 +322,6 @@ export default function Browser() {
                       )
                         return;
 
-                      if (access) setTab("homepage");
-
                       setValid(false);
                       setCurrentIp(currentAddress?.current?.value);
                     }}
@@ -343,20 +336,26 @@ export default function Browser() {
           </Nav>
           <Nav className="me-auto mx-auto">
             <NavDropdown title={"📖"}>
-              {browserSession?.[connectionId]?.map((session, index) => (
-                <NavDropdown.Item
-                  key={index}
-                  onClick={() => {
-                    if (currentIp !== session) {
-                      setCurrentIp(session);
-                      setValid(false);
-                    }
-                  }}
-                >
-                  <span className="badge bg-secondary me-2">{index}</span>
-                  {session}
-                </NavDropdown.Item>
-              ))}
+              {browserStore.connectionId ? (
+                browserSession?.[browserStore.connectionId]?.map(
+                  (session, index) => (
+                    <NavDropdown.Item
+                      key={index}
+                      onClick={() => {
+                        if (currentIp !== session) {
+                          setCurrentIp(session);
+                          setValid(false);
+                        }
+                      }}
+                    >
+                      <span className="badge bg-secondary me-2">{index}</span>
+                      {session}
+                    </NavDropdown.Item>
+                  )
+                )
+              ) : (
+                <></>
+              )}
             </NavDropdown>
           </Nav>
           <Nav className="me-auto mx-auto">
@@ -365,21 +364,28 @@ export default function Browser() {
                 <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                   <Button
                     disabled={
-                      browserSession?.[connectionId]?.length === 1 || currentIp
-                        ? browserSession?.[connectionId]?.indexOf(
-                            currentIp !== null ? currentIp : "0.0.0.0"
-                          ) === 0
+                      browserStore.connectionId
+                        ? browserSession?.[browserStore.connectionId]
+                            ?.length === 1 || currentIp
+                          ? browserSession?.[
+                              browserStore.connectionId
+                            ]?.indexOf(
+                              currentIp !== null ? currentIp : "0.0.0.0"
+                            ) === 0
+                          : false
                         : false
                     }
                     onClick={() => {
+                      if (!browserStore.connectionId) return;
+
                       let newIp =
-                        browserSession?.[connectionId]?.[
-                          browserSession?.[connectionId]?.indexOf(
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) - 1
                         ] ||
-                        browserSession?.[connectionId]?.[
-                          browserSession?.[connectionId].length - 1
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId].length - 1
                         ];
 
                       if (currentIp !== newIp) {
@@ -396,22 +402,31 @@ export default function Browser() {
                 <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                   <Button
                     disabled={
-                      browserSession?.[connectionId]?.length === 1 || currentIp
-                        ? browserSession?.[connectionId]?.indexOf(
-                            currentIp !== null ? currentIp : "0.0.0.0"
-                          ) ===
-                          browserSession?.[connectionId]?.length - 1
+                      browserStore.connectionId
+                        ? browserSession?.[browserStore.connectionId]
+                            ?.length === 1 || currentIp
+                          ? browserSession?.[
+                              browserStore.connectionId
+                            ]?.indexOf(
+                              currentIp !== null ? currentIp : "0.0.0.0"
+                            ) ===
+                            browserSession?.[browserStore.connectionId]
+                              ?.length -
+                              1
+                          : false
                         : false
                     }
                     onClick={() => {
+                      if (!browserStore.connectionId) return;
+
                       let newIp =
-                        browserSession?.[connectionId]?.[
-                          browserSession?.[connectionId]?.indexOf(
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) + 1
                         ] ||
-                        browserSession?.[connectionId]?.[
-                          browserSession?.[connectionId].length - 1
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId].length - 1
                         ];
 
                       if (newIp !== currentIp) {
@@ -430,7 +445,7 @@ export default function Browser() {
           </Nav>
         </Container>
       </Navbar>
-      {game.connections.length === 0 || !connectionId ? (
+      {game.connections.length === 0 || !browserStore.connectionId ? (
         <Row>
           <Col>
             <Alert
@@ -450,7 +465,7 @@ export default function Browser() {
                       href="#"
                       onClick={(e) => {
                         e.preventDefault();
-                        setConnectionId(connection.id);
+                        browserStore.setConnectionId(connection.id);
                       }}
                     >
                       Connect to {connection.ip} ({connection.data.title})
@@ -466,7 +481,7 @@ export default function Browser() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/computers/connections", {
+                  navigate("/computers/network", {
                     state: {
                       return: "/internet/browser/" + currentIp,
                     },
@@ -486,26 +501,16 @@ export default function Browser() {
                 {computer?.type === "search_engine" && tab === "homepage" ? (
                   <SearchEngine
                     computer={computer}
-                    connectionId={connectionId}
+                    connectionId={browserStore.connectionId}
                     valid={valid}
                     access={access}
                     setCurrentIp={setCurrentIp}
                     ip={currentIp || "0.0.0.0"}
                     markdown={markdown}
                     setTab={(tab: string) => {
-                      let newHistory = {
-                        ...history,
-                        [connectionId]: {
-                          ...history[connectionId],
-                          tab: tab,
-                        },
-                      };
-                      localStorage.setItem(
-                        "history",
-                        JSON.stringify(newHistory)
-                      );
+                      if (!browserStore.connectionId) return;
+                      browserStore.updateTab(browserStore.connectionId, 0, tab);
                       setTab(tab);
-                      setHistory(history);
                     }}
                   />
                 ) : (
@@ -515,30 +520,23 @@ export default function Browser() {
                         return (
                           <Homepage
                             computer={
-                              session.data?.logins?.[connectionId]?.find(
-                                (that) => that.id === computer?.id
-                              ) || computer
+                              session.data?.logins?.[
+                                browserStore.connectionId
+                              ]?.find((that) => that.id === computer?.id) ||
+                              computer
                             }
-                            connectionId={connectionId}
+                            connectionId={browserStore.connectionId}
                             valid={valid}
                             access={access}
                             ip={currentIp || "0.0.0.0"}
                             markdown={markdown}
                             setTab={(tab: string) => {
-                              setHistory((history) => {
-                                let newHistory = {
-                                  ...history,
-                                  [connectionId]: {
-                                    ...history[connectionId],
-                                    tab: tab,
-                                  },
-                                };
-                                localStorage.setItem(
-                                  "history",
-                                  JSON.stringify(newHistory)
-                                );
-                                return newHistory;
-                              });
+                              if (!browserStore.connectionId) return;
+                              browserStore.updateTab(
+                                browserStore.connectionId,
+                                0,
+                                tab
+                              );
                               setTab(tab);
                             }}
                           />
@@ -547,30 +545,23 @@ export default function Browser() {
                         return (
                           <Connection
                             computer={
-                              session.data?.logins?.[connectionId]?.find(
-                                (that) => that.id === computer?.id
-                              ) || computer
+                              session.data?.logins?.[
+                                browserStore.connectionId
+                              ]?.find((that) => that.id === computer?.id) ||
+                              computer
                             }
-                            connectionId={connectionId}
+                            connectionId={browserStore.connectionId}
                             valid={valid}
                             access={access}
                             ip={currentIp || "0.0.0.0"}
                             markdown={markdown}
                             setTab={(tab: string) => {
-                              setHistory((history) => {
-                                let newHistory = {
-                                  ...history,
-                                  [connectionId]: {
-                                    ...history[connectionId],
-                                    tab: tab,
-                                  },
-                                };
-                                localStorage.setItem(
-                                  "history",
-                                  JSON.stringify(newHistory)
-                                );
-                                return newHistory;
-                              });
+                              if (!browserStore.connectionId) return;
+                              browserStore.updateTab(
+                                browserStore.connectionId,
+                                0,
+                                tab
+                              );
                               setTab(tab);
                             }}
                           />
@@ -579,16 +570,16 @@ export default function Browser() {
                         return (
                           <Hacking
                             computer={
-                              session.data?.logins?.[connectionId]?.find(
-                                (that) => that.id === computer?.id
-                              ) || computer
+                              session.data?.logins?.[
+                                browserStore.connectionId
+                              ]?.find((that) => that.id === computer?.id) ||
+                              computer
                             }
-                            connectionId={connectionId}
+                            connectionId={browserStore.connectionId}
                             valid={valid}
                             access={access}
                             fetchHomepage={async (ip, connectionId) => {
-                              setConnectionId(connectionId);
-
+                              browserStore.setConnectionId(connectionId);
                               let result = await loadBrowser(ip);
                               if (!result) throw new Error("invalid fetch");
 
@@ -597,20 +588,12 @@ export default function Browser() {
                             ip={currentIp || "0.0.0.0"}
                             markdown={markdown}
                             setTab={(tab: string) => {
-                              setHistory((history) => {
-                                let newHistory = {
-                                  ...history,
-                                  [connectionId]: {
-                                    ...history[connectionId],
-                                    tab: tab,
-                                  },
-                                };
-                                localStorage.setItem(
-                                  "history",
-                                  JSON.stringify(newHistory)
-                                );
-                                return newHistory;
-                              });
+                              if (!browserStore.connectionId) return;
+                              browserStore.updateTab(
+                                browserStore.connectionId,
+                                0,
+                                tab
+                              );
                               setTab(tab);
                             }}
                           />
@@ -619,30 +602,23 @@ export default function Browser() {
                         return (
                           <Logs
                             computer={
-                              session.data?.logins?.[connectionId]?.find(
-                                (that) => that.id === computer?.id
-                              ) || computer
+                              session.data?.logins?.[
+                                browserStore.connectionId
+                              ]?.find((that) => that.id === computer?.id) ||
+                              computer
                             }
-                            connectionId={connectionId}
+                            connectionId={browserStore.connectionId}
                             valid={valid}
                             access={access}
                             ip={currentIp || "0.0.0.0"}
                             markdown={markdown}
                             setTab={(tab: string) => {
-                              setHistory((history) => {
-                                let newHistory = {
-                                  ...history,
-                                  [connectionId]: {
-                                    ...history[connectionId],
-                                    tab: tab,
-                                  },
-                                };
-                                localStorage.setItem(
-                                  "history",
-                                  JSON.stringify(newHistory)
-                                );
-                                return newHistory;
-                              });
+                              if (!browserStore.connectionId) return;
+                              browserStore.updateTab(
+                                browserStore.connectionId,
+                                0,
+                                tab
+                              );
                               setTab(tab);
                             }}
                           />
@@ -650,26 +626,18 @@ export default function Browser() {
                       else if (tab === "files")
                         return (
                           <Files
-                            connectionId={connectionId}
+                            connectionId={browserStore.connectionId}
                             valid={valid}
                             access={access}
                             ip={currentIp || "0.0.0.0"}
                             markdown={markdown}
                             setTab={(tab: string) => {
-                              setHistory((history) => {
-                                let newHistory = {
-                                  ...history,
-                                  [connectionId]: {
-                                    ...history[connectionId],
-                                    tab: tab,
-                                  },
-                                };
-                                localStorage.setItem(
-                                  "history",
-                                  JSON.stringify(newHistory)
-                                );
-                                return newHistory;
-                              });
+                              if (!browserStore.connectionId) return;
+                              browserStore.updateTab(
+                                browserStore.connectionId,
+                                0,
+                                tab
+                              );
                               setTab(tab);
                             }}
                           />
@@ -687,6 +655,12 @@ export default function Browser() {
                                 className="mt-2"
                                 variant="danger"
                                 onClick={() => {
+                                  if (!browserStore.connectionId) return;
+                                  browserStore.updateTab(
+                                    browserStore.connectionId,
+                                    0,
+                                    tab
+                                  );
                                   setTab("homepage");
                                 }}
                               >
@@ -710,12 +684,15 @@ export default function Browser() {
                         cursor: "pointer",
                       }}
                       onClick={() => {
-                        navigate("/computers/files/" + connectionId, {
-                          state: {
-                            return: "/internet/browser/" + currentIp,
-                            uploadTargetIp: access ? currentIp : undefined,
-                          },
-                        });
+                        navigate(
+                          "/computers/files/" + browserStore.connectionId,
+                          {
+                            state: {
+                              return: "/internet/browser/" + currentIp,
+                              uploadTargetIp: access ? currentIp : undefined,
+                            },
+                          }
+                        );
                       }}
                     >
                       View Your HDD
@@ -726,33 +703,39 @@ export default function Browser() {
                         cursor: "pointer",
                       }}
                       onClick={() => {
-                        navigate("/computers/logs/" + connectionId, {
-                          state: {
-                            return: "/internet/browser/" + currentIp,
-                          },
-                        });
+                        navigate(
+                          "/computers/logs/" + browserStore.connectionId,
+                          {
+                            state: {
+                              return: "/internet/browser/" + currentIp,
+                            },
+                          }
+                        );
                       }}
                     >
                       View Your Logs
                     </span>{" "}
                     |
-                    {session.data.logins?.[connectionId]?.length !== 0 ? (
-                      session.data.logins?.[connectionId]?.map((login) => (
-                        <span
-                          className="ms-1 badge bg-success rounded-0"
-                          style={{
-                            cursor: "pointer",
-                          }}
-                          onClick={() => {
-                            setCurrentIp(login.ip);
-                          }}
-                        >
-                          🌎 {login.ip}{" "}
-                          <span className="badge bg-black rounded-0">
-                            {login.data?.title || "Unknown"}
+                    {session.data.logins?.[browserStore.connectionId]
+                      ?.length !== 0 ? (
+                      session.data.logins?.[browserStore.connectionId]?.map(
+                        (login) => (
+                          <span
+                            className="ms-1 badge bg-success rounded-0"
+                            style={{
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              setCurrentIp(login.ip);
+                            }}
+                          >
+                            🌎 {login.ip}{" "}
+                            <span className="badge bg-black rounded-0">
+                              {login.data?.title || "Unknown"}
+                            </span>
                           </span>
-                        </span>
-                      ))
+                        )
+                      )
                     ) : (
                       <></>
                     )}

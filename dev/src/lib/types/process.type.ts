@@ -4,5 +4,6 @@ export type Process = {
   type: string;
   ip: string;
   id: string;
+  data: Record<string, any>;
   computerId: string;
 };

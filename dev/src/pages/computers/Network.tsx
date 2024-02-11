@@ -7,7 +7,7 @@ import { postRequestHandler } from "../../lib/submit";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 
-export default function Connections() {
+export default function Network() {
   const game = useContext(GameContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,7 +17,7 @@ export default function Connections() {
       <Row>
         <Col>
           <p className="display-4 border-bottom pb-3 border-success">
-            ~/<Link to="/computers/">computers</Link>/connections.json
+            ~/<Link to="/computers/">computers</Link>/network.json
           </p>
         </Col>
       </Row>
@@ -50,7 +50,7 @@ export default function Connections() {
           </Alert>
         </Col>
       </Row>
-      <Row lg={4} sm={1} className="gy-4">
+      <Row lg={5} sm={1} className="gy-4">
         <Computers
           thumbnail
           onlyConnected={true}
@@ -136,7 +136,7 @@ export default function Connections() {
           </Alert>
         </Col>
       </Row>
-      <Row lg={4} sm={1} className="gy-3">
+      <Row lg={5} sm={1} className="gy-3">
         <Computers
           thumbnail
           onlyDisconnected={true}

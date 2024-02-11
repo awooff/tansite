@@ -3,7 +3,7 @@ import Index from "./pages/Index";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Game from "./pages/Game";
-import Connections from "./pages/computers/Connections";
+import Network from "./pages/computers/Network";
 import Logout from "./pages/auth/Logout";
 import Dashboard from "./pages/computers/Dashboard";
 import Files from "./pages/computers/Files";
@@ -46,10 +46,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/computers/connections",
+    path: "/computers/network",
     element: (
       <ProtectedLayout>
-        <Connections />
+        <Network />
       </ProtectedLayout>
     ),
   },
