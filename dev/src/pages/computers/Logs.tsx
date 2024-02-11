@@ -11,10 +11,13 @@ export default function Logs() {
   const { computerId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
   const computer = game.computers.find((val) => val.id === computerId);
+  const connected =
+    game.connections.find((val) => val.id === computerId) !== undefined;
 
   //if no computer or not connected
-  if (!computer || !game.connections?.find((val) => val.id === computer?.id))
+  if (!computer)
     return (
       <Layout>
         <Row>
@@ -24,6 +27,23 @@ export default function Logs() {
               className="bg-transparent border border-danger text-center text-white"
             >
               This computer is invalid. Have you tried connecting to it?
+            </Card>
+          </Col>
+        </Row>
+      </Layout>
+    );
+
+  //if no computer or not connected
+  if (!connected)
+    return (
+      <Layout>
+        <Row>
+          <Col>
+            <Card
+              body
+              className="bg-transparent border border-danger text-center text-white"
+            >
+              You are not connected to this computer!
             </Card>
           </Col>
         </Row>
@@ -84,6 +104,14 @@ export default function Logs() {
                   navigate("/computers/logs/" + computer.id);
                 }}
               >
+                Logs
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  navigate("/computers/processes/" + computer.id);
+                }}
+              >
                 Processes{" "}
                 <span className="badge bg-danger">
                   {computer.process.length}
@@ -120,7 +148,7 @@ export default function Logs() {
                   navigate("/computers/");
                 }}
               >
-                View Your Computers
+                View Computers
               </Button>
               <Button
                 variant="info"
@@ -128,7 +156,7 @@ export default function Logs() {
                   navigate("/computers/connections");
                 }}
               >
-                View Your Connections
+                View Connections
               </Button>
             </div>
           </Card>

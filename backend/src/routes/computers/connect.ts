@@ -38,7 +38,6 @@ const connect = {
     req.session.connections.push(
       removeFromObject(computer.computer, ["software", "process"])
     );
-    req.session.save();
 
     // logged new login
     computer.log(`logged on at ${new Date(Date.now()).toString()}`);

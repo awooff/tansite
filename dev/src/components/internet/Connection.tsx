@@ -54,6 +54,27 @@ function Connection({
           </Row>
           <p className="display-2">LOADING</p>
           <p>Please wait for the connection interface to be initialized...</p>
+          <Row className="justify-content-center mb-4">
+            <Col lg={2}>
+              <div className="d-grid">
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    session
+                      .load()
+                      .finally(() => {
+                        setTab("homepage");
+                      })
+                      .catch((error: Error) => {
+                        console.log(error);
+                      });
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Col>
+          </Row>
         </Alert>
       ) : (
         <>

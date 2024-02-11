@@ -117,7 +117,15 @@ export default function Dashboard() {
                       <tr key={index}>
                         <td>{computer.type}</td>
                         <td>{computer.ip}</td>
-                        <td>{computer.data.title}</td>
+                        <td>
+                          <span
+                            style={{
+                              borderBottom: "1px dashed white",
+                            }}
+                          >
+                            {computer.data.title} ✏️
+                          </span>
+                        </td>
                         <td>
                           {Math.floor(
                             computer.hardware.reduce((prev, cur) => {
@@ -153,45 +161,59 @@ export default function Dashboard() {
                               Connect
                             </Button>
                           ) : (
-                            <Button
-                              variant="danger"
-                              size="sm"
-                              className="bg-transparent border border-danger"
-                              onClick={async () => {
-                                await postRequestHandler(
-                                  "/computers/disconnect",
-                                  {
-                                    computerId: computer.id,
-                                  },
-                                  () => {
-                                    game.load();
-                                  }
-                                );
-                              }}
-                            >
-                              Disconnect
-                            </Button>
+                            <>
+                              <Button
+                                variant="danger"
+                                size="sm"
+                                className="bg-transparent border border-danger"
+                                onClick={async () => {
+                                  await postRequestHandler(
+                                    "/computers/disconnect",
+                                    {
+                                      computerId: computer.id,
+                                    },
+                                    () => {
+                                      game.load();
+                                    }
+                                  );
+                                }}
+                              >
+                                Disconnect
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                disabled={!connected}
+                                onClick={() => {
+                                  navigate("/computers/files/" + computer.id);
+                                }}
+                                size="sm"
+                              >
+                                Files
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                onClick={() => {
+                                  navigate("/computers/logs/" + computer.id);
+                                }}
+                                disabled={!connected}
+                                size="sm"
+                              >
+                                Logs
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                disabled={!connected}
+                                onClick={() => {
+                                  navigate(
+                                    "/computers/processes/" + computer.id
+                                  );
+                                }}
+                                size="sm"
+                              >
+                                Processes
+                              </Button>
+                            </>
                           )}
-                          <Button
-                            variant="secondary"
-                            disabled={!connected}
-                            onClick={() => {
-                              navigate("/computers/files/" + computer.id);
-                            }}
-                            size="sm"
-                          >
-                            Files
-                          </Button>
-                          <Button
-                            variant="secondary"
-                            onClick={() => {
-                              navigate("/computers/logs/" + computer.id);
-                            }}
-                            disabled={!connected}
-                            size="sm"
-                          >
-                            Logs
-                          </Button>
                         </td>
                       </tr>
                     );

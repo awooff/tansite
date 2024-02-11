@@ -84,7 +84,14 @@ function Files({
                 <Button
                   variant="danger"
                   onClick={() => {
-                    setTab("homepage");
+                    session
+                      .load()
+                      .finally(() => {
+                        setTab("homepage");
+                      })
+                      .catch((error: Error) => {
+                        console.log(error);
+                      });
                   }}
                 >
                   Cancel

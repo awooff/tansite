@@ -6,6 +6,7 @@ import { Col } from "react-bootstrap";
 import { Process } from "../../lib/types/process.type";
 import { createProcess } from "../../lib/process";
 import { HomepageRequest } from "../../pages/internet/Browser";
+import SessionContext from "../../contexts/session.context";
 
 function Hacking({
   connectionId,
@@ -27,6 +28,7 @@ function Hacking({
   fetchHomepage: (ip: string, connectionId: string) => Promise<HomepageRequest>;
 }) {
   const game = useContext(GameContext);
+  const session = useContext(SessionContext);
   const [process, setProcess] = useState<Process | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
@@ -70,6 +72,27 @@ function Hacking({
           </Row>
           <p className="display-2">LOADING</p>
           <p>Please await for the hacking interface to be initialized...</p>
+          <Row className="justify-content-center mb-4">
+            <Col lg={2}>
+              <div className="d-grid">
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    session
+                      .load()
+                      .finally(() => {
+                        setTab("homepage");
+                      })
+                      .catch((error: Error) => {
+                        console.log(error);
+                      });
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Col>
+          </Row>
         </Alert>
       ) : (
         <>

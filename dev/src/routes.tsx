@@ -10,6 +10,7 @@ import Files from "./pages/computers/Files";
 import Logs from "./pages/computers/Logs";
 import Browser from "./pages/internet/Browser";
 import ProtectedLayout from "./components/ProtectedLayout";
+import Processes from "./pages/computers/Processes";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedLayout>
         <Logs />
+      </ProtectedLayout>
+    ),
+  },
+  {
+    path: "/computers/processes/:computerId",
+    element: (
+      <ProtectedLayout>
+        <Processes />
       </ProtectedLayout>
     ),
   },

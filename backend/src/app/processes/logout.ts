@@ -61,8 +61,6 @@ const logout = {
         executor.computerId
       ].filter((val) => val.id !== computer.computerId);
 
-    req.session.save();
-
     executor.log("remote session terminated", computer);
   },
 } satisfies Process;

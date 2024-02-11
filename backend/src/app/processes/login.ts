@@ -54,7 +54,6 @@ const login = {
     req.session.logins[executor.computerId].push(
       removeFromObject(computer.computer, ["software", "process"])
     );
-    req.session.save();
 
     computer.log("remote session created", executor);
     executor.log("remote session handshake", computer);

@@ -24,11 +24,11 @@ export const isConnectedToMachine = (
 
   if (!result) return false;
 
+  //if the target ip has changed
   if (targetComputer.ip !== result.ip) {
     req.session.logins[computer.computerId] = req.session.logins[
       computer.computerId
     ].filter((val) => val.id !== computer.computerId);
-    req.session.save();
     return false;
   }
 
