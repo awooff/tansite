@@ -26,6 +26,12 @@
 			"@components/*": [
 				"./src/components/*"
 			],
+			"@ui/*": [
+				"./src/components/ui/*"
+			],
+			"@layouts/*": [
+				"./src/components/layouts/*"
+			],
 		},
 		"target": "ES2020",
 		"useDefineForClassFields": true,

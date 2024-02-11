@@ -17,7 +17,7 @@ function Navbar() {
 	const user = userStore(store => store.user);
 
 	return (
-		<nav className='sticky top-0'>
+		<nav className='sticky top-0 z-50'>
 			<Menubar.Root className='flex bg-white p-[3px] rounded-md shadow-[0_2px_10px] shadow-blackA4'>
 				<Menubar.Menu>
 					<Menubar.Trigger className='py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[13px] flex items-center justify-between gap-[2px] data-[highlighted]:bg-violet4 data-[state=open]:bg-violet4'>
