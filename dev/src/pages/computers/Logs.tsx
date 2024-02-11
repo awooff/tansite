@@ -112,17 +112,39 @@ export default function Logs() {
               </Button>
             </div>
           </Card>
+          <Card body className="bg-transparent border border-info mt-3">
+            <div className="d-grid gap-2">
+              <Button
+                variant="info"
+                onClick={() => {
+                  navigate("/computers/");
+                }}
+              >
+                View Your Computers
+              </Button>
+              <Button
+                variant="info"
+                onClick={() => {
+                  navigate("/computers/connections");
+                }}
+              >
+                View Your Connections
+              </Button>
+            </div>
+          </Card>
         </Col>
         <Col>
-          {computerId ? (
-            <LogComponent
-              computerId={computerId}
-              ip={computer.ip}
-              local={true}
-            />
-          ) : (
-            <Alert variant="danger">Invalid computer</Alert>
-          )}
+          <div className="d-grid border border-info p-4">
+            {computerId ? (
+              <LogComponent
+                computerId={computerId}
+                ip={computer.ip}
+                local={true}
+              />
+            ) : (
+              <Alert variant="danger">Invalid computer</Alert>
+            )}
+          </div>
         </Col>
       </Row>
     </Layout>

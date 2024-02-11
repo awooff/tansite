@@ -9,7 +9,7 @@ export default function Dashboard() {
   const game = useContext(GameContext);
   const navigate = useNavigate();
   return (
-    <Layout>
+    <Layout fluid>
       <Row>
         <Col>
           <p className="display-4 border-bottom pb-3 border-success">
@@ -18,7 +18,7 @@ export default function Dashboard() {
         </Col>
       </Row>
       <Row className="mt-3">
-        <Col lg={4}>
+        <Col lg={3}>
           <Row lg={1} className="gy-4">
             <Col>
               <Card body className="bg-transparent border-success">
@@ -49,28 +49,35 @@ export default function Dashboard() {
               </Card>
             </Col>
             <Col>
-              <Card body className="bg-transparent border border-primary">
+              <Card body className="bg-transparent border border-secondary">
                 <div className="d-grid gap-2">
                   <Button
-                    variant="primary"
+                    variant="secondary"
                     onClick={() => {
                       navigate("/computers/connections");
                     }}
                   >
-                    Slaves
+                    Connections
                     <br />
-                    <span className="badge bg-danger">
-                      {game?.connections?.length || 0} CONNECTIONS
+                    <span
+                      className={
+                        "badge " +
+                        (game?.connections?.length !== 0
+                          ? "bg-success"
+                          : "bg-secondary")
+                      }
+                    >
+                      {game?.connections?.length || 0} ACTIVE CONNECTIONS
                     </span>
                   </Button>
                   <Button
-                    variant="primary"
+                    variant="secondary"
                     onClick={() => {
                       navigate("/computers/processes");
                     }}
                   >
                     Processes <br />
-                    <span className="badge bg-danger">
+                    <span className="badge bg-black">
                       {(() => {
                         let count = 0;
                         game.computers.forEach(
@@ -78,7 +85,7 @@ export default function Dashboard() {
                         );
                         return count;
                       })()}{" "}
-                      GLOBALLY
+                      ACTIVE GLOBALLY
                     </span>
                   </Button>
                 </div>
@@ -125,11 +132,12 @@ export default function Dashboard() {
                               24
                           )}
                         </td>
-                        <td>
+                        <td className="d-grid gap-2">
                           {!connected ? (
                             <Button
                               variant="success"
                               size="sm"
+                              className="bg-transparent border border-success"
                               onClick={async () => {
                                 await postRequestHandler(
                                   "/computers/connect",
@@ -148,6 +156,7 @@ export default function Dashboard() {
                             <Button
                               variant="danger"
                               size="sm"
+                              className="bg-transparent border border-danger"
                               onClick={async () => {
                                 await postRequestHandler(
                                   "/computers/disconnect",
@@ -165,7 +174,6 @@ export default function Dashboard() {
                           )}
                           <Button
                             variant="secondary"
-                            className="ms-2"
                             disabled={!connected}
                             onClick={() => {
                               navigate("/computers/files/" + computer.id);
@@ -176,7 +184,6 @@ export default function Dashboard() {
                           </Button>
                           <Button
                             variant="secondary"
-                            className="ms-2"
                             onClick={() => {
                               navigate("/computers/logs/" + computer.id);
                             }}

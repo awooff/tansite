@@ -29,6 +29,7 @@ const fetch = {
       let dns = await server.prisma.dNS.findFirst({
         where: {
           website: domain,
+          gameId: process.env.CURRENT_GAME_ID,
         },
       });
 

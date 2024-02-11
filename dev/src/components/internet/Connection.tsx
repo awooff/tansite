@@ -150,12 +150,29 @@ function Connection({
               <Col>
                 <Card
                   body
-                  className={"bg-transparent rounded-0 border-success"}
+                  className={
+                    "bg-transparent rounded-0 " +
+                    (session.data.logins?.[connectionId]?.find(
+                      (login) => login.id === computer.id
+                    ) !== undefined
+                      ? "border-secondary"
+                      : "border-success")
+                  }
                   style={{
                     height: "100%",
+                    filter:
+                      session.data.logins?.[connectionId]?.find(
+                        (login) => login.id === computer.id
+                      ) !== undefined
+                        ? "blur(12px)"
+                        : "",
                   }}
                 >
                   <div className="d-grid gap-2">
+                    <img
+                      className="img-fluid mx-auto"
+                      src="/icons/connect.png"
+                    ></img>
                     <Card
                       body
                       className="mb-3 bg-transparent border-secondary rounded-0 text-white text-center"
@@ -163,7 +180,13 @@ function Connection({
                       $ connect {computer.ip}
                     </Card>
                     <Button
-                      variant="success"
+                      variant={
+                        session.data.logins?.[connectionId]?.find(
+                          (login) => login.id === computer.id
+                        ) !== undefined
+                          ? "secondary"
+                          : "success"
+                      }
                       disabled={
                         session.data.logins?.[connectionId]?.find(
                           (login) => login.id === computer.id
@@ -203,12 +226,29 @@ function Connection({
               <Col>
                 <Card
                   body
-                  className={"bg-transparent rounded-0 border-danger"}
+                  className={
+                    "bg-transparent rounded-0 " +
+                    (session.data.logins?.[connectionId]?.find(
+                      (login) => login.id === computer.id
+                    ) === undefined
+                      ? "border-secondary"
+                      : "border-danger")
+                  }
                   style={{
                     height: "100%",
+                    filter:
+                      session.data.logins?.[connectionId]?.find(
+                        (login) => login.id === computer.id
+                      ) === undefined
+                        ? "blur(12px)"
+                        : "",
                   }}
                 >
                   <div className="d-grid gap-2">
+                    <img
+                      className="img-fluid mx-auto"
+                      src="/icons/disconnect.png"
+                    ></img>
                     <Card
                       body
                       className="mb-3 bg-transparent border-secondary rounded-0 text-white text-center"
@@ -216,7 +256,13 @@ function Connection({
                       $ disconnect {computer.ip}
                     </Card>
                     <Button
-                      variant="danger"
+                      variant={
+                        session.data.logins?.[connectionId]?.find(
+                          (login) => login.id === computer.id
+                        ) === undefined
+                          ? "secondary"
+                          : "danger"
+                      }
                       disabled={
                         session.data.logins?.[connectionId]?.find(
                           (login) => login.id === computer.id

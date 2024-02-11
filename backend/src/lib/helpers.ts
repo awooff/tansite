@@ -19,7 +19,7 @@ export const isConnectedToMachine = (
   if (!req.session?.logins?.[computer.computerId]) return false;
 
   let result = req.session.logins[computer.computerId].find(
-    (that) => (that.id = targetComputer.computerId)
+    (that) => that.id === targetComputer.computerId
   );
 
   if (!result) return false;

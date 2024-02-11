@@ -8,6 +8,7 @@ import { server } from "../index";
 import { Software } from "./software";
 import { ComputerProcess } from "./process";
 import { AddressBook } from "./addressbook";
+import { removeFromObject } from "@/lib/helpers";
 
 export interface ComputerData {
   title?: string;
@@ -302,14 +303,24 @@ export class Computer {
     return this.software.filter((software) => software.installed);
   }
 
-  public async cloneSoftware(computer: Computer, software: Software | string) {
+  public async cloneSoftware(
+    computer: Computer,
+    software: Software | string,
+    installed: boolean = false
+  ) {
     software =
       typeof software === "string" ? this.getSoftware(software) : software;
 
     if (!software.software) throw new Error("software class is not loaded");
 
     return await computer.addSoftware({
-      ...software.software,
+      ...removeFromObject(software.software, [
+        "userId",
+        "computerId",
+        "gameId",
+        "id",
+      ]),
+      installed: installed,
       data: {
         ...(typeof software.software.data === "string"
           ? JSON.parse(software.software.data)

@@ -45,10 +45,10 @@ function Files({
   }, []);
 
   useEffect(() => {
-    if (!ip || !connectionId) return;
+    if (!ip || !connectionId || !valid) return;
 
     fetchFiles(ip, connectionId).then((computer) => setComputer(computer));
-  }, [ip, connectionId]);
+  }, [ip, connectionId, valid]);
 
   if (!valid)
     return (
@@ -78,6 +78,20 @@ function Files({
           </Row>
           <p className="display-2">LOADING</p>
           <p>Please wait for the file tree to be downloaded...</p>
+          <Row className="justify-content-center mb-4">
+            <Col lg={2}>
+              <div className="d-grid">
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    setTab("homepage");
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Col>
+          </Row>
         </Alert>
       ) : (
         <>

@@ -342,8 +342,10 @@ export default function Browser() {
                 <NavDropdown.Item
                   key={index}
                   onClick={() => {
-                    setCurrentIp(session);
-                    setValid(false);
+                    if (currentIp !== session) {
+                      setCurrentIp(session);
+                      setValid(false);
+                    }
                   }}
                 >
                   <span className="badge bg-secondary me-2">{index}</span>
@@ -365,17 +367,20 @@ export default function Browser() {
                         : false
                     }
                     onClick={() => {
-                      setCurrentIp(
+                      let newIp =
                         browserSession?.[connectionId]?.[
                           browserSession?.[connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) - 1
                         ] ||
-                          browserSession?.[connectionId]?.[
-                            browserSession?.[connectionId].length - 1
-                          ]
-                      );
-                      setValid(false);
+                        browserSession?.[connectionId]?.[
+                          browserSession?.[connectionId].length - 1
+                        ];
+
+                      if (currentIp !== newIp) {
+                        setCurrentIp(newIp);
+                        setValid(false);
+                      }
                     }}
                     size="sm"
                     className="rounded-0 bg-transparent border-0"
@@ -394,17 +399,20 @@ export default function Browser() {
                         : false
                     }
                     onClick={() => {
-                      setCurrentIp(
+                      let newIp =
                         browserSession?.[connectionId]?.[
                           browserSession?.[connectionId]?.indexOf(
                             currentIp !== null ? currentIp : "0.0.0.0"
                           ) + 1
                         ] ||
-                          browserSession?.[connectionId]?.[
-                            browserSession?.[connectionId].length - 1
-                          ]
-                      );
-                      setValid(false);
+                        browserSession?.[connectionId]?.[
+                          browserSession?.[connectionId].length - 1
+                        ];
+
+                      if (newIp !== currentIp) {
+                        setCurrentIp(newIp);
+                        setValid(false);
+                      }
                     }}
                     size="sm"
                     className="rounded-0 bg-transparent border-0"
@@ -681,6 +689,7 @@ export default function Browser() {
                         navigate("/computers/files/" + connectionId, {
                           state: {
                             return: "/internet/browser/" + currentIp,
+                            uploadTargetIp: access ? currentIp : undefined,
                           },
                         });
                       }}

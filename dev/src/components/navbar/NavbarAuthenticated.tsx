@@ -12,7 +12,7 @@ export default function NavbarAuthenticated() {
           <NavDropdown.Item href="#navigate:/computers/connections">
             Connections{" "}
             <span
-              className="badge bg-danger"
+              className="badge bg-danger ms-2"
               style={{
                 float: "right",
               }}
@@ -21,9 +21,9 @@ export default function NavbarAuthenticated() {
             </span>
           </NavDropdown.Item>
           <NavDropdown.Item href="#navigate:/computers">
-            Network{" "}
+            All Computers{" "}
             <span
-              className="badge bg-danger"
+              className="badge bg-danger ms-2"
               style={{
                 float: "right",
               }}

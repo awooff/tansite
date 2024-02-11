@@ -85,7 +85,7 @@ function LogComponent({
                 target.setAttribute("disabled", "false");
                 setLogs([]);
                 setCount(0);
-                setPages(0);
+                setPages(1);
               }}
             >
               Wipe Log
@@ -139,13 +139,16 @@ function LogComponent({
                       <td>
                         <a
                           className={
-                            !local
-                              ? log.senderId === connectionId
-                                ? "text-danger"
-                                : "text-white"
-                              : log.senderId !== computerId
-                                ? "text-danger"
-                                : "text-white"
+                            (computerId && log?.computer?.id === computerId) ||
+                            log.senderIp === ip
+                              ? "text-warning"
+                              : !local
+                                ? log.senderId === connectionId
+                                  ? "text-danger"
+                                  : "text-white"
+                                : log.senderId !== computerId
+                                  ? "text-danger"
+                                  : "text-white"
                           }
                         >
                           {log.senderIp}

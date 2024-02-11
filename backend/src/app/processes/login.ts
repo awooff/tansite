@@ -4,7 +4,7 @@ import GameException from "@/lib/exceptions/game.exception";
 import { AddressBook } from "../addressbook";
 import { server } from "../../index";
 import settings from "../../settings";
-import { removeFromObject } from "@/lib/helpers";
+import { isConnectedToMachine, removeFromObject } from "@/lib/helpers";
 
 const login = {
   settings: {
@@ -31,6 +31,11 @@ const login = {
 
     if (!addressBook.findInAddressBook(data.ip))
       throw new GameException("you must hack this computer first");
+
+    if (
+      isConnectedToMachine(server.request[data.sessionId], executor, computer)
+    )
+      throw new GameException("you are already connected to this computer");
 
     return true;
   },

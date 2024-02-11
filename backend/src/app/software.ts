@@ -4,15 +4,20 @@ import { server } from "../index";
 import { SoftwareAction } from "@/lib/types/software.type";
 import softwares, { SoftwareType } from "./softwares";
 import settings from "../settings";
+import GameException from "@/lib/exceptions/game.exception";
+
+export type SoftwareData = {
+  title?: string;
+};
 
 export class Software {
-  public software?: Prisma.SoftwareGetPayload<{}>;
+  public software?: Table;
   public computer?: Computer;
   public readonly softwareId: string;
   public action: SoftwareAction = softwares.generic;
   public constructor(
     softwareId: string,
-    software?: Prisma.SoftwareGetPayload<{}>,
+    software?: Table,
     computer?: Computer
   ) {
     this.softwareId = softwareId;
@@ -22,6 +27,10 @@ export class Software {
     if (computer) {
       this.computer = computer;
     }
+  }
+
+  public get data() {
+    return this.software?.data as SoftwareData;
   }
 
   public async uninstall() {
@@ -118,8 +127,28 @@ export class Software {
           computer,
           data
         );
+      case "upload":
+        if (this.action?.preUpload == null) {
+          return true;
+        }
+        return await this.action.preUpload(
+          this,
+          this.computer || computer,
+          computer,
+          data
+        );
+      case "download":
+        if (this.action?.preDownload == null) {
+          return true;
+        }
+        return await this.action.preDownload(
+          this,
+          this.computer || computer,
+          computer,
+          data
+        );
       default:
-        throw new Error("invalid action");
+        throw new GameException("invalid action");
     }
   }
 
@@ -183,8 +212,28 @@ export class Software {
           computer,
           data
         );
+      case "upload":
+        if (this.action?.upload == null) {
+          return true;
+        }
+        return await this.action.upload(
+          this,
+          this.computer || computer,
+          computer,
+          data
+        );
+      case "download":
+        if (this.action?.download == null) {
+          return true;
+        }
+        return await this.action.download(
+          this,
+          this.computer || computer,
+          computer,
+          data
+        );
       default:
-        throw new Error("invalid action");
+        throw new GameException("invalid action");
     }
   }
 

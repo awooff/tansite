@@ -102,6 +102,19 @@ const create = {
     )
       return error("your current computer must be connected to this computer");
 
+    if (
+      await server.prisma.process.findFirst({
+        where: {
+          computerId: executor.computerId,
+          type: type,
+          ip: target?.ip || executor.ip,
+        },
+      })
+    )
+      return error(
+        "you already have a process of this type being executed on this machine"
+      );
+
     const before = await gameProcess.before(target, executor, data);
 
     if (!before) throw new GameException("process failed to start");

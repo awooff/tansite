@@ -67,6 +67,20 @@ function Logs({
           </Row>
           <p className="display-2">LOADING</p>
           <p>Please wait for the logs to be downloaded...</p>
+          <Row className="justify-content-center mb-4">
+            <Col lg={2}>
+              <div className="d-grid">
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    setTab("homepage");
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Col>
+          </Row>
         </Alert>
       ) : (
         <>

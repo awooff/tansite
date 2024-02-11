@@ -66,55 +66,85 @@ export default function Files() {
       ) : (
         <></>
       )}
-      <FileComponent
-        computer={computer}
-        onCompletion={(process) => {
-          game.load();
-        }}
-      >
-        <Card body className="bg-transparent border border-secondary mt-4">
-          <div className="d-grid gap-2">
-            <Button
-              variant="secondary"
-              onClick={() => {
-                navigate("/computers/logs/" + computer.id);
+      <Row>
+        <Col lg={3}>
+          <Card body className="bg-transparent border border-secondary">
+            <div className="d-grid gap-2">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  navigate("/computers/logs/" + computer.id);
+                }}
+              >
+                Logs
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  navigate("/computers/logs/" + computer.id);
+                }}
+              >
+                Processes{" "}
+                <span className="badge bg-danger">
+                  {computer.process.length}
+                </span>
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  navigate("/computers/logs/" + computer.id);
+                }}
+              >
+                Hardware{" "}
+                <span className="badge bg-secondary">
+                  🛠️{" "}
+                  {Math.floor(
+                    computer.hardware.reduce((prev, cur) => {
+                      return {
+                        ...prev,
+                        strength: Math.round(cur.strength + prev.strength),
+                      };
+                    }).strength /
+                      computer.hardware.length /
+                      24
+                  )}
+                </span>
+              </Button>
+            </div>
+          </Card>
+          <Card body className="bg-transparent border border-warning mt-3">
+            <div className="d-grid gap-2">
+              <Button
+                variant="warning"
+                onClick={() => {
+                  navigate("/computers/");
+                }}
+              >
+                View Your Computers
+              </Button>
+              <Button
+                variant="warning"
+                onClick={() => {
+                  navigate("/computers/connections");
+                }}
+              >
+                View Your Connections
+              </Button>
+            </div>
+          </Card>
+        </Col>
+        <Col>
+          <div className="d-grid border border-warning p-4">
+            <FileComponent
+              computer={computer}
+              uploadTargetIp={location?.state?.uploadTargetIp}
+              onCompletion={(process) => {
+                game.load();
               }}
-            >
-              Logs
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                navigate("/computers/logs/" + computer.id);
-              }}
-            >
-              Processes{" "}
-              <span className="badge bg-danger">{computer.process.length}</span>
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                navigate("/computers/logs/" + computer.id);
-              }}
-            >
-              Hardware{" "}
-              <span className="badge bg-secondary">
-                🛠️{" "}
-                {Math.floor(
-                  computer.hardware.reduce((prev, cur) => {
-                    return {
-                      ...prev,
-                      strength: Math.round(cur.strength + prev.strength),
-                    };
-                  }).strength /
-                    computer.hardware.length /
-                    24
-                )}
-              </span>
-            </Button>
+            ></FileComponent>
           </div>
-        </Card>
-      </FileComponent>
+        </Col>
+      </Row>
     </Layout>
   );
 }

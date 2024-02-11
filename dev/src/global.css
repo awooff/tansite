@@ -50,6 +50,6 @@ body {
 @media only screen and (min-width: 1200px) {
   .browser-frame {
     min-height: 72vh;
-    max-height: 76vh;
+    max-height: 75vh;
   }
 }
