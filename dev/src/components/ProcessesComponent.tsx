@@ -76,7 +76,7 @@ function ProcessesComponent({
           {loading &&
           ((processStore.processes?.[computer.id] &&
             processStore.processes[computer.id].length === 0) ||
-            computer.process.length) === 0 ? (
+            computer?.process?.length) === 0 ? (
             <Alert
               variant="danger"
               className="text-center bg-transparent border-secondary border mt-0 mb-0 rounded-0"

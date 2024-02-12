@@ -53,7 +53,7 @@ export default function Files() {
 
   return (
     <Layout fluid>
-      <Row>
+      <Row className="mb-2">
         <Col>
           <p className="display-4 border-bottom pb-3 border-success">
             ~/<Link to="/computers/">computers</Link>/home/

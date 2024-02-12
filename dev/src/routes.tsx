@@ -11,6 +11,7 @@ import Logs from "./pages/computers/Logs";
 import Browser from "./pages/internet/Browser";
 import ProtectedLayout from "./components/ProtectedLayout";
 import Processes from "./pages/computers/Processes";
+import ProcessDashboard from "./pages/processes/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedLayout>
         <Processes />
+      </ProtectedLayout>
+    ),
+  },
+  {
+    path: "/processes/",
+    element: (
+      <ProtectedLayout>
+        <ProcessDashboard />
+      </ProtectedLayout>
+    ),
+  },
+  {
+    path: "/computers/processes/",
+    element: (
+      <ProtectedLayout>
+        <ProcessDashboard />
       </ProtectedLayout>
     ),
   },

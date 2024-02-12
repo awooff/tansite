@@ -17,7 +17,7 @@ export default function Dashboard() {
           </p>
         </Col>
       </Row>
-      <Row className="mt-3">
+      <Row className="mt-2">
         <Col lg={3}>
           <Row lg={1} className="gy-4">
             <Col>
@@ -50,7 +50,7 @@ export default function Dashboard() {
                   <Button
                     variant="secondary"
                     onClick={() => {
-                      navigate("/computers/processes");
+                      navigate("/processes");
                     }}
                   >
                     <img

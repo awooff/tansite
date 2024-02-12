@@ -20,7 +20,7 @@ export default function NavbarAuthenticated() {
               {game?.computers?.length || 0}
             </span>
           </NavDropdown.Item>
-          <NavDropdown.Item href="#navigate:/computers">
+          <NavDropdown.Item href="#navigate:/processes">
             Processes
             <span
               className="badge bg-danger ms-2"
