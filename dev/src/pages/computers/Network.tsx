@@ -156,6 +156,12 @@ export default function Network() {
                           >
                             🛠️
                           </Button>
+                          <Button
+                            variant="secondary"
+                            href={"#navigate:/computers/logs/" + computer.id}
+                          >
+                            📄
+                          </Button>
                         </ButtonGroup>
                         {connected ? (
                           <Button

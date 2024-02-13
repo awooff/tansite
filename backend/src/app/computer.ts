@@ -58,6 +58,7 @@ export class Computer {
       (await server.prisma.computer.findFirst({
         where: {
           id: computerId,
+          gameId: process.env.CURRENT_GAME_ID,
         },
       })) == null
     );
@@ -84,12 +85,13 @@ export class Computer {
     });
   }
 
-  public async getUserPreferences() {
+  public async getUserProfile() {
     if (!this.computer) throw new Error("comptuer not loaded");
 
-    return await server.prisma.preferences.findFirst({
+    return await server.prisma.profile.findFirst({
       where: {
         userId: this.computer.userId,
+        gameId: process.env.CURRENT_GAME_ID,
       },
     });
   }

@@ -2,246 +2,254 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // Enums
 
 enum Groups {
-    User
-    Guest
-    Admin
+  User
+  Guest
+  Admin
 }
 
 enum HardwareTypes {
-    CPU
-    GPU
-    RAM
-    HDD
-    Upload
-    Download
+  CPU
+  GPU
+  RAM
+  HDD
+  Upload
+  Download
 }
 
 enum AccessLevel {
-    GOD
-    FTP
+  GOD
+  FTP
 }
 
 // Models
 
 model User {
-    id           Int           @id @default(autoincrement())
-    email        String        @unique
-    name         String        @default("User")
-    password     String
-    salt         String
-    lastAction   DateTime      @default(now())
-    creation     DateTime      @default(now())
-    refreshToken String?       @db.Text
-    group        Groups        @default(User)
-    session      Session[]
-    computer     Computer[]
-    software     Software[]
-    preferences  Preferences[]
-    memory       Memory[]
-    process      Process[]
-    userQuests   UserQuests[]
-    addressBook  AddressBook[]
-    accountBook  AccountBook[]
-    logs         Logs[]
-    dns             DNS[]
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  name         String        @default("User")
+  password     String
+  salt         String
+  lastAction   DateTime      @default(now())
+  created      DateTime      @default(now())
+  refreshToken String?       @db.Text
+  group        Groups        @default(User)
+  session      Session[]
+  computer     Computer[]
+  software     Software[]
+  memory       Memory[]
+  process      Process[]
+  userQuests   UserQuests[]
+  addressBook  AddressBook[]
+  accountBook  AccountBook[]
+  logs         Logs[]
+  dns          DNS[]
+  profile      Profile[]
 }
 
 model Game {
-    id          String        @id @default(uuid())
-    name        String
-    started     DateTime      @default(now())
-    ended       DateTime?
-    software    Software[]
-    hardware    Hardware[]
-    computer    Computer[]
-    preferences Preferences[]
-    memory      Memory[]
-    process     Process[]
-    quests      Quests[]
-    userQuests  UserQuests[]
-    logs        Logs[]
-    addressBook AddressBook[]
-    accountBook AccountBook[]
-    dns         DNS[]
+  id          String        @id @default(uuid())
+  name        String
+  started     DateTime      @default(now())
+  ended       DateTime?
+  software    Software[]
+  hardware    Hardware[]
+  computer    Computer[]
+  memory      Memory[]
+  process     Process[]
+  quests      Quests[]
+  userQuests  UserQuests[]
+  logs        Logs[]
+  addressBook AddressBook[]
+  accountBook AccountBook[]
+  dns         DNS[]
+  profile     Profile[]
 }
 
 model Session {
-    id         String   @id
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    token      String
-    lastAction DateTime
-    creation   DateTime @default(now())
-    expires    DateTime
+  id         String   @id
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  token      String
+  lastAction DateTime
+  created    DateTime @default(now())
+  expires    DateTime
 }
 
 model Hardware {
-    id         Int           @id @default(autoincrement())
-    computer   Computer      @relation(fields: [computerId], references: [id])
-    computerId String
-    game       Game          @relation(fields: [gameId], references: [id])
-    gameId     String
-    type       HardwareTypes
-    strength   Float
+  id         Int           @id @default(autoincrement())
+  computer   Computer      @relation(fields: [computerId], references: [id])
+  computerId String
+  game       Game          @relation(fields: [gameId], references: [id])
+  gameId     String
+  type       HardwareTypes
+  strength   Float
 }
 
 model AddressBook {
-    id         Int         @id @default(autoincrement())
-    user       User        @relation(fields: [userId], references: [id])
-    userId     Int
-    access     AccessLevel
-    computer   Computer    @relation(fields: [computerId], references: [id])
-    computerId String
-    game       Game        @relation(fields: [gameId], references: [id])
-    ip         String
-    data       Json        @default("{}")
-    gameId     String
+  id         Int         @id @default(autoincrement())
+  user       User        @relation(fields: [userId], references: [id])
+  userId     Int
+  access     AccessLevel
+  computer   Computer    @relation(fields: [computerId], references: [id])
+  computerId String
+  game       Game        @relation(fields: [gameId], references: [id])
+  ip         String
+  data       Json        @default("{}")
+  gameId     String
 }
 
 model DNS {
-    id         Int         @id @default(autoincrement())
-    user       User        @relation(fields: [userId], references: [id])
-    userId     Int
-    computer   Computer      @relation(fields: [computerId], references: [id])
-    computerId String
-    game       Game          @relation(fields: [gameId], references: [id])
-    gameId     String
-    website    String
-    tags       String
-    description String @default("No description available")
-    updated     DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  computer    Computer @relation(fields: [computerId], references: [id])
+  computerId  String
+  game        Game     @relation(fields: [gameId], references: [id])
+  gameId      String
+  website     String
+  tags        String
+  description String   @default("No description available")
+  updated     DateTime @default(now())
+  created     DateTime @default(now())
 }
 
 model AccountBook {
-    id         Int      @id @default(autoincrement())
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    computer   Computer @relation(fields: [computerId], references: [id])
-    computerId String
-    memory     Memory   @relation(fields: [memoryId], references: [id])
-    memoryId   String
-    game       Game     @relation(fields: [gameId], references: [id])
-    data       Json     @default("{}")
-    gameId     String
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  computer   Computer @relation(fields: [computerId], references: [id])
+  computerId String
+  memory     Memory   @relation(fields: [memoryId], references: [id])
+  memoryId   String
+  game       Game     @relation(fields: [gameId], references: [id])
+  data       Json     @default("{}")
+  gameId     String
 }
 
-model Preferences {
-    id     Int    @id @default(autoincrement())
-    user   User   @relation(fields: [userId], references: [id])
-    userId Int
-    game   Game   @relation(fields: [gameId], references: [id])
-    gameId String
-    data   Json   @default("{}")
+model Profile {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId String
+  data   Json   @default("{}")
 }
 
 model Memory {
-    id          String        @id @default(uuid())
-    computer    Computer      @relation(fields: [computerId], references: [id])
-    computerId  String
-    game        Game          @relation(fields: [gameId], references: [id])
-    gameId      String
-    user        User          @relation(fields: [userId], references: [id])
-    userId      Int
-    type        String
-    key         String
-    value       Float?
-    data        Json          @default("{}")
-    accountBook AccountBook[]
+  id          String        @id @default(uuid())
+  computer    Computer      @relation(fields: [computerId], references: [id])
+  computerId  String
+  game        Game          @relation(fields: [gameId], references: [id])
+  gameId      String
+  user        User          @relation(fields: [userId], references: [id])
+  userId      Int
+  type        String
+  key         String
+  value       Float?
+  data        Json          @default("{}")
+  accountBook AccountBook[]
 }
 
 model Computer {
-    id          String        @id @default(uuid())
-    user        User          @relation(fields: [userId], references: [id])
-    userId      Int
-    type        String        @default("npc")
-    game        Game          @relation(fields: [gameId], references: [id])
-    gameId      String
-    ip          String
-    data        Json          @default("{}")
-    dns             DNS[]
-    hardware    Hardware[]
-    software    Software[]
-    memory      Memory[]
-    process     Process[]
-    addressBook AddressBook[]
-    accountBook AccountBook[]
-    Logs        Logs[]
+  id          String        @id @default(uuid())
+  user        User          @relation(fields: [userId], references: [id])
+  userId      Int
+  type        String        @default("npc")
+  game        Game          @relation(fields: [gameId], references: [id])
+  gameId      String
+  ip          String
+  data        Json          @default("{}")
+  created     DateTime      @default(now())
+  updated     DateTime      @default(now()) @updatedAt
+  dns         DNS[]
+  hardware    Hardware[]
+  software    Software[]
+  memory      Memory[]
+  process     Process[]
+  addressBook AddressBook[]
+  accountBook AccountBook[]
+  Logs        Logs[]
 }
 
 model Quests {
-    id         String       @id @default(uuid())
-    game       Game         @relation(fields: [gameId], references: [id])
-    gameId     String
-    type       String
-    title      String
-    reward     Json?
-    open       Boolean
-    userQuests UserQuests[]
+  id         String       @id @default(uuid())
+  game       Game         @relation(fields: [gameId], references: [id])
+  gameId     String
+  type       String
+  title      String
+  reward     Json?
+  open       Boolean
+  userQuests UserQuests[]
 }
 
 model UserQuests {
-    id        String  @id @default(uuid())
-    quest     Quests  @relation(fields: [questsId], references: [id])
-    questsId  String
-    user      User    @relation(fields: [userId], references: [id])
-    userId    Int
-    game      Game    @relation(fields: [gameId], references: [id])
-    gameId    String
-    completed Boolean
+  id        String   @id @default(uuid())
+  quest     Quests   @relation(fields: [questsId], references: [id])
+  questsId  String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    String
+  completed Boolean
+  created   DateTime @default(now())
+  updated   DateTime @default(now()) @updatedAt
 }
 
 model Software {
-    id         String   @id @default(uuid())
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    computer   Computer @relation(fields: [computerId], references: [id])
-    computerId String
-    game       Game     @relation(fields: [gameId], references: [id])
-    gameId     String
-    type       String
-    level      Float
-    size       Float
-    opacity    Float
-    installed  Boolean
-    data       Json     @default(dbgenerated())
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  computer   Computer @relation(fields: [computerId], references: [id])
+  computerId String
+  game       Game     @relation(fields: [gameId], references: [id])
+  gameId     String
+  type       String
+  level      Float
+  size       Float
+  opacity    Float
+  installed  Boolean
+  executed   DateTime @default(now())
+  created    DateTime @default(now())
+  updated    DateTime @default(now()) @updatedAt
+  data       Json     @default("{}")
 }
 
 model Process {
-    id         String   @id @default(uuid())
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    computer   Computer @relation(fields: [computerId], references: [id])
-    computerId String
-    ip         String?
-    game       Game     @relation(fields: [gameId], references: [id])
-    gameId     String
-    type       String
-    started    DateTime @default(now())
-    completion DateTime
-    data       Json
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  computer   Computer @relation(fields: [computerId], references: [id])
+  computerId String
+  ip         String?
+  game       Game     @relation(fields: [gameId], references: [id])
+  gameId     String
+  type       String
+  started    DateTime @default(now())
+  completion DateTime
+  data       Json
 }
 
 model Logs {
-    id         Int      @id @default(autoincrement())
-    user       User     @relation(fields: [userId], references: [id])
-    userId     Int
-    computer   Computer @relation(fields: [computerId], references: [id])
-    computerId String
-    senderId   String
-    senderIp  String
-    game       Game     @relation(fields: [gameId], references: [id])
-    gameId     String
-    message    String
-    created    DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  computer   Computer @relation(fields: [computerId], references: [id])
+  computerId String
+  senderId   String
+  senderIp   String
+  game       Game     @relation(fields: [gameId], references: [id])
+  gameId     String
+  message    String
+  created    DateTime @default(now())
 }

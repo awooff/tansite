@@ -266,6 +266,12 @@ function FileTreeComponent({
                               });
                               if (onCompletion)
                                 onCompletion(result.data.process);
+                              setLoading(true);
+                              fetchFiles(connectionId, ip, computerId)
+                                .then((computer) => setComputer(computer))
+                                .finally(() => {
+                                  setLoading(false);
+                                });
                             }}
                           >
                             Uninstall
@@ -297,6 +303,12 @@ function FileTreeComponent({
                                 });
                                 if (onCompletion)
                                   onCompletion(result.data.process);
+                                setLoading(true);
+                                fetchFiles(connectionId, ip, computerId)
+                                  .then((computer) => setComputer(computer))
+                                  .finally(() => {
+                                    setLoading(false);
+                                  });
                               }}
                             >
                               Install
@@ -327,6 +339,12 @@ function FileTreeComponent({
                               target.setAttribute("disabled", "false");
                             });
                             if (onCompletion) onCompletion(result.data.process);
+                            setLoading(true);
+                            fetchFiles(connectionId, ip, computerId)
+                              .then((computer) => setComputer(computer))
+                              .finally(() => {
+                                setLoading(false);
+                              });
                           }}
                         >
                           Delete
@@ -356,7 +374,12 @@ function FileTreeComponent({
                               target.setAttribute("disabled", "false");
                             });
                             if (onCompletion) onCompletion(result.data.process);
-                            game.load(); //reload for downloads
+                            setLoading(true);
+                            fetchFiles(connectionId, ip, computerId)
+                              .then((computer) => setComputer(computer))
+                              .finally(() => {
+                                setLoading(false);
+                              });
                           }}
                         >
                           Download
@@ -386,7 +409,12 @@ function FileTreeComponent({
                               target.setAttribute("disabled", "false");
                             });
                             if (onCompletion) onCompletion(result.data.process);
-                            game.load(); //reload for uploads
+                            setLoading(true);
+                            fetchFiles(connectionId, ip, computerId)
+                              .then((computer) => setComputer(computer))
+                              .finally(() => {
+                                setLoading(false);
+                              });
                           }}
                         >
                           Upload to {uploadTargetIp}

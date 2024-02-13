@@ -189,7 +189,6 @@ export default function Files() {
               }}
               onCompletion={(process) => {
                 processStore.removeProcess(process);
-                game.load();
               }}
             ></FileTreeComponent>
           </div>

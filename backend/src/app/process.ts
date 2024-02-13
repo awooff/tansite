@@ -2,9 +2,9 @@ import { Process as Table } from "@prisma/client";
 import { Computer } from "./computer";
 import { server } from "../index";
 import processes from "@/app/processes/";
-import z, { ZodRawShape, ZodType } from "zod";
+import z from "zod";
 import { Process, ProcessParameters } from "@/lib/types/process.type";
-import { Software } from "./software";
+
 export type ProcessType = keyof typeof processes;
 
 export class ComputerProcess {

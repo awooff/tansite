@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Layout from "../../components/Layout";
-import { Col, Row, Card, Button, Table } from "react-bootstrap";
+import { Col, Row, Card, Button, Table, ButtonGroup } from "react-bootstrap";
 import GameContext from "../../contexts/game.context";
 import { useNavigate } from "react-router-dom";
 import { postRequestHandler } from "../../lib/submit";
@@ -192,37 +192,44 @@ export default function Dashboard() {
                                 Disconnect
                               </Button>
                               <Button
-                                variant="secondary"
+                                variant="info"
                                 disabled={!connected}
+                                className="bg-transparent border border-info"
                                 onClick={() => {
-                                  navigate("/computers/files/" + computer.id);
+                                  navigate("/internet/browser", {
+                                    state: {
+                                      connectionId: computer.id,
+                                    },
+                                  });
                                 }}
                                 size="sm"
                               >
-                                Files
+                                Browse
                               </Button>
-                              <Button
-                                variant="secondary"
-                                onClick={() => {
-                                  navigate("/computers/logs/" + computer.id);
-                                }}
-                                disabled={!connected}
-                                size="sm"
-                              >
-                                Logs
-                              </Button>
-                              <Button
-                                variant="secondary"
-                                disabled={!connected}
-                                onClick={() => {
-                                  navigate(
-                                    "/computers/processes/" + computer.id
-                                  );
-                                }}
-                                size="sm"
-                              >
-                                Processes
-                              </Button>
+                              <ButtonGroup>
+                                <Button
+                                  variant="secondary"
+                                  className="bg-transparent"
+                                  disabled={!connected}
+                                  onClick={() => {
+                                    navigate("/computers/logs/" + computer.id);
+                                  }}
+                                  size="sm"
+                                >
+                                  Logs
+                                </Button>
+                                <Button
+                                  variant="secondary"
+                                  className="bg-transparent"
+                                  disabled={!connected}
+                                  onClick={() => {
+                                    navigate("/computers/files/" + computer.id);
+                                  }}
+                                  size="sm"
+                                >
+                                  HDD
+                                </Button>
+                              </ButtonGroup>
                             </>
                           )}
                         </td>

@@ -20,7 +20,7 @@ const valid = {
         email: true,
         group: true,
         id: true,
-        creation: true,
+        created: true,
       },
     });
 
