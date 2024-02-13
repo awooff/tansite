@@ -5,7 +5,7 @@ import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useProcessStore } from "../../lib/stores/process.store";
-import ProcessesComponent from "../../components/ProcessesComponent";
+import ProcessListComponent from "../../components/ProcessesComponent";
 
 export default function Processes() {
   const game = useContext(GameContext);
@@ -178,7 +178,7 @@ export default function Processes() {
           </Card>
         </Col>
         <Col>
-          <ProcessesComponent computer={computer} />
+          <ProcessListComponent computer={computer} />
         </Col>
       </Row>
     </Layout>

@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../../contexts/game.context";
 import { Card, Col, Row, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import FileComponent from "../../components/FileComponent";
+import FileTreeComponent from "../../components/FileTreeComponent";
 import { useProcessStore } from "../../lib/stores/process.store";
 
 export default function Files() {
@@ -178,8 +178,11 @@ export default function Files() {
         </Col>
         <Col>
           <div className="d-grid border border-warning p-4">
-            <FileComponent
-              computer={computer}
+            <FileTreeComponent
+              connectionId={computer.id}
+              ip={computer.ip}
+              computerId={computer.id}
+              local={true}
               uploadTargetIp={location?.state?.uploadTargetIp}
               onCreation={(process) => {
                 processStore.addProcess(process);
@@ -188,7 +191,7 @@ export default function Files() {
                 processStore.removeProcess(process);
                 game.load();
               }}
-            ></FileComponent>
+            ></FileTreeComponent>
           </div>
         </Col>
       </Row>

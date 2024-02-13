@@ -24,14 +24,16 @@ import { Computer } from "../../lib/types/computer.type";
 import GameContext from "../../contexts/game.context";
 import { postRequestHandler } from "../../lib/submit";
 import toast from "react-hot-toast";
-import Homepage from "../../components/internet/Homepage";
-import SearchEngine from "../../components/internet/SearchEngine";
-import Hacking from "../../components/internet/Hacking";
-import Connection from "../../components/internet/Connection";
-import SessionContext from "../../contexts/session.context";
-import Logs from "../../components/internet/Logs";
-import Files from "../../components/internet/Files";
 import { useBrowserStore } from "../../lib/stores/brower.store";
+
+// Tabs
+import Homepage from "../../components/browser/tabs/Homepage";
+import SearchEngine from "../../components/browser/tabs/SearchEngine";
+import Hacking from "../../components/browser/tabs/Hacking";
+import Connection from "../../components/browser/tabs/Connection";
+import SessionContext from "../../contexts/session.context";
+import Logs from "../../components/browser/tabs/Logs";
+import Files from "../../components/browser/tabs/Files";
 
 export type HomepageRequest = {
   computer: Computer;
@@ -115,12 +117,11 @@ export default function Browser() {
         let data = await fetchHomepage(ip, browserStore.connectionId);
         if (!data) setValid(false);
         else {
-          setAccess(data.access || null);
-
           let tab =
             browserStore.history?.[browserStore.connectionId]?.[0]?.tab ||
             "homepage";
 
+          setAccess(data.access || null);
           setTab(tab || "homepage");
           setComputer(data.computer);
           setMarkdown(data.markdown);
@@ -492,10 +493,10 @@ export default function Browser() {
         </Row>
       ) : (
         <>
-          {!loading ? (
+          {!loading && computer ? (
             <Row className="mt-1">
               <Col>
-                {computer?.type === "search_engine" && tab === "homepage" ? (
+                {computer.type === "search_engine" && tab === "homepage" ? (
                   <SearchEngine
                     computer={computer}
                     connectionId={browserStore.connectionId}
@@ -519,7 +520,7 @@ export default function Browser() {
                             computer={
                               session.data?.logins?.[
                                 browserStore.connectionId
-                              ]?.find((that) => that.id === computer?.id) ||
+                              ]?.find((that) => that.id === computer.id) ||
                               computer
                             }
                             connectionId={browserStore.connectionId}
@@ -544,7 +545,7 @@ export default function Browser() {
                             computer={
                               session.data?.logins?.[
                                 browserStore.connectionId
-                              ]?.find((that) => that.id === computer?.id) ||
+                              ]?.find((that) => that.id === computer.id) ||
                               computer
                             }
                             connectionId={browserStore.connectionId}
@@ -569,7 +570,7 @@ export default function Browser() {
                             computer={
                               session.data?.logins?.[
                                 browserStore.connectionId
-                              ]?.find((that) => that.id === computer?.id) ||
+                              ]?.find((that) => that.id === computer.id) ||
                               computer
                             }
                             connectionId={browserStore.connectionId}
@@ -601,7 +602,7 @@ export default function Browser() {
                             computer={
                               session.data?.logins?.[
                                 browserStore.connectionId
-                              ]?.find((that) => that.id === computer?.id) ||
+                              ]?.find((that) => that.id === computer.id) ||
                               computer
                             }
                             connectionId={browserStore.connectionId}
@@ -623,6 +624,12 @@ export default function Browser() {
                       else if (tab === "files")
                         return (
                           <Files
+                            computer={
+                              session.data?.logins?.[
+                                browserStore.connectionId
+                              ]?.find((that) => that.id === computer.id) ||
+                              computer
+                            }
                             connectionId={browserStore.connectionId}
                             valid={valid}
                             access={access}

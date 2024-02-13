@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import { useProcessStore } from "../../lib/stores/process.store";
 import { useContext } from "react";
 import GameContext from "../../contexts/game.context";
-import ProcessesComponent from "../../components/ProcessesComponent";
+import ProcessListComponent from "../../components/ProcessesComponent";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
@@ -103,7 +103,7 @@ function Dashboard() {
                     <p className="pb-3 border-bottom border-success display-5">
                       {computer.ip}
                     </p>
-                    <ProcessesComponent computer={computer} />
+                    <ProcessListComponent computer={computer} />
                   </Col>
                 </Row>
               </>

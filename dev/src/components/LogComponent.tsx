@@ -83,6 +83,7 @@ function LogComponent({
         <p>Please wait for the logs to be downloaded...</p>
       </Alert>
     );
+
   return (
     <>
       <Row className="mb-3">

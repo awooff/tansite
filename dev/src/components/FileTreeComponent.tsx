@@ -1,58 +1,96 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../contexts/game.context";
-import { Card, Col, Row, Table, Button, ProgressBar } from "react-bootstrap";
+import {
+  Card,
+  Col,
+  Row,
+  Table,
+  Button,
+  ProgressBar,
+  Alert,
+} from "react-bootstrap";
 import { createProcess } from "../lib/process";
 import { Computer } from "../lib/types/computer.type";
 import { Process } from "../lib/types/process.type";
+import { postRequestHandler } from "../lib/submit";
 
-function FileComponent({
+function FileTreeComponent({
   children,
-  computer,
+  connectionId,
+  ip,
+  computerId,
   onCreation,
   onError,
   onCompletion,
-  connectionId,
+  local,
   uploadTargetIp,
 }: {
   children?: any;
-  computer: Computer;
-  connectionId?: string;
+  ip?: string;
+  computerId?: string;
+  connectionId: string;
+  local?: boolean;
   onCreation?: (process: Process) => void;
   onError?: (error: Error) => void;
   onCompletion?: (process: Process) => void;
   uploadTargetIp?: string;
 }) {
   const game = useContext(GameContext);
-  const hddSpace = computer.hardware
-    .filter((val) => val.type === "HDD")
-    .reduce((prev, cur) => {
-      return {
-        ...prev,
-        strength: prev.strength + cur.strength,
-      };
-    }).strength;
+  const [computer, setComputer] = useState<Computer>();
+  const [loading, setLoading] = useState<boolean>();
 
-  const ramSpace = computer.hardware
-    .filter((val) => val.type === "RAM")
-    .reduce((prev, cur) => {
-      return {
-        ...prev,
-        strength: prev.strength + cur.strength,
-      };
-    }).strength;
+  const fetchFiles = useCallback(
+    async (connectionId: string, ip?: string, computerId?: string) => {
+      let result = await postRequestHandler<{
+        computer: Computer;
+      }>(local ? "/computers/view" : "/internet/fetch", {
+        ip,
+        connectionId,
+        computerId,
+      });
+      return result.data.computer;
+    },
+    [local]
+  );
 
-  const hddUsage =
-    computer.software.length === 0
+  const hddSpace = computer
+    ? computer.hardware
+        .filter((val) => val.type === "HDD")
+        .reduce((prev, cur) => {
+          return {
+            ...prev,
+            strength: prev.strength + cur.strength,
+          };
+        }).strength
+    : 0;
+
+  const ramSpace = computer
+    ? computer.hardware
+        .filter((val) => val.type === "RAM")
+        .reduce((prev, cur) => {
+          return {
+            ...prev,
+            strength: prev.strength + cur.strength,
+          };
+        }).strength
+    : 0;
+
+  const hddUsage = computer
+    ? computer.software.length === 0
       ? 0
       : computer.software.reduce((prev, cur) => {
           return {
             ...prev,
             size: cur.size + prev.size,
           };
-        }).size;
+        }).size
+    : 0;
 
-  const installed = computer.software.filter((software) => software.installed);
+  const installed = computer
+    ? computer.software.filter((software) => software.installed)
+    : [];
+
   let ramUsage = 0;
   if (installed.length !== 0)
     ramUsage = installed.reduce((prev, cur) => {
@@ -61,6 +99,46 @@ function FileComponent({
         size: cur.size + prev.size,
       };
     }).size;
+
+  useEffect(() => {
+    if ((!ip && !computerId) || !connectionId) return;
+
+    setLoading(true);
+    fetchFiles(connectionId, ip, computerId)
+      .then((computer) => setComputer(computer))
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [ip, connectionId, computerId]);
+
+  if (loading)
+    return (
+      <Alert
+        variant="danger"
+        className="text-center bg-transparent border-secondary border mt-0 mb-0 rounded-0"
+      >
+        <Row className="justify-content-center mb-4">
+          <Col lg={3}>
+            <img src="/icons/query.png" className="mx-auto img-fluid" />
+          </Col>
+        </Row>
+        <p className="display-2">LOADING</p>
+        <p>Please wait for the file tree to be downloaded...</p>
+      </Alert>
+    );
+
+  if (!computer)
+    return (
+      <>
+        <Alert
+          variant="danger"
+          className="text-center bg-transparent border border-danger mb-0"
+        >
+          <img src="/icons/hack.png"></img>
+          <p>No Files Available</p>
+        </Alert>
+      </>
+    );
 
   return (
     <>
@@ -325,4 +403,4 @@ function FileComponent({
   );
 }
 
-export default FileComponent;
+export default FileTreeComponent;

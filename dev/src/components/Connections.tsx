@@ -1,10 +1,10 @@
 import React, { ReactNode, useContext } from "react";
 import GameContext, { GameType } from "../contexts/game.context";
-import ComputerThumbnail from "./Computer";
+import ConnectionThumbnail from "./ConnectionThumbnail";
 import { Computer } from "../lib/types/computer.type";
 import { SessionType } from "../contexts/session.context";
 
-export default function Computers({
+export default function Connections({
   thumbnail,
   children,
   render,
@@ -41,7 +41,7 @@ export default function Computers({
             return <></>;
 
           return (
-            <ComputerThumbnail
+            <ConnectionThumbnail
               key={index}
               computer={computer}
               connections={game.connections}
@@ -49,7 +49,7 @@ export default function Computers({
               className={className}
             >
               {children}
-            </ComputerThumbnail>
+            </ConnectionThumbnail>
           );
         })}
     </>

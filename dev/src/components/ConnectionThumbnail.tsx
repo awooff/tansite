@@ -6,7 +6,7 @@ import GameContext, { GameType } from "../contexts/game.context";
 import SessionContext, { SessionType } from "../contexts/session.context";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function ComputerThumbnail({
+export default function ConnectionThumbnail({
   computer,
   connections,
   children,

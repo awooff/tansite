@@ -14,7 +14,7 @@ import { Process } from "../lib/types/process.type";
 import { useProcessStore } from "../lib/stores/process.store";
 import { Computer } from "../lib/types/computer.type";
 
-function ProcessesComponent({
+function ProcessListComponent({
   computer,
   connectionId,
 }: {
@@ -270,4 +270,4 @@ function ProcessesComponent({
   );
 }
 
-export default ProcessesComponent;
+export default ProcessListComponent;
