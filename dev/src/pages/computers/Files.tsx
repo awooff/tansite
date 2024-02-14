@@ -53,12 +53,12 @@ export default function Files() {
 
   return (
     <Layout fluid>
-      <Row className="mb-2">
+      <Row>
         <Col>
-          <p className="display-4 border-bottom pb-3 border-success">
+          <h3 className="border-bottom pb-3 border-success">
             ~/<Link to="/computers/">computers</Link>/home/
             {computer.ip.replace(/\./g, "_")}/
-          </p>
+          </h3>
         </Col>
       </Row>
       {location?.state?.return ? (
@@ -91,7 +91,7 @@ export default function Files() {
       )}
       <Row>
         <Col>
-          <div className="hstack gap-2 mb-3">
+          <div className="hstack gap-2 mb-2">
             <Button
               variant="warning"
               onClick={() => {
@@ -144,7 +144,7 @@ export default function Files() {
         </Col>
       </Row>
       <Row>
-        <Col lg={3}>
+        <Col lg={2}>
           <Card body className="bg-transparent border border-warning">
             <div className="d-grid gap-2">
               <Button
@@ -172,6 +172,20 @@ export default function Files() {
                 ></img>
                 <br />
                 View Computers
+              </Button>
+              <Button
+                variant="warning"
+                onClick={() => {
+                  navigate("/internet/browser", {
+                    state: {
+                      connectionId: computer.id,
+                    },
+                  });
+                }}
+              >
+                <img src="/icons/cash.png" className="mx-auto img-fluid w-50" />
+                <br />
+                Internet Browser
               </Button>
             </div>
           </Card>

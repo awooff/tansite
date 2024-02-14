@@ -54,12 +54,12 @@ export default function Logs() {
 
   return (
     <Layout fluid>
-      <Row className="mb-2">
+      <Row>
         <Col>
-          <p className="display-4 border-bottom pb-3 border-success">
+          <h3 className="border-bottom pb-3 border-success">
             ~/<Link to="/computers/">computers</Link>/logs/
             {computer.ip.replace(/\./g, "_")}.log
-          </p>
+          </h3>
         </Col>
       </Row>
       {location?.state?.return ? (
@@ -92,7 +92,7 @@ export default function Logs() {
       )}
       <Row>
         <Col>
-          <div className="hstack gap-2 mb-3">
+          <div className="hstack gap-2 mb-2">
             <Button
               variant="warning"
               onClick={() => {
@@ -145,7 +145,7 @@ export default function Logs() {
         </Col>
       </Row>
       <Row>
-        <Col lg={3}>
+        <Col lg={2}>
           <Card body className="bg-transparent border border-info">
             <div className="d-grid gap-2">
               <Button
@@ -173,6 +173,20 @@ export default function Logs() {
                 ></img>
                 <br />
                 View Computers
+              </Button>
+              <Button
+                variant="info"
+                onClick={() => {
+                  navigate("/internet/browser", {
+                    state: {
+                      connectionId: computer.id,
+                    },
+                  });
+                }}
+              >
+                <img src="/icons/cash.png" className="mx-auto img-fluid w-50" />
+                <br />
+                Internet Browser
               </Button>
             </div>
           </Card>

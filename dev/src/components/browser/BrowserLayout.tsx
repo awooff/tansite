@@ -8,6 +8,7 @@ function BrowserLayout({
   error,
   process,
   setTab,
+  access,
   computer,
   connectionId,
   variant = "secondary",
@@ -27,9 +28,11 @@ function BrowserLayout({
     | "primary"
     | "danger"
     | "warning";
+  access?: object | null;
   children?: React.ReactNode[] | React.ReactNode;
 }) {
   const session = useContext(SessionContext);
+
   return (
     <>
       {error ? (
@@ -89,6 +92,18 @@ function BrowserLayout({
       <Button
         className="rounded-0"
         size="sm"
+        hidden={access !== null}
+        variant="danger"
+        onClick={() => {
+          setTab("hack");
+        }}
+      >
+        Hack
+      </Button>
+      <Button
+        className="rounded-0"
+        size="sm"
+        hidden={access === null}
         variant="primary"
         onClick={() => {
           setTab("connection");

@@ -47,7 +47,11 @@ export default function ConnectionThumbnail({
             : className
         }
       >
-        <p>
+        <p
+          style={{
+            fontSize: 10,
+          }}
+        >
           <span className="badge bg-secondary me-2">{computer.type}</span>
           {computer.data.title}
           {session.user.id === computer.userId ? (
@@ -99,7 +103,7 @@ export default function ConnectionThumbnail({
           <Col>
             <Card
               body
-              className="bg-transparent border border-primary text-center mt-2 text-white"
+              className="bg-transparent border border-primary text-center text-white"
             >
               {connected ? (
                 <img

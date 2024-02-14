@@ -189,611 +189,658 @@ export default function Browser() {
 
   return (
     <Layout fluid={true}>
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container fluid>
-          <NavDropdown
-            title={
-              <span className="badge bg-success m-2 rounded-0">
-                👤{" "}
-                {browserStore.connectionId ? (
-                  <>
-                    {
-                      game.connections.find(
-                        (that) => that.id === browserStore.connectionId
-                      )?.ip
-                    }{" "}
-                    <span className="badge bg-black rounded-0">
-                      {game.connections.find(
-                        (that) => that.id === browserStore.connectionId
-                      )?.data?.title || "Unknown Computer"}
-                    </span>
-                  </>
-                ) : (
-                  "NO CONNECTIONS"
-                )}
-              </span>
-            }
-          >
-            {game.connections.map((connection, index) => (
-              <div className="d-grid" key={index}>
-                <NavDropdown.Item
-                  style={{
-                    fontSize: 12,
-                  }}
-                  onClick={() => {
-                    browserStore.setConnectionId(connection.id);
-                    setCurrentIp("0.0.0.0");
-                    setValid(false);
-                  }}
-                  className={
-                    browserStore.connectionId === connection.id
-                      ? "bg-success"
-                      : ""
-                  }
-                >
-                  <span className={"me-2 badge rounded-0 bg-transparent"}>
-                    #{index}
+      <Row>
+        <Col>
+          <Navbar bg="dark" data-bs-theme="dark" className="mb-2">
+            <Container fluid>
+              <NavDropdown
+                title={
+                  <span className="badge bg-success m-2 rounded-0">
+                    👤{" "}
+                    {browserStore.connectionId ? (
+                      <>
+                        {
+                          game.connections.find(
+                            (that) => that.id === browserStore.connectionId
+                          )?.ip
+                        }{" "}
+                        <span className="badge bg-black rounded-0">
+                          {game.connections.find(
+                            (that) => that.id === browserStore.connectionId
+                          )?.data?.title || "Unknown Computer"}
+                        </span>
+                      </>
+                    ) : (
+                      "NO CONNECTIONS"
+                    )}
                   </span>
-                  <b className="border-bottom border-white me-2">
-                    {connection.ip}{" "}
-                  </b>{" "}
-                  <span className={"badge rounded-0 bg-black"}>
-                    {connection.data?.title}
-                  </span>
-                  {browserStore?.history?.[connection.id] &&
-                  browserStore.history[connection.id].length !== 0 ? (
-                    <>
-                      <br />
-                      <span
-                        className={
-                          "mt-1 badge rounded-0 " +
-                          (browserStore.connectionId === connection.id
-                            ? "bg-transparent"
-                            : "bg-transparent")
-                        }
-                      >
-                        📄 On tab {browserStore.history?.[connection.id][0].tab}{" "}
-                        @{" "}
-                        {browserStore.history?.[connection.id][0].domain ||
-                          browserStore.history?.[connection.id][0].ip}
+                }
+              >
+                {game.connections.map((connection, index) => (
+                  <div className="d-grid" key={index}>
+                    <NavDropdown.Item
+                      style={{
+                        fontSize: 12,
+                      }}
+                      onClick={() => {
+                        browserStore.setConnectionId(connection.id);
+                        setCurrentIp("0.0.0.0");
+                        setValid(false);
+                      }}
+                      className={
+                        browserStore.connectionId === connection.id
+                          ? "bg-success"
+                          : ""
+                      }
+                    >
+                      <span className={"me-2 badge rounded-0 bg-transparent"}>
+                        #{index}
                       </span>
-                    </>
+                      <b className="border-bottom border-white me-2">
+                        {connection.ip}{" "}
+                      </b>{" "}
+                      <span className={"badge rounded-0 bg-black"}>
+                        {connection.data?.title}
+                      </span>
+                      {browserStore?.history?.[connection.id] &&
+                      browserStore.history[connection.id].length !== 0 ? (
+                        <>
+                          <br />
+                          <span
+                            className={
+                              "mt-1 badge rounded-0 " +
+                              (browserStore.connectionId === connection.id
+                                ? "bg-transparent"
+                                : "bg-transparent")
+                            }
+                          >
+                            📄 On tab{" "}
+                            {browserStore.history?.[connection.id][0].tab} @{" "}
+                            {browserStore.history?.[connection.id][0].domain ||
+                              browserStore.history?.[connection.id][0].ip}
+                          </span>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {session.data.logins?.[connection.id]?.map(
+                        (connection) => (
+                          <>
+                            <br />
+                            <span className={"mt-1 badge rounded-0 "}>
+                              ✅ Active Connection @{" "}
+                              <a
+                                className="text-white"
+                                href={
+                                  "#navigate:/internet/browser/" + connection.ip
+                                }
+                              >
+                                <u>{connection.ip}</u>
+                              </a>
+                            </span>
+                          </>
+                        )
+                      )}
+                    </NavDropdown.Item>
+                  </div>
+                ))}
+              </NavDropdown>
+              <Nav className="me-auto mx-auto">
+                <ButtonToolbar aria-label="Search Bar">
+                  <InputGroup
+                    style={{
+                      width: "62vw",
+                    }}
+                  >
+                    <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                      🌎
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      className="rounded-0"
+                      placeholder={computer?.ip || ""}
+                      name="addressbar"
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter" && currentAddress.current) {
+                          if (
+                            currentAddress.current.value.trim() ===
+                            currentIp?.trim()
+                          )
+                            return;
+
+                          setValid(false);
+                          setCurrentIp(currentAddress.current.value);
+                        }
+                      }}
+                      ref={currentAddress}
+                      aria-label="Input group example"
+                      aria-describedby="btnGroupAddon"
+                    />
+                    <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                      <Button
+                        onClick={() => {
+                          if (
+                            !currentAddress.current?.value ||
+                            currentAddress.current.value.trim() ===
+                              currentIp?.trim()
+                          )
+                            return;
+
+                          setValid(false);
+                          setCurrentIp(currentAddress?.current?.value);
+                        }}
+                        size="sm"
+                        className="rounded-0 bg-transparent border-0"
+                      >
+                        Visit
+                      </Button>
+                    </InputGroup.Text>
+                  </InputGroup>
+                </ButtonToolbar>
+              </Nav>
+              <Nav className="me-auto mx-auto">
+                <NavDropdown title={"📖"}>
+                  {browserStore.connectionId ? (
+                    browserSession?.[browserStore.connectionId]?.map(
+                      (session, index) => (
+                        <NavDropdown.Item
+                          key={index}
+                          onClick={() => {
+                            if (currentIp !== session) {
+                              setCurrentIp(session);
+                              setValid(false);
+                            }
+                          }}
+                        >
+                          <span className="badge bg-secondary me-2">
+                            {index}
+                          </span>
+                          {session}
+                        </NavDropdown.Item>
+                      )
+                    )
                   ) : (
                     <></>
                   )}
-                  {session.data.logins?.[connection.id]?.map((connection) => (
-                    <>
-                      <br />
-                      <span className={"mt-1 badge rounded-0 "}>
-                        ✅ Active Connection @{" "}
-                        <a
-                          className="text-white"
-                          href={"#navigate:/internet/browser/" + connection.ip}
-                        >
-                          <u>{connection.ip}</u>
-                        </a>
-                      </span>
-                    </>
-                  ))}
-                </NavDropdown.Item>
-              </div>
-            ))}
-          </NavDropdown>
-          <Nav className="me-auto mx-auto">
-            <ButtonToolbar aria-label="Search Bar">
-              <InputGroup
-                style={{
-                  width: "62vw",
-                }}
-              >
-                <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                  🌎
-                </InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  className="rounded-0"
-                  placeholder={computer?.ip || ""}
-                  name="addressbar"
-                  onKeyUp={(e) => {
-                    if (e.key === "Enter" && currentAddress.current) {
-                      if (
-                        currentAddress.current.value.trim() ===
-                        currentIp?.trim()
-                      )
-                        return;
-
-                      setValid(false);
-                      setCurrentIp(currentAddress.current.value);
-                    }
-                  }}
-                  ref={currentAddress}
-                  aria-label="Input group example"
-                  aria-describedby="btnGroupAddon"
-                />
-                <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                  <Button
-                    onClick={() => {
-                      if (
-                        !currentAddress.current?.value ||
-                        currentAddress.current.value.trim() ===
-                          currentIp?.trim()
-                      )
-                        return;
-
-                      setValid(false);
-                      setCurrentIp(currentAddress?.current?.value);
-                    }}
-                    size="sm"
-                    className="rounded-0 bg-transparent border-0"
-                  >
-                    Visit
-                  </Button>
-                </InputGroup.Text>
-              </InputGroup>
-            </ButtonToolbar>
-          </Nav>
-          <Nav className="me-auto mx-auto">
-            <NavDropdown title={"📖"}>
-              {browserStore.connectionId ? (
-                browserSession?.[browserStore.connectionId]?.map(
-                  (session, index) => (
-                    <NavDropdown.Item
-                      key={index}
-                      onClick={() => {
-                        if (currentIp !== session) {
-                          setCurrentIp(session);
-                          setValid(false);
+                </NavDropdown>
+              </Nav>
+              <Nav className="me-auto mx-auto">
+                <ButtonToolbar aria-label="Search Bar">
+                  <InputGroup>
+                    <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                      <Button
+                        disabled={
+                          browserStore.connectionId
+                            ? browserSession?.[browserStore.connectionId]
+                                ?.length === 1 || currentIp
+                              ? browserSession?.[
+                                  browserStore.connectionId
+                                ]?.indexOf(
+                                  currentIp !== null ? currentIp : "0.0.0.0"
+                                ) === 0
+                              : false
+                            : false
                         }
-                      }}
-                    >
-                      <span className="badge bg-secondary me-2">{index}</span>
-                      {session}
-                    </NavDropdown.Item>
-                  )
-                )
-              ) : (
-                <></>
-              )}
-            </NavDropdown>
-          </Nav>
-          <Nav className="me-auto mx-auto">
-            <ButtonToolbar aria-label="Search Bar">
-              <InputGroup>
-                <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                  <Button
-                    disabled={
-                      browserStore.connectionId
-                        ? browserSession?.[browserStore.connectionId]
-                            ?.length === 1 || currentIp
-                          ? browserSession?.[
-                              browserStore.connectionId
-                            ]?.indexOf(
-                              currentIp !== null ? currentIp : "0.0.0.0"
-                            ) === 0
-                          : false
-                        : false
-                    }
-                    onClick={() => {
-                      if (!browserStore.connectionId) return;
+                        onClick={() => {
+                          if (!browserStore.connectionId) return;
 
-                      let newIp =
-                        browserSession?.[browserStore.connectionId]?.[
-                          browserSession?.[browserStore.connectionId]?.indexOf(
-                            currentIp !== null ? currentIp : "0.0.0.0"
-                          ) - 1
-                        ] ||
-                        browserSession?.[browserStore.connectionId]?.[
-                          browserSession?.[browserStore.connectionId].length - 1
-                        ];
+                          let newIp =
+                            browserSession?.[browserStore.connectionId]?.[
+                              browserSession?.[
+                                browserStore.connectionId
+                              ]?.indexOf(
+                                currentIp !== null ? currentIp : "0.0.0.0"
+                              ) - 1
+                            ] ||
+                            browserSession?.[browserStore.connectionId]?.[
+                              browserSession?.[browserStore.connectionId]
+                                .length - 1
+                            ];
 
-                      if (currentIp !== newIp) {
-                        setCurrentIp(newIp);
-                        setValid(false);
-                      }
-                    }}
-                    size="sm"
-                    className="rounded-0 bg-transparent border-0"
-                  >
-                    Back
-                  </Button>
-                </InputGroup.Text>
-                <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                  <Button
-                    disabled={
-                      browserStore.connectionId
-                        ? browserSession?.[browserStore.connectionId]
-                            ?.length === 1 || currentIp
-                          ? browserSession?.[
-                              browserStore.connectionId
-                            ]?.indexOf(
-                              currentIp !== null ? currentIp : "0.0.0.0"
-                            ) ===
-                            browserSession?.[browserStore.connectionId]
-                              ?.length -
-                              1
-                          : false
-                        : false
-                    }
-                    onClick={() => {
-                      if (!browserStore.connectionId) return;
+                          if (currentIp !== newIp) {
+                            setCurrentIp(newIp);
+                            setValid(false);
+                          }
+                        }}
+                        size="sm"
+                        className="rounded-0 bg-transparent border-0"
+                      >
+                        Back
+                      </Button>
+                    </InputGroup.Text>
+                    <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                      <Button
+                        disabled={
+                          browserStore.connectionId
+                            ? browserSession?.[browserStore.connectionId]
+                                ?.length === 1 || currentIp
+                              ? browserSession?.[
+                                  browserStore.connectionId
+                                ]?.indexOf(
+                                  currentIp !== null ? currentIp : "0.0.0.0"
+                                ) ===
+                                browserSession?.[browserStore.connectionId]
+                                  ?.length -
+                                  1
+                              : false
+                            : false
+                        }
+                        onClick={() => {
+                          if (!browserStore.connectionId) return;
 
-                      let newIp =
-                        browserSession?.[browserStore.connectionId]?.[
-                          browserSession?.[browserStore.connectionId]?.indexOf(
-                            currentIp !== null ? currentIp : "0.0.0.0"
-                          ) + 1
-                        ] ||
-                        browserSession?.[browserStore.connectionId]?.[
-                          browserSession?.[browserStore.connectionId].length - 1
-                        ];
+                          let newIp =
+                            browserSession?.[browserStore.connectionId]?.[
+                              browserSession?.[
+                                browserStore.connectionId
+                              ]?.indexOf(
+                                currentIp !== null ? currentIp : "0.0.0.0"
+                              ) + 1
+                            ] ||
+                            browserSession?.[browserStore.connectionId]?.[
+                              browserSession?.[browserStore.connectionId]
+                                .length - 1
+                            ];
 
-                      if (newIp !== currentIp) {
-                        setCurrentIp(newIp);
-                        setValid(false);
-                      }
-                    }}
-                    size="sm"
-                    className="rounded-0 bg-transparent border-0"
-                  >
-                    Foward
-                  </Button>
-                </InputGroup.Text>
-              </InputGroup>
-            </ButtonToolbar>
-          </Nav>
-        </Container>
-      </Navbar>
-      {game.connections.length === 0 || !browserStore.connectionId ? (
-        <Row>
-          <Col>
-            <Alert
-              variant="danger"
-              className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
-              style={{ fontFamily: "initial" }}
-            >
-              <p className="display-2">403</p>
-              <p>
-                You need to select which computer you would like to surf the
-                internet with!
-              </p>
-              {game.connections.length !== 0 ? (
-                game.connections.map((connection) => (
-                  <>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        browserStore.setConnectionId(connection.id);
-                      }}
-                    >
-                      Connect to {connection.ip} ({connection.data.title})
-                    </a>
-                    <br />
-                  </>
-                ))
-              ) : (
-                <></>
-              )}
-              <br />
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/computers/network", {
-                    state: {
-                      return: "/internet/browser/" + currentIp,
-                    },
-                  });
-                }}
-              >
-                View your connections
-              </a>
-            </Alert>
-          </Col>
-        </Row>
-      ) : (
-        <>
-          {!loading && computer ? (
-            <Row className="mt-1">
+                          if (newIp !== currentIp) {
+                            setCurrentIp(newIp);
+                            setValid(false);
+                          }
+                        }}
+                        size="sm"
+                        className="rounded-0 bg-transparent border-0"
+                      >
+                        Foward
+                      </Button>
+                    </InputGroup.Text>
+                  </InputGroup>
+                </ButtonToolbar>
+              </Nav>
+            </Container>
+          </Navbar>
+          {game.connections.length === 0 || !browserStore.connectionId ? (
+            <Row>
               <Col>
-                {computer.type === "search_engine" && tab === "homepage" ? (
-                  <SearchEngine
-                    computer={computer}
-                    connectionId={browserStore.connectionId}
-                    valid={valid}
-                    access={access}
-                    setCurrentIp={setCurrentIp}
-                    ip={currentIp || "0.0.0.0"}
-                    markdown={markdown}
-                    setTab={(tab: string) => {
-                      if (!browserStore.connectionId) return;
-                      browserStore.updateTab(browserStore.connectionId, 0, tab);
-                      setTab(tab);
+                <Alert
+                  variant="danger"
+                  className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
+                  style={{ fontFamily: "initial" }}
+                >
+                  <p className="display-2">403</p>
+                  <p>
+                    You need to select which computer you would like to surf the
+                    internet with!
+                  </p>
+                  {game.connections.length !== 0 ? (
+                    game.connections.map((connection) => (
+                      <>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            browserStore.setConnectionId(connection.id);
+                          }}
+                        >
+                          Connect to {connection.ip} ({connection.data.title})
+                        </a>
+                        <br />
+                      </>
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                  <br />
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/computers/network", {
+                        state: {
+                          return: "/internet/browser/" + currentIp,
+                        },
+                      });
                     }}
-                  />
-                ) : (
-                  <>
-                    {(() => {
-                      if (tab === "homepage")
-                        return (
-                          <Homepage
-                            computer={
-                              session.data?.logins?.[
-                                browserStore.connectionId
-                              ]?.find((that) => that.id === computer.id) ||
-                              computer
-                            }
-                            connectionId={browserStore.connectionId}
-                            valid={valid}
-                            access={access}
-                            ip={currentIp || "0.0.0.0"}
-                            markdown={markdown}
-                            setTab={(tab: string) => {
-                              if (!browserStore.connectionId) return;
-                              browserStore.updateTab(
-                                browserStore.connectionId,
-                                0,
-                                tab
-                              );
-                              setTab(tab);
-                            }}
-                          />
-                        );
-                      else if (tab === "connection")
-                        return (
-                          <Connection
-                            computer={
-                              session.data?.logins?.[
-                                browserStore.connectionId
-                              ]?.find((that) => that.id === computer.id) ||
-                              computer
-                            }
-                            connectionId={browserStore.connectionId}
-                            valid={valid}
-                            access={access}
-                            ip={currentIp || "0.0.0.0"}
-                            markdown={markdown}
-                            setTab={(tab: string) => {
-                              if (!browserStore.connectionId) return;
-                              browserStore.updateTab(
-                                browserStore.connectionId,
-                                0,
-                                tab
-                              );
-                              setTab(tab);
-                            }}
-                          />
-                        );
-                      else if (tab === "hack")
-                        return (
-                          <Hacking
-                            computer={
-                              session.data?.logins?.[
-                                browserStore.connectionId
-                              ]?.find((that) => that.id === computer.id) ||
-                              computer
-                            }
-                            connectionId={browserStore.connectionId}
-                            valid={valid}
-                            access={access}
-                            fetchHomepage={async (ip, connectionId) => {
-                              browserStore.setConnectionId(connectionId);
-                              let result = await loadBrowser(ip);
-                              if (!result) throw new Error("invalid fetch");
-
-                              return result;
-                            }}
-                            ip={currentIp || "0.0.0.0"}
-                            markdown={markdown}
-                            setTab={(tab: string) => {
-                              if (!browserStore.connectionId) return;
-                              browserStore.updateTab(
-                                browserStore.connectionId,
-                                0,
-                                tab
-                              );
-                              setTab(tab);
-                            }}
-                          />
-                        );
-                      else if (tab === "logs")
-                        return (
-                          <Logs
-                            computer={
-                              session.data?.logins?.[
-                                browserStore.connectionId
-                              ]?.find((that) => that.id === computer.id) ||
-                              computer
-                            }
-                            connectionId={browserStore.connectionId}
-                            valid={valid}
-                            access={access}
-                            ip={currentIp || "0.0.0.0"}
-                            markdown={markdown}
-                            setTab={(tab: string) => {
-                              if (!browserStore.connectionId) return;
-                              browserStore.updateTab(
-                                browserStore.connectionId,
-                                0,
-                                tab
-                              );
-                              setTab(tab);
-                            }}
-                          />
-                        );
-                      else if (tab === "files")
-                        return (
-                          <Files
-                            computer={
-                              session.data?.logins?.[
-                                browserStore.connectionId
-                              ]?.find((that) => that.id === computer.id) ||
-                              computer
-                            }
-                            connectionId={browserStore.connectionId}
-                            valid={valid}
-                            access={access}
-                            ip={currentIp || "0.0.0.0"}
-                            markdown={markdown}
-                            setTab={(tab: string) => {
-                              if (!browserStore.connectionId) return;
-                              browserStore.updateTab(
-                                browserStore.connectionId,
-                                0,
-                                tab
-                              );
-                              setTab(tab);
-                            }}
-                          />
-                        );
-                      else
-                        return (
-                          <>
-                            <Alert
-                              variant="danger"
-                              className="bg-transparent border-danger border"
-                            >
-                              Invalid tab
-                              <br />
-                              <Button
-                                className="mt-2"
-                                variant="danger"
-                                onClick={() => {
+                  >
+                    View your connections
+                  </a>
+                </Alert>
+              </Col>
+            </Row>
+          ) : (
+            <>
+              {!loading && computer ? (
+                <Row className="mt-1">
+                  <Col>
+                    {computer.type === "search_engine" && tab === "homepage" ? (
+                      <SearchEngine
+                        computer={computer}
+                        connectionId={browserStore.connectionId}
+                        valid={valid}
+                        access={access}
+                        setCurrentIp={setCurrentIp}
+                        ip={currentIp || "0.0.0.0"}
+                        markdown={markdown}
+                        setTab={(tab: string) => {
+                          if (!browserStore.connectionId) return;
+                          browserStore.updateTab(
+                            browserStore.connectionId,
+                            0,
+                            tab
+                          );
+                          setTab(tab);
+                        }}
+                      />
+                    ) : (
+                      <>
+                        {(() => {
+                          if (tab === "homepage")
+                            return (
+                              <Homepage
+                                computer={
+                                  session.data?.logins?.[
+                                    browserStore.connectionId
+                                  ]?.find((that) => that.id === computer.id) ||
+                                  computer
+                                }
+                                connectionId={browserStore.connectionId}
+                                valid={valid}
+                                access={access}
+                                ip={currentIp || "0.0.0.0"}
+                                markdown={markdown}
+                                setTab={(tab: string) => {
                                   if (!browserStore.connectionId) return;
                                   browserStore.updateTab(
                                     browserStore.connectionId,
                                     0,
                                     tab
                                   );
-                                  setTab("homepage");
+                                  setTab(tab);
                                 }}
-                              >
-                                Go back to homepage
-                              </Button>
-                            </Alert>
-                          </>
-                        );
-                    })()}
-                  </>
-                )}
-                {valid && computer ? (
-                  <p className="text-white bg-secondary pb-1 ps-1">
-                    <span className="badge bg-black rounded-0">
-                      {computer.type}
-                    </span>{" "}
-                    |
-                    <span
-                      className="ms-1 badge bg-primary rounded-0"
-                      style={{
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        navigate(
-                          "/computers/files/" + browserStore.connectionId,
-                          {
-                            state: {
-                              return: "/internet/browser/" + currentIp,
-                              uploadTargetIp: access ? currentIp : undefined,
-                            },
-                          }
-                        );
-                      }}
-                    >
-                      View Your HDD
-                    </span>
-                    <span
-                      className="ms-1 badge bg-primary rounded-0"
-                      style={{
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        navigate(
-                          "/computers/logs/" + browserStore.connectionId,
-                          {
-                            state: {
-                              return: "/internet/browser/" + currentIp,
-                            },
-                          }
-                        );
-                      }}
-                    >
-                      View Your Logs
-                    </span>{" "}
-                    |
-                    {session.data.logins?.[browserStore.connectionId]
-                      ?.length !== 0 ? (
-                      session.data.logins?.[browserStore.connectionId]?.map(
-                        (login) => (
-                          <span
-                            className="ms-1 badge bg-success rounded-0"
-                            style={{
-                              cursor: "pointer",
-                            }}
-                            onClick={() => {
-                              setCurrentIp(login.ip);
-                            }}
-                          >
-                            🌎 {login.ip}{" "}
-                            <span className="badge bg-black rounded-0">
-                              {login.data?.title || "Unknown"}
-                            </span>
+                              />
+                            );
+                          else if (tab === "connection")
+                            return (
+                              <Connection
+                                computer={
+                                  session.data?.logins?.[
+                                    browserStore.connectionId
+                                  ]?.find((that) => that.id === computer.id) ||
+                                  computer
+                                }
+                                connectionId={browserStore.connectionId}
+                                valid={valid}
+                                access={access}
+                                ip={currentIp || "0.0.0.0"}
+                                markdown={markdown}
+                                setTab={(tab: string) => {
+                                  if (!browserStore.connectionId) return;
+                                  browserStore.updateTab(
+                                    browserStore.connectionId,
+                                    0,
+                                    tab
+                                  );
+                                  setTab(tab);
+                                }}
+                              />
+                            );
+                          else if (tab === "hack")
+                            return (
+                              <Hacking
+                                computer={
+                                  session.data?.logins?.[
+                                    browserStore.connectionId
+                                  ]?.find((that) => that.id === computer.id) ||
+                                  computer
+                                }
+                                connectionId={browserStore.connectionId}
+                                valid={valid}
+                                access={access}
+                                fetchHomepage={async (ip, connectionId) => {
+                                  browserStore.setConnectionId(connectionId);
+                                  let result = await loadBrowser(ip);
+                                  if (!result) throw new Error("invalid fetch");
+
+                                  return result;
+                                }}
+                                ip={currentIp || "0.0.0.0"}
+                                markdown={markdown}
+                                setTab={(tab: string) => {
+                                  if (!browserStore.connectionId) return;
+                                  browserStore.updateTab(
+                                    browserStore.connectionId,
+                                    0,
+                                    tab
+                                  );
+                                  setTab(tab);
+                                }}
+                              />
+                            );
+                          else if (tab === "logs")
+                            return (
+                              <Logs
+                                computer={
+                                  session.data?.logins?.[
+                                    browserStore.connectionId
+                                  ]?.find((that) => that.id === computer.id) ||
+                                  computer
+                                }
+                                connectionId={browserStore.connectionId}
+                                valid={valid}
+                                access={access}
+                                ip={currentIp || "0.0.0.0"}
+                                markdown={markdown}
+                                setTab={(tab: string) => {
+                                  if (!browserStore.connectionId) return;
+                                  browserStore.updateTab(
+                                    browserStore.connectionId,
+                                    0,
+                                    tab
+                                  );
+                                  setTab(tab);
+                                }}
+                              />
+                            );
+                          else if (tab === "files")
+                            return (
+                              <Files
+                                computer={
+                                  session.data?.logins?.[
+                                    browserStore.connectionId
+                                  ]?.find((that) => that.id === computer.id) ||
+                                  computer
+                                }
+                                connectionId={browserStore.connectionId}
+                                valid={valid}
+                                access={access}
+                                ip={currentIp || "0.0.0.0"}
+                                markdown={markdown}
+                                setTab={(tab: string) => {
+                                  if (!browserStore.connectionId) return;
+                                  browserStore.updateTab(
+                                    browserStore.connectionId,
+                                    0,
+                                    tab
+                                  );
+                                  setTab(tab);
+                                }}
+                              />
+                            );
+                          else
+                            return (
+                              <>
+                                <Alert
+                                  variant="danger"
+                                  className="bg-transparent border-danger border"
+                                >
+                                  Invalid tab
+                                  <br />
+                                  <Button
+                                    className="mt-2"
+                                    variant="danger"
+                                    onClick={() => {
+                                      if (!browserStore.connectionId) return;
+                                      browserStore.updateTab(
+                                        browserStore.connectionId,
+                                        0,
+                                        tab
+                                      );
+                                      setTab("homepage");
+                                    }}
+                                  >
+                                    Go back to homepage
+                                  </Button>
+                                </Alert>
+                              </>
+                            );
+                        })()}
+                      </>
+                    )}
+                    {valid && computer ? (
+                      <p className="text-white bg-secondary pb-1 pt-1 ps-1">
+                        <span className="badge bg-info rounded-0">HOST</span>
+                        <span className="badge bg-black rounded-0">
+                          {computer.type}
+                        </span>
+                        <span className="badge bg-success rounded-0">
+                          🌎 {computer.ip}
+                        </span>
+                        {access ? (
+                          <span className="me-1 badge bg-success rounded-0">
+                            Hacked (
+                            {
+                              (
+                                access as {
+                                  access: "GOD" | "FTP";
+                                }
+                              )?.access
+                            }
+                            )
                           </span>
-                        )
-                      )
+                        ) : (
+                          <span className="me-1 badge bg-danger rounded-0">
+                            Unhacked
+                          </span>
+                        )}
+                        <span className="text-black">{" : "}</span>
+                        {session.data.logins?.[browserStore.connectionId]
+                          ?.length !== 0 ? (
+                          session.data.logins?.[browserStore.connectionId]?.map(
+                            (login) => (
+                              <>
+                                <span className="ms-1 badge bg-warning rounded-0">
+                                  CLIENT
+                                </span>
+                                <span className="badge bg-black rounded-0">
+                                  {login.data?.title || "Unknown"}
+                                </span>
+                                <span
+                                  className="badge bg-success rounded-0"
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={() => {
+                                    setCurrentIp(login.ip);
+                                  }}
+                                >
+                                  🌎 {login.ip}{" "}
+                                </span>
+                                <span
+                                  className="badge bg-primary rounded-0"
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={() => {
+                                    navigate(
+                                      "/computers/files/" +
+                                        browserStore.connectionId,
+                                      {
+                                        state: {
+                                          return:
+                                            "/internet/browser/" + currentIp,
+                                          uploadTargetIp: access
+                                            ? currentIp
+                                            : undefined,
+                                        },
+                                      }
+                                    );
+                                  }}
+                                >
+                                  View HDD
+                                </span>
+                                <span
+                                  className="badge bg-primary rounded-0"
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={() => {
+                                    navigate(
+                                      "/computers/logs/" +
+                                        browserStore.connectionId,
+                                      {
+                                        state: {
+                                          return:
+                                            "/internet/browser/" + currentIp,
+                                        },
+                                      }
+                                    );
+                                  }}
+                                >
+                                  View Logs
+                                </span>
+                                <span
+                                  className="badge bg-primary rounded-0"
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={() => {
+                                    navigate(
+                                      "/computers/processes/" +
+                                        browserStore.connectionId,
+                                      {
+                                        state: {
+                                          return:
+                                            "/internet/browser/" + currentIp,
+                                        },
+                                      }
+                                    );
+                                  }}
+                                >
+                                  View Processes
+                                </span>
+                              </>
+                            )
+                          )
+                        ) : (
+                          <></>
+                        )}
+                      </p>
                     ) : (
                       <></>
                     )}
-                    {access ? (
-                      <span
-                        className="me-1 mt-1 badge bg-success rounded-0"
-                        style={{
-                          float: "right",
-                        }}
-                      >
-                        Hacked (
-                        {
-                          (
-                            access as {
-                              access: "GOD" | "FTP";
-                            }
-                          )?.access
-                        }
-                        )
-                      </span>
-                    ) : (
-                      <span
-                        className="me-1 mt-1 badge bg-danger rounded-0"
-                        style={{
-                          float: "right",
-                        }}
-                      >
-                        Unhacked
-                      </span>
-                    )}
-                  </p>
-                ) : (
-                  <></>
-                )}
-              </Col>
-            </Row>
-          ) : (
-            <>
-              <Alert
-                variant="danger"
-                className="text-center bg-transparent border-info border mt-0 mb-0 rounded-0"
-              >
-                <Row className="justify-content-center mb-4">
-                  <Col lg={3}>
-                    <img src="/icons/query.png" className="mx-auto img-fluid" />
                   </Col>
                 </Row>
-                <p className="display-2">Fetching {currentIp}</p>
-                <p>Please wait for the index.html to be downloaded...</p>
-              </Alert>
+              ) : (
+                <>
+                  <Alert
+                    variant="danger"
+                    className="text-center bg-transparent border-info border mt-0 mb-0 rounded-0"
+                  >
+                    <Row className="justify-content-center mb-4">
+                      <Col lg={3}>
+                        <img
+                          src="/icons/query.png"
+                          className="mx-auto img-fluid"
+                        />
+                      </Col>
+                    </Row>
+                    <p className="display-2">Fetching {currentIp}</p>
+                    <p>Please wait for the index.html to be downloaded...</p>
+                  </Alert>
+                </>
+              )}
             </>
           )}
-        </>
-      )}
+        </Col>
+      </Row>
     </Layout>
   );
 }

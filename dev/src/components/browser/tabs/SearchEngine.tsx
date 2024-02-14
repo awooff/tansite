@@ -72,7 +72,9 @@ function SearchEngine({
   return (
     <BrowserLayout
       setTab={setTab}
+      variant="success"
       computer={computer}
+      access={access}
       connectionId={connectionId}
     >
       {results.length === 0 ? (

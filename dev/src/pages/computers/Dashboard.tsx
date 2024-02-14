@@ -4,21 +4,21 @@ import { Col, Row, Card, Button, Table, ButtonGroup } from "react-bootstrap";
 import GameContext from "../../contexts/game.context";
 import { useNavigate } from "react-router-dom";
 import { postRequestHandler } from "../../lib/submit";
+import SessionContext from "../../contexts/session.context";
 
 export default function Dashboard() {
   const game = useContext(GameContext);
+  const session = useContext(SessionContext);
   const navigate = useNavigate();
   return (
     <Layout fluid>
       <Row>
         <Col>
-          <p className="display-4 border-bottom pb-3 border-success">
-            ~/computers/
-          </p>
+          <h3 className="border-bottom pb-3 border-success">~/computers/</h3>
         </Col>
       </Row>
       <Row className="mt-2">
-        <Col lg={3}>
+        <Col lg={2}>
           <Row lg={1} className="gy-4">
             <Col>
               <Card body className="bg-transparent border border-secondary">
@@ -71,33 +71,23 @@ export default function Dashboard() {
                       ACTIVE GLOBALLY
                     </span>
                   </Button>
-                </div>
-              </Card>
-            </Col>
-            <Col>
-              <Card body className="bg-transparent border-success">
-                <p className="text-center text-white">
-                  You can <u>obtain a new computer</u> by purchasing one from a
-                  manufacturer.
-                </p>
-                <hr />
-                <div className="d-grid">
                   <Button
-                    variant="success"
-                    onClick={async () => {
-                      await postRequestHandler(
-                        "/computers/create",
-                        {},
-                        async () => {
-                          navigate(0);
-                        },
-                        (error) => {
-                          console.log(error);
-                        }
-                      );
+                    variant="secondary"
+                    onClick={() => {
+                      navigate("/internet/browser");
                     }}
                   >
-                    Purchase A Computer
+                    <img
+                      src="/icons/cash.png"
+                      className="mx-auto img-fluid w-50"
+                    />
+                    <br />
+                    Internet Browser
+                    <br />
+                    <span className="badge bg-black">
+                      {Object.values(session.data.logins).length || 0} ACTIVE
+                      LOGINS
+                    </span>
                   </Button>
                 </div>
               </Card>
@@ -243,6 +233,32 @@ export default function Dashboard() {
               You don't have any computers!
             </Card>
           )}
+          <Card body className="bg-transparent border-info">
+            <p className="text-center text-white">
+              You can <u>obtain a new computer</u> by purchasing one from a
+              manufacturer.
+            </p>
+            <hr />
+            <div className="d-grid">
+              <Button
+                variant="info"
+                onClick={async () => {
+                  await postRequestHandler(
+                    "/computers/create",
+                    {},
+                    async () => {
+                      navigate(0);
+                    },
+                    (error) => {
+                      console.log(error);
+                    }
+                  );
+                }}
+              >
+                Purchase A Computer
+              </Button>
+            </div>
+          </Card>
         </Col>
       </Row>
     </Layout>

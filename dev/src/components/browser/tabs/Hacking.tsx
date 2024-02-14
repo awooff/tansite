@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import GameContext from "../../../contexts/game.context";
 import { Computer } from "../../../lib/types/computer.type";
 import { Alert, Button, Card, ListGroup, Row } from "react-bootstrap";
@@ -9,6 +9,8 @@ import { HomepageRequest } from "../../../pages/internet/Browser";
 import SessionContext from "../../../contexts/session.context";
 import { useProcessStore } from "../../../lib/stores/process.store";
 import BrowserLayout from "../BrowserLayout";
+import { postRequestHandler } from "../../../lib/submit";
+import { Software } from "../../../lib/types/software";
 
 function Hacking({
   connectionId,
@@ -29,11 +31,13 @@ function Hacking({
   setTab: (tab: string) => void;
   fetchHomepage: (ip: string, connectionId: string) => Promise<HomepageRequest>;
 }) {
-  const game = useContext(GameContext);
   const session = useContext(SessionContext);
   const processStore = useProcessStore();
   const [process, setProcess] = useState<Process | null>(null);
   const [error, setError] = useState<Error | null>(null);
+  const [executor, setExecutor] = useState<Computer | null>(null);
+  const [cracker, setCracker] = useState<Software | null>(null);
+  const [exploiter, setExploiter] = useState<Software | null>(null);
 
   useEffect(() => {
     if (!computer || ip || connectionId || !session.loaded) return;
@@ -46,17 +50,29 @@ function Hacking({
       setTab("logs");
   }, [session, connectionId, ip, computer]);
 
-  const executor = game.computers.find(
-    (computer) => computer.id === connectionId
-  );
+  const fetchExecutor = useCallback(async (connectionId: string) => {
+    let result = await postRequestHandler<{
+      computer: Computer;
+    }>("/computers/view", {
+      computerId: connectionId,
+    });
+    return result.data;
+  }, []);
 
-  const installedCracker = executor?.software.find(
-    (software) => software.installed && software.type === "cracker"
-  );
+  useEffect(() => {
+    fetchExecutor(connectionId).then((result) => {
+      let cracker = result.computer.software.find(
+        (software) => software.type === "cracker" && software.installed
+      );
+      let exploiter = result.computer.software.find(
+        (software) => software.type === "exploiter" && software.installed
+      );
 
-  const installedExploiter = executor?.software.find(
-    (software) => software.installed && software.type === "ftpr"
-  );
+      setExecutor(result.computer);
+      setCracker(cracker || null);
+      setExploiter(exploiter || null);
+    });
+  }, [connectionId]);
 
   if (!valid)
     return (
@@ -76,8 +92,10 @@ function Hacking({
     <BrowserLayout
       setTab={setTab}
       computer={computer}
+      variant="danger"
       connectionId={connectionId}
       error={error}
+      access={access}
       process={process}
     >
       <Alert
@@ -103,7 +121,7 @@ function Hacking({
             body
             className={
               "bg-transparent rounded-0 " +
-              (installedCracker ? "border-primary" : "border-secondary")
+              (cracker ? "border-primary" : "border-secondary")
             }
             style={{
               height: "100%",
@@ -112,7 +130,7 @@ function Hacking({
             <p
               className={
                 "display-5 mt-4 mb-4 text-center " +
-                (installedCracker ? "text-white" : "")
+                (cracker ? "text-white" : "")
               }
             >
               Exploit Shell
@@ -122,12 +140,12 @@ function Hacking({
                 body
                 className="mb-3 bg-transparent border-secondary rounded-0 text-white text-center"
               >
-                {!installedCracker ? (
+                {!cracker ? (
                   <>You need to install a cracker</>
                 ) : (
                   <ListGroup className="rounded-0">
                     <ListGroup.Item variant="light">
-                      Your cracker level is <u>{installedCracker.level}</u>
+                      Your cracker level is <u>{cracker.level}</u>
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Your CPU level is{" "}
@@ -152,8 +170,7 @@ function Hacking({
               </Card>
               <Button
                 disabled={
-                  !installedCracker ||
-                  (process !== null && process.type === "hack")
+                  !cracker || (process !== null && process.type === "hack")
                 }
                 onClick={async () => {
                   setError(null);
@@ -185,7 +202,7 @@ function Hacking({
                     }, 3000);
                   }
                 }}
-                variant={!installedCracker ? "secondary" : "primary"}
+                variant={!cracker ? "secondary" : "primary"}
               >
                 Hack
               </Button>
@@ -197,7 +214,7 @@ function Hacking({
             body
             className={
               "bg-transparent rounded-0 " +
-              (installedExploiter ? "border-primary" : "border-secondary")
+              (exploiter ? "border-primary" : "border-secondary")
             }
             style={{
               height: "100%",
@@ -206,7 +223,7 @@ function Hacking({
             <p
               className={
                 "display-5 text-center mt-4 mb-4 " +
-                (installedExploiter ? "text-white" : "")
+                (exploiter ? "text-white" : "")
               }
             >
               Exploit FTP
@@ -216,12 +233,12 @@ function Hacking({
                 body
                 className="mb-3 bg-transparent border-secondary rounded-0 text-white text-center"
               >
-                {!installedExploiter ? (
+                {!exploiter ? (
                   <span>You need to install an exploiter</span>
                 ) : (
                   <ListGroup className="rounded-0">
                     <ListGroup.Item variant="light">
-                      Your exploiter level is <u>{installedExploiter.level}</u>
+                      Your exploiter level is <u>{exploiter.level}</u>
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Your CPU level is{" "}
@@ -245,7 +262,7 @@ function Hacking({
                 )}
               </Card>
               <Button
-                variant={!installedExploiter ? "secondary" : "primary"}
+                variant={!exploiter ? "secondary" : "primary"}
                 onClick={async () => {
                   setError(null);
                   try {
@@ -277,8 +294,7 @@ function Hacking({
                   }
                 }}
                 disabled={
-                  !installedExploiter ||
-                  (process !== null && process.type === "exploit")
+                  !exploiter || (process !== null && process.type === "exploit")
                 }
               >
                 Exploit

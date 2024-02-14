@@ -47,6 +47,8 @@ function Connection({
       computer={computer}
       connectionId={connectionId}
       error={error}
+      variant="primary"
+      access={access}
       process={process}
     >
       <Row>

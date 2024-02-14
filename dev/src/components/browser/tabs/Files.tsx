@@ -45,6 +45,8 @@ function Files({
       computer={computer}
       connectionId={connectionId}
       error={error}
+      variant="warning"
+      access={access}
       process={process}
     >
       <FileTreeComponent

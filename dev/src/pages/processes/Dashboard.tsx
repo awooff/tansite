@@ -5,23 +5,23 @@ import { useContext } from "react";
 import GameContext from "../../contexts/game.context";
 import ProcessListComponent from "../../components/ProcessesComponent";
 import { useNavigate } from "react-router-dom";
+import SessionContext from "../../contexts/session.context";
 
 function Dashboard() {
   const processStore = useProcessStore();
   const game = useContext(GameContext);
+  const session = useContext(SessionContext);
   const navigate = useNavigate();
 
   return (
     <Layout fluid>
       <Row>
         <Col>
-          <p className="display-4 border-bottom pb-3 border-success">
-            ~/processes/
-          </p>
+          <h3 className="border-bottom pb-3 border-success">~/processes/</h3>
         </Col>
       </Row>
-      <Row className="mt-2">
-        <Col lg={3}>
+      <Row>
+        <Col lg={2}>
           <Row lg={1} className="gy-4">
             <Col>
               <Card body className="bg-transparent border border-secondary">
@@ -65,6 +65,24 @@ function Dashboard() {
                     <br />
                     <span className="badge bg-black">
                       {game.computers.length} OWNED
+                    </span>
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      navigate("/internet/browser");
+                    }}
+                  >
+                    <img
+                      src="/icons/cash.png"
+                      className="mx-auto img-fluid w-50"
+                    />
+                    <br />
+                    Internet Browser
+                    <br />
+                    <span className="badge bg-black">
+                      {Object.values(session.data.logins).length || 0} ACTIVE
+                      LOGINS
                     </span>
                   </Button>
                 </div>

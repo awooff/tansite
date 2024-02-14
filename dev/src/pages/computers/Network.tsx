@@ -14,11 +14,11 @@ export default function Network() {
 
   return (
     <Layout fluid>
-      <Row className="mb-2">
+      <Row>
         <Col>
-          <p className="display-4 border-bottom pb-3 border-success">
+          <h3 className="border-bottom pb-3 border-success">
             ~/<Link to="/computers/">computers</Link>/network.json
-          </p>
+          </h3>
         </Col>
       </Row>
       {location?.state?.return ? (
@@ -44,7 +44,7 @@ export default function Network() {
         <></>
       )}
       <Row>
-        <Col lg={3}>
+        <Col lg={2}>
           <Row lg={1} className="gy-4">
             <Col>
               <Card body className="bg-transparent border border-secondary">
@@ -90,6 +90,19 @@ export default function Network() {
                       {game?.computers?.length || 0} OWNED
                     </span>
                   </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      navigate("/internet/browser");
+                    }}
+                  >
+                    <img
+                      src="/icons/cash.png"
+                      className="mx-auto img-fluid w-50"
+                    />
+                    <br />
+                    Internet Browser
+                  </Button>
                 </div>
               </Card>
             </Col>
@@ -118,7 +131,7 @@ export default function Network() {
           ) : (
             <></>
           )}
-          <Row lg={3} sm={1} className="gy-4">
+          <Row lg={4} sm={1} className="gy-4">
             <Connections
               thumbnail
               onlyConnected={true}
@@ -133,6 +146,7 @@ export default function Network() {
                       <div className="d-grid mt-2 gap-2">
                         <ButtonGroup>
                           <Button
+                            size="sm"
                             variant="secondary"
                             href={
                               "#navigate:/computers/files/" + computer.id + "/"
@@ -141,6 +155,7 @@ export default function Network() {
                             📁
                           </Button>
                           <Button
+                            size="sm"
                             variant="secondary"
                             href={
                               "#navigate:/computers/processes/" + computer.id
@@ -149,6 +164,7 @@ export default function Network() {
                             ⚙️
                           </Button>
                           <Button
+                            size="sm"
                             variant="secondary"
                             href={
                               "#navigate:/computers/hardware/" + computer.id
@@ -157,6 +173,7 @@ export default function Network() {
                             🛠️
                           </Button>
                           <Button
+                            size="sm"
                             variant="secondary"
                             href={"#navigate:/computers/logs/" + computer.id}
                           >
@@ -165,6 +182,7 @@ export default function Network() {
                         </ButtonGroup>
                         {connected ? (
                           <Button
+                            size="sm"
                             variant="danger"
                             onClick={async () => {
                               await postRequestHandler(
@@ -182,6 +200,7 @@ export default function Network() {
                           </Button>
                         ) : (
                           <Button
+                            size="sm"
                             variant="success"
                             onClick={async () => {
                               await postRequestHandler(
@@ -228,7 +247,7 @@ export default function Network() {
           ) : (
             <></>
           )}
-          <Row lg={3} sm={1} className="gy-3">
+          <Row lg={4} sm={1} className="gy-3">
             <Connections
               thumbnail
               onlyDisconnected={true}

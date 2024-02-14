@@ -353,7 +353,7 @@ function FileTreeComponent({
                           variant="success"
                           className="ms-2 border border-success bg-transparent"
                           size="sm"
-                          hidden={!connectionId}
+                          hidden={computer.id === connectionId}
                           onClick={async (e) => {
                             const target = e.currentTarget;
                             target.setAttribute("disabled", "true");

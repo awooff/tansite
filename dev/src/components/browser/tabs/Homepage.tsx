@@ -23,7 +23,9 @@ function Homepage({
 }) {
   return (
     <BrowserLayout
+      variant="success"
       setTab={setTab}
+      access={access}
       computer={computer}
       connectionId={connectionId}
     >

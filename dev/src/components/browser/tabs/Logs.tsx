@@ -40,9 +40,11 @@ function Logs({
   return (
     <BrowserLayout
       setTab={setTab}
+      variant="info"
       computer={computer}
       connectionId={connectionId}
       error={error}
+      access={access}
       process={process}
     >
       <Row>

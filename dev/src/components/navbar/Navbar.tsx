@@ -9,8 +9,8 @@ function NavbarComponent() {
   const session = useContext(SessionContext);
 
   return (
-    <Navbar expand="lg" bg="dark" data-bs-theme="dark" className="fixed-top">
-      <Container>
+    <Navbar expand="lg" bg="black" data-bs-theme="dark" className="fixed-top">
+      <Container fluid className="border-bottom border-success pb-2">
         <Navbar.Brand>
           <Link to={session.valid ? "/game" : "/"} className="text-success">
             ~/syscrack{" "}

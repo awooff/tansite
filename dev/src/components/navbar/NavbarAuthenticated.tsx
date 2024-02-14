@@ -65,26 +65,21 @@ export default function NavbarAuthenticated() {
       </Nav>
       <Nav className="ms-auto">
         <Nav.Link className="text-white">
-          <span className="badge bg-secondary">0 NOTIFICATIONS</span>
+          <span className="badge bg-secondary rounded-0">0 📧</span>
         </Nav.Link>
         <Nav.Link className="text-white" href="#navigate:/computers/network">
           <span
             className={
               game?.connections && game?.connections?.length !== 0
-                ? "badge bg-success"
-                : "badge bg-secondary"
+                ? "badge bg-warning rounded-0"
+                : "badge bg-secondary rounded-0"
             }
           >
             {game?.connections?.length || 0}/3 CONNECTIONS
           </span>
         </Nav.Link>
         <Nav.Link className="text-white">
-          <span
-            className="badge bg-success"
-            style={{
-              fontSize: "1.10rem",
-            }}
-          >
+          <span className="badge bg-success rounded-0">
             $
             {game.bankAccounts.length !== 0
               ? game.bankAccounts.reduce((previousValue, currentValue) => {
