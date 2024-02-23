@@ -74,20 +74,6 @@ function Hacking({
     });
   }, [connectionId]);
 
-  if (!valid)
-    return (
-      <>
-        <Alert
-          variant="danger"
-          className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
-          style={{ fontFamily: "initial" }}
-        >
-          <p className="display-2">404</p>
-          <p>This website does not exist</p>
-        </Alert>
-      </>
-    );
-
   return (
     <BrowserLayout
       setTab={setTab}

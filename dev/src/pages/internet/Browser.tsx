@@ -114,8 +114,8 @@ export default function Browser() {
     async (ip: string) => {
       if (!browserStore.connectionId || ip === "0.0.0.0") return;
 
-      setValid(false);
       setLoading(true);
+      setValid(false);
 
       let data = await fetchHomepage(ip, browserStore.connectionId);
       if (!data) setValid(false);
@@ -193,15 +193,14 @@ export default function Browser() {
 
   return (
     <Layout fluid={true} gap={0}>
-      <Row>
+      <Row className="mt-2">
         <Col>
           <div className="hstack">
             {game.connections.map((connection, index) => (
               <div className="d-grid" key={index}>
                 <Card
-                  body
                   style={{
-                    fontSize: 12,
+                    fontSize: 14,
                   }}
                   onClick={() => {
                     browserStore.setConnectionId(connection.id);
@@ -214,43 +213,57 @@ export default function Browser() {
                       : "") + " rounded-0 text-white"
                   }
                 >
-                  <span className={"me-2 badge rounded-0 bg-transparent"}>
-                    #{index}
-                  </span>
-                  <b className="border-bottom border-white me-2">
-                    {connection.ip}{" "}
-                  </b>{" "}
-                  <span className={"badge rounded-0 bg-black"}>
-                    {connection.data?.title}
-                  </span>
-                  {browserStore?.history?.[connection.id] &&
-                  browserStore.history[connection.id].length !== 0 ? (
+                  <Card.Body className="p-1">
+                    <span className={"me-2 badge rounded-0 bg-transparent"}>
+                      #{index}
+                    </span>
+                    <b className="border-bottom border-white me-2">
+                      {connection.ip}{" "}
+                    </b>{" "}
+                    <span className={"badge rounded-0 bg-black"}>
+                      {connection.data?.title}
+                    </span>
+                    {browserStore?.history?.[connection.id] &&
+                    browserStore.history[connection.id].length !== 0 ? (
+                      <>
+                        <br />
+                        <span
+                          className={
+                            "mt-1 badge rounded-0 " +
+                            (browserStore.connectionId === connection.id
+                              ? "bg-transparent"
+                              : "bg-transparent")
+                          }
+                        >
+                          📄 On tab{" "}
+                          {browserStore.history?.[connection.id][0].tab} @{" "}
+                          {browserStore.history?.[connection.id][0].domain ||
+                            browserStore.history?.[connection.id][0].ip}
+                        </span>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </Card.Body>
+                </Card>
+                <div
+                  style={{
+                    position: "absolute",
+                    marginTop: "-40px",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  {session.data.logins?.[connection.id]?.map((connection) => (
                     <>
                       <br />
                       <span
                         className={
-                          "mt-1 badge rounded-0 " +
-                          (browserStore.connectionId === connection.id
-                            ? "bg-transparent"
-                            : "bg-transparent")
+                          "mt-1 badge bg-warning text-black rounded-0 "
                         }
                       >
-                        📄 On tab {browserStore.history?.[connection.id][0].tab}{" "}
-                        @{" "}
-                        {browserStore.history?.[connection.id][0].domain ||
-                          browserStore.history?.[connection.id][0].ip}
-                      </span>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                  {session.data.logins?.[connection.id]?.map((connection) => (
-                    <>
-                      <br />
-                      <span className={"mt-1 badge rounded-0 "}>
                         ✅ Active Connection @{" "}
                         <a
-                          className="text-white"
+                          className="text-black"
                           href={"#navigate:/internet/browser/" + connection.ip}
                         >
                           <u>{connection.ip}</u>
@@ -258,7 +271,7 @@ export default function Browser() {
                       </span>
                     </>
                   ))}
-                </Card>
+                </div>
               </div>
             ))}
           </div>
@@ -266,58 +279,10 @@ export default function Browser() {
       </Row>
       <Row>
         <Col>
-          <Navbar bg="dark" data-bs-theme="dark" className="mb-2">
+          <Navbar bg="dark" data-bs-theme="dark">
             <Container fluid>
-              <Nav className="me-auto w-75">
-                <InputGroup size="sm">
-                  <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                    🌎
-                  </InputGroup.Text>
-                  <Form.Control
-                    type="text"
-                    className="rounded-0"
-                    placeholder={computer?.ip || ""}
-                    name="addressbar"
-                    onKeyUp={(e) => {
-                      if (e.key === "Enter" && currentAddress.current) {
-                        if (
-                          currentAddress.current.value.trim() ===
-                          currentIp?.trim()
-                        )
-                          return;
-
-                        setValid(false);
-                        setCurrentIp(currentAddress.current.value);
-                      }
-                    }}
-                    ref={currentAddress}
-                    size="sm"
-                    aria-label="Input group example"
-                    aria-describedby="btnGroupAddon"
-                  />
-                  <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                    <Button
-                      onClick={() => {
-                        if (
-                          !currentAddress.current?.value ||
-                          currentAddress.current.value.trim() ===
-                            currentIp?.trim()
-                        )
-                          return;
-
-                        setValid(false);
-                        setCurrentIp(currentAddress?.current?.value);
-                      }}
-                      size="sm"
-                      className="rounded-0 bg-transparent border-0"
-                    >
-                      Visit
-                    </Button>
-                  </InputGroup.Text>
-                </InputGroup>
-              </Nav>
-              <Nav className="me-auto mx-auto">
-                <NavDropdown title={"📖"}>
+              <Nav className="me-auto mx-auto p-2">
+                <NavDropdown title={"📖 HISTORY"}>
                   {browserStore.connectionId ? (
                     browserSession?.[browserStore.connectionId]?.map(
                       (session, index) => (
@@ -342,93 +307,130 @@ export default function Browser() {
                   )}
                 </NavDropdown>
               </Nav>
+              <Nav className="me-auto w-75 mx-auto">
+                <InputGroup size="lg">
+                  <InputGroup.Text id="btnGroupAddon" className="rounded-0">
+                    🌎
+                  </InputGroup.Text>
+                  <Form.Control
+                    type="text"
+                    className="rounded-0"
+                    placeholder={computer?.ip || ""}
+                    name="addressbar"
+                    onKeyUp={(e) => {
+                      if (e.key === "Enter" && currentAddress.current) {
+                        if (
+                          currentAddress.current.value.trim() ===
+                          currentIp?.trim()
+                        )
+                          return;
+
+                        setValid(false);
+                        setCurrentIp(currentAddress.current.value);
+                      }
+                    }}
+                    ref={currentAddress}
+                    size="lg"
+                    aria-label="Input group example"
+                    aria-describedby="btnGroupAddon"
+                  />
+                  <Button
+                    onClick={() => {
+                      if (
+                        !currentAddress.current?.value ||
+                        currentAddress.current.value.trim() ===
+                          currentIp?.trim()
+                      )
+                        return;
+
+                      setValid(false);
+                      setCurrentIp(currentAddress?.current?.value);
+                    }}
+                    size="lg"
+                    variant="success"
+                    className="rounded-0 border-0"
+                  >
+                    Visit
+                  </Button>
+                </InputGroup>
+              </Nav>
               <Nav className="ms-auto">
                 <InputGroup>
-                  <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                    <Button
-                      size="sm"
-                      disabled={
-                        browserStore.connectionId
-                          ? browserSession?.[browserStore.connectionId]
-                              ?.length === 1 || currentIp
-                            ? browserSession?.[
-                                browserStore.connectionId
-                              ]?.indexOf(
-                                currentIp !== null ? currentIp : "0.0.0.0"
-                              ) === 0
-                            : false
-                          : false
-                      }
-                      onClick={() => {
-                        if (!browserStore.connectionId) return;
-
-                        let newIp =
-                          browserSession?.[browserStore.connectionId]?.[
-                            browserSession?.[
+                  <Button
+                    size="lg"
+                    disabled={
+                      browserStore.connectionId
+                        ? browserSession?.[browserStore.connectionId]
+                            ?.length === 1 || currentIp
+                          ? browserSession?.[
                               browserStore.connectionId
                             ]?.indexOf(
                               currentIp !== null ? currentIp : "0.0.0.0"
-                            ) - 1
-                          ] ||
-                          browserSession?.[browserStore.connectionId]?.[
-                            browserSession?.[browserStore.connectionId].length -
-                              1
-                          ];
-
-                        if (currentIp !== newIp) {
-                          setCurrentIp(newIp);
-                          setValid(false);
-                        }
-                      }}
-                      className="rounded-0 bg-transparent border-0"
-                    >
-                      Back
-                    </Button>
-                  </InputGroup.Text>
-                  <InputGroup.Text id="btnGroupAddon" className="rounded-0">
-                    <Button
-                      disabled={
-                        browserStore.connectionId
-                          ? browserSession?.[browserStore.connectionId]
-                              ?.length === 1 || currentIp
-                            ? browserSession?.[
-                                browserStore.connectionId
-                              ]?.indexOf(
-                                currentIp !== null ? currentIp : "0.0.0.0"
-                              ) ===
-                              browserSession?.[browserStore.connectionId]
-                                ?.length -
-                                1
-                            : false
+                            ) === 0
                           : false
-                      }
-                      size="sm"
-                      onClick={() => {
-                        if (!browserStore.connectionId) return;
+                        : false
+                    }
+                    onClick={() => {
+                      if (!browserStore.connectionId) return;
 
-                        let newIp =
-                          browserSession?.[browserStore.connectionId]?.[
-                            browserSession?.[
+                      let newIp =
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId]?.indexOf(
+                            currentIp !== null ? currentIp : "0.0.0.0"
+                          ) - 1
+                        ] ||
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId].length - 1
+                        ];
+
+                      if (currentIp !== newIp) {
+                        setCurrentIp(newIp);
+                        setValid(false);
+                      }
+                    }}
+                    className="rounded-0 bg-transparent border-0"
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    disabled={
+                      browserStore.connectionId
+                        ? browserSession?.[browserStore.connectionId]
+                            ?.length === 1 || currentIp
+                          ? browserSession?.[
                               browserStore.connectionId
                             ]?.indexOf(
                               currentIp !== null ? currentIp : "0.0.0.0"
-                            ) + 1
-                          ] ||
-                          browserSession?.[browserStore.connectionId]?.[
-                            browserSession?.[browserStore.connectionId].length -
+                            ) ===
+                            browserSession?.[browserStore.connectionId]
+                              ?.length -
                               1
-                          ];
+                          : false
+                        : false
+                    }
+                    size="lg"
+                    onClick={() => {
+                      if (!browserStore.connectionId) return;
 
-                        if (newIp !== currentIp) {
-                          setCurrentIp(newIp);
-                          setValid(false);
-                        }
-                      }}
-                      className="rounded-0 bg-transparent border-0"
-                    >
-                      Foward
-                    </Button>
-                  </InputGroup.Text>
+                      let newIp =
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId]?.indexOf(
+                            currentIp !== null ? currentIp : "0.0.0.0"
+                          ) + 1
+                        ] ||
+                        browserSession?.[browserStore.connectionId]?.[
+                          browserSession?.[browserStore.connectionId].length - 1
+                        ];
+
+                      if (newIp !== currentIp) {
+                        setCurrentIp(newIp);
+                        setValid(false);
+                      }
+                    }}
+                    className="rounded-0 bg-transparent border-0"
+                  >
+                    Foward
+                  </Button>
                 </InputGroup>
               </Nav>
             </Container>
@@ -483,8 +485,8 @@ export default function Browser() {
             </Row>
           ) : (
             <>
-              {!loading && computer ? (
-                <Row className="mt-1">
+              {!loading && computer && valid ? (
+                <Row>
                   <Col>
                     {computer.type === "search_engine" && tab === "homepage" ? (
                       <SearchEngine
@@ -696,7 +698,7 @@ export default function Browser() {
                             Unhacked
                           </span>
                         )}
-                        <span className="text-black">{" : "}</span>
+                        <span className="text-white">{" / "}</span>
                         {session.data.logins?.[browserStore.connectionId]
                           ?.length !== 0 ? (
                           session.data.logins?.[browserStore.connectionId]?.map(
@@ -796,7 +798,7 @@ export default function Browser() {
                 </Row>
               ) : (
                 <>
-                  {!valid ? (
+                  {!valid && !loading ? (
                     <Alert
                       variant="danger"
                       className="text-center bg-transparent border-danger border mt-0 mb-0 rounded-0"
