@@ -62,7 +62,12 @@ class Server {
     this.server.use(compression());
     this.server.use(
       cors({
-        origin: ["http://localhost:5173", "http://localhost:5174"],
+        origin: [
+          "http://localhost:5173",
+          "http://localhost:5174",
+          "http://192.168.111.37:5174",
+          "http://192.168.111.37:5173",
+        ],
         optionsSuccessStatus: 200, // For legacy browser support
         credentials: true,
       })

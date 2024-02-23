@@ -31,7 +31,7 @@ function Layout({
     <>
       <NavbarComponent />
       <Container fluid={fluid}>
-        <Stack gap={gap ? gap : 2} className="pt-2">
+        <Stack gap={gap !== undefined ? gap : 2} className="pt-2">
           {children as ReactNode[]}
         </Stack>
         <Row className="mt-2 mb-2">
