@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Computer } from "../../lib/types/computer.type";
 import { Process } from "../../lib/types/process.type";
-import { Alert, Col, Row, Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import SessionContext from "../../contexts/session.context";
+import ProcessComponent from "../ProcessComponent";
 
 function BrowserLayout({
   error,
@@ -40,108 +41,90 @@ function BrowserLayout({
       ) : (
         <></>
       )}
-      {process ? (
-        <Alert
+      {process ? <ProcessComponent process={process} /> : <></>}
+
+      <div className="bg-light">
+        {computer && computer.type === "search_engine" ? (
+          <Button
+            className="rounded-0 bg-transparent btn-outline-success"
+            variant="success"
+            size="sm"
+            onClick={() => {
+              setTab("homepage");
+            }}
+          >
+            Search
+          </Button>
+        ) : (
+          <Button
+            className="rounded-0 bg-transparent btn-outline-success"
+            variant="success"
+            size="sm"
+            onClick={() => {
+              setTab("homepage");
+            }}
+          >
+            Homepage
+          </Button>
+        )}
+        <Button
+          className="rounded-0 bg-transparent btn-outline-danger"
+          size="sm"
+          hidden={access !== null}
+          variant="danger"
+          onClick={() => {
+            setTab("hack");
+          }}
+        >
+          Hack
+        </Button>
+        <Button
+          className="rounded-0 bg-transparent btn-outline-primary"
+          size="sm"
+          hidden={access === null}
           variant="primary"
-          className="bg-transparent border-primary border pb-2"
-        >
-          <Row>
-            <Col className="display-4 text-center">⚙️</Col>
-            <Col lg={10}>
-              <h5>Executing {process.type}</h5>
-              <p
-                style={{
-                  fontSize: "12px",
-                }}
-              >
-                Time remaining:{" "}
-                {Math.floor(
-                  (new Date(process.completion).getTime() - Date.now()) / 1000
-                )}{" "}
-                seconds
-              </p>
-            </Col>
-          </Row>
-        </Alert>
-      ) : (
-        <></>
-      )}
-      {computer && computer.type === "search_engine" ? (
-        <Button
-          className="rounded-0"
-          variant="success"
-          size="sm"
           onClick={() => {
-            setTab("homepage");
+            setTab("connection");
           }}
         >
-          Search
+          Connection
         </Button>
-      ) : (
         <Button
-          className="rounded-0"
-          variant="success"
+          className="rounded-0 bg-transparent btn-outline-warning"
+          variant="warning"
           size="sm"
           onClick={() => {
-            setTab("homepage");
+            setTab("files");
+          }}
+          hidden={
+            session.data.logins?.[connectionId]?.find(
+              (login) => login.id === computer?.id
+            ) === undefined
+          }
+        >
+          Files
+        </Button>
+        <Button
+          className="rounded-0 bg-transparent btn-outline-info"
+          variant="info"
+          size="sm"
+          hidden={
+            session.data.logins?.[connectionId]?.find(
+              (login) => login.id === computer?.id
+            ) === undefined
+          }
+          onClick={() => {
+            setTab("logs");
           }}
         >
-          Homepage
+          Logs
         </Button>
-      )}
-      <Button
-        className="rounded-0"
-        size="sm"
-        hidden={access !== null}
-        variant="danger"
-        onClick={() => {
-          setTab("hack");
-        }}
-      >
-        Hack
-      </Button>
-      <Button
-        className="rounded-0"
-        size="sm"
-        hidden={access === null}
-        variant="primary"
-        onClick={() => {
-          setTab("connection");
-        }}
-      >
-        Connection
-      </Button>
-      <Button
-        className="rounded-0"
-        variant="warning"
-        size="sm"
-        onClick={() => {
-          setTab("files");
-        }}
-        disabled={
-          session.data.logins?.[connectionId]?.find(
-            (login) => login.id === computer?.id
-          ) === undefined
-        }
-      >
-        Files
-      </Button>
-      <Button
-        className="rounded-0"
-        variant="info"
-        size="sm"
-        disabled={
-          session.data.logins?.[connectionId]?.find(
-            (login) => login.id === computer?.id
-          ) === undefined
-        }
-        onClick={() => {
-          setTab("logs");
-        }}
-      >
-        Logs
-      </Button>
+      </div>
+
       <div
+        style={{
+          overflowX: "hidden",
+        }}
         className={`d-grid bg-black border border-${variant} p-3 browser-frame`}
       >
         {children}

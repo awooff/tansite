@@ -227,7 +227,7 @@ function ProcessListComponent({
                                               (new Date(
                                                 process.completion
                                               ).getTime() -
-                                                Date.now()) /
+                                                time) /
                                               1000
                                             ).toFixed(2) + " seconds"
                                       }

@@ -12,6 +12,7 @@ import Browser from "./pages/internet/Browser";
 import ProtectedLayout from "./components/ProtectedLayout";
 import Processes from "./pages/computers/Processes";
 import ProcessDashboard from "./pages/processes/Dashboard";
+import PuzzleTest from "./pages/dev/PuzzleTest";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
         <Dashboard />
       </ProtectedLayout>
     ),
+  },
+  {
+    path: "/dev/puzzletest",
+    element: <PuzzleTest />,
   },
 ]);
 

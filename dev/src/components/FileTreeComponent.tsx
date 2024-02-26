@@ -9,6 +9,7 @@ import {
   Button,
   ProgressBar,
   Alert,
+  Stack,
 } from "react-bootstrap";
 import { createProcess } from "../lib/process";
 import { Computer } from "../lib/types/computer.type";
@@ -171,7 +172,7 @@ function FileTreeComponent({
           </Card>
           <Card
             body
-            className="bg-transparent border border-success mt-4"
+            className="bg-transparent border border-success mt-3"
             style={{
               fontSize: "12px",
             }}
@@ -196,91 +197,25 @@ function FileTreeComponent({
           {children}
         </Col>
         <Col lg>
-          <Table
-            striped
-            bordered
-            hover
-            style={{
-              fontSize: "14px",
-            }}
-          >
-            <thead>
-              <tr>
-                <th>type</th>
-                <th>name</th>
-                <th>level</th>
-                <th>size</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {computer.software
-                .sort((a, b) => a.type.charCodeAt(0) - b.type.charCodeAt(0))
-                .map((software, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{software.type}</td>
-                      <td
-                        className={
-                          software.userId === game.user.id ? "bg-secondary" : ""
-                        }
-                      >
-                        {software.installed ? (
-                          <span
-                            style={{
-                              borderBottom: "2px dashed gray",
-                            }}
-                          >
-                            {software.name || "Unknown " + software.type}
-                          </span>
-                        ) : (
-                          <>{software.name || "Unknown " + software.type}</>
-                        )}
-                      </td>
-                      <td>{software.level}</td>
-                      <td>{software.size}</td>
-                      <td className="d-grid gap-2">
-                        {software.installed ? (
-                          <Button
-                            variant="info"
-                            className="ms-2 border border-info bg-transparent"
-                            size="sm"
-                            onClick={async (e) => {
-                              const target = e.currentTarget;
-                              target.setAttribute("disabled", "true");
-                              let result = await createProcess<{
-                                process: Process;
-                              }>(
-                                "action",
-                                {
-                                  action: "uninstall",
-                                  ip: computer.ip,
-                                  softwareId: software.id,
-                                  connectionId: connectionId || computer.id,
-                                },
-                                true,
-                                onCreation,
-                                onError
-                              ).finally(() => {
-                                target.setAttribute("disabled", "false");
-                              });
-                              if (onCompletion)
-                                onCompletion(result.data.process);
-                              setLoading(true);
-                              fetchFiles(connectionId, ip, computerId)
-                                .then((computer) => setComputer(computer))
-                                .finally(() => {
-                                  setLoading(false);
-                                });
-                            }}
-                          >
-                            Uninstall
-                          </Button>
-                        ) : (
-                          <>
+          <Row className="row-cols-6">
+            {computer.software
+              .sort((a, b) => a.type.charCodeAt(0) - b.type.charCodeAt(0))
+              .map((software, index) => {
+                return (
+                  <Col>
+                    <div
+                      className="d-grid file-button p-2"
+                      style={{
+                        position: "absolute",
+                        zIndex: "2",
+                      }}
+                    >
+                      <Card body className="bg-black border border-success">
+                        <Stack gap={2}>
+                          {software.installed ? (
                             <Button
                               variant="info"
-                              className="ms-2 border border-info bg-transparent"
+                              className="border border-info bg-transparent"
                               size="sm"
                               onClick={async (e) => {
                                 const target = e.currentTarget;
@@ -290,7 +225,7 @@ function FileTreeComponent({
                                 }>(
                                   "action",
                                   {
-                                    action: "install",
+                                    action: "uninstall",
                                     ip: computer.ip,
                                     softwareId: software.id,
                                     connectionId: connectionId || computer.id,
@@ -311,120 +246,212 @@ function FileTreeComponent({
                                   });
                               }}
                             >
-                              Install
+                              Uninstall
                             </Button>
-                          </>
-                        )}
-                        <Button
-                          variant="danger"
-                          className="ms-2 border border-danger bg-transparent"
-                          size="sm"
-                          onClick={async (e) => {
-                            const target = e.currentTarget;
-                            target.setAttribute("disabled", "true");
-                            let result = await createProcess<{
-                              process: Process;
-                            }>(
-                              "action",
-                              {
-                                action: "delete",
-                                ip: computer.ip,
-                                softwareId: software.id,
-                                connectionId: connectionId || computer.id,
-                              },
-                              true,
-                              onCreation,
-                              onError
-                            ).finally(() => {
-                              target.setAttribute("disabled", "false");
-                            });
-                            if (onCompletion) onCompletion(result.data.process);
-                            setLoading(true);
-                            fetchFiles(connectionId, ip, computerId)
-                              .then((computer) => setComputer(computer))
-                              .finally(() => {
-                                setLoading(false);
+                          ) : (
+                            <>
+                              <Button
+                                variant="info"
+                                className="border border-info bg-transparent"
+                                size="sm"
+                                onClick={async (e) => {
+                                  const target = e.currentTarget;
+                                  target.setAttribute("disabled", "true");
+                                  let result = await createProcess<{
+                                    process: Process;
+                                  }>(
+                                    "action",
+                                    {
+                                      action: "install",
+                                      ip: computer.ip,
+                                      softwareId: software.id,
+                                      connectionId: connectionId || computer.id,
+                                    },
+                                    true,
+                                    onCreation,
+                                    onError
+                                  ).finally(() => {
+                                    target.setAttribute("disabled", "false");
+                                  });
+                                  if (onCompletion)
+                                    onCompletion(result.data.process);
+                                  setLoading(true);
+                                  fetchFiles(connectionId, ip, computerId)
+                                    .then((computer) => setComputer(computer))
+                                    .finally(() => {
+                                      setLoading(false);
+                                    });
+                                }}
+                              >
+                                Install
+                              </Button>
+                            </>
+                          )}
+                          <Button
+                            variant="danger"
+                            className="border border-danger bg-transparent"
+                            size="sm"
+                            onClick={async (e) => {
+                              const target = e.currentTarget;
+                              target.setAttribute("disabled", "true");
+                              let result = await createProcess<{
+                                process: Process;
+                              }>(
+                                "action",
+                                {
+                                  action: "delete",
+                                  ip: computer.ip,
+                                  softwareId: software.id,
+                                  connectionId: connectionId || computer.id,
+                                },
+                                true,
+                                onCreation,
+                                onError
+                              ).finally(() => {
+                                target.setAttribute("disabled", "false");
                               });
-                          }}
-                        >
-                          Delete
-                        </Button>
-                        <Button
-                          variant="success"
-                          className="ms-2 border border-success bg-transparent"
-                          size="sm"
-                          hidden={computer.id === connectionId}
-                          onClick={async (e) => {
-                            const target = e.currentTarget;
-                            target.setAttribute("disabled", "true");
-                            let result = await createProcess<{
-                              process: Process;
-                            }>(
-                              "action",
-                              {
-                                action: "download",
-                                ip: computer.ip,
-                                softwareId: software.id,
-                                connectionId: connectionId || computer.id,
-                              },
-                              true,
-                              onCreation,
-                              onError
-                            ).finally(() => {
-                              target.setAttribute("disabled", "false");
-                            });
-                            if (onCompletion) onCompletion(result.data.process);
-                            setLoading(true);
-                            fetchFiles(connectionId, ip, computerId)
-                              .then((computer) => setComputer(computer))
-                              .finally(() => {
-                                setLoading(false);
+                              if (onCompletion)
+                                onCompletion(result.data.process);
+                              setLoading(true);
+                              fetchFiles(connectionId, ip, computerId)
+                                .then((computer) => setComputer(computer))
+                                .finally(() => {
+                                  setLoading(false);
+                                });
+                            }}
+                          >
+                            Delete
+                          </Button>
+                          <Button
+                            variant="success"
+                            className="border border-success bg-transparent"
+                            size="sm"
+                            hidden={computer.id === connectionId}
+                            onClick={async (e) => {
+                              const target = e.currentTarget;
+                              target.setAttribute("disabled", "true");
+                              let result = await createProcess<{
+                                process: Process;
+                              }>(
+                                "action",
+                                {
+                                  action: "download",
+                                  ip: computer.ip,
+                                  softwareId: software.id,
+                                  connectionId: connectionId || computer.id,
+                                },
+                                true,
+                                onCreation,
+                                onError
+                              ).finally(() => {
+                                target.setAttribute("disabled", "false");
                               });
-                          }}
-                        >
-                          Download
-                        </Button>
-                        <Button
-                          variant="primary"
-                          className="ms-2 border border-primary bg-transparent"
-                          hidden={!uploadTargetIp}
-                          size="sm"
-                          onClick={async (e) => {
-                            const target = e.currentTarget;
-                            target.setAttribute("disabled", "true");
-                            let result = await createProcess<{
-                              process: Process;
-                            }>(
-                              "action",
-                              {
-                                action: "upload",
-                                ip: uploadTargetIp,
-                                softwareId: software.id,
-                                connectionId: connectionId || computer.id,
-                              },
-                              true,
-                              onCreation,
-                              onError
-                            ).finally(() => {
-                              target.setAttribute("disabled", "false");
-                            });
-                            if (onCompletion) onCompletion(result.data.process);
-                            setLoading(true);
-                            fetchFiles(connectionId, ip, computerId)
-                              .then((computer) => setComputer(computer))
-                              .finally(() => {
-                                setLoading(false);
+                              if (onCompletion)
+                                onCompletion(result.data.process);
+                              setLoading(true);
+                              fetchFiles(connectionId, ip, computerId)
+                                .then((computer) => setComputer(computer))
+                                .finally(() => {
+                                  setLoading(false);
+                                });
+                            }}
+                          >
+                            Download
+                          </Button>
+                          <Button
+                            variant="primary"
+                            className="border border-primary bg-transparent"
+                            hidden={!uploadTargetIp}
+                            size="sm"
+                            onClick={async (e) => {
+                              const target = e.currentTarget;
+                              target.setAttribute("disabled", "true");
+                              let result = await createProcess<{
+                                process: Process;
+                              }>(
+                                "action",
+                                {
+                                  action: "upload",
+                                  ip: uploadTargetIp,
+                                  softwareId: software.id,
+                                  connectionId: connectionId || computer.id,
+                                },
+                                true,
+                                onCreation,
+                                onError
+                              ).finally(() => {
+                                target.setAttribute("disabled", "false");
                               });
-                          }}
+                              if (onCompletion)
+                                onCompletion(result.data.process);
+                              setLoading(true);
+                              fetchFiles(connectionId, ip, computerId)
+                                .then((computer) => setComputer(computer))
+                                .finally(() => {
+                                  setLoading(false);
+                                });
+                            }}
+                          >
+                            Upload to {uploadTargetIp}
+                          </Button>
+                        </Stack>
+                      </Card>
+                    </div>
+                    <Card
+                      body
+                      className={
+                        "bg-transparent " +
+                        (software.installed
+                          ? "border border-secondary p-2"
+                          : "")
+                      }
+                    >
+                      <p>
+                        <span
+                          className={
+                            "badge " +
+                            (software.level >= 50
+                              ? "bg-success"
+                              : software.level >= 25
+                                ? "bg-warning"
+                                : software.level >= 10
+                                  ? "bg-primary"
+                                  : "bg-secondary")
+                          }
                         >
-                          Upload to {uploadTargetIp}
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </Table>
+                          ⭐{software.level}
+                        </span>
+                        <span className="badge bg-transparent">
+                          {software.size}mb
+                        </span>
+                      </p>
+
+                      <img
+                        src="/icons/query.png"
+                        className="img-fluid mx-auto p-4"
+                        style={{
+                          background: 'url("/icons/icon.png")',
+                          backgroundSize: "contain",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                          filter:
+                            software.level >= 50
+                              ? "hue-rotate(270deg)"
+                              : software.level >= 25
+                                ? "hue-rotate(180deg)"
+                                : software.level >= 10
+                                  ? "hue-rotate(90deg)"
+                                  : "grayscale(100%)",
+                        }}
+                      />
+                      <p className="text-center mt-4">
+                        {software.name || software.type}
+                      </p>
+                    </Card>
+                  </Col>
+                );
+              })}
+          </Row>
         </Col>
       </Row>
     </>

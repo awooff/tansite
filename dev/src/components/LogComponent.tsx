@@ -19,11 +19,13 @@ function LogComponent({
   computerId,
   local = false,
   ip,
+  setProcess,
   connectionId,
 }: {
   computerId?: string;
   ip?: string;
   local?: boolean;
+  setProcess?: (process: Process) => void;
   connectionId?: string;
 }) {
   const [logs, setLogs] = useState<Log[]>([]);
@@ -85,112 +87,117 @@ function LogComponent({
     );
 
   return (
-    <>
-      <Row className="mb-3">
-        <Col>
-          <div className="d-grid">
-            <Button
-              size="sm"
-              variant="danger"
-              disabled={logs.length === 0}
-              onClick={async (e) => {
-                const target = e.currentTarget;
-                target.setAttribute("disabled", "true");
-                let result = await createProcess<{
-                  process: Process;
-                }>(
-                  "wipe",
-                  {
-                    ip: ip,
-                    connectionId: connectionId || computerId,
-                  },
-                  true,
-                  (process) => {
-                    processStore.addProcess(process);
-                  }
-                );
-                processStore.removeProcess(result.data.process);
-                target.setAttribute("disabled", "false");
-                setLogs([]);
-                setCount(0);
-                setPages(1);
-              }}
-            >
-              Wipe Log
-            </Button>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Alert className="bg-transparent border border-danger">
-            {count} total logs{" "}
-            <span
-              style={{
-                float: "right",
-              }}
-              className="badge bg-black"
-            >
-              page {page + 1}/{pages}
-            </span>
-          </Alert>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Table
-            striped
-            bordered
-            hover
-            style={{
-              fontSize: "14px",
-            }}
-          >
-            <thead>
-              <tr>
-                <th></th>
-                <th>message</th>
-                <th>sender</th>
-                <th>time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {logs
-                .sort((a, b) => b.id - a.id)
-                .map((log, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className="bg-light">
-                        {(index + 1) * Math.max(1, page)}
-                      </td>
-                      <td>{log.message}</td>
-                      <td>
-                        <a
-                          className={
-                            (computerId && log?.computer?.id === computerId) ||
-                            log.senderIp === ip
-                              ? "text-warning"
-                              : !local
-                                ? log.senderId === connectionId
-                                  ? "text-danger"
-                                  : "text-white"
-                                : log.senderId !== computerId
-                                  ? "text-danger"
-                                  : "text-white"
-                          }
-                        >
-                          {log.senderIp}
-                        </a>
-                      </td>
-                      <td>{new Date(log.created).toString()}</td>
-                    </tr>
+    <Row>
+      <Col>
+        <Row className="mb-3">
+          <Col>
+            <div className="d-grid">
+              <Button
+                size="sm"
+                variant="danger"
+                disabled={logs.length === 0}
+                onClick={async (e) => {
+                  const target = e.currentTarget;
+                  target.setAttribute("disabled", "true");
+                  let result = await createProcess<{
+                    process: Process;
+                  }>(
+                    "wipe",
+                    {
+                      ip: ip,
+                      connectionId: connectionId || computerId,
+                    },
+                    true,
+                    (process) => {
+                      processStore.addProcess(process);
+                    }
                   );
-                })}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
-    </>
+
+                  if (setProcess) setProcess(result.data.process);
+                  processStore.removeProcess(result.data.process);
+                  target.setAttribute("disabled", "false");
+                  setLogs([]);
+                  setCount(0);
+                  setPages(1);
+                }}
+              >
+                Wipe Log
+              </Button>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Alert className="bg-transparent border border-danger">
+              {count} total logs{" "}
+              <span
+                style={{
+                  float: "right",
+                }}
+                className="badge bg-black"
+              >
+                page {page + 1}/{pages}
+              </span>
+            </Alert>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Table
+              striped
+              bordered
+              hover
+              style={{
+                fontSize: "14px",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>message</th>
+                  <th>sender</th>
+                  <th>time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {logs
+                  .sort((a, b) => b.id - a.id)
+                  .map((log, index) => {
+                    return (
+                      <tr key={index}>
+                        <td className="bg-light">
+                          {(index + 1) * Math.max(1, page)}
+                        </td>
+                        <td>{log.message}</td>
+                        <td>
+                          <a
+                            className={
+                              (computerId &&
+                                log?.computer?.id === computerId) ||
+                              log.senderIp === ip
+                                ? "text-warning"
+                                : !local
+                                  ? log.senderId === connectionId
+                                    ? "text-danger"
+                                    : "text-white"
+                                  : log.senderId !== computerId
+                                    ? "text-danger"
+                                    : "text-white"
+                            }
+                          >
+                            {log.senderIp}
+                          </a>
+                        </td>
+                        <td>{new Date(log.created).toString()}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 }
 

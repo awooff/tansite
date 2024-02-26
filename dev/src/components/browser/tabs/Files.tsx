@@ -39,6 +39,11 @@ function Files({
       setTab("homepage");
   }, [session, connectionId, ip, computer]);
 
+  useEffect(() => {
+    if (process === null && processStore.processes[connectionId])
+      setProcess(processStore.processes[connectionId][0]);
+  }, [process, connectionId]);
+
   return (
     <BrowserLayout
       setTab={setTab}

@@ -191,7 +191,7 @@ export default function Files() {
           </Card>
         </Col>
         <Col>
-          <div className="d-grid border border-warning p-4">
+          <div className="d-grid border border-warning p-2">
             <FileTreeComponent
               connectionId={computer.id}
               ip={computer.ip}

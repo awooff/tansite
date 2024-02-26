@@ -193,84 +193,102 @@ export default function Browser() {
 
   return (
     <Layout fluid={true} gap={0}>
-      <Row className="mt-2">
+      <Row>
         <Col>
           <div className="hstack">
             {game.connections.map((connection, index) => (
-              <div className="d-grid" key={index}>
-                <Card
-                  style={{
-                    fontSize: 14,
-                  }}
-                  onClick={() => {
-                    browserStore.setConnectionId(connection.id);
-                    setCurrentIp("0.0.0.0");
-                    setValid(false);
-                  }}
+              <div
+                className="hstack"
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  browserStore.setConnectionId(connection.id);
+                  setCurrentIp("0.0.0.0");
+                  setValid(false);
+                }}
+              >
+                <img
+                  width="36px"
+                  src="/icons/connect.png"
                   className={
                     (browserStore.connectionId === connection.id
                       ? "bg-success"
-                      : "") + " rounded-0 text-white"
+                      : "bg-dark") + " mx-auto p-2 img-fluid"
                   }
-                >
-                  <Card.Body className="p-1">
-                    <span className={"me-2 badge rounded-0 bg-transparent"}>
-                      #{index}
-                    </span>
-                    <b className="border-bottom border-white me-2">
-                      {connection.ip}{" "}
-                    </b>{" "}
-                    <span className={"badge rounded-0 bg-black"}>
-                      {connection.data?.title}
-                    </span>
-                    {browserStore?.history?.[connection.id] &&
-                    browserStore.history[connection.id].length !== 0 ? (
+                />
+                <div className="d-grid" key={index}>
+                  <Card
+                    style={{
+                      fontSize: 8,
+                    }}
+                    className={
+                      (browserStore.connectionId === connection.id
+                        ? "bg-success"
+                        : "") + " rounded-0 text-white"
+                    }
+                  >
+                    <Card.Body className="p-1 me-5">
+                      <span className={"me-2 badge rounded-0 bg-transparent"}>
+                        #{index}
+                      </span>
+                      <b className="border-bottom border-white me-2">
+                        {connection.ip}{" "}
+                      </b>{" "}
+                      <span className={"badge rounded-0 bg-black"}>
+                        {connection.data?.title}
+                      </span>
+                      {browserStore?.history?.[connection.id] &&
+                      browserStore.history[connection.id].length !== 0 ? (
+                        <>
+                          <br />
+                          <span
+                            className={
+                              "mt-1 badge rounded-0 " +
+                              (browserStore.connectionId === connection.id
+                                ? "bg-transparent"
+                                : "bg-transparent")
+                            }
+                          >
+                            📄 On tab{" "}
+                            {browserStore.history?.[connection.id][0].tab} @{" "}
+                            {browserStore.history?.[connection.id][0].domain ||
+                              browserStore.history?.[connection.id][0].ip}
+                          </span>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </Card.Body>
+                  </Card>
+                  <div
+                    style={{
+                      position: "absolute",
+                      marginTop: "-34px",
+                      fontSize: "0.7rem",
+                    }}
+                  >
+                    {session.data.logins?.[connection.id]?.map((connection) => (
                       <>
                         <br />
                         <span
                           className={
-                            "mt-1 badge rounded-0 " +
-                            (browserStore.connectionId === connection.id
-                              ? "bg-transparent"
-                              : "bg-transparent")
+                            "mt-1 badge bg-warning text-black rounded-0 "
                           }
                         >
-                          📄 On tab{" "}
-                          {browserStore.history?.[connection.id][0].tab} @{" "}
-                          {browserStore.history?.[connection.id][0].domain ||
-                            browserStore.history?.[connection.id][0].ip}
+                          ✅ Active Connection @{" "}
+                          <a
+                            className="text-black"
+                            href={
+                              "#navigate:/internet/browser/" + connection.ip
+                            }
+                          >
+                            <u>{connection.ip}</u>
+                          </a>
                         </span>
                       </>
-                    ) : (
-                      <></>
-                    )}
-                  </Card.Body>
-                </Card>
-                <div
-                  style={{
-                    position: "absolute",
-                    marginTop: "-40px",
-                    fontSize: "0.8rem",
-                  }}
-                >
-                  {session.data.logins?.[connection.id]?.map((connection) => (
-                    <>
-                      <br />
-                      <span
-                        className={
-                          "mt-1 badge bg-warning text-black rounded-0 "
-                        }
-                      >
-                        ✅ Active Connection @{" "}
-                        <a
-                          className="text-black"
-                          href={"#navigate:/internet/browser/" + connection.ip}
-                        >
-                          <u>{connection.ip}</u>
-                        </a>
-                      </span>
-                    </>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -280,8 +298,8 @@ export default function Browser() {
       <Row>
         <Col>
           <Navbar bg="dark" data-bs-theme="dark">
-            <Container fluid>
-              <Nav className="me-auto mx-auto p-2">
+            <Container fluid className="p-0">
+              <Nav className="me-auto mx-auto">
                 <NavDropdown title={"📖 HISTORY"}>
                   {browserStore.connectionId ? (
                     browserSession?.[browserStore.connectionId]?.map(
@@ -308,7 +326,7 @@ export default function Browser() {
                 </NavDropdown>
               </Nav>
               <Nav className="me-auto w-75 mx-auto">
-                <InputGroup size="lg">
+                <InputGroup size="sm">
                   <InputGroup.Text id="btnGroupAddon" className="rounded-0">
                     🌎
                   </InputGroup.Text>
@@ -330,7 +348,7 @@ export default function Browser() {
                       }
                     }}
                     ref={currentAddress}
-                    size="lg"
+                    size="sm"
                     aria-label="Input group example"
                     aria-describedby="btnGroupAddon"
                   />
@@ -346,7 +364,7 @@ export default function Browser() {
                       setValid(false);
                       setCurrentIp(currentAddress?.current?.value);
                     }}
-                    size="lg"
+                    size="sm"
                     variant="success"
                     className="rounded-0 border-0"
                   >
@@ -357,7 +375,7 @@ export default function Browser() {
               <Nav className="ms-auto">
                 <InputGroup>
                   <Button
-                    size="lg"
+                    size="sm"
                     disabled={
                       browserStore.connectionId
                         ? browserSession?.[browserStore.connectionId]
@@ -408,7 +426,7 @@ export default function Browser() {
                           : false
                         : false
                     }
-                    size="lg"
+                    size="sm"
                     onClick={() => {
                       if (!browserStore.connectionId) return;
 
@@ -673,7 +691,7 @@ export default function Browser() {
                       </>
                     )}
                     {valid && computer ? (
-                      <p className="text-white bg-secondary pb-1 pt-1 ps-1">
+                      <p className="text-white bg-secondary pb-1 ps-1">
                         <span className="badge bg-info rounded-0">HOST</span>
                         <span className="badge bg-black rounded-0">
                           {computer.type}
@@ -698,7 +716,7 @@ export default function Browser() {
                             Unhacked
                           </span>
                         )}
-                        <span className="text-white">{" / "}</span>
+
                         {session.data.logins?.[browserStore.connectionId]
                           ?.length !== 0 ? (
                           session.data.logins?.[browserStore.connectionId]?.map(
@@ -890,7 +908,7 @@ export default function Browser() {
                                     setValid(false);
                                     setCurrentIp(searchBar?.current?.value);
                                   }}
-                                  size="lg"
+                                  size="sm"
                                   variant="success"
                                 >
                                   Visit

@@ -5,6 +5,7 @@ import { Process } from "../../../lib/types/process.type";
 import SessionContext from "../../../contexts/session.context";
 import LogComponent from "../../LogComponent";
 import BrowserLayout from "../BrowserLayout";
+import { useProcessStore } from "../../../lib/stores/process.store";
 
 function Logs({
   connectionId,
@@ -25,6 +26,7 @@ function Logs({
 }) {
   const session = useContext(SessionContext);
   const [process, setProcess] = useState<Process | null>(null);
+  const processStore = useProcessStore();
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -37,6 +39,11 @@ function Logs({
       setTab("homepage");
   }, [session, connectionId, ip, computer]);
 
+  useEffect(() => {
+    if (process === null && processStore.processes[connectionId])
+      setProcess(processStore.processes[connectionId][0]);
+  }, [process, connectionId]);
+
   return (
     <BrowserLayout
       setTab={setTab}
@@ -47,11 +54,11 @@ function Logs({
       access={access}
       process={process}
     >
-      <Row>
-        <Col>
-          <LogComponent ip={computer.ip} connectionId={connectionId} />
-        </Col>
-      </Row>
+      <LogComponent
+        ip={computer.ip}
+        connectionId={connectionId}
+        setProcess={setProcess}
+      />
     </BrowserLayout>
   );
 }

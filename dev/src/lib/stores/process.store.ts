@@ -17,16 +17,18 @@ export const useProcessStore = create<State & Action>()(
     (set, get) => ({
       processes: {},
       addProcess(process: Process) {
-        if (!this.processes[process.computerId])
+        if (!process) return;
+
+        if (!get().processes?.[process.computerId])
           set({
             processes: {
-              ...this.processes,
+              ...get().processes,
               [process.computerId]: [],
             },
           });
 
         if (
-          this.processes[process.computerId].find(
+          get()?.processes?.[process.computerId]?.find(
             (that) => that.id === process.id
           )
         )
@@ -41,27 +43,34 @@ export const useProcessStore = create<State & Action>()(
         });
       },
       removeProcess(process: Process) {
-        set({
-          processes: {
-            [process.computerId]: this.processes[process.computerId].filter(
-              (that) => that.id !== process.id
-            ),
-          },
-        });
+        if (get().processes?.[process.computerId]?.length === 1)
+          set({
+            processes: {
+              [process.computerId]: [],
+            },
+          });
+        else
+          set({
+            processes: {
+              [process.computerId]: get().processes[process.computerId].filter(
+                (that) => that.id !== process.id
+              ),
+            },
+          });
       },
       setProcesses(processes: Process[]) {
         if (processes.length === 0) return;
-        if (!this.processes[processes[0].computerId])
+        if (!get().processes[processes[0].computerId])
           set({
             processes: {
-              ...this.processes,
+              ...get().processes,
               [processes[0].computerId]: [],
             },
           });
 
         set({
           processes: {
-            ...this.processes,
+            ...get().processes,
             [processes[0].computerId]: processes,
           },
         });

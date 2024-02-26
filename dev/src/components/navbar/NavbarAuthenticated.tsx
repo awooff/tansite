@@ -2,66 +2,37 @@ import React, { useContext } from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
 import GameContext from "../../contexts/game.context";
 
-export default function NavbarAuthenticated() {
+export default function NavbarAuthenticated({
+  setTab,
+}: {
+  setTab: (str: string) => void;
+}) {
   const game = useContext(GameContext);
 
   return (
     <>
       <Nav className="me-auto">
-        <NavDropdown title="🖥️">
-          <NavDropdown.Item href="#navigate:/computers">
-            Computers{" "}
-            <span
-              className="badge bg-danger ms-2"
-              style={{
-                float: "right",
-              }}
-            >
-              {game?.computers?.length || 0}
-            </span>
-          </NavDropdown.Item>
-          <NavDropdown.Item href="#navigate:/processes">
-            Processes
-            <span
-              className="badge bg-danger ms-2"
-              style={{
-                float: "right",
-              }}
-            >
-              {(() => {
-                let count = 0;
-                game.computers.forEach(
-                  (val) => (count = count + val.process.length)
-                );
-                return count;
-              })()}
-            </span>
-          </NavDropdown.Item>
-          <NavDropdown.Item href="#navigate:/computers/network">
-            Network{" "}
-            <span
-              className="badge bg-danger ms-2"
-              style={{
-                float: "right",
-              }}
-            >
-              {game?.connections?.length || 0}
-            </span>
-          </NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#navigate:/computers/purchase">
-            Purchase New Computer
-          </NavDropdown.Item>
-        </NavDropdown>
-        <NavDropdown title="🌐">
-          <NavDropdown.Item href="#navigate:/internet/browser">
-            Browser{" "}
-          </NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#navigate:/internet/provider">
-            Internet Service Provider
-          </NavDropdown.Item>
-        </NavDropdown>
+        <Nav.Link
+          onClick={() => {
+            setTab("computers");
+          }}
+        >
+          🖥️ COMPUTERS
+        </Nav.Link>
+        <Nav.Link
+          onClick={() => {
+            setTab("hacking");
+          }}
+        >
+          😈 HACKING
+        </Nav.Link>
+        <Nav.Link
+          onClick={() => {
+            setTab("economy");
+          }}
+        >
+          💲 ECONOMY
+        </Nav.Link>
       </Nav>
       <Nav className="ms-auto">
         <Nav.Link className="text-white">

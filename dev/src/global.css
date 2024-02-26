@@ -27,6 +27,23 @@ html {
   scrollbar-color: green black; /* scroll thumb and track */
 }
 
+.nav-icon:hover {
+  filter: grayscale(0);
+}
+
+.nav-icon {
+  transition: all 0.5s;
+  filter: grayscale(100);
+}
+
+.file-button:hover {
+  opacity: 1;
+}
+
+.file-button {
+  opacity: 0.05;
+}
+
 body::-webkit-scrollbar {
   width: 0.2em;
 }
@@ -76,6 +93,6 @@ body::-webkit-scrollbar-thumb {
 @media only screen and (min-width: 1200px) {
   .browser-frame {
     min-height: 68vh;
-    max-height: 72.5vh;
+    max-height: 74vh;
   }
 }

@@ -60,6 +60,11 @@ function Hacking({
   }, []);
 
   useEffect(() => {
+    if (process === null && processStore.processes[connectionId])
+      setProcess(processStore.processes[connectionId][0]);
+  }, [process, connectionId]);
+
+  useEffect(() => {
     fetchExecutor(connectionId).then((result) => {
       let cracker = result.computer.software.find(
         (software) => software.type === "cracker" && software.installed
@@ -155,9 +160,7 @@ function Hacking({
                 )}
               </Card>
               <Button
-                disabled={
-                  !cracker || (process !== null && process.type === "hack")
-                }
+                disabled={!cracker || process?.type === "hack"}
                 onClick={async () => {
                   setError(null);
                   try {

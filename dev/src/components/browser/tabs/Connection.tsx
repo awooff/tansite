@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Card, Col, Row } from "react-bootstrap";
 import { Computer } from "../../../lib/types/computer.type";
 import { Process } from "../../../lib/types/process.type";
 import { createProcess } from "../../../lib/process";
 import SessionContext from "../../../contexts/session.context";
 import BrowserLayout from "../BrowserLayout";
+import { useProcessStore } from "../../../lib/stores/process.store";
 
 function Connection({
   connectionId,
@@ -25,7 +26,13 @@ function Connection({
 }) {
   const session = useContext(SessionContext);
   const [process, setProcess] = useState<Process | null>(null);
+  const processStore = useProcessStore();
   const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    if (process === null && processStore.processes[connectionId])
+      setProcess(processStore.processes[connectionId][0]);
+  }, [process, connectionId]);
 
   return (
     <BrowserLayout
@@ -50,7 +57,6 @@ function Connection({
                 : "border-success")
             }
             style={{
-              height: "100%",
               filter:
                 session.data.logins?.[connectionId]?.find(
                   (login) => login.id === computer.id

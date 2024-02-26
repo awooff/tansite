@@ -5,6 +5,7 @@ import GameContext from "../../contexts/game.context";
 import { useNavigate } from "react-router-dom";
 import { postRequestHandler } from "../../lib/submit";
 import SessionContext from "../../contexts/session.context";
+import Canvas from "../../components/Canvas";
 
 export default function Dashboard() {
   const game = useContext(GameContext);
@@ -233,6 +234,7 @@ export default function Dashboard() {
               You don't have any computers!
             </Card>
           )}
+
           <Card body className="bg-transparent border-info">
             <p className="text-center text-white">
               You can <u>obtain a new computer</u> by purchasing one from a
