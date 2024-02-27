@@ -42,7 +42,7 @@ function BrowserLayout({
     if (eventRef.current) WebEvents.off("showModal", eventRef.current);
 
     eventRef.current = (modal, data) => {
-      setCurrentModal(currentModal);
+      setCurrentModal(modal);
       setCurrentModalData(data);
     };
     WebEvents.on("showModal", eventRef.current);
