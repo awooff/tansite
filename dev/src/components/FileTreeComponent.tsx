@@ -22,6 +22,7 @@ import { Computer } from "../lib/types/computer.type";
 import { Process } from "../lib/types/process.type";
 import { postRequestHandler } from "../lib/submit";
 import WebEvents from "../lib/events";
+import { run } from "../lib/actions";
 
 function FileTreeComponent({
   children,
@@ -47,7 +48,8 @@ function FileTreeComponent({
   const game = useContext(GameContext);
   const [computer, setComputer] = useState<Computer>();
   const [loading, setLoading] = useState<boolean>();
-  const eventRef = useRef(() => {});
+  const eventRef = useRef((process?: Process) => {});
+  const navigate = useNavigate();
 
   const fetchFiles = useCallback(
     async (connectionId: string, ip?: string, computerId?: string) => {
@@ -113,10 +115,39 @@ function FileTreeComponent({
     if ((!ip && !computerId) || !connectionId) return;
     if (eventRef.current) WebEvents.off("processCompleted", eventRef.current);
 
-    eventRef.current = () => {
+    eventRef.current = (process?: Process) => {
       setLoading(true);
+
       fetchFiles(connectionId, ip, computerId)
-        .then((computer) => setComputer(computer))
+        .then((computer) => {
+          if (!computer) return;
+
+          setComputer(computer);
+
+          if (
+            process &&
+            process.ip === computer?.ip &&
+            process.type === "action"
+          ) {
+            let target = computer.software.find(
+              (that) => that.id === process.data.softwareId
+            );
+            let executor = game.connections.find(
+              (that) => that.id === connectionId
+            );
+
+            if (!target || !executor) return;
+
+            run(
+              process.data.action,
+              target,
+              computer,
+              executor,
+              process,
+              navigate
+            );
+          }
+        })
         .finally(() => {
           setLoading(false);
         });

@@ -3,6 +3,7 @@ import { Process } from "./types/process.type";
 
 export interface WebEmitterEvents {
   processCompleted: (process: Process) => {};
+  showModal: (modal: string, data: object) => {};
 }
 
 export declare interface WebEventEmitter {
