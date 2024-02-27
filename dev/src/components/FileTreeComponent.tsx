@@ -48,7 +48,7 @@ function FileTreeComponent({
   const game = useContext(GameContext);
   const [computer, setComputer] = useState<Computer>();
   const [loading, setLoading] = useState<boolean>();
-  const eventRef = useRef((process?: Process) => {});
+  const eventRef = useRef<(process?: Process) => void>();
   const navigate = useNavigate();
 
   const fetchFiles = useCallback(

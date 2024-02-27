@@ -35,7 +35,7 @@ function LogComponent({
   const [pages, setPages] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>();
   const processStore = useProcessStore();
-  const eventRef = useRef(() => {});
+  const eventRef = useRef<(process?: Process) => void>();
 
   const fetchLogs = useCallback(
     async (
@@ -75,6 +75,7 @@ function LogComponent({
       });
     };
     WebEvents.on("processCompleted", eventRef.current);
+    //fetch the log once
     eventRef.current();
 
     return () => {
