@@ -3,7 +3,7 @@ import { Computer } from "../../lib/types/computer.type";
 import { Process } from "../../lib/types/process.type";
 import { Alert, Button } from "react-bootstrap";
 import SessionContext from "../../contexts/session.context";
-import ProcessComponent from "../ProcessComponent";
+import BrowserProcessToast from "./BrowserProcessToast";
 
 function BrowserLayout({
   error,
@@ -37,11 +37,31 @@ function BrowserLayout({
   return (
     <>
       {error ? (
-        <Alert variant="danger">{error.message || error.toString()}</Alert>
+        <div
+          style={{
+            position: "absolute",
+            marginTop: 48,
+            width: 425,
+            zIndex: 3,
+          }}
+        >
+          <Alert
+            variant="danger"
+            className="ms-3 border border-danger"
+            style={{
+              backgroundColor: "rgba(0,0,0,0.8)",
+            }}
+          >
+            <p className="display-5 border-bottom text-danger border-danger">
+              Error!
+            </p>
+            {error.message || error.toString()}
+          </Alert>
+        </div>
       ) : (
         <></>
       )}
-      {process ? <ProcessComponent process={process} /> : <></>}
+      {process ? <BrowserProcessToast process={process} /> : <></>}
 
       <div className="bg-light">
         {computer && computer.type === "search_engine" ? (

@@ -2,6 +2,7 @@ import { postRequestHandler } from "./submit";
 import toast from "react-hot-toast";
 import { Process } from "./types/process.type";
 import { AxiosResponse } from "axios";
+import WebEvents from "./events";
 
 export const createProcess = async <T>(
   type: string,
@@ -45,6 +46,7 @@ export const createProcess = async <T>(
             undefined,
             reject
           );
+          WebEvents.emit("processCompleted", result.data.process);
           resolve(process);
         } else resolve(result);
       },

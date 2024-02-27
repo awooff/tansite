@@ -14,6 +14,7 @@
 	"gpuNerf": 1.25,
 	"ramNerf": 1.25,
 	"downloadNerf": 1.25,
+	"inflation": 2.0,
 	"uploadNerf": 1.25,
 	"processNerf": 1.25,
 	"actionDelay": {

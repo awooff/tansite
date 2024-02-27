@@ -1,10 +1,11 @@
 import { Alert, Button, Card, Col, Row, Table } from "react-bootstrap";
 import { Computer } from "../lib/types/computer.type";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { postRequestHandler } from "../lib/submit";
 import { createProcess } from "../lib/process";
 import { useProcessStore } from "../lib/stores/process.store";
 import { Process } from "../lib/types/process.type";
+import WebEvents from "../lib/events";
 
 type Log = {
   computer: Computer;
@@ -34,6 +35,7 @@ function LogComponent({
   const [pages, setPages] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>();
   const processStore = useProcessStore();
+  const eventRef = useRef(() => {});
 
   const fetchLogs = useCallback(
     async (
@@ -60,14 +62,24 @@ function LogComponent({
   useEffect(() => {
     if (local && !computerId) return;
     if (!local && !ip) return;
+    if (eventRef.current) WebEvents.off("processCompleted", eventRef.current);
 
-    setLoading(true);
-    fetchLogs(page, computerId, ip, connectionId).then((data) => {
-      setLogs(data.logs);
-      setCount(data.count);
-      setPages(data.pages);
-      setLoading(false);
-    });
+    //refresh the log when a process is completed
+    eventRef.current = () => {
+      setLoading(true);
+      fetchLogs(page, computerId, ip, connectionId).then((data) => {
+        setLogs(data.logs);
+        setCount(data.count);
+        setPages(data.pages);
+        setLoading(false);
+      });
+    };
+    WebEvents.on("processCompleted", eventRef.current);
+    eventRef.current();
+
+    return () => {
+      if (eventRef.current) WebEvents.off("processCompleted", eventRef.current);
+    };
   }, [page, computerId, ip, local, connectionId]);
 
   if (loading)
@@ -116,6 +128,8 @@ function LogComponent({
                   if (setProcess) setProcess(result.data.process);
                   processStore.removeProcess(result.data.process);
                   target.setAttribute("disabled", "false");
+
+                  //reset the log
                   setLogs([]);
                   setCount(0);
                   setPages(1);

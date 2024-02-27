@@ -13,6 +13,7 @@ import { postRequestHandler } from "../lib/submit";
 import { Process } from "../lib/types/process.type";
 import { useProcessStore } from "../lib/stores/process.store";
 import { Computer } from "../lib/types/computer.type";
+import WebEvents from "../lib/events";
 
 function ProcessListComponent({
   computer,
@@ -199,6 +200,10 @@ function ProcessListComponent({
                                                 "false"
                                               );
                                             });
+                                          WebEvents.emit(
+                                            "processCompleted",
+                                            result.data.process
+                                          );
                                           processStore.removeProcess(
                                             result.data.process
                                           );

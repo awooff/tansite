@@ -1,6 +1,7 @@
 import { AccessLevel, User } from "@prisma/client";
 import { server } from "../index";
 import { Computer } from "./computer";
+import { Software } from "./software";
 
 export class AddressBook {
   public userId;
@@ -20,6 +21,95 @@ export class AddressBook {
         id: this.userId,
       },
     });
+  }
+
+  public async removeVirus(computer: Computer, virus: Software) {
+    let address = await server.prisma.addressBook.findFirst({
+      where: {
+        userId: this.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        computerId: computer.computerId,
+      },
+    });
+
+    if (!address) throw new Error("computer not in address book");
+
+    let data = address.data as {
+      viruses?: any[];
+    };
+
+    data.viruses = data.viruses || [];
+
+    if (data.viruses.length === 0) return;
+
+    data.viruses = data.viruses.filter((elm) => elm.id !== virus.softwareId);
+
+    return await server.prisma.addressBook.update({
+      where: {
+        id: address.id,
+      },
+      data: {
+        data: data,
+      },
+    });
+  }
+
+  public async addVirus(computer: Computer, virus: Software) {
+    let address = await server.prisma.addressBook.findFirst({
+      where: {
+        userId: this.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+        computerId: computer.computerId,
+      },
+    });
+
+    if (!address) throw new Error("computer not in address book");
+
+    let data = address.data as {
+      viruses?: any[];
+    };
+
+    data.viruses = data.viruses || [];
+
+    if (data.viruses.find((elm) => elm.id === virus.softwareId))
+      throw new Error("virus already present");
+
+    data.viruses.push(virus);
+
+    return await server.prisma.addressBook.update({
+      where: {
+        id: address.id,
+      },
+      data: {
+        data: data,
+      },
+    });
+  }
+
+  public async viruses(types: string[] = ["spammer"]) {
+    let addresses = await server.prisma.addressBook.findMany({
+      where: {
+        userId: this.userId,
+        gameId: process.env.CURRENT_GAME_ID,
+      },
+    });
+
+    let viruses = [];
+
+    for (let i = 0; i < addresses.length; i++) {
+      let result = await server.prisma.software.findFirst({
+        where: {
+          userId: this.userId,
+          computerId: addresses[i].computerId,
+          OR: types.map((val) => {
+            return { type: val };
+          }),
+        },
+      });
+      viruses.push({ virus: result, address: addresses[i] });
+    }
+
+    return viruses;
   }
 
   public async fetch(take?: number, page?: number) {

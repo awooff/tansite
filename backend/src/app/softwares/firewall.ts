@@ -1,9 +1,7 @@
-import { SoftwareAction } from '@/lib/types/software.type'
+import { SoftwareAction } from "@/lib/types/software.type";
 
 const firewall = {
-  settings: {
-    // Hasher settings
-  }
-} satisfies SoftwareAction
+  settings: {},
+} satisfies SoftwareAction;
 
-export default firewall
+export default firewall;

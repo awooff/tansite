@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import GameContext from "../contexts/game.context";
 import {
@@ -15,6 +21,7 @@ import { createProcess } from "../lib/process";
 import { Computer } from "../lib/types/computer.type";
 import { Process } from "../lib/types/process.type";
 import { postRequestHandler } from "../lib/submit";
+import WebEvents from "../lib/events";
 
 function FileTreeComponent({
   children,
@@ -40,6 +47,7 @@ function FileTreeComponent({
   const game = useContext(GameContext);
   const [computer, setComputer] = useState<Computer>();
   const [loading, setLoading] = useState<boolean>();
+  const eventRef = useRef(() => {});
 
   const fetchFiles = useCallback(
     async (connectionId: string, ip?: string, computerId?: string) => {
@@ -103,13 +111,22 @@ function FileTreeComponent({
 
   useEffect(() => {
     if ((!ip && !computerId) || !connectionId) return;
+    if (eventRef.current) WebEvents.off("processCompleted", eventRef.current);
 
-    setLoading(true);
-    fetchFiles(connectionId, ip, computerId)
-      .then((computer) => setComputer(computer))
-      .finally(() => {
-        setLoading(false);
-      });
+    eventRef.current = () => {
+      setLoading(true);
+      fetchFiles(connectionId, ip, computerId)
+        .then((computer) => setComputer(computer))
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+    WebEvents.on("processCompleted", eventRef.current);
+    eventRef.current();
+
+    return () => {
+      if (eventRef.current) WebEvents.off("processCompleted", eventRef.current);
+    };
   }, [ip, connectionId, computerId]);
 
   if (loading)
@@ -238,12 +255,6 @@ function FileTreeComponent({
                                 });
                                 if (onCompletion)
                                   onCompletion(result.data.process);
-                                setLoading(true);
-                                fetchFiles(connectionId, ip, computerId)
-                                  .then((computer) => setComputer(computer))
-                                  .finally(() => {
-                                    setLoading(false);
-                                  });
                               }}
                             >
                               Uninstall
@@ -275,12 +286,6 @@ function FileTreeComponent({
                                   });
                                   if (onCompletion)
                                     onCompletion(result.data.process);
-                                  setLoading(true);
-                                  fetchFiles(connectionId, ip, computerId)
-                                    .then((computer) => setComputer(computer))
-                                    .finally(() => {
-                                      setLoading(false);
-                                    });
                                 }}
                               >
                                 Install
@@ -312,12 +317,6 @@ function FileTreeComponent({
                               });
                               if (onCompletion)
                                 onCompletion(result.data.process);
-                              setLoading(true);
-                              fetchFiles(connectionId, ip, computerId)
-                                .then((computer) => setComputer(computer))
-                                .finally(() => {
-                                  setLoading(false);
-                                });
                             }}
                           >
                             Delete
@@ -348,12 +347,6 @@ function FileTreeComponent({
                               });
                               if (onCompletion)
                                 onCompletion(result.data.process);
-                              setLoading(true);
-                              fetchFiles(connectionId, ip, computerId)
-                                .then((computer) => setComputer(computer))
-                                .finally(() => {
-                                  setLoading(false);
-                                });
                             }}
                           >
                             Download
@@ -384,12 +377,6 @@ function FileTreeComponent({
                               });
                               if (onCompletion)
                                 onCompletion(result.data.process);
-                              setLoading(true);
-                              fetchFiles(connectionId, ip, computerId)
-                                .then((computer) => setComputer(computer))
-                                .finally(() => {
-                                  setLoading(false);
-                                });
                             }}
                           >
                             Upload to {uploadTargetIp}

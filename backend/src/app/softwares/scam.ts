@@ -2,7 +2,7 @@ import { SoftwareAction } from "@/lib/types/software.type";
 import defaultSoftware from "./generic";
 import { AddressBook } from "../addressbook";
 
-const spammer = {
+const scam = {
   settings: {
     // Spammer settings
     requireOwnership: true,
@@ -25,4 +25,4 @@ const spammer = {
   },
 } satisfies SoftwareAction;
 
-export default spammer;
+export default scam;

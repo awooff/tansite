@@ -1,15 +1,21 @@
 import { Alert, Row, Col, ProgressBar } from "react-bootstrap";
-import { Process } from "../lib/types/process.type";
+import { Process } from "../../lib/types/process.type";
 import { useEffect, useRef, useState } from "react";
 
-function ProcessComponent({ process }: { process: Process | null }) {
-  const [time, setTime] = useState(0);
+function BrowserProcessToast({
+  process,
+  marginTop = 42,
+}: {
+  process: Process | null;
+  marginTop?: number;
+}) {
+  const [time, setTime] = useState(Date.now());
   const interval = useRef<number>();
 
   useEffect(() => {
     interval.current = setInterval(() => {
       setTime(Date.now());
-    }, 100);
+    }, 1000);
 
     return () => {
       clearInterval(interval.current);
@@ -28,32 +34,25 @@ function ProcessComponent({ process }: { process: Process | null }) {
       className="border-primary border ms-2"
       style={{
         position: "absolute",
+        width: 425,
         backgroundColor: "rgba(0,0,0,0.9)",
         pointerEvents: "none",
         touchAction: "none",
         zIndex: 2,
-        marginTop: 38,
+        marginTop,
       }}
     >
       <Row className="pe-3">
-        <Col className="display-3 mb-2" lg={4}>
+        <Col className="display-3 mb-2 text-center" lg={3}>
           ⚙️
         </Col>
         <Col>
           <Row>
-            <Col>
-              <h5>Executing {process.type}</h5>
-              <p
-                style={{
-                  fontSize: "12px",
-                }}
-              >
-                Time remaining:{" "}
-                {Math.round(
-                  (new Date(process.completion).getTime() - time) / 1000
-                )}{" "}
-                seconds
-              </p>
+            <Col className="pt-2">
+              <h6 className="pt-2">
+                Executing {process.type}{" "}
+                {process.data.action ? `(${process.data.action})` : ""}
+              </h6>
             </Col>
           </Row>
           <Row>
@@ -87,4 +86,4 @@ function ProcessComponent({ process }: { process: Process | null }) {
   );
 }
 
-export default ProcessComponent;
+export default BrowserProcessToast;
