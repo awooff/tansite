@@ -46,6 +46,6 @@ const cancel = {
       process: processData,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default cancel;

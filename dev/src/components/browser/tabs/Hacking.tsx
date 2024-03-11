@@ -1,16 +1,16 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import GameContext from "../../../contexts/game.context";
-import { Computer } from "../../../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import { Alert, Button, Card, ListGroup, Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
-import { Process } from "../../../lib/types/process.type";
+import { Process } from "backend/src/generated/client";
 import { createProcess } from "../../../lib/process";
 import { HomepageRequest } from "../../../pages/internet/Browser";
 import SessionContext from "../../../contexts/session.context";
 import { useProcessStore } from "../../../lib/stores/process.store";
 import BrowserLayout from "../BrowserLayout";
 import { postRequestHandler } from "../../../lib/submit";
-import { Software } from "../../../lib/types/software";
+import { Software } from "../../../lib/types/software.type";
 
 function Hacking({
   connectionId,
@@ -94,7 +94,7 @@ function Hacking({
         className="bg-transparent border-success border rounded-0 text-center"
       >
         <p className="display-4 mt-2 mb-5">
-          {computer.data.title}
+          {(computer.data as any).title}
           <br />
           <b
             style={{

@@ -36,6 +36,6 @@ const connect = {
       computer: computer.computer,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default connect;

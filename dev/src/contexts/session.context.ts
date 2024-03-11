@@ -1,11 +1,17 @@
 import { createContext } from "react";
-import { SessionData } from "../lib/types/session.type";
-import { Groups } from "../lib/types/groups.type";
-import { User } from "../lib/types/user.type";
+import { Groups } from "backend/src/generated/client";
+import { User } from "backend/src/generated/client";
+import { Computer } from "backend/src/generated/client";
+import { ConnectedComputer } from "./game.context";
 
 export type SessionType = {
   loaded: boolean;
-  data: SessionData;
+  data: {
+    userId: number;
+    connections: Computer[];
+    logins: Record<string, ConnectedComputer[]>;
+    group: Groups;
+  };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user: User;
   valid: boolean;
@@ -17,13 +23,13 @@ export const SessionContextDefault = {
   data: {
     userId: -1,
     connections: [],
-    group: Groups.GUEST,
-  },
+    group: Groups.Guest,
+  } as any,
   user: {
     id: -1,
     name: "",
     email: "",
-    group: Groups.GUEST,
+    group: Groups.Guest,
   },
   valid: false,
   load: async () => {},

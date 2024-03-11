@@ -43,6 +43,6 @@ const network = {
       pageMax: Math.floor(count / 64) + 1,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default network;

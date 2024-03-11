@@ -65,7 +65,7 @@ function NavbarComponent() {
         <Container fluid className="p-0 mb-2">
           {(() => {
             let keys = Object.keys(menu);
-            let children = [];
+            let children = [] as React.ReactNode[];
             keys.forEach((key) => {
               children.push(
                 <Card
@@ -77,7 +77,7 @@ function NavbarComponent() {
                   }}
                 >
                   <Stack direction="horizontal" gap={2} className="pb-2">
-                    {menu[key].map((obj) => (
+                    {menu[key as keyof typeof menu].map((obj) => (
                       <div
                         className="border border-primary"
                         style={{

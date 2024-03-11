@@ -55,7 +55,7 @@ const login = {
         userEmail: user.email,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "7d" }
+      { expiresIn: "7d" },
     );
 
     //delete old sessions that have expired
@@ -90,6 +90,6 @@ const login = {
       token,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default login;

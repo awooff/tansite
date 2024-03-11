@@ -10,10 +10,13 @@ import {
   ProgressBar,
 } from "react-bootstrap";
 import { postRequestHandler } from "../lib/submit";
-import { Process } from "../lib/types/process.type";
+import { Process, Prisma } from "backend/src/generated/client";
 import { useProcessStore } from "../lib/stores/process.store";
-import { Computer } from "../lib/types/computer.type";
 import WebEvents from "../lib/events";
+
+type Computer = Prisma.ComputerGetPayload<{
+  include: { hardware: true; software: true; process: true };
+}>;
 
 function ProcessListComponent({
   computer,
@@ -130,7 +133,7 @@ function ProcessListComponent({
                                     {process.type}@{process.ip}{" "}
                                     {process.type === "action" ? (
                                       <span className="badge bg-primary ms-2">
-                                        {process.data.action}
+                                        {(process.data as any).action}
                                       </span>
                                     ) : (
                                       <></>

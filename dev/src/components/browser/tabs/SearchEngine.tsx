@@ -1,5 +1,5 @@
 import { useCallback, useContext, useRef, useState } from "react";
-import { Computer } from "../../../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import {
   Alert,
   Button,
@@ -11,10 +11,9 @@ import {
   Col,
   Stack,
 } from "react-bootstrap";
-import { DNS } from "../../../lib/types/dns.type";
+import { DNS } from "backend/src/generated/client";
 import { postRequestHandler } from "../../../lib/submit";
 import toast from "react-hot-toast";
-import SessionContext from "../../../contexts/session.context";
 import BrowserLayout from "../BrowserLayout";
 
 function SearchEngine({
@@ -136,7 +135,9 @@ function SearchEngine({
           <Container>
             <Row>
               <Col className="text-black">
-                <p className="display-4 mt-2">{computer.data.title}</p>
+                <p className="display-4 mt-2">
+                  {(computer.data as any as any).title}
+                </p>
               </Col>
               <Col>
                 <Row className="mt-4 justify-content-center">

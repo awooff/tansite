@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext } from "react";
 import { Col, Card, ListGroup, Row } from "react-bootstrap";
-import { Computer } from "../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import { Hardware, HardwareType } from "../lib/types/hardware.type";
 import GameContext, { GameType } from "../contexts/game.context";
 import SessionContext, { SessionType } from "../contexts/session.context";
@@ -53,7 +53,7 @@ export default function ConnectionThumbnail({
           }}
         >
           <span className="badge bg-secondary me-2">{computer.type}</span>
-          {computer.data.title}
+          {(computer.data as any).title}
           {session.user.id === computer.userId ? (
             <>
               <span className="ms-2">✏️</span>
@@ -182,7 +182,8 @@ export default function ConnectionThumbnail({
                 <ListGroup.Item key={index}>
                   <span className="badge bg-secondary me-4">
                     {counts[hardware.type]} /{" "}
-                    {computer.data?.hardwareLimits?.[hardware.type] || -1}
+                    {(computer.data as any)?.hardwareLimits?.[hardware.type] ||
+                      -1}
                   </span>
                   {hardware.type}{" "}
                   <span

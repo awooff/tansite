@@ -1,33 +1,30 @@
-import { Route } from '../../lib/types/route.type'
-import { server } from '../../index'
-import { Groups } from '@prisma/client'
+import { Route } from "../../lib/types/route.type";
+import { server } from "../../index";
+import { Groups } from "@prisma/client";
 
 const logout = {
-
   settings: {
     groupOnly: Groups.User,
-    title: 'Logout User',
-    description: 'will logout the user from syscrack'
+    title: "Logout User",
+    description: "will logout the user from syscrack",
   },
 
   async post(req, res, error) {
-
-    if (!req.session)
-      return error('no sussin')
+    if (!req.session) return error("no sussin");
 
     await server.prisma.session.deleteMany({
       where: {
-        id: req.sessionID
-      }
-    })
+        id: req.sessionID,
+      },
+    });
 
     // destroy session data
-    await new Promise((resolve) => req.session.destroy(resolve))
+    await new Promise((resolve) => req.session.destroy(resolve));
 
     res.send({
-      success: true
-    })
-  }
-} satisfies Route
+      success: true,
+    });
+  },
+} as Route;
 
-export default logout
+export default logout;

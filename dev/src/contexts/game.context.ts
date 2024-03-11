@@ -1,15 +1,19 @@
 import { createContext } from "react";
-import { Groups } from "../lib/types/groups.type";
-import { User } from "../lib/types/user.type";
-import { Computer } from "../lib/types/computer.type";
-import { BankAccount } from "../lib/types/account.type";
+import { User, Prisma } from "backend/src/generated/client";
+
+type Computer = Prisma.ComputerGetPayload<{
+  include: { hardware: true; software: false; process: true };
+}>;
+
+export type ConnectedComputer = Prisma.ComputerGetPayload<{
+  include: { hardware: true; software: true; process: true; Logs: true };
+}>;
 
 export type GameType = {
   loaded: boolean;
-  connections: Computer[];
+  connections: ConnectedComputer[];
   computers: Computer[];
   user: User;
-  bankAccounts: BankAccount[];
   gameId: string;
   title: string;
   preferences: object;
@@ -24,13 +28,7 @@ export const GameContextDefault = {
   title: "",
   preferences: {},
   gameId: "",
-  user: {
-    id: -1,
-    name: "",
-    email: "",
-    group: Groups.GUEST,
-  },
-  bankAccounts: [],
+  user: {} as any,
   valid: false,
   load: async () => {},
   reload: () => {},

@@ -18,11 +18,14 @@ import {
   Stack,
 } from "react-bootstrap";
 import { createProcess } from "../lib/process";
-import { Computer } from "../lib/types/computer.type";
-import { Process } from "../lib/types/process.type";
+import { Prisma, Process } from "backend/src/generated/client";
 import { postRequestHandler } from "../lib/submit";
 import WebEvents from "../lib/events";
-import { run } from "../lib/actions";
+import { run } from "../lib/software";
+
+type Computer = Prisma.ComputerGetPayload<{
+  include: { hardware: true; software: true };
+}>;
 
 function FileTreeComponent({
   children,
@@ -130,7 +133,7 @@ function FileTreeComponent({
             process.type === "action"
           ) {
             let target = computer.software.find(
-              (that) => that.id === process.data.softwareId
+              (that) => that.id === (process.data as any as any).softwareId
             );
             let executor = game.connections.find(
               (that) => that.id === connectionId
@@ -139,7 +142,7 @@ function FileTreeComponent({
             if (!target || !executor) return;
 
             run(
-              process.data.action,
+              (process.data as any as any).action,
               target,
               computer,
               executor,
@@ -245,7 +248,7 @@ function FileTreeComponent({
           {children}
         </Col>
         <Col lg>
-          <Row className="row-cols-6">
+          <Row className="row-cols-5 gx-2">
             {computer.software
               .sort((a, b) => a.type.charCodeAt(0) - b.type.charCodeAt(0))
               .map((software, index) => {
@@ -261,35 +264,66 @@ function FileTreeComponent({
                       <Card body className="bg-black border border-success">
                         <Stack gap={2}>
                           {software.installed ? (
-                            <Button
-                              variant="info"
-                              className="border border-info bg-transparent"
-                              size="sm"
-                              onClick={async (e) => {
-                                const target = e.currentTarget;
-                                target.setAttribute("disabled", "true");
-                                let result = await createProcess<{
-                                  process: Process;
-                                }>(
-                                  "action",
-                                  {
-                                    action: "uninstall",
-                                    ip: computer.ip,
-                                    softwareId: software.id,
-                                    connectionId: connectionId || computer.id,
-                                  },
-                                  true,
-                                  onCreation,
-                                  onError
-                                ).finally(() => {
-                                  target.setAttribute("disabled", "false");
-                                });
-                                if (onCompletion)
-                                  onCompletion(result.data.process);
-                              }}
-                            >
-                              Uninstall
-                            </Button>
+                            <>
+                              <Button
+                                variant="secondary"
+                                className="border border-secondary bg-transparent"
+                                size="sm"
+                                onClick={async (e) => {
+                                  const target = e.currentTarget;
+                                  target.setAttribute("disabled", "true");
+                                  let result = await createProcess<{
+                                    process: Process;
+                                  }>(
+                                    "action",
+                                    {
+                                      action: "execute",
+                                      ip: computer.ip,
+                                      softwareId: software.id,
+                                      connectionId: connectionId || computer.id,
+                                    },
+                                    true,
+                                    onCreation,
+                                    onError
+                                  ).finally(() => {
+                                    target.setAttribute("disabled", "false");
+                                  });
+                                  if (onCompletion)
+                                    onCompletion(result.data.process);
+                                }}
+                              >
+                                Execute
+                              </Button>
+                              <Button
+                                variant="info"
+                                className="border border-info bg-transparent"
+                                size="sm"
+                                onClick={async (e) => {
+                                  const target = e.currentTarget;
+                                  target.setAttribute("disabled", "true");
+                                  let result = await createProcess<{
+                                    process: Process;
+                                  }>(
+                                    "action",
+                                    {
+                                      action: "uninstall",
+                                      ip: computer.ip,
+                                      softwareId: software.id,
+                                      connectionId: connectionId || computer.id,
+                                    },
+                                    true,
+                                    onCreation,
+                                    onError
+                                  ).finally(() => {
+                                    target.setAttribute("disabled", "false");
+                                  });
+                                  if (onCompletion)
+                                    onCompletion(result.data.process);
+                                }}
+                              >
+                                Uninstall
+                              </Button>
+                            </>
                           ) : (
                             <>
                               <Button
@@ -382,6 +416,25 @@ function FileTreeComponent({
                           >
                             Download
                           </Button>
+                          {software.type === "collector" ? (
+                            <Button
+                              variant="success"
+                              className="border border-success bg-transparent"
+                              size="sm"
+                              hidden={computer.id !== connectionId}
+                              onClick={async (e) => {
+                                WebEvents.emit(
+                                  "showModal",
+                                  "collectorReports",
+                                  connectionId
+                                );
+                              }}
+                            >
+                              Reports
+                            </Button>
+                          ) : (
+                            <></>
+                          )}
                           <Button
                             variant="primary"
                             className="border border-primary bg-transparent"
@@ -463,7 +516,7 @@ function FileTreeComponent({
                         }}
                       />
                       <p className="text-center mt-4">
-                        {software.name || software.type}
+                        {(software as any).data?.title || software.type}
                       </p>
                     </Card>
                   </Col>

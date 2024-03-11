@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import { Alert, Button, Card, Col, Row } from "react-bootstrap";
-import { Computer } from "../../../lib/types/computer.type";
-import SessionContext from "../../../contexts/session.context";
+import { Computer } from "backend/src/generated/client";
 import BrowserLayout from "../BrowserLayout";
 
 function Homepage({

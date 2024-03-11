@@ -65,6 +65,6 @@ const register = {
       success: true,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default register;

@@ -1,78 +1,88 @@
-import { Route } from '../../lib/types/route.type'
-import { server } from '../../index'
-import { Groups, HardwareTypes } from '@prisma/client'
-import { ComputerData, generateIpAddress, getComputer } from '@/app/computer'
-import settings from '../../settings'
+import { Route } from "../../lib/types/route.type";
+import { server } from "../../index";
+import { Groups, HardwareTypes } from "@prisma/client";
+import { ComputerData, generateIpAddress, getComputer } from "@/app/computer";
+import settings from "../../settings";
 
 const local = {
-
   settings: {
     groupOnly: Groups.User,
-    title: 'Create Computer',
-    description: 'Creates a new computer'
+    title: "Create Computer",
+    description: "Creates a new computer",
   },
 
   async post(req, res, error) {
-    if (!req.session.userId) { return error('session is invalid') }
+    if (!req.session.userId) {
+      return error("session is invalid");
+    }
 
     const computerData = await server.prisma.computer.create({
       data: {
         userId: req.session.userId,
         ip: generateIpAddress(),
         gameId: process.env.CURRENT_GAME_ID,
-        type: 'vpc',
+        type: "vpc",
         data: {
-          title: 'New Computer',
-          description: 'A new computer',
-          hardwareLimits: settings.defaultHardwareLimits
-        } satisfies ComputerData
-      }
-    })
-    const computer = await getComputer(computerData.id)
+          title: "New Computer",
+          description: "A new computer",
+          hardwareLimits: settings.defaultHardwareLimits,
+        } satisfies ComputerData,
+      },
+    });
+    const computer = await getComputer(computerData.id);
 
-    if (computer === null) { return error('did not create computer') }
+    if (computer === null) {
+      return error("did not create computer");
+    }
 
     // set computer
-    await Promise.all(Object.values(settings.defaultSoftware).map(async (software) => {
-      await computer?.addSoftware({
-        game: {
-          connect: {
-            id: process.env.CURRENT_GAME_ID
-          }
-        },
-        user: {
-          connect: {
-            id: req.session.userId
-          }
-        },
-        computer: {
-          connect: {
-            id: computer.computerId
-          }
-        },
-        size: software.size,
-        type: software.type,
-        level: software.level,
-        installed: software.installed,
-        opacity: 0.0,
-        data: {
-          name: `Simple ${software.type}`,
-          icon: software.type
-        }
-      })
-    }))
+    await Promise.all(
+      Object.values(settings.defaultSoftware).map(async (software) => {
+        await computer?.addSoftware({
+          game: {
+            connect: {
+              id: process.env.CURRENT_GAME_ID,
+            },
+          },
+          user: {
+            connect: {
+              id: req.session.userId,
+            },
+          },
+          computer: {
+            connect: {
+              id: computer.computerId,
+            },
+          },
+          size: software.size,
+          type: software.type,
+          level: software.level,
+          installed: software.installed,
+          opacity: 0.0,
+          data: {
+            name: `Simple ${software.type}`,
+            icon: software.type,
+          },
+        });
+      }),
+    );
 
     // set hardware
-    await Promise.all(Object.keys(settings.defaultHardware).map(async (hardware: any) => {
-      await computer?.setHardware(hardware, (settings.defaultHardware as any)[hardware])
-    }))
+    await Promise.all(
+      Object.keys(settings.defaultHardware).map(async (hardware: any) => {
+        await computer?.setHardware(
+          hardware,
+          (settings.defaultHardware as any)[hardware],
+        );
+      }),
+    );
 
-    await computer.load()
+    await computer.load();
 
     res.send({
-      computer: computer.computer
-    })
-  }
-} satisfies Route
+      computer: computer.computer,
+    });
+  },
+} as Route;
 
-export default local
+export default local;

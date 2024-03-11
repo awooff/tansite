@@ -50,17 +50,7 @@ export default function NavbarAuthenticated({
           </span>
         </Nav.Link>
         <Nav.Link className="text-white">
-          <span className="badge bg-success rounded-0">
-            $
-            {game.bankAccounts.length !== 0
-              ? game.bankAccounts.reduce((previousValue, currentValue) => {
-                  return {
-                    ...previousValue,
-                    value: previousValue.value + currentValue.value,
-                  };
-                }).value
-              : 0}
-          </span>
+          <span className="badge bg-success rounded-0">$0</span>
         </Nav.Link>
       </Nav>
     </>

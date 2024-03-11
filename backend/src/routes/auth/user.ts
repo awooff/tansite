@@ -27,6 +27,6 @@ const user = {
       user,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default user;

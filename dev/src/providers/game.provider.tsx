@@ -5,7 +5,7 @@ import GameContext, {
 } from "../contexts/game.context";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Computer } from "../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import { BankAccount } from "../lib/types/account.type";
 import { User } from "../lib/types/user.type";
 

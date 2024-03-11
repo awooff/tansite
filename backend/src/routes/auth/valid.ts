@@ -32,6 +32,6 @@ const valid = {
       session: req.session,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default valid;

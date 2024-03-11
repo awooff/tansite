@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from "react";
 import GameContext, { GameType } from "../contexts/game.context";
 import ConnectionThumbnail from "./ConnectionThumbnail";
-import { Computer } from "../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import { SessionType } from "../contexts/session.context";
 
 export default function Connections({

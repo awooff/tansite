@@ -1,11 +1,11 @@
-import { Computer, Groups } from "@prisma/client"
+import { Computer, Groups } from "@prisma/client";
 
 // extend the session data object with our stuff
-declare module 'express-session' {
-  interface SessionData {
-    userId: number
+declare module "express-session" {
+  export interface SessionData {
+    userId: number;
     connections: Computer[];
     logins: Record<string, Computer[]>;
-    group: Groups
+    group: Groups;
   }
 }

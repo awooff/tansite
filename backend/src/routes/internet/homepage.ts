@@ -45,7 +45,7 @@ const fetch = {
 
     if (!computer) return error("computer not found");
 
-    let data = (computer.data as ComputerData) || {};
+    let data = (computer.data as any as ComputerData) || {};
     if (!req.session.userId) throw new Error("invalid session");
 
     let addressBook = new AddressBook(req.session.userId);
@@ -62,24 +62,24 @@ const fetch = {
                 ".md",
               {
                 encoding: "utf-8",
-              }
+              },
             )
           : data?.markdown ||
               fs.readFileSync(
                 process.cwd() + "/resources/homepages/default.md",
                 {
                   encoding: "utf-8",
-                }
+                },
               ),
         {
           computer: computer,
           access: (await addressBook.get(computer.ip)) || undefined,
-        }
+        },
       ),
       access: (await addressBook.get(computer.ip)) || undefined,
       title: data.title || "Unknown Computer",
     });
   },
-} satisfies Route;
+} as Route;
 
 export default fetch;

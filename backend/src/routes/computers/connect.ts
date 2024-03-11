@@ -29,14 +29,14 @@ const connect = {
     if (
       req.session?.connections &&
       req.session?.connections?.filter(
-        (that) => that.id === computer.computerId
+        (that) => that.id === computer.computerId,
       ).length !== 0
     )
       return error("already connected to this computer");
 
     req.session.connections = req.session.connections || [];
     req.session.connections.push(
-      removeFromObject(computer.computer, ["software", "process"])
+      removeFromObject(computer.computer, ["software", "process"]),
     );
 
     // logged new login
@@ -46,6 +46,6 @@ const connect = {
       computer: computer.computer,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default connect;

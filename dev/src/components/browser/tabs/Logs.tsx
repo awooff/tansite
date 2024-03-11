@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Alert, Button, Card, Col, Row } from "react-bootstrap";
-import { Computer } from "../../../lib/types/computer.type";
-import { Process } from "../../../lib/types/process.type";
+import { Computer } from "backend/src/generated/client";
+import { Process } from "backend/src/generated/client";
 import SessionContext from "../../../contexts/session.context";
 import LogComponent from "../../LogComponent";
 import BrowserLayout from "../BrowserLayout";

@@ -73,6 +73,6 @@ const logout = {
       count,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default logout;

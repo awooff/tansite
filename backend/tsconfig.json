@@ -4,6 +4,9 @@
 		"module": "commonjs",
 		"outDir": "./dist",
 		"strict": true,
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
 		"baseUrl": "./src",
 		"resolveJsonModule": true,
 		"paths": {

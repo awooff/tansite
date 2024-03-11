@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+
 import Index from "./pages/Index";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
@@ -13,6 +14,8 @@ import ProtectedLayout from "./components/ProtectedLayout";
 import Processes from "./pages/computers/Processes";
 import ProcessDashboard from "./pages/processes/Dashboard";
 import PuzzleTest from "./pages/dev/PuzzleTest";
+import AddressBook from "./pages/internet/AddressBook";
+import AccountBook from "./pages/internet/AccountBook";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +111,22 @@ const router = createBrowserRouter([
     element: (
       <ProtectedLayout>
         <Browser />
+      </ProtectedLayout>
+    ),
+  },
+  {
+    path: "/internet/addressbook/",
+    element: (
+      <ProtectedLayout>
+        <AddressBook />
+      </ProtectedLayout>
+    ),
+  },
+  {
+    path: "/internet/accountbook/",
+    element: (
+      <ProtectedLayout>
+        <AccountBook />
       </ProtectedLayout>
     ),
   },

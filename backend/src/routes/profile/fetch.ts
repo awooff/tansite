@@ -35,6 +35,6 @@ const profile = {
       },
     });
   },
-} satisfies Route;
+} as Route;
 
 export default profile;

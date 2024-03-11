@@ -41,7 +41,7 @@ html {
 }
 
 .file-button {
-  opacity: 0.05;
+  opacity: 0;
 }
 
 body::-webkit-scrollbar {

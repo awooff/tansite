@@ -24,7 +24,8 @@
     "react-hot-toast": "^2.4.1",
     "react-konva": "^18.2.10",
     "react-router-dom": "^6.21.3",
-    "zustand": "^4.5.0"
+    "zustand": "^4.5.0",
+    "backend": "workspace:*"
   },
   "devDependencies": {
     "@types/events": "^3.0.3",

@@ -46,7 +46,7 @@ class Server {
     this.server.listen(process.env.PORT, () => {
       console.log("--------------------------------------------------");
       console.log(
-        `(=￣ω￣=) online @ ${process.env.PUBLIC_URL}:${process.env.PORT} ♡ ╮(╯_╰)╭`
+        `(=￣ω￣=) online @ ${process.env.PUBLIC_URL}:${process.env.PORT} ♡ ╮(╯_╰)╭`,
       );
       console.log("--------------------------------------------------");
     });
@@ -70,7 +70,7 @@ class Server {
         ],
         optionsSuccessStatus: 200, // For legacy browser support
         credentials: true,
-      })
+      }),
     );
     this.server.use(
       expressSession({
@@ -82,7 +82,7 @@ class Server {
           secure: process.env.NODE_ENV === "production",
           maxAge: 60 * 60 * 24 * 7 * 1000,
         },
-      })
+      }),
     );
     this.server.use(bodyparse.json());
     this.server.use((req, res, next) => {
@@ -139,7 +139,7 @@ class Server {
                 next(error, route);
               }
             },
-            errorMiddleware
+            errorMiddleware,
           );
         }
 
@@ -160,12 +160,12 @@ class Server {
                 next(error, route);
               }
             },
-            errorMiddleware
+            errorMiddleware,
           );
         }
 
         this.routes.push(newRoute);
-      })
+      }),
     );
 
     console.table(
@@ -176,7 +176,7 @@ class Server {
           get: !!(route as any).source?.get,
           post: !!(route as any).source?.post,
         };
-      })
+      }),
     );
   }
 }

@@ -21,7 +21,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Computer } from "../../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import GameContext from "../../contexts/game.context";
 import { postRequestHandler } from "../../lib/submit";
 import toast from "react-hot-toast";
@@ -62,53 +62,6 @@ export default function Browser() {
   const [browserSession, setBrowserSession] = useState<
     Record<string, string[]>
   >({});
-
-  const fetchHomepage = useCallback(
-    async (ip: string, connectionId: string) => {
-      let query = ip.trim();
-      let isDomain = false;
-      if (
-        query.startsWith("www.") ||
-        query.endsWith(".com") ||
-        query.endsWith(".net") ||
-        query.endsWith(".co.uk") ||
-        query.endsWith(".gov")
-      )
-        isDomain = true;
-
-      const result = await postRequestHandler<HomepageRequest>(
-        "/internet/homepage",
-        {
-          domain: isDomain ? query : undefined,
-          ip: !isDomain ? query : undefined,
-          connectionId,
-        },
-        undefined
-      );
-
-      return result.data;
-    },
-    []
-  );
-
-  useEffect(() => {
-    if (!location.state) return;
-    if (
-      location.state.connectionId &&
-      browserStore.connectionId !== location.state.connectionId
-    )
-      browserStore.setConnectionId(location.state.connectionId);
-  }, [location]);
-
-  useEffect(() => {
-    if (!target) return;
-    if (!currentIp) return;
-
-    if (currentIp === "0.0.0.0" && currentIp !== target) {
-      setValid(false);
-      setCurrentIp(target);
-    }
-  }, [target, currentIp]);
 
   const fetchComputer = useCallback(
     async (ip: string) => {
@@ -156,6 +109,53 @@ export default function Browser() {
     },
     [browserStore.connectionId]
   );
+
+  const fetchHomepage = useCallback(
+    async (ip: string, connectionId: string) => {
+      let query = ip.trim();
+      let isDomain = false;
+      if (
+        query.startsWith("www.") ||
+        query.endsWith(".com") ||
+        query.endsWith(".net") ||
+        query.endsWith(".co.uk") ||
+        query.endsWith(".gov")
+      )
+        isDomain = true;
+
+      const result = await postRequestHandler<HomepageRequest>(
+        "/internet/homepage",
+        {
+          domain: isDomain ? query : undefined,
+          ip: !isDomain ? query : undefined,
+          connectionId,
+        },
+        undefined
+      );
+
+      return result.data;
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!location.state) return;
+    if (
+      location.state.connectionId &&
+      browserStore.connectionId !== location.state.connectionId
+    )
+      browserStore.setConnectionId(location.state.connectionId);
+  }, [location]);
+
+  useEffect(() => {
+    if (!target) return;
+    if (!currentIp) return;
+
+    if (currentIp === "0.0.0.0" && currentIp !== target) {
+      setValid(false);
+      setCurrentIp(target);
+    }
+  }, [target, currentIp]);
 
   useEffect(() => {
     if (!browserStore.connectionId) return;
@@ -692,11 +692,11 @@ export default function Browser() {
                     )}
                     {valid && computer ? (
                       <p className="text-white bg-secondary pb-1 ps-1">
-                        <span className="badge bg-info rounded-0">HOST</span>
+                        <span className="badge bg-danger rounded-0">THEM</span>
                         <span className="badge bg-black rounded-0">
                           {computer.type}
                         </span>
-                        <span className="badge bg-success rounded-0">
+                        <span className="badge bg-danger rounded-0">
                           🌎 {computer.ip}
                         </span>
                         {access ? (
@@ -722,14 +722,14 @@ export default function Browser() {
                           session.data.logins?.[browserStore.connectionId]?.map(
                             (login) => (
                               <>
-                                <span className="ms-1 badge bg-warning rounded-0">
-                                  CLIENT
+                                <span className="ms-1 badge bg-primary rounded-0">
+                                  YOU
                                 </span>
                                 <span className="badge bg-black rounded-0">
                                   {login.data?.title || "Unknown"}
                                 </span>
                                 <span
-                                  className="badge bg-success rounded-0"
+                                  className="badge bg-secondary rounded-0"
                                   style={{
                                     cursor: "pointer",
                                   }}
@@ -737,7 +737,11 @@ export default function Browser() {
                                     setCurrentIp(login.ip);
                                   }}
                                 >
-                                  🌎 {login.ip}{" "}
+                                  🌎{" "}
+                                  {game.computers.find(
+                                    (that) =>
+                                      that.id === browserStore.connectionId
+                                  )?.ip || "0.0.0.0"}{" "}
                                 </span>
                                 <span
                                   className="badge bg-primary rounded-0"
@@ -760,7 +764,7 @@ export default function Browser() {
                                     );
                                   }}
                                 >
-                                  View HDD
+                                  <u>View HDD</u>
                                 </span>
                                 <span
                                   className="badge bg-primary rounded-0"
@@ -780,7 +784,7 @@ export default function Browser() {
                                     );
                                   }}
                                 >
-                                  View Logs
+                                  <u>View Logs</u>
                                 </span>
                                 <span
                                   className="badge bg-primary rounded-0"
@@ -800,7 +804,7 @@ export default function Browser() {
                                     );
                                   }}
                                 >
-                                  View Processes
+                                  <u>View Processes</u>
                                 </span>
                               </>
                             )

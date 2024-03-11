@@ -32,7 +32,7 @@ const connect = {
       return error("not connected to this computer");
 
     req.session.connections = req.session.connections.filter(
-      (that) => that.id !== computer.computerId
+      (that) => that.id !== computer.computerId,
     );
 
     // log logout new login
@@ -42,6 +42,6 @@ const connect = {
       computer: computer.computer,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default connect;

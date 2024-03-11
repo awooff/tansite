@@ -112,7 +112,7 @@ const create = {
       })
     )
       return error(
-        "you already have a process of this type being executed on this machine"
+        "you already have a process of this type being executed on this machine",
       );
 
     const before = await gameProcess.before(target, executor, data);
@@ -140,10 +140,10 @@ const create = {
         (gameProcess.settings?.utilizesHardware === "Download" ||
         gameProcess.settings?.utilizesHardware === "Upload"
           ? executor.getCombinedHardwareStrength(
-              gameProcess.settings?.utilizesHardware
+              gameProcess.settings?.utilizesHardware,
             ) * 24
           : executor.getCombinedHardwareStrength(
-              gameProcess.settings?.utilizesHardware
+              gameProcess.settings?.utilizesHardware,
             ));
     }
 
@@ -151,7 +151,7 @@ const create = {
       gameProcess?.settings?.minimumExecutionTime
         ? gameProcess.settings.minimumExecutionTime
         : 1,
-      delay
+      delay,
     );
 
     const result = await server.prisma.process.create({
@@ -174,6 +174,6 @@ const create = {
       process: result,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default create;

@@ -1,8 +1,10 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Container, Stack, Row, Col } from "react-bootstrap";
 import NavbarComponent from "./navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import WebEvents from "../lib/events";
+import CollectionReportModal from "./modals/CollectionReportModal";
 
 function Layout({
   children,
@@ -15,6 +17,23 @@ function Layout({
 }) {
   const navigate = useNavigate();
   const [hasInit, setHasInit] = useState(false);
+  const eventRef = useRef<(modal: string, data: object) => void>();
+  const [currentModal, setCurrentModal] = useState<string | null>(null);
+  const [currentModalData, setCurrentModalData] = useState<object | null>({});
+
+  useEffect(() => {
+    if (eventRef.current) WebEvents.off("showModal", eventRef.current);
+
+    eventRef.current = (modal: string, data: object) => {
+      setCurrentModal(modal);
+      setCurrentModalData(data);
+    };
+    WebEvents.on("showModal", eventRef.current);
+
+    return () => {
+      if (eventRef.current) WebEvents.off("showModal", eventRef.current);
+    };
+  }, []);
 
   //allows for hash code to redirect so we can do react router dom things with hrefs
   useEffect(() => {
@@ -38,6 +57,13 @@ function Layout({
           <Col></Col>
         </Row>
       </Container>
+      <CollectionReportModal
+        show={currentModal === "collectionReport"}
+        data={currentModalData}
+        onHide={() => {
+          setCurrentModal(null);
+        }}
+      />
     </>
   );
 }

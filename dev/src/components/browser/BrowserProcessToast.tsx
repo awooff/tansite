@@ -1,5 +1,5 @@
 import { Alert, Row, Col, ProgressBar } from "react-bootstrap";
-import { Process } from "../../lib/types/process.type";
+import { Process } from "backend/src/generated/client";
 import { useEffect, useRef, useState } from "react";
 
 function BrowserProcessToast({
@@ -51,7 +51,7 @@ function BrowserProcessToast({
             <Col className="pt-2">
               <h6 className="pt-2">
                 Executing {process.type}{" "}
-                {process.data.action ? `(${process.data.action})` : ""}
+                {(process.data as any).action ? `(${(process.data as any).action})` : ""}
               </h6>
             </Col>
           </Row>

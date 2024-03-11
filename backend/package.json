@@ -16,7 +16,7 @@
 		"start": "node dist/index.js",
 		"test": "ava",
 		"test:watch": "node_modules/.bin/ava --verbose --watch",
-		"postinstall": "tsc",
+		"postinstall": "prisma generate && tsc",
 		"lint": "ts-standard --fix | snazzy"
 	},
 	"ava": {

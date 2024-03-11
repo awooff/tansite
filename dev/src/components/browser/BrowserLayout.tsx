@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Computer } from "../../lib/types/computer.type";
-import { Process } from "../../lib/types/process.type";
+import React, { useContext } from "react";
+import { Computer } from "backend/src/generated/client";
+import { Process } from "backend/src/generated/client";
 import { Alert, Button } from "react-bootstrap";
 import SessionContext from "../../contexts/session.context";
 import BrowserProcessToast from "./BrowserProcessToast";
-import WebEvents from "../../lib/events";
-
 function BrowserLayout({
   error,
   process,
@@ -34,23 +32,6 @@ function BrowserLayout({
   children?: React.ReactNode[] | React.ReactNode;
 }) {
   const session = useContext(SessionContext);
-  const eventRef = useRef<(modal: string, data: object) => void>();
-  const [currentModal, setCurrentModal] = useState<string | null>(null);
-  const [currentModalData, setCurrentModalData] = useState<object | null>({});
-
-  useEffect(() => {
-    if (eventRef.current) WebEvents.off("showModal", eventRef.current);
-
-    eventRef.current = (modal, data) => {
-      setCurrentModal(modal);
-      setCurrentModalData(data);
-    };
-    WebEvents.on("showModal", eventRef.current);
-
-    return () => {
-      if (eventRef.current) WebEvents.off("showModal", eventRef.current);
-    };
-  }, []);
 
   return (
     <>

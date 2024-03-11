@@ -118,6 +118,9 @@ export class AddressBook {
         userId: this.userId,
         gameId: process.env.CURRENT_GAME_ID,
       },
+      include: {
+        computer: true,
+      },
       take: take || 64,
       skip: take && page ? take * page : 0,
     });

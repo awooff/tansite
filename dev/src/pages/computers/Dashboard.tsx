@@ -18,7 +18,7 @@ export default function Dashboard() {
           <h3 className="border-bottom pb-3 border-success">~/computers/</h3>
         </Col>
       </Row>
-      <Row className="mt-2">
+      <Row>
         <Col lg={2}>
           <Row lg={1} className="gy-4">
             <Col>
@@ -125,7 +125,7 @@ export default function Dashboard() {
                               borderBottom: "1px dashed white",
                             }}
                           >
-                            {computer.data.title} ✏️
+                            {(computer.data as any).title} ✏️
                           </span>
                         </td>
                         <td>

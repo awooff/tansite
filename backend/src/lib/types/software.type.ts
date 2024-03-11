@@ -23,84 +23,84 @@ export interface SoftwareAction {
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   preUpload?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   preExecute?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   preInstall?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   preUninstall?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   preDelete?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   preView?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<boolean>;
   download?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
   upload?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
   execute?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
   install?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
   uninstall?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
   delete?: (
     softawre: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
   view?: (
     software: Software,
     computer: Computer,
     executor: Computer,
-    data?: any
+    data?: any,
   ) => Promise<void | any>;
 }

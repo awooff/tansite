@@ -35,7 +35,7 @@
         {
             "image": "/nav_icons/address_book.jpg",
             "text": "Address Book",
-            "url": "/intrnet/addressbook"
+            "url": "/internet/addressbook"
         },
         {
             "image": "/nav_icons/account_book.jpg",
@@ -57,7 +57,7 @@
         {
             "image": "/nav_icons/stocks.jpg",
             "text": "Stocks",
-            "url": "/intrnet/addressbook"
+            "url": "/internet/addressbook"
         },
         {
             "image": "/nav_icons/real_estate.jpg",

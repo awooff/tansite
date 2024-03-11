@@ -1,10 +1,10 @@
 import { Alert, Button, Card, Col, Row, Table } from "react-bootstrap";
-import { Computer } from "../lib/types/computer.type";
+import { Computer } from "backend/src/generated/client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postRequestHandler } from "../lib/submit";
 import { createProcess } from "../lib/process";
 import { useProcessStore } from "../lib/stores/process.store";
-import { Process } from "../lib/types/process.type";
+import { Process } from "backend/src/generated/client";
 import WebEvents from "../lib/events";
 
 type Log = {

@@ -47,11 +47,11 @@ const create = {
 
     if (
       !req.session.connections?.find(
-        (element) => element.id === executor.computerId
+        (element) => element.id === executor.computerId,
       )
     )
       return error(
-        "you need to connect to this computer to finish this process"
+        "you need to connect to this computer to finish this process",
       );
 
     if (
@@ -69,7 +69,7 @@ const create = {
       !(await gameProcess.before(
         target ? await getComputer(target.id, target) : null,
         executor,
-        processData.data as any
+        processData.data as any,
       ))
     )
       return error("cannot complete process");
@@ -77,7 +77,7 @@ const create = {
     const result = await gameProcess.after(
       target ? await getComputer(target.id, target) : null,
       executor,
-      processData.data as any
+      processData.data as any,
     );
 
     await server.prisma.process.delete({
@@ -91,6 +91,6 @@ const create = {
       data: result,
     });
   },
-} satisfies Route;
+} as Route;
 
 export default create;
