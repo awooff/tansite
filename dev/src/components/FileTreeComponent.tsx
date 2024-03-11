@@ -52,7 +52,12 @@ function FileTreeComponent({
   const navigate = useNavigate();
 
   const fetchFiles = useCallback(
-    async (connectionId: string, ip?: string, computerId?: string) => {
+    async (
+      connectionId: string,
+      ip?: string,
+      computerId?: string,
+      local?: boolean
+    ) => {
       let result = await postRequestHandler<ReturnType>(
         local ? "/computers/view" : "/internet/fetch",
         {
@@ -119,7 +124,7 @@ function FileTreeComponent({
     eventRef.current = (process?: Process) => {
       setLoading(true);
 
-      fetchFiles(connectionId, ip, computerId)
+      fetchFiles(connectionId, ip, computerId, local)
         .then((computer) => {
           if (!computer) return;
 

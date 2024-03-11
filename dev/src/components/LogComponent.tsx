@@ -40,7 +40,8 @@ function LogComponent({
       page: number,
       computerId?: string,
       ip?: string,
-      connectionId?: string
+      connectionId?: string,
+      local?: boolean
     ) => {
       const result = await postRequestHandler<ReturnType>(
         local ? "/computers/log" : "/internet/log",
@@ -64,7 +65,7 @@ function LogComponent({
     //refresh the log when a process is completed
     eventRef.current = () => {
       setLoading(true);
-      fetchLogs(page, computerId, ip, connectionId).then((data) => {
+      fetchLogs(page, computerId, ip, connectionId, local).then((data) => {
         setLogs(data.logs as any);
         setCount(data.count);
         setPages(data.pages);

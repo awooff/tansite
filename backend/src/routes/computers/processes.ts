@@ -64,11 +64,11 @@ const processes = {
 } as Route;
 
 export type ReturnType = {
-  computers: Prisma.ProcessGetPayload<{
+  processes: Prisma.ProcessGetPayload<{
     include: {
       computer: true;
     };
-  }>;
+  }>[];
   count: number;
   pageMax: number;
 };

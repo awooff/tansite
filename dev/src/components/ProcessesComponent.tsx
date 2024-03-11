@@ -13,6 +13,7 @@ import { postRequestHandler } from "../lib/submit";
 import { Process, Prisma } from "backend/src/generated/client";
 import { useProcessStore } from "../lib/stores/process.store";
 import WebEvents from "../lib/events";
+import { ReturnType } from "backend/dist/routes/computers/processes";
 
 type Computer = Prisma.ComputerGetPayload<{
   include: { hardware: true; software: true; process: true };
@@ -30,18 +31,14 @@ function ProcessListComponent({
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
   const [time, setTime] = useState(Date.now());
-  const [pages, setPages] = useState(0);
+  const [pageMax, setPageMax] = useState(0);
   const [loading, setLoading] = useState(false);
   const interval = useRef<number | any>();
   const processStore = useProcessStore();
 
   const fetchProcesses = useCallback(async () => {
     if (!computer.id) return;
-    let result = await postRequestHandler<{
-      processes: Process[];
-      count: number;
-      pages: number;
-    }>("/computers/processes", {
+    let result = await postRequestHandler<ReturnType>("/computers/processes", {
       computerId: computer.id,
       page: page,
     });
@@ -68,7 +65,7 @@ function ProcessListComponent({
         result?.processes || processStore.processes[computer.id]
       );
       setCount(result?.processes.length || 0);
-      setPages(result?.pages || 0);
+      setPageMax(result?.pageMax || 0);
       setLoading(false);
     });
   }, [computer]);

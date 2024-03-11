@@ -1,7 +1,10 @@
 import React, { ReactNode, useContext } from "react";
 import { Col, Card, ListGroup, Row } from "react-bootstrap";
 import { Hardware, HardwareTypes } from "backend/src/generated/client";
-import GameContext, { GameType } from "../contexts/game.context";
+import GameContext, {
+  ConnectedComputer,
+  GameType,
+} from "../contexts/game.context";
 import SessionContext, { SessionType } from "../contexts/session.context";
 import { Link, useNavigate } from "react-router-dom";
 import { PersonalComputer } from "../contexts/game.context";
@@ -14,13 +17,13 @@ export default function ConnectionThumbnail({
   className,
 }: {
   computer: PersonalComputer;
-  connections?: PersonalComputer[];
+  connections?: ConnectedComputer[];
   className?: string;
   render?: (
     game: GameType,
     session: SessionType,
     computer: PersonalComputer,
-    connections?: PersonalComputer[]
+    connections?: ConnectedComputer[]
   ) => ReactNode | ReactNode[];
   children?: ReactNode[];
 }) {
