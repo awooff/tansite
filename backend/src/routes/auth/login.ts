@@ -3,7 +3,7 @@ import { server } from "../../index";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { removeFromObject } from "@/lib/helpers";
-import { Groups } from "@prisma/client";
+import { Groups, User } from "@prisma/client";
 import { loginSchema } from "@/lib/schemas/login.schema";
 
 const login = {
@@ -91,5 +91,11 @@ const login = {
     });
   },
 } as Route;
+
+export type ReturnType = {
+  user: User;
+  sessionId: string;
+  token: string;
+};
 
 export default login;

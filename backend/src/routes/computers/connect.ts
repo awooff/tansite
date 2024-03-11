@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups } from "@prisma/client";
+import { Groups, Prisma } from "@prisma/client";
 import { getComputer } from "@/app/computer";
 import { computerIdSchema } from "@/lib/schemas/computer.schema";
 import { removeFromObject } from "@/lib/helpers";
@@ -47,5 +47,16 @@ const connect = {
     });
   },
 } as Route;
+
+export type ReturnType = {
+  computer: Prisma.ComputerGetPayload<{
+    include: {
+      Logs: true;
+      process: true;
+      software: true;
+      hardware: true;
+    };
+  }>;
+};
 
 export default connect;

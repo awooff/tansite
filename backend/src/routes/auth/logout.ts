@@ -27,4 +27,8 @@ const logout = {
   },
 } as Route;
 
+export type ReturnType = {
+  success: boolean;
+};
+
 export default logout;

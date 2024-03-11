@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import GameContext from "../../../contexts/game.context";
+import GameContext, { ConnectedComputer } from "../../../contexts/game.context";
 import { Computer } from "backend/src/generated/client";
 import { Alert, Button, Card, ListGroup, Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
@@ -10,7 +10,8 @@ import SessionContext from "../../../contexts/session.context";
 import { useProcessStore } from "../../../lib/stores/process.store";
 import BrowserLayout from "../BrowserLayout";
 import { postRequestHandler } from "../../../lib/submit";
-import { Software } from "../../../lib/types/software.type";
+import { Software } from "backend/src/generated/client";
+import { ReturnType } from "backend/dist/routes/computers/view";
 
 function Hacking({
   connectionId,
@@ -35,7 +36,7 @@ function Hacking({
   const processStore = useProcessStore();
   const [process, setProcess] = useState<Process | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [executor, setExecutor] = useState<Computer | null>(null);
+  const [executor, setExecutor] = useState<ConnectedComputer | null>(null);
   const [cracker, setCracker] = useState<Software | null>(null);
   const [exploiter, setExploiter] = useState<Software | null>(null);
 
@@ -51,9 +52,7 @@ function Hacking({
   }, [session, connectionId, ip, computer]);
 
   const fetchExecutor = useCallback(async (connectionId: string) => {
-    let result = await postRequestHandler<{
-      computer: Computer;
-    }>("/computers/view", {
+    let result = await postRequestHandler<ReturnType>("/computers/view", {
       computerId: connectionId,
     });
     return result.data;
@@ -73,7 +72,7 @@ function Hacking({
         (software) => software.type === "exploiter" && software.installed
       );
 
-      setExecutor(result.computer);
+      setExecutor(result.computer as any);
       setCracker(cracker || null);
       setExploiter(exploiter || null);
     });

@@ -39,9 +39,13 @@ const connect = {
     computer.log(`logged off at ${new Date(Date.now()).toString()}`);
 
     res.send({
-      computer: computer.computer,
+      success: true,
     });
   },
 } as Route;
+
+export type ReturnType = {
+  success: boolean;
+};
 
 export default connect;

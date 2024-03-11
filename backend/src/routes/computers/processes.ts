@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups } from "@prisma/client";
+import { Groups, Prisma } from "@prisma/client";
 import { getComputer } from "@/app/computer";
 import { computerIdSchema } from "@/lib/schemas/computer.schema";
 import { paginationSchema } from "@/lib/schemas/pagination.schema";
@@ -58,9 +58,19 @@ const processes = {
     res.send({
       processes,
       count,
-      pages: Math.floor(count / 64) + 1,
+      pageMax: Math.floor(count / 64) + 1,
     });
   },
 } as Route;
+
+export type ReturnType = {
+  computers: Prisma.ProcessGetPayload<{
+    include: {
+      computer: true;
+    };
+  }>;
+  count: number;
+  pageMax: number;
+};
 
 export default processes;

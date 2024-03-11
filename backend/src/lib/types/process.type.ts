@@ -1,6 +1,5 @@
 import { Computer } from "@/app/computer";
 import * as zod from "zod";
-import GameException from "../exceptions/game.exception";
 import { HardwareTypes } from "@prisma/client";
 
 export interface ProcessData {
@@ -16,7 +15,7 @@ export interface ProcessParameters {
   custom?: Record<
     string,
     (
-      z: typeof zod
+      z: typeof zod,
     ) =>
       | zod.ZodString
       | zod.ZodNumber
@@ -45,16 +44,16 @@ export interface Process {
   delay?: (
     computer: Computer | null,
     executor: Computer,
-    data: any
+    data: any,
   ) => Promise<number>;
   before: (
     computer: Computer | null,
     executor: Computer,
-    data: any
+    data: any,
   ) => Promise<boolean>;
   after: (
     computer: Computer | null,
     executor: Computer,
-    data: any
+    data: any,
   ) => Promise<void | any>;
 }

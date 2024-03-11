@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups } from "@prisma/client";
+import { Groups, Prisma } from "@prisma/client";
 import { paginationSchema } from "@/lib/schemas/pagination.schema";
 
 const network = {
@@ -44,5 +44,24 @@ const network = {
     });
   },
 } as Route;
+
+export type ReturnType = {
+  computers: Prisma.ComputerGetPayload<{
+    include: {
+      hardware: true;
+      process: true;
+    };
+  }>;
+  connections: Prisma.ComputerGetPayload<{
+    include: {
+      hardware: true;
+      logs: true;
+      software: true;
+      process: true;
+    };
+  }>;
+  count: number;
+  pageMax: number;
+};
 
 export default network;

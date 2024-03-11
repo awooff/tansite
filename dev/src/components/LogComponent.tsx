@@ -1,20 +1,12 @@
 import { Alert, Button, Card, Col, Row, Table } from "react-bootstrap";
-import { Computer } from "backend/src/generated/client";
+import { Prisma } from "backend/src/generated/client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { postRequestHandler } from "../lib/submit";
 import { createProcess } from "../lib/process";
 import { useProcessStore } from "../lib/stores/process.store";
 import { Process } from "backend/src/generated/client";
 import WebEvents from "../lib/events";
-
-type Log = {
-  computer: Computer;
-  message: string;
-  created: string;
-  id: number;
-  senderId: string;
-  senderIp: string;
-};
+import { ReturnType } from "backend/dist/routes/computers/log";
 
 function LogComponent({
   computerId,
@@ -29,7 +21,13 @@ function LogComponent({
   setProcess?: (process: Process) => void;
   connectionId?: string;
 }) {
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [logs, setLogs] = useState<
+    Prisma.LogsGetPayload<{
+      include: {
+        computer: true;
+      };
+    }>[]
+  >([]);
   const [page, setPage] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [pages, setPages] = useState<number>(0);
@@ -44,15 +42,14 @@ function LogComponent({
       ip?: string,
       connectionId?: string
     ) => {
-      const result = await postRequestHandler<{
-        logs: Log[];
-        pages: number;
-        count: number;
-      }>(local ? "/computers/log" : "/internet/log", {
-        ...(local ? { computerId: computerId } : { ip: ip }),
-        connectionId: connectionId || computerId,
-        page: page || 0,
-      });
+      const result = await postRequestHandler<ReturnType>(
+        local ? "/computers/log" : "/internet/log",
+        {
+          ...(local ? { computerId: computerId } : { ip: ip }),
+          connectionId: connectionId || computerId,
+          page: page || 0,
+        }
+      );
 
       return result.data;
     },
@@ -68,7 +65,7 @@ function LogComponent({
     eventRef.current = () => {
       setLoading(true);
       fetchLogs(page, computerId, ip, connectionId).then((data) => {
-        setLogs(data.logs);
+        setLogs(data.logs as any);
         setCount(data.count);
         setPages(data.pages);
         setLoading(false);

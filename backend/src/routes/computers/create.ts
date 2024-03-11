@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups, HardwareTypes } from "@prisma/client";
+import { Groups, HardwareTypes, Prisma } from "@prisma/client";
 import { ComputerData, generateIpAddress, getComputer } from "@/app/computer";
 import settings from "../../settings";
 
@@ -84,5 +84,16 @@ const local = {
     });
   },
 } as Route;
+
+export type ReturnType = {
+  computer: Prisma.ComputerGetPayload<{
+    include: {
+      Logs: true;
+      process: true;
+      software: true;
+      hardware: true;
+    };
+  }>;
+};
 
 export default local;

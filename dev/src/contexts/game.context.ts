@@ -10,7 +10,7 @@ export type PersonalComputer = Prisma.ComputerGetPayload<{
 }>;
 
 export type ConnectedComputer = Prisma.ComputerGetPayload<{
-  include: { hardware: true; software: true; process: true; logs: true };
+  include: { Logs: true; software: true; hardware: true };
 }>;
 
 export type GameType = {

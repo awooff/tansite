@@ -10,7 +10,7 @@ function BrowserProcessToast({
   marginTop?: number;
 }) {
   const [time, setTime] = useState(Date.now());
-  const interval = useRef<number>();
+  const interval = useRef<number | any>();
 
   useEffect(() => {
     interval.current = setInterval(() => {
@@ -51,7 +51,9 @@ function BrowserProcessToast({
             <Col className="pt-2">
               <h6 className="pt-2">
                 Executing {process.type}{" "}
-                {(process.data as any).action ? `(${(process.data as any).action})` : ""}
+                {(process.data as any).action
+                  ? `(${(process.data as any).action})`
+                  : ""}
               </h6>
             </Col>
           </Row>

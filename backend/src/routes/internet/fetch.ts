@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups } from "@prisma/client";
+import { Groups, Logs, Prisma } from "@prisma/client";
 import { Computer, findComputer, getComputer } from "@/app/computer";
 import { isConnectedToMachine, removeFromObject } from "@/lib/helpers";
 import { connectionSchema } from "@/lib/schemas/connection.schema";
@@ -48,5 +48,16 @@ const fetch = {
     });
   },
 } as Route;
+
+export type ReturnType = {
+  computer: Prisma.ComputerGetPayload<{
+    include: {
+      Logs: true;
+      software: true;
+      hardware: true;
+    };
+  }>;
+  logs: Logs[];
+};
 
 export default fetch;

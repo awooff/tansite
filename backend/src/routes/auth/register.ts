@@ -67,4 +67,8 @@ const register = {
   },
 } as Route;
 
+export type ReturnType = {
+  success: boolean;
+};
+
 export default register;

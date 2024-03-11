@@ -22,6 +22,7 @@ import { Process } from "backend/src/generated/client";
 import { postRequestHandler } from "../lib/submit";
 import WebEvents from "../lib/events";
 import { run } from "../lib/software";
+import { ReturnType } from "backend/dist/routes/internet/fetch";
 
 function FileTreeComponent({
   children,
@@ -52,13 +53,14 @@ function FileTreeComponent({
 
   const fetchFiles = useCallback(
     async (connectionId: string, ip?: string, computerId?: string) => {
-      let result = await postRequestHandler<{
-        computer: ConnectedComputer;
-      }>(local ? "/computers/view" : "/internet/fetch", {
-        ip,
-        connectionId,
-        computerId,
-      });
+      let result = await postRequestHandler<ReturnType>(
+        local ? "/computers/view" : "/internet/fetch",
+        {
+          ip,
+          connectionId,
+          computerId,
+        }
+      );
       return result.data.computer;
     },
     [local]
@@ -121,7 +123,7 @@ function FileTreeComponent({
         .then((computer) => {
           if (!computer) return;
 
-          setComputer(computer);
+          setComputer(computer as any);
 
           if (
             process &&

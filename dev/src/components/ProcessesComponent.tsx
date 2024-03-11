@@ -32,7 +32,7 @@ function ProcessListComponent({
   const [time, setTime] = useState(Date.now());
   const [pages, setPages] = useState(0);
   const [loading, setLoading] = useState(false);
-  const interval = useRef<number>();
+  const interval = useRef<number | any>();
   const processStore = useProcessStore();
 
   const fetchProcesses = useCallback(async () => {

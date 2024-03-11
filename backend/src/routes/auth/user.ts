@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups } from "@prisma/client";
+import { Groups, User } from "@prisma/client";
 import { removeFromObject } from "@/lib/helpers";
 
 const user = {
@@ -28,5 +28,9 @@ const user = {
     });
   },
 } as Route;
+
+export type ReturnType = {
+  user: User;
+};
 
 export default user;

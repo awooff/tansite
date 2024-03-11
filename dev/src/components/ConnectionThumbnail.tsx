@@ -1,10 +1,10 @@
 import React, { ReactNode, useContext } from "react";
 import { Col, Card, ListGroup, Row } from "react-bootstrap";
-import { Computer } from "backend/src/generated/client";
-import { Hardware, HardwareType } from "../lib/types/hardware.type";
+import { Hardware, HardwareTypes } from "backend/src/generated/client";
 import GameContext, { GameType } from "../contexts/game.context";
 import SessionContext, { SessionType } from "../contexts/session.context";
 import { Link, useNavigate } from "react-router-dom";
+import { PersonalComputer } from "../contexts/game.context";
 
 export default function ConnectionThumbnail({
   computer,
@@ -13,14 +13,14 @@ export default function ConnectionThumbnail({
   render,
   className,
 }: {
-  computer: Computer;
-  connections?: Computer[];
+  computer: PersonalComputer;
+  connections?: PersonalComputer[];
   className?: string;
   render?: (
     game: GameType,
     session: SessionType,
-    computer: Computer,
-    connections?: Computer[]
+    computer: PersonalComputer,
+    connections?: PersonalComputer[]
   ) => ReactNode | ReactNode[];
   children?: ReactNode[];
 }) {
@@ -165,8 +165,8 @@ export default function ConnectionThumbnail({
           }}
         >
           {(() => {
-            const hardwares = {} as Record<HardwareType, Hardware>;
-            const counts = {} as Record<HardwareType, number>;
+            const hardwares = {} as Record<HardwareTypes, Hardware>;
+            const counts = {} as Record<HardwareTypes, number>;
 
             computer.hardware.forEach((hardware) => {
               counts[hardware.type] = counts[hardware.type] || 0;
