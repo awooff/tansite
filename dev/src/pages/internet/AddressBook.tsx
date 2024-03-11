@@ -2,21 +2,27 @@ import { useCallback, useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import { Row, Col, Card } from "react-bootstrap";
 import { postRequestHandler } from "../../lib/submit";
-import { AddressBook as Table } from "../../lib/types/addressbook.type";
+import { Prisma } from "backend/src/generated/client";
+
+type AddressBookRow = Prisma.AddressBookGetPayload<{
+  include: {
+    computer: true;
+  };
+}>;
 
 function AddressBook() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [count, setCount] = useState(0);
   const [pages, setPages] = useState(0);
-  const [addresses, setAddresses] = useState<Table[]>([]);
+  const [addresses, setAddresses] = useState<AddressBookRow[]>([]);
 
   const fetchAddressBook = useCallback(() => {
     setLoading(true);
     postRequestHandler<{
       page: number;
       count: number;
-      addresses: Table[];
+      addresses: AddressBookRow[];
       pages: number;
     }>(
       "/internet/addressbook",
@@ -79,7 +85,7 @@ function AddressBook() {
                       <Row>
                         <Col>
                           <h4 className="border-bottom border-primary pb-2">
-                            {address.(computer.data as any).title}{" "}
+                            {(address.computer.data as any).title}{" "}
                             <u className="border-start ps-2 border-primary">
                               {address.computer.ip}
                             </u>{" "}

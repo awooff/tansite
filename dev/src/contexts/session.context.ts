@@ -23,13 +23,13 @@ export const SessionContextDefault = {
   data: {
     userId: -1,
     connections: [],
-    group: Groups.Guest,
+    group: "Guest",
   } as any,
   user: {
     id: -1,
     name: "",
     email: "",
-    group: Groups.Guest,
+    group: "Guest",
   },
   valid: false,
   load: async () => {},

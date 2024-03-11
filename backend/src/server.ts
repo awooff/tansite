@@ -102,6 +102,8 @@ class Server {
     ]);
     await Promise.all(
       files.map(async (file) => {
+        if (file.endsWith(".d.ts") || file.endsWith(".map")) return;
+
         let route = (await require(file)) as Route;
         route = (route as any).default || (route as any).route;
 
