@@ -1,18 +1,22 @@
 import { createContext } from "react";
 import { User, Prisma } from "backend/src/generated/client";
 
-type Computer = Prisma.ComputerGetPayload<{
+export type Computer = Prisma.ComputerGetPayload<{
+  include: { hardware: true; software: false; process: false };
+}>;
+
+export type PersonalComputer = Prisma.ComputerGetPayload<{
   include: { hardware: true; software: false; process: true };
 }>;
 
 export type ConnectedComputer = Prisma.ComputerGetPayload<{
-  include: { hardware: true; software: true; process: true; Logs: true };
+  include: { hardware: true; software: true; process: true; logs: true };
 }>;
 
 export type GameType = {
   loaded: boolean;
   connections: ConnectedComputer[];
-  computers: Computer[];
+  computers: PersonalComputer[];
   user: User;
   gameId: string;
   title: string;

@@ -181,7 +181,7 @@ model Computer {
   process     Process[]
   addressBook AddressBook[]
   accountBook AccountBook[]
-  Logs        Logs[]
+  logs        Logs[]
 }
 
 model Quests {

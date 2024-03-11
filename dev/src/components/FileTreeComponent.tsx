@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import GameContext from "../contexts/game.context";
+import GameContext, { ConnectedComputer } from "../contexts/game.context";
 import {
   Card,
   Col,
@@ -18,14 +18,10 @@ import {
   Stack,
 } from "react-bootstrap";
 import { createProcess } from "../lib/process";
-import { Prisma, Process } from "backend/src/generated/client";
+import { Process } from "backend/src/generated/client";
 import { postRequestHandler } from "../lib/submit";
 import WebEvents from "../lib/events";
 import { run } from "../lib/software";
-
-type Computer = Prisma.ComputerGetPayload<{
-  include: { hardware: true; software: true };
-}>;
 
 function FileTreeComponent({
   children,
@@ -49,7 +45,7 @@ function FileTreeComponent({
   uploadTargetIp?: string;
 }) {
   const game = useContext(GameContext);
-  const [computer, setComputer] = useState<Computer>();
+  const [computer, setComputer] = useState<ConnectedComputer>();
   const [loading, setLoading] = useState<boolean>();
   const eventRef = useRef<(process?: Process) => void>();
   const navigate = useNavigate();
@@ -57,7 +53,7 @@ function FileTreeComponent({
   const fetchFiles = useCallback(
     async (connectionId: string, ip?: string, computerId?: string) => {
       let result = await postRequestHandler<{
-        computer: Computer;
+        computer: ConnectedComputer;
       }>(local ? "/computers/view" : "/internet/fetch", {
         ip,
         connectionId,

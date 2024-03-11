@@ -2471,7 +2471,7 @@ export namespace Prisma {
     process: number
     addressBook: number
     accountBook: number
-    Logs: number
+    logs: number
   }
 
   export type ComputerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2482,7 +2482,7 @@ export namespace Prisma {
     process?: boolean | ComputerCountOutputTypeCountProcessArgs
     addressBook?: boolean | ComputerCountOutputTypeCountAddressBookArgs
     accountBook?: boolean | ComputerCountOutputTypeCountAccountBookArgs
-    Logs?: boolean | ComputerCountOutputTypeCountLogsArgs
+    logs?: boolean | ComputerCountOutputTypeCountLogsArgs
   }
 
   // Custom InputTypes
@@ -12214,7 +12214,7 @@ export namespace Prisma {
     process?: boolean | Computer$processArgs<ExtArgs>
     addressBook?: boolean | Computer$addressBookArgs<ExtArgs>
     accountBook?: boolean | Computer$accountBookArgs<ExtArgs>
-    Logs?: boolean | Computer$LogsArgs<ExtArgs>
+    logs?: boolean | Computer$logsArgs<ExtArgs>
     _count?: boolean | ComputerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["computer"]>
 
@@ -12239,7 +12239,7 @@ export namespace Prisma {
     process?: boolean | Computer$processArgs<ExtArgs>
     addressBook?: boolean | Computer$addressBookArgs<ExtArgs>
     accountBook?: boolean | Computer$accountBookArgs<ExtArgs>
-    Logs?: boolean | Computer$LogsArgs<ExtArgs>
+    logs?: boolean | Computer$logsArgs<ExtArgs>
     _count?: boolean | ComputerCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -12256,7 +12256,7 @@ export namespace Prisma {
       process: Prisma.$ProcessPayload<ExtArgs>[]
       addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
       accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
-      Logs: Prisma.$LogsPayload<ExtArgs>[]
+      logs: Prisma.$LogsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12650,7 +12650,7 @@ export namespace Prisma {
 
     accountBook<T extends Computer$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Computer$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    Logs<T extends Computer$LogsArgs<ExtArgs> = {}>(args?: Subset<T, Computer$LogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
+    logs<T extends Computer$logsArgs<ExtArgs> = {}>(args?: Subset<T, Computer$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -13147,9 +13147,9 @@ export namespace Prisma {
 
 
   /**
-   * Computer.Logs
+   * Computer.logs
    */
-  export type Computer$LogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Computer$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Logs
      */
@@ -20222,7 +20222,7 @@ export namespace Prisma {
     process?: ProcessListRelationFilter
     addressBook?: AddressBookListRelationFilter
     accountBook?: AccountBookListRelationFilter
-    Logs?: LogsListRelationFilter
+    logs?: LogsListRelationFilter
   }
 
   export type ComputerOrderByWithRelationInput = {
@@ -20243,7 +20243,7 @@ export namespace Prisma {
     process?: ProcessOrderByRelationAggregateInput
     addressBook?: AddressBookOrderByRelationAggregateInput
     accountBook?: AccountBookOrderByRelationAggregateInput
-    Logs?: LogsOrderByRelationAggregateInput
+    logs?: LogsOrderByRelationAggregateInput
   }
 
   export type ComputerWhereUniqueInput = Prisma.AtLeast<{
@@ -20267,7 +20267,7 @@ export namespace Prisma {
     process?: ProcessListRelationFilter
     addressBook?: AddressBookListRelationFilter
     accountBook?: AccountBookListRelationFilter
-    Logs?: LogsListRelationFilter
+    logs?: LogsListRelationFilter
   }, "id">
 
   export type ComputerOrderByWithAggregationInput = {
@@ -21432,7 +21432,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateInput = {
@@ -21451,7 +21451,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUpdateInput = {
@@ -21470,7 +21470,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateInput = {
@@ -21489,7 +21489,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerCreateManyInput = {
@@ -25409,7 +25409,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutUserInput = {
@@ -25427,7 +25427,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutUserInput = {
@@ -26160,7 +26160,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutGameInput = {
@@ -26178,7 +26178,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutGameInput = {
@@ -26780,7 +26780,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutHardwareInput = {
@@ -26798,7 +26798,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutHardwareInput = {
@@ -26873,7 +26873,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutHardwareInput = {
@@ -26891,7 +26891,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutHardwareInput = {
@@ -27006,7 +27006,7 @@ export namespace Prisma {
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutAddressBookInput = {
@@ -27024,7 +27024,7 @@ export namespace Prisma {
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutAddressBookInput = {
@@ -27155,7 +27155,7 @@ export namespace Prisma {
     memory?: MemoryUpdateManyWithoutComputerNestedInput
     process?: ProcessUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutAddressBookInput = {
@@ -27173,7 +27173,7 @@ export namespace Prisma {
     memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutAddressBookInput = {
@@ -27288,7 +27288,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutDnsInput = {
@@ -27306,7 +27306,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutDnsInput = {
@@ -27437,7 +27437,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutDnsInput = {
@@ -27455,7 +27455,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutDnsInput = {
@@ -27570,7 +27570,7 @@ export namespace Prisma {
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutAccountBookInput = {
@@ -27588,7 +27588,7 @@ export namespace Prisma {
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutAccountBookInput = {
@@ -27746,7 +27746,7 @@ export namespace Prisma {
     memory?: MemoryUpdateManyWithoutComputerNestedInput
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutAccountBookInput = {
@@ -27764,7 +27764,7 @@ export namespace Prisma {
     memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type MemoryUpsertWithoutAccountBookInput = {
@@ -28056,7 +28056,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutMemoryInput = {
@@ -28074,7 +28074,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutMemoryInput = {
@@ -28224,7 +28224,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutMemoryInput = {
@@ -28242,7 +28242,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutMemoryInput = {
@@ -29368,7 +29368,7 @@ export namespace Prisma {
     process?: ProcessCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutSoftwareInput = {
@@ -29386,7 +29386,7 @@ export namespace Prisma {
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutSoftwareInput = {
@@ -29517,7 +29517,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutSoftwareInput = {
@@ -29535,7 +29535,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutSoftwareInput = {
@@ -29650,7 +29650,7 @@ export namespace Prisma {
     memory?: MemoryCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    Logs?: LogsCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutProcessInput = {
@@ -29668,7 +29668,7 @@ export namespace Prisma {
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    Logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutProcessInput = {
@@ -29799,7 +29799,7 @@ export namespace Prisma {
     memory?: MemoryUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutProcessInput = {
@@ -29817,7 +29817,7 @@ export namespace Prisma {
     memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutProcessInput = {
@@ -30408,7 +30408,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutUserInput = {
@@ -30426,7 +30426,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateManyWithoutUserInput = {
@@ -30917,7 +30917,7 @@ export namespace Prisma {
     process?: ProcessUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutGameInput = {
@@ -30935,7 +30935,7 @@ export namespace Prisma {
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
     addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    Logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateManyWithoutGameInput = {
