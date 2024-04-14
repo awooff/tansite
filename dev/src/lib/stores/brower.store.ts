@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { Computer } from "backend/dist/";
+import { Computer } from "backend/src/generated/client";
 
 type State = {
   history: Record<string, ({ tab?: string; domain?: string } & Computer)[]>;
