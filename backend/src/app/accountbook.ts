@@ -1,4 +1,4 @@
-import { Memory, User } from "@prisma/client";
+import { Memory, User } from "@/db/client";
 import { server } from "../index";
 import { Computer } from "./computer";
 

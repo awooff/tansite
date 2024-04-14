@@ -1,4 +1,4 @@
-import { Memory, Prisma } from "@prisma/client";
+import { Memory, Prisma } from "@/db/client";
 import { server } from "../index";
 
 export const canAfford = async (bankAccount: string | Memory, cost: number) => {

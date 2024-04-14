@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 import { registerSchema } from "../../lib/schemas/register.schema";
 import { server } from "../../index";
 import bcrypt from "bcrypt";

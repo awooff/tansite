@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 import { getUserBankAccount } from "@/app/finance";
 import { paginationSchema } from "@/lib/schemas/pagination.schema";
 

@@ -73,35 +73,35 @@ function FileTreeComponent({
 
   const hddSpace = computer
     ? computer.hardware
-        .filter((val) => val.type === "HDD")
-        .reduce((prev, cur) => {
-          return {
-            ...prev,
-            strength: prev.strength + cur.strength,
-          };
-        }).strength
+      .filter((val) => val.type === "HDD")
+      .reduce((prev, cur) => {
+        return {
+          ...prev,
+          strength: prev.strength + cur.strength,
+        };
+      }).strength
     : 0;
 
   const ramSpace = computer
     ? computer.hardware
-        .filter((val) => val.type === "RAM")
-        .reduce((prev, cur) => {
-          return {
-            ...prev,
-            strength: prev.strength + cur.strength,
-          };
-        }).strength
+      .filter((val) => val.type === "RAM")
+      .reduce((prev, cur) => {
+        return {
+          ...prev,
+          strength: prev.strength + cur.strength,
+        };
+      }).strength
     : 0;
 
   const hddUsage = computer
     ? computer.software.length === 0
       ? 0
       : computer.software.reduce((prev, cur) => {
-          return {
-            ...prev,
-            size: cur.size + prev.size,
-          };
-        }).size
+        return {
+          ...prev,
+          size: cur.size + prev.size,
+        };
+      }).size
     : 0;
 
   const installed = computer
@@ -126,17 +126,17 @@ function FileTreeComponent({
 
       fetchFiles(connectionId, ip, computerId, local)
         .then((computer) => {
-          if (!computer) return;
 
-          setComputer(computer as any);
+          setComputer(computer);
 
           if (
             process &&
             process.ip === computer?.ip &&
             process.type === "action"
           ) {
+
             let target = computer.software.find(
-              (that) => that.id === (process.data as any as any).softwareId
+              (that: { id: any; }) => that.id === (process.data as any as any).softwareId
             );
             let executor = game.connections.find(
               (that) => that.id === connectionId

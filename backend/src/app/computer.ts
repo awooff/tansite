@@ -3,7 +3,7 @@ import {
   Logs,
   Memory,
   Prisma,
-} from "@prisma/client";
+} from "@/db/client";
 import { server } from "../index";
 import { Software } from "./software";
 import { ComputerProcess } from "./process";
@@ -183,14 +183,14 @@ export class Computer {
     await server.prisma.logs.deleteMany({
       where: (indexes as Logs)?.id
         ? {
-            id: (indexes as Logs)?.id,
-          }
+          id: (indexes as Logs)?.id,
+        }
         : (indexes as any).reduce((prev: Logs, current: Logs) => {
-            return {
-              id: current.id,
-              AND: prev,
-            };
-          }),
+          return {
+            id: current.id,
+            AND: prev,
+          };
+        }),
     });
   }
 

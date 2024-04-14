@@ -1,6 +1,6 @@
 import { Computer } from "@/app/computer";
 import * as zod from "zod";
-import { HardwareTypes } from "@prisma/client";
+import { HardwareTypes } from "@/db/client";
 
 export interface ProcessData {
   custom: Record<string, any>;

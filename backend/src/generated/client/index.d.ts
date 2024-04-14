@@ -2142,33 +2142,33 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    session: number
-    computer: number
-    software: number
-    memory: number
-    process: number
-    userQuests: number
-    addressBook: number
     accountBook: number
-    logs: number
+    addressBook: number
+    computer: number
     dns: number
-    profile: number
+    logs: number
+    memory: number
     notifications: number
+    process: number
+    profile: number
+    session: number
+    software: number
+    userQuests: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    session?: boolean | UserCountOutputTypeCountSessionArgs
-    computer?: boolean | UserCountOutputTypeCountComputerArgs
-    software?: boolean | UserCountOutputTypeCountSoftwareArgs
-    memory?: boolean | UserCountOutputTypeCountMemoryArgs
-    process?: boolean | UserCountOutputTypeCountProcessArgs
-    userQuests?: boolean | UserCountOutputTypeCountUserQuestsArgs
-    addressBook?: boolean | UserCountOutputTypeCountAddressBookArgs
     accountBook?: boolean | UserCountOutputTypeCountAccountBookArgs
-    logs?: boolean | UserCountOutputTypeCountLogsArgs
+    addressBook?: boolean | UserCountOutputTypeCountAddressBookArgs
+    computer?: boolean | UserCountOutputTypeCountComputerArgs
     dns?: boolean | UserCountOutputTypeCountDnsArgs
-    profile?: boolean | UserCountOutputTypeCountProfileArgs
+    logs?: boolean | UserCountOutputTypeCountLogsArgs
+    memory?: boolean | UserCountOutputTypeCountMemoryArgs
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    process?: boolean | UserCountOutputTypeCountProcessArgs
+    profile?: boolean | UserCountOutputTypeCountProfileArgs
+    session?: boolean | UserCountOutputTypeCountSessionArgs
+    software?: boolean | UserCountOutputTypeCountSoftwareArgs
+    userQuests?: boolean | UserCountOutputTypeCountUserQuestsArgs
   }
 
   // Custom InputTypes
@@ -2187,48 +2187,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountComputerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ComputerWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSoftwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SoftwareWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountMemoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MemoryWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountProcessArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProcessWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountUserQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserQuestsWhereInput
+  export type UserCountOutputTypeCountAccountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountBookWhereInput
   }
 
 
@@ -2243,16 +2203,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountAccountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AccountBookWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LogsWhereInput
+  export type UserCountOutputTypeCountComputerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComputerWhereInput
   }
 
 
@@ -2267,8 +2219,16 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfileWhereInput
+  export type UserCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogsWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMemoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MemoryWhereInput
   }
 
 
@@ -2280,39 +2240,79 @@ export namespace Prisma {
   }
 
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProcessArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProcessWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSoftwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoftwareWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserQuestsWhereInput
+  }
+
+
 
   /**
    * Count Type GameCountOutputType
    */
 
   export type GameCountOutputType = {
-    software: number
-    hardware: number
+    accountBook: number
+    addressBook: number
     computer: number
+    dns: number
+    hardware: number
+    logs: number
     memory: number
     process: number
-    quests: number
-    userQuests: number
-    logs: number
-    addressBook: number
-    accountBook: number
-    dns: number
     profile: number
+    quests: number
+    software: number
+    userQuests: number
   }
 
   export type GameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    software?: boolean | GameCountOutputTypeCountSoftwareArgs
-    hardware?: boolean | GameCountOutputTypeCountHardwareArgs
+    accountBook?: boolean | GameCountOutputTypeCountAccountBookArgs
+    addressBook?: boolean | GameCountOutputTypeCountAddressBookArgs
     computer?: boolean | GameCountOutputTypeCountComputerArgs
+    dns?: boolean | GameCountOutputTypeCountDnsArgs
+    hardware?: boolean | GameCountOutputTypeCountHardwareArgs
+    logs?: boolean | GameCountOutputTypeCountLogsArgs
     memory?: boolean | GameCountOutputTypeCountMemoryArgs
     process?: boolean | GameCountOutputTypeCountProcessArgs
-    quests?: boolean | GameCountOutputTypeCountQuestsArgs
-    userQuests?: boolean | GameCountOutputTypeCountUserQuestsArgs
-    logs?: boolean | GameCountOutputTypeCountLogsArgs
-    addressBook?: boolean | GameCountOutputTypeCountAddressBookArgs
-    accountBook?: boolean | GameCountOutputTypeCountAccountBookArgs
-    dns?: boolean | GameCountOutputTypeCountDnsArgs
     profile?: boolean | GameCountOutputTypeCountProfileArgs
+    quests?: boolean | GameCountOutputTypeCountQuestsArgs
+    software?: boolean | GameCountOutputTypeCountSoftwareArgs
+    userQuests?: boolean | GameCountOutputTypeCountUserQuestsArgs
   }
 
   // Custom InputTypes
@@ -2331,8 +2331,32 @@ export namespace Prisma {
   /**
    * GameCountOutputType without action
    */
-  export type GameCountOutputTypeCountSoftwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SoftwareWhereInput
+  export type GameCountOutputTypeCountAccountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountBookWhereInput
+  }
+
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountAddressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddressBookWhereInput
+  }
+
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountComputerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComputerWhereInput
+  }
+
+
+  /**
+   * GameCountOutputType without action
+   */
+  export type GameCountOutputTypeCountDnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DNSWhereInput
   }
 
 
@@ -2347,8 +2371,8 @@ export namespace Prisma {
   /**
    * GameCountOutputType without action
    */
-  export type GameCountOutputTypeCountComputerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ComputerWhereInput
+  export type GameCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogsWhereInput
   }
 
 
@@ -2371,6 +2395,14 @@ export namespace Prisma {
   /**
    * GameCountOutputType without action
    */
+  export type GameCountOutputTypeCountProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileWhereInput
+  }
+
+
+  /**
+   * GameCountOutputType without action
+   */
   export type GameCountOutputTypeCountQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestsWhereInput
   }
@@ -2379,48 +2411,16 @@ export namespace Prisma {
   /**
    * GameCountOutputType without action
    */
+  export type GameCountOutputTypeCountSoftwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoftwareWhereInput
+  }
+
+
+  /**
+   * GameCountOutputType without action
+   */
   export type GameCountOutputTypeCountUserQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserQuestsWhereInput
-  }
-
-
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LogsWhereInput
-  }
-
-
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeCountAddressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AddressBookWhereInput
-  }
-
-
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeCountAccountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AccountBookWhereInput
-  }
-
-
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeCountDnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DNSWhereInput
-  }
-
-
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeCountProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProfileWhereInput
   }
 
 
@@ -2464,25 +2464,25 @@ export namespace Prisma {
    */
 
   export type ComputerCountOutputType = {
+    accountBook: number
+    addressBook: number
     dns: number
     hardware: number
-    software: number
+    logs: number
     memory: number
     process: number
-    addressBook: number
-    accountBook: number
-    logs: number
+    software: number
   }
 
   export type ComputerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accountBook?: boolean | ComputerCountOutputTypeCountAccountBookArgs
+    addressBook?: boolean | ComputerCountOutputTypeCountAddressBookArgs
     dns?: boolean | ComputerCountOutputTypeCountDnsArgs
     hardware?: boolean | ComputerCountOutputTypeCountHardwareArgs
-    software?: boolean | ComputerCountOutputTypeCountSoftwareArgs
+    logs?: boolean | ComputerCountOutputTypeCountLogsArgs
     memory?: boolean | ComputerCountOutputTypeCountMemoryArgs
     process?: boolean | ComputerCountOutputTypeCountProcessArgs
-    addressBook?: boolean | ComputerCountOutputTypeCountAddressBookArgs
-    accountBook?: boolean | ComputerCountOutputTypeCountAccountBookArgs
-    logs?: boolean | ComputerCountOutputTypeCountLogsArgs
+    software?: boolean | ComputerCountOutputTypeCountSoftwareArgs
   }
 
   // Custom InputTypes
@@ -2495,6 +2495,22 @@ export namespace Prisma {
      * Select specific fields to fetch from the ComputerCountOutputType
      */
     select?: ComputerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ComputerCountOutputType without action
+   */
+  export type ComputerCountOutputTypeCountAccountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountBookWhereInput
+  }
+
+
+  /**
+   * ComputerCountOutputType without action
+   */
+  export type ComputerCountOutputTypeCountAddressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddressBookWhereInput
   }
 
 
@@ -2517,8 +2533,8 @@ export namespace Prisma {
   /**
    * ComputerCountOutputType without action
    */
-  export type ComputerCountOutputTypeCountSoftwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SoftwareWhereInput
+  export type ComputerCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogsWhereInput
   }
 
 
@@ -2541,24 +2557,8 @@ export namespace Prisma {
   /**
    * ComputerCountOutputType without action
    */
-  export type ComputerCountOutputTypeCountAddressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AddressBookWhereInput
-  }
-
-
-  /**
-   * ComputerCountOutputType without action
-   */
-  export type ComputerCountOutputTypeCountAccountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AccountBookWhereInput
-  }
-
-
-  /**
-   * ComputerCountOutputType without action
-   */
-  export type ComputerCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LogsWhereInput
+  export type ComputerCountOutputTypeCountSoftwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoftwareWhereInput
   }
 
 
@@ -2831,18 +2831,18 @@ export namespace Prisma {
     created?: boolean
     refreshToken?: boolean
     group?: boolean
-    session?: boolean | User$sessionArgs<ExtArgs>
-    computer?: boolean | User$computerArgs<ExtArgs>
-    software?: boolean | User$softwareArgs<ExtArgs>
-    memory?: boolean | User$memoryArgs<ExtArgs>
-    process?: boolean | User$processArgs<ExtArgs>
-    userQuests?: boolean | User$userQuestsArgs<ExtArgs>
-    addressBook?: boolean | User$addressBookArgs<ExtArgs>
     accountBook?: boolean | User$accountBookArgs<ExtArgs>
-    logs?: boolean | User$logsArgs<ExtArgs>
+    addressBook?: boolean | User$addressBookArgs<ExtArgs>
+    computer?: boolean | User$computerArgs<ExtArgs>
     dns?: boolean | User$dnsArgs<ExtArgs>
-    profile?: boolean | User$profileArgs<ExtArgs>
+    logs?: boolean | User$logsArgs<ExtArgs>
+    memory?: boolean | User$memoryArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
+    process?: boolean | User$processArgs<ExtArgs>
+    profile?: boolean | User$profileArgs<ExtArgs>
+    session?: boolean | User$sessionArgs<ExtArgs>
+    software?: boolean | User$softwareArgs<ExtArgs>
+    userQuests?: boolean | User$userQuestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2859,18 +2859,18 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    session?: boolean | User$sessionArgs<ExtArgs>
-    computer?: boolean | User$computerArgs<ExtArgs>
-    software?: boolean | User$softwareArgs<ExtArgs>
-    memory?: boolean | User$memoryArgs<ExtArgs>
-    process?: boolean | User$processArgs<ExtArgs>
-    userQuests?: boolean | User$userQuestsArgs<ExtArgs>
-    addressBook?: boolean | User$addressBookArgs<ExtArgs>
     accountBook?: boolean | User$accountBookArgs<ExtArgs>
-    logs?: boolean | User$logsArgs<ExtArgs>
+    addressBook?: boolean | User$addressBookArgs<ExtArgs>
+    computer?: boolean | User$computerArgs<ExtArgs>
     dns?: boolean | User$dnsArgs<ExtArgs>
-    profile?: boolean | User$profileArgs<ExtArgs>
+    logs?: boolean | User$logsArgs<ExtArgs>
+    memory?: boolean | User$memoryArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
+    process?: boolean | User$processArgs<ExtArgs>
+    profile?: boolean | User$profileArgs<ExtArgs>
+    session?: boolean | User$sessionArgs<ExtArgs>
+    software?: boolean | User$softwareArgs<ExtArgs>
+    userQuests?: boolean | User$userQuestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2878,18 +2878,18 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      session: Prisma.$SessionPayload<ExtArgs>[]
-      computer: Prisma.$ComputerPayload<ExtArgs>[]
-      software: Prisma.$SoftwarePayload<ExtArgs>[]
-      memory: Prisma.$MemoryPayload<ExtArgs>[]
-      process: Prisma.$ProcessPayload<ExtArgs>[]
-      userQuests: Prisma.$UserQuestsPayload<ExtArgs>[]
-      addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
       accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
-      logs: Prisma.$LogsPayload<ExtArgs>[]
+      addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
+      computer: Prisma.$ComputerPayload<ExtArgs>[]
       dns: Prisma.$DNSPayload<ExtArgs>[]
-      profile: Prisma.$ProfilePayload<ExtArgs>[]
+      logs: Prisma.$LogsPayload<ExtArgs>[]
+      memory: Prisma.$MemoryPayload<ExtArgs>[]
       notifications: Prisma.$NotificationsPayload<ExtArgs>[]
+      process: Prisma.$ProcessPayload<ExtArgs>[]
+      profile: Prisma.$ProfilePayload<ExtArgs>[]
+      session: Prisma.$SessionPayload<ExtArgs>[]
+      software: Prisma.$SoftwarePayload<ExtArgs>[]
+      userQuests: Prisma.$UserQuestsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3266,29 +3266,29 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    session<T extends User$sessionArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    computer<T extends User$computerArgs<ExtArgs> = {}>(args?: Subset<T, User$computerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    software<T extends User$softwareArgs<ExtArgs> = {}>(args?: Subset<T, User$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    memory<T extends User$memoryArgs<ExtArgs> = {}>(args?: Subset<T, User$memoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    process<T extends User$processArgs<ExtArgs> = {}>(args?: Subset<T, User$processArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProcessPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    userQuests<T extends User$userQuestsArgs<ExtArgs> = {}>(args?: Subset<T, User$userQuestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserQuestsPayload<ExtArgs>, T, 'findMany'> | Null>;
+    accountBook<T extends User$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, User$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     addressBook<T extends User$addressBookArgs<ExtArgs> = {}>(args?: Subset<T, User$addressBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressBookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    accountBook<T extends User$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, User$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    logs<T extends User$logsArgs<ExtArgs> = {}>(args?: Subset<T, User$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
+    computer<T extends User$computerArgs<ExtArgs> = {}>(args?: Subset<T, User$computerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     dns<T extends User$dnsArgs<ExtArgs> = {}>(args?: Subset<T, User$dnsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DNSPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findMany'> | Null>;
+    logs<T extends User$logsArgs<ExtArgs> = {}>(args?: Subset<T, User$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    memory<T extends User$memoryArgs<ExtArgs> = {}>(args?: Subset<T, User$memoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationsPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    process<T extends User$processArgs<ExtArgs> = {}>(args?: Subset<T, User$processArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProcessPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    session<T extends User$sessionArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    software<T extends User$softwareArgs<ExtArgs> = {}>(args?: Subset<T, User$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    userQuests<T extends User$userQuestsArgs<ExtArgs> = {}>(args?: Subset<T, User$userQuestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserQuestsPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3639,128 +3639,23 @@ export namespace Prisma {
 
 
   /**
-   * User.session
+   * User.accountBook
    */
-  export type User$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$accountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Session
+     * Select specific fields to fetch from the AccountBook
      */
-    select?: SessionSelect<ExtArgs> | null
+    select?: AccountBookSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
+    include?: AccountBookInclude<ExtArgs> | null
+    where?: AccountBookWhereInput
+    orderBy?: AccountBookOrderByWithRelationInput | AccountBookOrderByWithRelationInput[]
+    cursor?: AccountBookWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.computer
-   */
-  export type User$computerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Computer
-     */
-    select?: ComputerSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ComputerInclude<ExtArgs> | null
-    where?: ComputerWhereInput
-    orderBy?: ComputerOrderByWithRelationInput | ComputerOrderByWithRelationInput[]
-    cursor?: ComputerWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ComputerScalarFieldEnum | ComputerScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.software
-   */
-  export type User$softwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Software
-     */
-    select?: SoftwareSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: SoftwareInclude<ExtArgs> | null
-    where?: SoftwareWhereInput
-    orderBy?: SoftwareOrderByWithRelationInput | SoftwareOrderByWithRelationInput[]
-    cursor?: SoftwareWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.memory
-   */
-  export type User$memoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Memory
-     */
-    select?: MemorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: MemoryInclude<ExtArgs> | null
-    where?: MemoryWhereInput
-    orderBy?: MemoryOrderByWithRelationInput | MemoryOrderByWithRelationInput[]
-    cursor?: MemoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MemoryScalarFieldEnum | MemoryScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.process
-   */
-  export type User$processArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Process
-     */
-    select?: ProcessSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ProcessInclude<ExtArgs> | null
-    where?: ProcessWhereInput
-    orderBy?: ProcessOrderByWithRelationInput | ProcessOrderByWithRelationInput[]
-    cursor?: ProcessWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProcessScalarFieldEnum | ProcessScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.userQuests
-   */
-  export type User$userQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserQuests
-     */
-    select?: UserQuestsSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserQuestsInclude<ExtArgs> | null
-    where?: UserQuestsWhereInput
-    orderBy?: UserQuestsOrderByWithRelationInput | UserQuestsOrderByWithRelationInput[]
-    cursor?: UserQuestsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserQuestsScalarFieldEnum | UserQuestsScalarFieldEnum[]
+    distinct?: AccountBookScalarFieldEnum | AccountBookScalarFieldEnum[]
   }
 
 
@@ -3786,44 +3681,23 @@ export namespace Prisma {
 
 
   /**
-   * User.accountBook
+   * User.computer
    */
-  export type User$accountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$computerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AccountBook
+     * Select specific fields to fetch from the Computer
      */
-    select?: AccountBookSelect<ExtArgs> | null
+    select?: ComputerSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: AccountBookInclude<ExtArgs> | null
-    where?: AccountBookWhereInput
-    orderBy?: AccountBookOrderByWithRelationInput | AccountBookOrderByWithRelationInput[]
-    cursor?: AccountBookWhereUniqueInput
+    include?: ComputerInclude<ExtArgs> | null
+    where?: ComputerWhereInput
+    orderBy?: ComputerOrderByWithRelationInput | ComputerOrderByWithRelationInput[]
+    cursor?: ComputerWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: AccountBookScalarFieldEnum | AccountBookScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.logs
-   */
-  export type User$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Logs
-     */
-    select?: LogsSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LogsInclude<ExtArgs> | null
-    where?: LogsWhereInput
-    orderBy?: LogsOrderByWithRelationInput | LogsOrderByWithRelationInput[]
-    cursor?: LogsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
+    distinct?: ComputerScalarFieldEnum | ComputerScalarFieldEnum[]
   }
 
 
@@ -3849,23 +3723,44 @@ export namespace Prisma {
 
 
   /**
-   * User.profile
+   * User.logs
    */
-  export type User$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Profile
+     * Select specific fields to fetch from the Logs
      */
-    select?: ProfileSelect<ExtArgs> | null
+    select?: LogsSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProfileInclude<ExtArgs> | null
-    where?: ProfileWhereInput
-    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
-    cursor?: ProfileWhereUniqueInput
+    include?: LogsInclude<ExtArgs> | null
+    where?: LogsWhereInput
+    orderBy?: LogsOrderByWithRelationInput | LogsOrderByWithRelationInput[]
+    cursor?: LogsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
+    distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.memory
+   */
+  export type User$memoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Memory
+     */
+    select?: MemorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MemoryInclude<ExtArgs> | null
+    where?: MemoryWhereInput
+    orderBy?: MemoryOrderByWithRelationInput | MemoryOrderByWithRelationInput[]
+    cursor?: MemoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MemoryScalarFieldEnum | MemoryScalarFieldEnum[]
   }
 
 
@@ -3887,6 +3782,111 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationsScalarFieldEnum | NotificationsScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.process
+   */
+  export type User$processArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Process
+     */
+    select?: ProcessSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProcessInclude<ExtArgs> | null
+    where?: ProcessWhereInput
+    orderBy?: ProcessOrderByWithRelationInput | ProcessOrderByWithRelationInput[]
+    cursor?: ProcessWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProcessScalarFieldEnum | ProcessScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.profile
+   */
+  export type User$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Profile
+     */
+    select?: ProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProfileInclude<ExtArgs> | null
+    where?: ProfileWhereInput
+    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
+    cursor?: ProfileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.session
+   */
+  export type User$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.software
+   */
+  export type User$softwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Software
+     */
+    select?: SoftwareSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SoftwareInclude<ExtArgs> | null
+    where?: SoftwareWhereInput
+    orderBy?: SoftwareOrderByWithRelationInput | SoftwareOrderByWithRelationInput[]
+    cursor?: SoftwareWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.userQuests
+   */
+  export type User$userQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserQuests
+     */
+    select?: UserQuestsSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserQuestsInclude<ExtArgs> | null
+    where?: UserQuestsWhereInput
+    orderBy?: UserQuestsOrderByWithRelationInput | UserQuestsOrderByWithRelationInput[]
+    cursor?: UserQuestsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserQuestsScalarFieldEnum | UserQuestsScalarFieldEnum[]
   }
 
 
@@ -4062,18 +4062,18 @@ export namespace Prisma {
     name?: boolean
     started?: boolean
     ended?: boolean
-    software?: boolean | Game$softwareArgs<ExtArgs>
-    hardware?: boolean | Game$hardwareArgs<ExtArgs>
+    accountBook?: boolean | Game$accountBookArgs<ExtArgs>
+    addressBook?: boolean | Game$addressBookArgs<ExtArgs>
     computer?: boolean | Game$computerArgs<ExtArgs>
+    dns?: boolean | Game$dnsArgs<ExtArgs>
+    hardware?: boolean | Game$hardwareArgs<ExtArgs>
+    logs?: boolean | Game$logsArgs<ExtArgs>
     memory?: boolean | Game$memoryArgs<ExtArgs>
     process?: boolean | Game$processArgs<ExtArgs>
-    quests?: boolean | Game$questsArgs<ExtArgs>
-    userQuests?: boolean | Game$userQuestsArgs<ExtArgs>
-    logs?: boolean | Game$logsArgs<ExtArgs>
-    addressBook?: boolean | Game$addressBookArgs<ExtArgs>
-    accountBook?: boolean | Game$accountBookArgs<ExtArgs>
-    dns?: boolean | Game$dnsArgs<ExtArgs>
     profile?: boolean | Game$profileArgs<ExtArgs>
+    quests?: boolean | Game$questsArgs<ExtArgs>
+    software?: boolean | Game$softwareArgs<ExtArgs>
+    userQuests?: boolean | Game$userQuestsArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["game"]>
 
@@ -4085,18 +4085,18 @@ export namespace Prisma {
   }
 
   export type GameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    software?: boolean | Game$softwareArgs<ExtArgs>
-    hardware?: boolean | Game$hardwareArgs<ExtArgs>
+    accountBook?: boolean | Game$accountBookArgs<ExtArgs>
+    addressBook?: boolean | Game$addressBookArgs<ExtArgs>
     computer?: boolean | Game$computerArgs<ExtArgs>
+    dns?: boolean | Game$dnsArgs<ExtArgs>
+    hardware?: boolean | Game$hardwareArgs<ExtArgs>
+    logs?: boolean | Game$logsArgs<ExtArgs>
     memory?: boolean | Game$memoryArgs<ExtArgs>
     process?: boolean | Game$processArgs<ExtArgs>
-    quests?: boolean | Game$questsArgs<ExtArgs>
-    userQuests?: boolean | Game$userQuestsArgs<ExtArgs>
-    logs?: boolean | Game$logsArgs<ExtArgs>
-    addressBook?: boolean | Game$addressBookArgs<ExtArgs>
-    accountBook?: boolean | Game$accountBookArgs<ExtArgs>
-    dns?: boolean | Game$dnsArgs<ExtArgs>
     profile?: boolean | Game$profileArgs<ExtArgs>
+    quests?: boolean | Game$questsArgs<ExtArgs>
+    software?: boolean | Game$softwareArgs<ExtArgs>
+    userQuests?: boolean | Game$userQuestsArgs<ExtArgs>
     _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -4104,18 +4104,18 @@ export namespace Prisma {
   export type $GamePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Game"
     objects: {
-      software: Prisma.$SoftwarePayload<ExtArgs>[]
-      hardware: Prisma.$HardwarePayload<ExtArgs>[]
+      accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
+      addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
       computer: Prisma.$ComputerPayload<ExtArgs>[]
+      dns: Prisma.$DNSPayload<ExtArgs>[]
+      hardware: Prisma.$HardwarePayload<ExtArgs>[]
+      logs: Prisma.$LogsPayload<ExtArgs>[]
       memory: Prisma.$MemoryPayload<ExtArgs>[]
       process: Prisma.$ProcessPayload<ExtArgs>[]
-      quests: Prisma.$QuestsPayload<ExtArgs>[]
-      userQuests: Prisma.$UserQuestsPayload<ExtArgs>[]
-      logs: Prisma.$LogsPayload<ExtArgs>[]
-      addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
-      accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
-      dns: Prisma.$DNSPayload<ExtArgs>[]
       profile: Prisma.$ProfilePayload<ExtArgs>[]
+      quests: Prisma.$QuestsPayload<ExtArgs>[]
+      software: Prisma.$SoftwarePayload<ExtArgs>[]
+      userQuests: Prisma.$UserQuestsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4487,29 +4487,29 @@ export namespace Prisma {
   export interface Prisma__GameClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    software<T extends Game$softwareArgs<ExtArgs> = {}>(args?: Subset<T, Game$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, 'findMany'> | Null>;
+    accountBook<T extends Game$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Game$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    addressBook<T extends Game$addressBookArgs<ExtArgs> = {}>(args?: Subset<T, Game$addressBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressBookPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    computer<T extends Game$computerArgs<ExtArgs> = {}>(args?: Subset<T, Game$computerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    dns<T extends Game$dnsArgs<ExtArgs> = {}>(args?: Subset<T, Game$dnsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DNSPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     hardware<T extends Game$hardwareArgs<ExtArgs> = {}>(args?: Subset<T, Game$hardwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HardwarePayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    computer<T extends Game$computerArgs<ExtArgs> = {}>(args?: Subset<T, Game$computerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findMany'> | Null>;
+    logs<T extends Game$logsArgs<ExtArgs> = {}>(args?: Subset<T, Game$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     memory<T extends Game$memoryArgs<ExtArgs> = {}>(args?: Subset<T, Game$memoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     process<T extends Game$processArgs<ExtArgs> = {}>(args?: Subset<T, Game$processArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProcessPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    profile<T extends Game$profileArgs<ExtArgs> = {}>(args?: Subset<T, Game$profileArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findMany'> | Null>;
+
     quests<T extends Game$questsArgs<ExtArgs> = {}>(args?: Subset<T, Game$questsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestsPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    software<T extends Game$softwareArgs<ExtArgs> = {}>(args?: Subset<T, Game$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, 'findMany'> | Null>;
+
     userQuests<T extends Game$userQuestsArgs<ExtArgs> = {}>(args?: Subset<T, Game$userQuestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserQuestsPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    logs<T extends Game$logsArgs<ExtArgs> = {}>(args?: Subset<T, Game$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    addressBook<T extends Game$addressBookArgs<ExtArgs> = {}>(args?: Subset<T, Game$addressBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressBookPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    accountBook<T extends Game$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Game$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    dns<T extends Game$dnsArgs<ExtArgs> = {}>(args?: Subset<T, Game$dnsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DNSPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    profile<T extends Game$profileArgs<ExtArgs> = {}>(args?: Subset<T, Game$profileArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4855,23 +4855,86 @@ export namespace Prisma {
 
 
   /**
-   * Game.software
+   * Game.accountBook
    */
-  export type Game$softwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Game$accountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Software
+     * Select specific fields to fetch from the AccountBook
      */
-    select?: SoftwareSelect<ExtArgs> | null
+    select?: AccountBookSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SoftwareInclude<ExtArgs> | null
-    where?: SoftwareWhereInput
-    orderBy?: SoftwareOrderByWithRelationInput | SoftwareOrderByWithRelationInput[]
-    cursor?: SoftwareWhereUniqueInput
+    include?: AccountBookInclude<ExtArgs> | null
+    where?: AccountBookWhereInput
+    orderBy?: AccountBookOrderByWithRelationInput | AccountBookOrderByWithRelationInput[]
+    cursor?: AccountBookWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+    distinct?: AccountBookScalarFieldEnum | AccountBookScalarFieldEnum[]
+  }
+
+
+  /**
+   * Game.addressBook
+   */
+  export type Game$addressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddressBook
+     */
+    select?: AddressBookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AddressBookInclude<ExtArgs> | null
+    where?: AddressBookWhereInput
+    orderBy?: AddressBookOrderByWithRelationInput | AddressBookOrderByWithRelationInput[]
+    cursor?: AddressBookWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AddressBookScalarFieldEnum | AddressBookScalarFieldEnum[]
+  }
+
+
+  /**
+   * Game.computer
+   */
+  export type Game$computerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Computer
+     */
+    select?: ComputerSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ComputerInclude<ExtArgs> | null
+    where?: ComputerWhereInput
+    orderBy?: ComputerOrderByWithRelationInput | ComputerOrderByWithRelationInput[]
+    cursor?: ComputerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComputerScalarFieldEnum | ComputerScalarFieldEnum[]
+  }
+
+
+  /**
+   * Game.dns
+   */
+  export type Game$dnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DNS
+     */
+    select?: DNSSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: DNSInclude<ExtArgs> | null
+    where?: DNSWhereInput
+    orderBy?: DNSOrderByWithRelationInput | DNSOrderByWithRelationInput[]
+    cursor?: DNSWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DNSScalarFieldEnum | DNSScalarFieldEnum[]
   }
 
 
@@ -4897,23 +4960,23 @@ export namespace Prisma {
 
 
   /**
-   * Game.computer
+   * Game.logs
    */
-  export type Game$computerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Game$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Computer
+     * Select specific fields to fetch from the Logs
      */
-    select?: ComputerSelect<ExtArgs> | null
+    select?: LogsSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ComputerInclude<ExtArgs> | null
-    where?: ComputerWhereInput
-    orderBy?: ComputerOrderByWithRelationInput | ComputerOrderByWithRelationInput[]
-    cursor?: ComputerWhereUniqueInput
+    include?: LogsInclude<ExtArgs> | null
+    where?: LogsWhereInput
+    orderBy?: LogsOrderByWithRelationInput | LogsOrderByWithRelationInput[]
+    cursor?: LogsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ComputerScalarFieldEnum | ComputerScalarFieldEnum[]
+    distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
   }
 
 
@@ -4960,6 +5023,27 @@ export namespace Prisma {
 
 
   /**
+   * Game.profile
+   */
+  export type Game$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Profile
+     */
+    select?: ProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProfileInclude<ExtArgs> | null
+    where?: ProfileWhereInput
+    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
+    cursor?: ProfileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
+  }
+
+
+  /**
    * Game.quests
    */
   export type Game$questsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4981,6 +5065,27 @@ export namespace Prisma {
 
 
   /**
+   * Game.software
+   */
+  export type Game$softwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Software
+     */
+    select?: SoftwareSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SoftwareInclude<ExtArgs> | null
+    where?: SoftwareWhereInput
+    orderBy?: SoftwareOrderByWithRelationInput | SoftwareOrderByWithRelationInput[]
+    cursor?: SoftwareWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+  }
+
+
+  /**
    * Game.userQuests
    */
   export type Game$userQuestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4998,111 +5103,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserQuestsScalarFieldEnum | UserQuestsScalarFieldEnum[]
-  }
-
-
-  /**
-   * Game.logs
-   */
-  export type Game$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Logs
-     */
-    select?: LogsSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LogsInclude<ExtArgs> | null
-    where?: LogsWhereInput
-    orderBy?: LogsOrderByWithRelationInput | LogsOrderByWithRelationInput[]
-    cursor?: LogsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
-  }
-
-
-  /**
-   * Game.addressBook
-   */
-  export type Game$addressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AddressBook
-     */
-    select?: AddressBookSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: AddressBookInclude<ExtArgs> | null
-    where?: AddressBookWhereInput
-    orderBy?: AddressBookOrderByWithRelationInput | AddressBookOrderByWithRelationInput[]
-    cursor?: AddressBookWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AddressBookScalarFieldEnum | AddressBookScalarFieldEnum[]
-  }
-
-
-  /**
-   * Game.accountBook
-   */
-  export type Game$accountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AccountBook
-     */
-    select?: AccountBookSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: AccountBookInclude<ExtArgs> | null
-    where?: AccountBookWhereInput
-    orderBy?: AccountBookOrderByWithRelationInput | AccountBookOrderByWithRelationInput[]
-    cursor?: AccountBookWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AccountBookScalarFieldEnum | AccountBookScalarFieldEnum[]
-  }
-
-
-  /**
-   * Game.dns
-   */
-  export type Game$dnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DNS
-     */
-    select?: DNSSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: DNSInclude<ExtArgs> | null
-    where?: DNSWhereInput
-    orderBy?: DNSOrderByWithRelationInput | DNSOrderByWithRelationInput[]
-    cursor?: DNSWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DNSScalarFieldEnum | DNSScalarFieldEnum[]
-  }
-
-
-  /**
-   * Game.profile
-   */
-  export type Game$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Profile
-     */
-    select?: ProfileSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ProfileInclude<ExtArgs> | null
-    where?: ProfileWhereInput
-    orderBy?: ProfileOrderByWithRelationInput | ProfileOrderByWithRelationInput[]
-    cursor?: ProfileWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProfileScalarFieldEnum | ProfileScalarFieldEnum[]
   }
 
 
@@ -7260,9 +7260,9 @@ export namespace Prisma {
     ip?: boolean
     data?: boolean
     gameId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["addressBook"]>
 
   export type AddressBookSelectScalar = {
@@ -7276,18 +7276,18 @@ export namespace Prisma {
   }
 
   export type AddressBookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $AddressBookPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AddressBook"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       computer: Prisma.$ComputerPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7662,11 +7662,11 @@ export namespace Prisma {
   export interface Prisma__AddressBookClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8264,9 +8264,9 @@ export namespace Prisma {
     description?: boolean
     updated?: boolean
     created?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dNS"]>
 
   export type DNSSelectScalar = {
@@ -8282,18 +8282,18 @@ export namespace Prisma {
   }
 
   export type DNSInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $DNSPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DNS"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       computer: Prisma.$ComputerPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8670,11 +8670,11 @@ export namespace Prisma {
   export interface Prisma__DNSClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9246,10 +9246,10 @@ export namespace Prisma {
     memoryId?: boolean
     data?: boolean
     gameId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
-    memory?: boolean | MemoryDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    memory?: boolean | MemoryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["accountBook"]>
 
   export type AccountBookSelectScalar = {
@@ -9262,20 +9262,20 @@ export namespace Prisma {
   }
 
   export type AccountBookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
-    memory?: boolean | MemoryDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    memory?: boolean | MemoryDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $AccountBookPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AccountBook"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       computer: Prisma.$ComputerPayload<ExtArgs>
-      memory: Prisma.$MemoryPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      memory: Prisma.$MemoryPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9649,13 +9649,13 @@ export namespace Prisma {
   export interface Prisma__AccountBookClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     memory<T extends MemoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MemoryDefaultArgs<ExtArgs>>): Prisma__MemoryClient<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10208,8 +10208,8 @@ export namespace Prisma {
     userId?: boolean
     gameId?: boolean
     data?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectScalar = {
@@ -10220,16 +10220,16 @@ export namespace Prisma {
   }
 
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10601,9 +10601,9 @@ export namespace Prisma {
   export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -11186,10 +11186,10 @@ export namespace Prisma {
     key?: boolean
     value?: boolean
     data?: boolean
+    accountBook?: boolean | Memory$accountBookArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    accountBook?: boolean | Memory$accountBookArgs<ExtArgs>
     _count?: boolean | MemoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["memory"]>
 
@@ -11205,10 +11205,10 @@ export namespace Prisma {
   }
 
   export type MemoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accountBook?: boolean | Memory$accountBookArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    accountBook?: boolean | Memory$accountBookArgs<ExtArgs>
     _count?: boolean | MemoryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -11216,10 +11216,10 @@ export namespace Prisma {
   export type $MemoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Memory"
     objects: {
+      accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
       computer: Prisma.$ComputerPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
-      accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11595,13 +11595,13 @@ export namespace Prisma {
   export interface Prisma__MemoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    accountBook<T extends Memory$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Memory$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    accountBook<T extends Memory$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Memory$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12205,16 +12205,16 @@ export namespace Prisma {
     data?: boolean
     created?: boolean
     updated?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    accountBook?: boolean | Computer$accountBookArgs<ExtArgs>
+    addressBook?: boolean | Computer$addressBookArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     dns?: boolean | Computer$dnsArgs<ExtArgs>
     hardware?: boolean | Computer$hardwareArgs<ExtArgs>
-    software?: boolean | Computer$softwareArgs<ExtArgs>
+    logs?: boolean | Computer$logsArgs<ExtArgs>
     memory?: boolean | Computer$memoryArgs<ExtArgs>
     process?: boolean | Computer$processArgs<ExtArgs>
-    addressBook?: boolean | Computer$addressBookArgs<ExtArgs>
-    accountBook?: boolean | Computer$accountBookArgs<ExtArgs>
-    logs?: boolean | Computer$logsArgs<ExtArgs>
+    software?: boolean | Computer$softwareArgs<ExtArgs>
     _count?: boolean | ComputerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["computer"]>
 
@@ -12230,16 +12230,16 @@ export namespace Prisma {
   }
 
   export type ComputerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    accountBook?: boolean | Computer$accountBookArgs<ExtArgs>
+    addressBook?: boolean | Computer$addressBookArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
     dns?: boolean | Computer$dnsArgs<ExtArgs>
     hardware?: boolean | Computer$hardwareArgs<ExtArgs>
-    software?: boolean | Computer$softwareArgs<ExtArgs>
+    logs?: boolean | Computer$logsArgs<ExtArgs>
     memory?: boolean | Computer$memoryArgs<ExtArgs>
     process?: boolean | Computer$processArgs<ExtArgs>
-    addressBook?: boolean | Computer$addressBookArgs<ExtArgs>
-    accountBook?: boolean | Computer$accountBookArgs<ExtArgs>
-    logs?: boolean | Computer$logsArgs<ExtArgs>
+    software?: boolean | Computer$softwareArgs<ExtArgs>
     _count?: boolean | ComputerCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -12247,16 +12247,16 @@ export namespace Prisma {
   export type $ComputerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Computer"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
+      addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
       dns: Prisma.$DNSPayload<ExtArgs>[]
       hardware: Prisma.$HardwarePayload<ExtArgs>[]
-      software: Prisma.$SoftwarePayload<ExtArgs>[]
+      logs: Prisma.$LogsPayload<ExtArgs>[]
       memory: Prisma.$MemoryPayload<ExtArgs>[]
       process: Prisma.$ProcessPayload<ExtArgs>[]
-      addressBook: Prisma.$AddressBookPayload<ExtArgs>[]
-      accountBook: Prisma.$AccountBookPayload<ExtArgs>[]
-      logs: Prisma.$LogsPayload<ExtArgs>[]
+      software: Prisma.$SoftwarePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12632,25 +12632,25 @@ export namespace Prisma {
   export interface Prisma__ComputerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    accountBook<T extends Computer$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Computer$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    addressBook<T extends Computer$addressBookArgs<ExtArgs> = {}>(args?: Subset<T, Computer$addressBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressBookPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     dns<T extends Computer$dnsArgs<ExtArgs> = {}>(args?: Subset<T, Computer$dnsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DNSPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     hardware<T extends Computer$hardwareArgs<ExtArgs> = {}>(args?: Subset<T, Computer$hardwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HardwarePayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    software<T extends Computer$softwareArgs<ExtArgs> = {}>(args?: Subset<T, Computer$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, 'findMany'> | Null>;
+    logs<T extends Computer$logsArgs<ExtArgs> = {}>(args?: Subset<T, Computer$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     memory<T extends Computer$memoryArgs<ExtArgs> = {}>(args?: Subset<T, Computer$memoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     process<T extends Computer$processArgs<ExtArgs> = {}>(args?: Subset<T, Computer$processArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProcessPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    addressBook<T extends Computer$addressBookArgs<ExtArgs> = {}>(args?: Subset<T, Computer$addressBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressBookPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    accountBook<T extends Computer$accountBookArgs<ExtArgs> = {}>(args?: Subset<T, Computer$accountBookArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountBookPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    logs<T extends Computer$logsArgs<ExtArgs> = {}>(args?: Subset<T, Computer$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogsPayload<ExtArgs>, T, 'findMany'> | Null>;
+    software<T extends Computer$softwareArgs<ExtArgs> = {}>(args?: Subset<T, Computer$softwareArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoftwarePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -13000,6 +13000,48 @@ export namespace Prisma {
 
 
   /**
+   * Computer.accountBook
+   */
+  export type Computer$accountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccountBook
+     */
+    select?: AccountBookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AccountBookInclude<ExtArgs> | null
+    where?: AccountBookWhereInput
+    orderBy?: AccountBookOrderByWithRelationInput | AccountBookOrderByWithRelationInput[]
+    cursor?: AccountBookWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccountBookScalarFieldEnum | AccountBookScalarFieldEnum[]
+  }
+
+
+  /**
+   * Computer.addressBook
+   */
+  export type Computer$addressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddressBook
+     */
+    select?: AddressBookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AddressBookInclude<ExtArgs> | null
+    where?: AddressBookWhereInput
+    orderBy?: AddressBookOrderByWithRelationInput | AddressBookOrderByWithRelationInput[]
+    cursor?: AddressBookWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AddressBookScalarFieldEnum | AddressBookScalarFieldEnum[]
+  }
+
+
+  /**
    * Computer.dns
    */
   export type Computer$dnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13042,23 +13084,23 @@ export namespace Prisma {
 
 
   /**
-   * Computer.software
+   * Computer.logs
    */
-  export type Computer$softwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Computer$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Software
+     * Select specific fields to fetch from the Logs
      */
-    select?: SoftwareSelect<ExtArgs> | null
+    select?: LogsSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: SoftwareInclude<ExtArgs> | null
-    where?: SoftwareWhereInput
-    orderBy?: SoftwareOrderByWithRelationInput | SoftwareOrderByWithRelationInput[]
-    cursor?: SoftwareWhereUniqueInput
+    include?: LogsInclude<ExtArgs> | null
+    where?: LogsWhereInput
+    orderBy?: LogsOrderByWithRelationInput | LogsOrderByWithRelationInput[]
+    cursor?: LogsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
+    distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
   }
 
 
@@ -13105,65 +13147,23 @@ export namespace Prisma {
 
 
   /**
-   * Computer.addressBook
+   * Computer.software
    */
-  export type Computer$addressBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Computer$softwareArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AddressBook
+     * Select specific fields to fetch from the Software
      */
-    select?: AddressBookSelect<ExtArgs> | null
+    select?: SoftwareSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: AddressBookInclude<ExtArgs> | null
-    where?: AddressBookWhereInput
-    orderBy?: AddressBookOrderByWithRelationInput | AddressBookOrderByWithRelationInput[]
-    cursor?: AddressBookWhereUniqueInput
+    include?: SoftwareInclude<ExtArgs> | null
+    where?: SoftwareWhereInput
+    orderBy?: SoftwareOrderByWithRelationInput | SoftwareOrderByWithRelationInput[]
+    cursor?: SoftwareWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: AddressBookScalarFieldEnum | AddressBookScalarFieldEnum[]
-  }
-
-
-  /**
-   * Computer.accountBook
-   */
-  export type Computer$accountBookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AccountBook
-     */
-    select?: AccountBookSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: AccountBookInclude<ExtArgs> | null
-    where?: AccountBookWhereInput
-    orderBy?: AccountBookOrderByWithRelationInput | AccountBookOrderByWithRelationInput[]
-    cursor?: AccountBookWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AccountBookScalarFieldEnum | AccountBookScalarFieldEnum[]
-  }
-
-
-  /**
-   * Computer.logs
-   */
-  export type Computer$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Logs
-     */
-    select?: LogsSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: LogsInclude<ExtArgs> | null
-    where?: LogsWhereInput
-    orderBy?: LogsOrderByWithRelationInput | LogsOrderByWithRelationInput[]
-    cursor?: LogsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
+    distinct?: SoftwareScalarFieldEnum | SoftwareScalarFieldEnum[]
   }
 
 
@@ -14350,9 +14350,9 @@ export namespace Prisma {
     completed?: boolean
     created?: boolean
     updated?: boolean
+    game?: boolean | GameDefaultArgs<ExtArgs>
     quest?: boolean | QuestsDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userQuests"]>
 
   export type UserQuestsSelectScalar = {
@@ -14366,18 +14366,18 @@ export namespace Prisma {
   }
 
   export type UserQuestsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    game?: boolean | GameDefaultArgs<ExtArgs>
     quest?: boolean | QuestsDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
   }
 
 
   export type $UserQuestsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserQuests"
     objects: {
+      game: Prisma.$GamePayload<ExtArgs>
       quest: Prisma.$QuestsPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
-      game: Prisma.$GamePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -14752,11 +14752,11 @@ export namespace Prisma {
   export interface Prisma__UserQuestsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
     quest<T extends QuestsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestsDefaultArgs<ExtArgs>>): Prisma__QuestsClient<$Result.GetResult<Prisma.$QuestsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -15390,9 +15390,9 @@ export namespace Prisma {
     created?: boolean
     updated?: boolean
     data?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["software"]>
 
   export type SoftwareSelectScalar = {
@@ -15412,18 +15412,18 @@ export namespace Prisma {
   }
 
   export type SoftwareInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $SoftwarePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Software"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       computer: Prisma.$ComputerPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -15804,11 +15804,11 @@ export namespace Prisma {
   export interface Prisma__SoftwareClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16404,9 +16404,9 @@ export namespace Prisma {
     started?: boolean
     completion?: boolean
     data?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["process"]>
 
   export type ProcessSelectScalar = {
@@ -16422,18 +16422,18 @@ export namespace Prisma {
   }
 
   export type ProcessInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $ProcessPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Process"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       computer: Prisma.$ComputerPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -16810,11 +16810,11 @@ export namespace Prisma {
   export interface Prisma__ProcessClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -18358,9 +18358,9 @@ export namespace Prisma {
     gameId?: boolean
     message?: boolean
     created?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["logs"]>
 
   export type LogsSelectScalar = {
@@ -18375,18 +18375,18 @@ export namespace Prisma {
   }
 
   export type LogsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     computer?: boolean | ComputerDefaultArgs<ExtArgs>
     game?: boolean | GameDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
 
   export type $LogsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Logs"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       computer: Prisma.$ComputerPayload<ExtArgs>
       game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -18762,11 +18762,11 @@ export namespace Prisma {
   export interface Prisma__LogsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     computer<T extends ComputerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComputerDefaultArgs<ExtArgs>>): Prisma__ComputerClient<$Result.GetResult<Prisma.$ComputerPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -19536,18 +19536,18 @@ export namespace Prisma {
     created?: DateTimeFilter<"User"> | Date | string
     refreshToken?: StringNullableFilter<"User"> | string | null
     group?: EnumGroupsFilter<"User"> | $Enums.Groups
-    session?: SessionListRelationFilter
-    computer?: ComputerListRelationFilter
-    software?: SoftwareListRelationFilter
-    memory?: MemoryListRelationFilter
-    process?: ProcessListRelationFilter
-    userQuests?: UserQuestsListRelationFilter
-    addressBook?: AddressBookListRelationFilter
     accountBook?: AccountBookListRelationFilter
-    logs?: LogsListRelationFilter
+    addressBook?: AddressBookListRelationFilter
+    computer?: ComputerListRelationFilter
     dns?: DNSListRelationFilter
-    profile?: ProfileListRelationFilter
+    logs?: LogsListRelationFilter
+    memory?: MemoryListRelationFilter
     notifications?: NotificationsListRelationFilter
+    process?: ProcessListRelationFilter
+    profile?: ProfileListRelationFilter
+    session?: SessionListRelationFilter
+    software?: SoftwareListRelationFilter
+    userQuests?: UserQuestsListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19560,18 +19560,18 @@ export namespace Prisma {
     created?: SortOrder
     refreshToken?: SortOrderInput | SortOrder
     group?: SortOrder
-    session?: SessionOrderByRelationAggregateInput
-    computer?: ComputerOrderByRelationAggregateInput
-    software?: SoftwareOrderByRelationAggregateInput
-    memory?: MemoryOrderByRelationAggregateInput
-    process?: ProcessOrderByRelationAggregateInput
-    userQuests?: UserQuestsOrderByRelationAggregateInput
-    addressBook?: AddressBookOrderByRelationAggregateInput
     accountBook?: AccountBookOrderByRelationAggregateInput
-    logs?: LogsOrderByRelationAggregateInput
+    addressBook?: AddressBookOrderByRelationAggregateInput
+    computer?: ComputerOrderByRelationAggregateInput
     dns?: DNSOrderByRelationAggregateInput
-    profile?: ProfileOrderByRelationAggregateInput
+    logs?: LogsOrderByRelationAggregateInput
+    memory?: MemoryOrderByRelationAggregateInput
     notifications?: NotificationsOrderByRelationAggregateInput
+    process?: ProcessOrderByRelationAggregateInput
+    profile?: ProfileOrderByRelationAggregateInput
+    session?: SessionOrderByRelationAggregateInput
+    software?: SoftwareOrderByRelationAggregateInput
+    userQuests?: UserQuestsOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19587,18 +19587,18 @@ export namespace Prisma {
     created?: DateTimeFilter<"User"> | Date | string
     refreshToken?: StringNullableFilter<"User"> | string | null
     group?: EnumGroupsFilter<"User"> | $Enums.Groups
-    session?: SessionListRelationFilter
-    computer?: ComputerListRelationFilter
-    software?: SoftwareListRelationFilter
-    memory?: MemoryListRelationFilter
-    process?: ProcessListRelationFilter
-    userQuests?: UserQuestsListRelationFilter
-    addressBook?: AddressBookListRelationFilter
     accountBook?: AccountBookListRelationFilter
-    logs?: LogsListRelationFilter
+    addressBook?: AddressBookListRelationFilter
+    computer?: ComputerListRelationFilter
     dns?: DNSListRelationFilter
-    profile?: ProfileListRelationFilter
+    logs?: LogsListRelationFilter
+    memory?: MemoryListRelationFilter
     notifications?: NotificationsListRelationFilter
+    process?: ProcessListRelationFilter
+    profile?: ProfileListRelationFilter
+    session?: SessionListRelationFilter
+    software?: SoftwareListRelationFilter
+    userQuests?: UserQuestsListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -19641,18 +19641,18 @@ export namespace Prisma {
     name?: StringFilter<"Game"> | string
     started?: DateTimeFilter<"Game"> | Date | string
     ended?: DateTimeNullableFilter<"Game"> | Date | string | null
-    software?: SoftwareListRelationFilter
-    hardware?: HardwareListRelationFilter
+    accountBook?: AccountBookListRelationFilter
+    addressBook?: AddressBookListRelationFilter
     computer?: ComputerListRelationFilter
+    dns?: DNSListRelationFilter
+    hardware?: HardwareListRelationFilter
+    logs?: LogsListRelationFilter
     memory?: MemoryListRelationFilter
     process?: ProcessListRelationFilter
-    quests?: QuestsListRelationFilter
-    userQuests?: UserQuestsListRelationFilter
-    logs?: LogsListRelationFilter
-    addressBook?: AddressBookListRelationFilter
-    accountBook?: AccountBookListRelationFilter
-    dns?: DNSListRelationFilter
     profile?: ProfileListRelationFilter
+    quests?: QuestsListRelationFilter
+    software?: SoftwareListRelationFilter
+    userQuests?: UserQuestsListRelationFilter
   }
 
   export type GameOrderByWithRelationInput = {
@@ -19660,18 +19660,18 @@ export namespace Prisma {
     name?: SortOrder
     started?: SortOrder
     ended?: SortOrderInput | SortOrder
-    software?: SoftwareOrderByRelationAggregateInput
-    hardware?: HardwareOrderByRelationAggregateInput
+    accountBook?: AccountBookOrderByRelationAggregateInput
+    addressBook?: AddressBookOrderByRelationAggregateInput
     computer?: ComputerOrderByRelationAggregateInput
+    dns?: DNSOrderByRelationAggregateInput
+    hardware?: HardwareOrderByRelationAggregateInput
+    logs?: LogsOrderByRelationAggregateInput
     memory?: MemoryOrderByRelationAggregateInput
     process?: ProcessOrderByRelationAggregateInput
-    quests?: QuestsOrderByRelationAggregateInput
-    userQuests?: UserQuestsOrderByRelationAggregateInput
-    logs?: LogsOrderByRelationAggregateInput
-    addressBook?: AddressBookOrderByRelationAggregateInput
-    accountBook?: AccountBookOrderByRelationAggregateInput
-    dns?: DNSOrderByRelationAggregateInput
     profile?: ProfileOrderByRelationAggregateInput
+    quests?: QuestsOrderByRelationAggregateInput
+    software?: SoftwareOrderByRelationAggregateInput
+    userQuests?: UserQuestsOrderByRelationAggregateInput
   }
 
   export type GameWhereUniqueInput = Prisma.AtLeast<{
@@ -19682,18 +19682,18 @@ export namespace Prisma {
     name?: StringFilter<"Game"> | string
     started?: DateTimeFilter<"Game"> | Date | string
     ended?: DateTimeNullableFilter<"Game"> | Date | string | null
-    software?: SoftwareListRelationFilter
-    hardware?: HardwareListRelationFilter
+    accountBook?: AccountBookListRelationFilter
+    addressBook?: AddressBookListRelationFilter
     computer?: ComputerListRelationFilter
+    dns?: DNSListRelationFilter
+    hardware?: HardwareListRelationFilter
+    logs?: LogsListRelationFilter
     memory?: MemoryListRelationFilter
     process?: ProcessListRelationFilter
-    quests?: QuestsListRelationFilter
-    userQuests?: UserQuestsListRelationFilter
-    logs?: LogsListRelationFilter
-    addressBook?: AddressBookListRelationFilter
-    accountBook?: AccountBookListRelationFilter
-    dns?: DNSListRelationFilter
     profile?: ProfileListRelationFilter
+    quests?: QuestsListRelationFilter
+    software?: SoftwareListRelationFilter
+    userQuests?: UserQuestsListRelationFilter
   }, "id">
 
   export type GameOrderByWithAggregationInput = {
@@ -19849,9 +19849,9 @@ export namespace Prisma {
     ip?: StringFilter<"AddressBook"> | string
     data?: JsonFilter<"AddressBook">
     gameId?: StringFilter<"AddressBook"> | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type AddressBookOrderByWithRelationInput = {
@@ -19862,9 +19862,9 @@ export namespace Prisma {
     ip?: SortOrder
     data?: SortOrder
     gameId?: SortOrder
-    user?: UserOrderByWithRelationInput
     computer?: ComputerOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type AddressBookWhereUniqueInput = Prisma.AtLeast<{
@@ -19878,9 +19878,9 @@ export namespace Prisma {
     ip?: StringFilter<"AddressBook"> | string
     data?: JsonFilter<"AddressBook">
     gameId?: StringFilter<"AddressBook"> | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type AddressBookOrderByWithAggregationInput = {
@@ -19924,9 +19924,9 @@ export namespace Prisma {
     description?: StringFilter<"DNS"> | string
     updated?: DateTimeFilter<"DNS"> | Date | string
     created?: DateTimeFilter<"DNS"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type DNSOrderByWithRelationInput = {
@@ -19939,9 +19939,9 @@ export namespace Prisma {
     description?: SortOrder
     updated?: SortOrder
     created?: SortOrder
-    user?: UserOrderByWithRelationInput
     computer?: ComputerOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type DNSWhereUniqueInput = Prisma.AtLeast<{
@@ -19957,9 +19957,9 @@ export namespace Prisma {
     description?: StringFilter<"DNS"> | string
     updated?: DateTimeFilter<"DNS"> | Date | string
     created?: DateTimeFilter<"DNS"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type DNSOrderByWithAggregationInput = {
@@ -20004,10 +20004,10 @@ export namespace Prisma {
     memoryId?: StringFilter<"AccountBook"> | string
     data?: JsonFilter<"AccountBook">
     gameId?: StringFilter<"AccountBook"> | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
-    memory?: XOR<MemoryRelationFilter, MemoryWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    memory?: XOR<MemoryRelationFilter, MemoryWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type AccountBookOrderByWithRelationInput = {
@@ -20017,10 +20017,10 @@ export namespace Prisma {
     memoryId?: SortOrder
     data?: SortOrder
     gameId?: SortOrder
-    user?: UserOrderByWithRelationInput
     computer?: ComputerOrderByWithRelationInput
-    memory?: MemoryOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    memory?: MemoryOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type AccountBookWhereUniqueInput = Prisma.AtLeast<{
@@ -20033,10 +20033,10 @@ export namespace Prisma {
     memoryId?: StringFilter<"AccountBook"> | string
     data?: JsonFilter<"AccountBook">
     gameId?: StringFilter<"AccountBook"> | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
-    memory?: XOR<MemoryRelationFilter, MemoryWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    memory?: XOR<MemoryRelationFilter, MemoryWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type AccountBookOrderByWithAggregationInput = {
@@ -20073,8 +20073,8 @@ export namespace Prisma {
     userId?: IntFilter<"Profile"> | number
     gameId?: StringFilter<"Profile"> | string
     data?: JsonFilter<"Profile">
-    user?: XOR<UserRelationFilter, UserWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -20082,8 +20082,8 @@ export namespace Prisma {
     userId?: SortOrder
     gameId?: SortOrder
     data?: SortOrder
-    user?: UserOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -20094,8 +20094,8 @@ export namespace Prisma {
     userId?: IntFilter<"Profile"> | number
     gameId?: StringFilter<"Profile"> | string
     data?: JsonFilter<"Profile">
-    user?: XOR<UserRelationFilter, UserWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type ProfileOrderByWithAggregationInput = {
@@ -20132,10 +20132,10 @@ export namespace Prisma {
     key?: StringFilter<"Memory"> | string
     value?: FloatNullableFilter<"Memory"> | number | null
     data?: JsonFilter<"Memory">
+    accountBook?: AccountBookListRelationFilter
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
-    accountBook?: AccountBookListRelationFilter
   }
 
   export type MemoryOrderByWithRelationInput = {
@@ -20147,10 +20147,10 @@ export namespace Prisma {
     key?: SortOrder
     value?: SortOrderInput | SortOrder
     data?: SortOrder
+    accountBook?: AccountBookOrderByRelationAggregateInput
     computer?: ComputerOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
-    accountBook?: AccountBookOrderByRelationAggregateInput
   }
 
   export type MemoryWhereUniqueInput = Prisma.AtLeast<{
@@ -20165,10 +20165,10 @@ export namespace Prisma {
     key?: StringFilter<"Memory"> | string
     value?: FloatNullableFilter<"Memory"> | number | null
     data?: JsonFilter<"Memory">
+    accountBook?: AccountBookListRelationFilter
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
-    accountBook?: AccountBookListRelationFilter
   }, "id">
 
   export type MemoryOrderByWithAggregationInput = {
@@ -20213,16 +20213,16 @@ export namespace Prisma {
     data?: JsonFilter<"Computer">
     created?: DateTimeFilter<"Computer"> | Date | string
     updated?: DateTimeFilter<"Computer"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    accountBook?: AccountBookListRelationFilter
+    addressBook?: AddressBookListRelationFilter
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
     dns?: DNSListRelationFilter
     hardware?: HardwareListRelationFilter
-    software?: SoftwareListRelationFilter
+    logs?: LogsListRelationFilter
     memory?: MemoryListRelationFilter
     process?: ProcessListRelationFilter
-    addressBook?: AddressBookListRelationFilter
-    accountBook?: AccountBookListRelationFilter
-    logs?: LogsListRelationFilter
+    software?: SoftwareListRelationFilter
   }
 
   export type ComputerOrderByWithRelationInput = {
@@ -20234,16 +20234,16 @@ export namespace Prisma {
     data?: SortOrder
     created?: SortOrder
     updated?: SortOrder
-    user?: UserOrderByWithRelationInput
+    accountBook?: AccountBookOrderByRelationAggregateInput
+    addressBook?: AddressBookOrderByRelationAggregateInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
     dns?: DNSOrderByRelationAggregateInput
     hardware?: HardwareOrderByRelationAggregateInput
-    software?: SoftwareOrderByRelationAggregateInput
+    logs?: LogsOrderByRelationAggregateInput
     memory?: MemoryOrderByRelationAggregateInput
     process?: ProcessOrderByRelationAggregateInput
-    addressBook?: AddressBookOrderByRelationAggregateInput
-    accountBook?: AccountBookOrderByRelationAggregateInput
-    logs?: LogsOrderByRelationAggregateInput
+    software?: SoftwareOrderByRelationAggregateInput
   }
 
   export type ComputerWhereUniqueInput = Prisma.AtLeast<{
@@ -20258,16 +20258,16 @@ export namespace Prisma {
     data?: JsonFilter<"Computer">
     created?: DateTimeFilter<"Computer"> | Date | string
     updated?: DateTimeFilter<"Computer"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
+    accountBook?: AccountBookListRelationFilter
+    addressBook?: AddressBookListRelationFilter
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
     dns?: DNSListRelationFilter
     hardware?: HardwareListRelationFilter
-    software?: SoftwareListRelationFilter
+    logs?: LogsListRelationFilter
     memory?: MemoryListRelationFilter
     process?: ProcessListRelationFilter
-    addressBook?: AddressBookListRelationFilter
-    accountBook?: AccountBookListRelationFilter
-    logs?: LogsListRelationFilter
+    software?: SoftwareListRelationFilter
   }, "id">
 
   export type ComputerOrderByWithAggregationInput = {
@@ -20374,9 +20374,9 @@ export namespace Prisma {
     completed?: BoolFilter<"UserQuests"> | boolean
     created?: DateTimeFilter<"UserQuests"> | Date | string
     updated?: DateTimeFilter<"UserQuests"> | Date | string
+    game?: XOR<GameRelationFilter, GameWhereInput>
     quest?: XOR<QuestsRelationFilter, QuestsWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
-    game?: XOR<GameRelationFilter, GameWhereInput>
   }
 
   export type UserQuestsOrderByWithRelationInput = {
@@ -20387,9 +20387,9 @@ export namespace Prisma {
     completed?: SortOrder
     created?: SortOrder
     updated?: SortOrder
+    game?: GameOrderByWithRelationInput
     quest?: QuestsOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
-    game?: GameOrderByWithRelationInput
   }
 
   export type UserQuestsWhereUniqueInput = Prisma.AtLeast<{
@@ -20403,9 +20403,9 @@ export namespace Prisma {
     completed?: BoolFilter<"UserQuests"> | boolean
     created?: DateTimeFilter<"UserQuests"> | Date | string
     updated?: DateTimeFilter<"UserQuests"> | Date | string
+    game?: XOR<GameRelationFilter, GameWhereInput>
     quest?: XOR<QuestsRelationFilter, QuestsWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
-    game?: XOR<GameRelationFilter, GameWhereInput>
   }, "id">
 
   export type UserQuestsOrderByWithAggregationInput = {
@@ -20453,9 +20453,9 @@ export namespace Prisma {
     created?: DateTimeFilter<"Software"> | Date | string
     updated?: DateTimeFilter<"Software"> | Date | string
     data?: JsonFilter<"Software">
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type SoftwareOrderByWithRelationInput = {
@@ -20472,9 +20472,9 @@ export namespace Prisma {
     created?: SortOrder
     updated?: SortOrder
     data?: SortOrder
-    user?: UserOrderByWithRelationInput
     computer?: ComputerOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type SoftwareWhereUniqueInput = Prisma.AtLeast<{
@@ -20494,9 +20494,9 @@ export namespace Prisma {
     created?: DateTimeFilter<"Software"> | Date | string
     updated?: DateTimeFilter<"Software"> | Date | string
     data?: JsonFilter<"Software">
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type SoftwareOrderByWithAggregationInput = {
@@ -20552,9 +20552,9 @@ export namespace Prisma {
     started?: DateTimeFilter<"Process"> | Date | string
     completion?: DateTimeFilter<"Process"> | Date | string
     data?: JsonFilter<"Process">
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type ProcessOrderByWithRelationInput = {
@@ -20567,9 +20567,9 @@ export namespace Prisma {
     started?: SortOrder
     completion?: SortOrder
     data?: SortOrder
-    user?: UserOrderByWithRelationInput
     computer?: ComputerOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ProcessWhereUniqueInput = Prisma.AtLeast<{
@@ -20585,9 +20585,9 @@ export namespace Prisma {
     started?: DateTimeFilter<"Process"> | Date | string
     completion?: DateTimeFilter<"Process"> | Date | string
     data?: JsonFilter<"Process">
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type ProcessOrderByWithAggregationInput = {
@@ -20691,9 +20691,9 @@ export namespace Prisma {
     gameId?: StringFilter<"Logs"> | string
     message?: StringFilter<"Logs"> | string
     created?: DateTimeFilter<"Logs"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type LogsOrderByWithRelationInput = {
@@ -20705,9 +20705,9 @@ export namespace Prisma {
     gameId?: SortOrder
     message?: SortOrder
     created?: SortOrder
-    user?: UserOrderByWithRelationInput
     computer?: ComputerOrderByWithRelationInput
     game?: GameOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type LogsWhereUniqueInput = Prisma.AtLeast<{
@@ -20722,9 +20722,9 @@ export namespace Prisma {
     gameId?: StringFilter<"Logs"> | string
     message?: StringFilter<"Logs"> | string
     created?: DateTimeFilter<"Logs"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
     computer?: XOR<ComputerRelationFilter, ComputerWhereInput>
     game?: XOR<GameRelationFilter, GameWhereInput>
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type LogsOrderByWithAggregationInput = {
@@ -20766,18 +20766,18 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20790,18 +20790,18 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20813,18 +20813,18 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20837,18 +20837,18 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20891,18 +20891,18 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateInput = {
@@ -20910,18 +20910,18 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameUpdateInput = {
@@ -20929,18 +20929,18 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
     computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
     memory?: MemoryUpdateManyWithoutGameNestedInput
     process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
     profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
   }
 
   export type GameUncheckedUpdateInput = {
@@ -20948,18 +20948,18 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
     process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
     profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type GameCreateManyInput = {
@@ -21100,9 +21100,9 @@ export namespace Prisma {
     access: $Enums.AccessLevel
     ip: string
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAddressBookInput
     computer: ComputerCreateNestedOneWithoutAddressBookInput
     game: GameCreateNestedOneWithoutAddressBookInput
+    user: UserCreateNestedOneWithoutAddressBookInput
   }
 
   export type AddressBookUncheckedCreateInput = {
@@ -21119,9 +21119,9 @@ export namespace Prisma {
     access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
     ip?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAddressBookNestedInput
     computer?: ComputerUpdateOneRequiredWithoutAddressBookNestedInput
     game?: GameUpdateOneRequiredWithoutAddressBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAddressBookNestedInput
   }
 
   export type AddressBookUncheckedUpdateInput = {
@@ -21166,9 +21166,9 @@ export namespace Prisma {
     description?: string
     updated?: Date | string
     created?: Date | string
-    user: UserCreateNestedOneWithoutDnsInput
     computer: ComputerCreateNestedOneWithoutDnsInput
     game: GameCreateNestedOneWithoutDnsInput
+    user: UserCreateNestedOneWithoutDnsInput
   }
 
   export type DNSUncheckedCreateInput = {
@@ -21189,9 +21189,9 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutDnsNestedInput
     computer?: ComputerUpdateOneRequiredWithoutDnsNestedInput
     game?: GameUpdateOneRequiredWithoutDnsNestedInput
+    user?: UserUpdateOneRequiredWithoutDnsNestedInput
   }
 
   export type DNSUncheckedUpdateInput = {
@@ -21240,10 +21240,10 @@ export namespace Prisma {
 
   export type AccountBookCreateInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAccountBookInput
     computer: ComputerCreateNestedOneWithoutAccountBookInput
-    memory: MemoryCreateNestedOneWithoutAccountBookInput
     game: GameCreateNestedOneWithoutAccountBookInput
+    memory: MemoryCreateNestedOneWithoutAccountBookInput
+    user: UserCreateNestedOneWithoutAccountBookInput
   }
 
   export type AccountBookUncheckedCreateInput = {
@@ -21257,10 +21257,10 @@ export namespace Prisma {
 
   export type AccountBookUpdateInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
     computer?: ComputerUpdateOneRequiredWithoutAccountBookNestedInput
-    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
     game?: GameUpdateOneRequiredWithoutAccountBookNestedInput
+    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
   }
 
   export type AccountBookUncheckedUpdateInput = {
@@ -21296,8 +21296,8 @@ export namespace Prisma {
 
   export type ProfileCreateInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutProfileInput
     game: GameCreateNestedOneWithoutProfileInput
+    user: UserCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -21309,8 +21309,8 @@ export namespace Prisma {
 
   export type ProfileUpdateInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutProfileNestedInput
     game?: GameUpdateOneRequiredWithoutProfileNestedInput
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -21344,10 +21344,10 @@ export namespace Prisma {
     key: string
     value?: number | null
     data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
     computer: ComputerCreateNestedOneWithoutMemoryInput
     game: GameCreateNestedOneWithoutMemoryInput
     user: UserCreateNestedOneWithoutMemoryInput
-    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
   }
 
   export type MemoryUncheckedCreateInput = {
@@ -21368,10 +21368,10 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     value?: NullableFloatFieldUpdateOperationsInput | number | null
     data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
     computer?: ComputerUpdateOneRequiredWithoutMemoryNestedInput
     game?: GameUpdateOneRequiredWithoutMemoryNestedInput
     user?: UserUpdateOneRequiredWithoutMemoryNestedInput
-    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
   }
 
   export type MemoryUncheckedUpdateInput = {
@@ -21423,16 +21423,16 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateInput = {
@@ -21444,14 +21444,14 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUpdateInput = {
@@ -21461,16 +21461,16 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
     dns?: DNSUpdateManyWithoutComputerNestedInput
     hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
     memory?: MemoryUpdateManyWithoutComputerNestedInput
     process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateInput = {
@@ -21482,14 +21482,14 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
     hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerCreateManyInput = {
@@ -21594,9 +21594,9 @@ export namespace Prisma {
     completed: boolean
     created?: Date | string
     updated?: Date | string
+    game: GameCreateNestedOneWithoutUserQuestsInput
     quest: QuestsCreateNestedOneWithoutUserQuestsInput
     user: UserCreateNestedOneWithoutUserQuestsInput
-    game: GameCreateNestedOneWithoutUserQuestsInput
   }
 
   export type UserQuestsUncheckedCreateInput = {
@@ -21614,9 +21614,9 @@ export namespace Prisma {
     completed?: BoolFieldUpdateOperationsInput | boolean
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    game?: GameUpdateOneRequiredWithoutUserQuestsNestedInput
     quest?: QuestsUpdateOneRequiredWithoutUserQuestsNestedInput
     user?: UserUpdateOneRequiredWithoutUserQuestsNestedInput
-    game?: GameUpdateOneRequiredWithoutUserQuestsNestedInput
   }
 
   export type UserQuestsUncheckedUpdateInput = {
@@ -21667,9 +21667,9 @@ export namespace Prisma {
     created?: Date | string
     updated?: Date | string
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutSoftwareInput
     computer: ComputerCreateNestedOneWithoutSoftwareInput
     game: GameCreateNestedOneWithoutSoftwareInput
+    user: UserCreateNestedOneWithoutSoftwareInput
   }
 
   export type SoftwareUncheckedCreateInput = {
@@ -21699,9 +21699,9 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutSoftwareNestedInput
     computer?: ComputerUpdateOneRequiredWithoutSoftwareNestedInput
     game?: GameUpdateOneRequiredWithoutSoftwareNestedInput
+    user?: UserUpdateOneRequiredWithoutSoftwareNestedInput
   }
 
   export type SoftwareUncheckedUpdateInput = {
@@ -21772,9 +21772,9 @@ export namespace Prisma {
     started?: Date | string
     completion: Date | string
     data: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutProcessInput
     computer: ComputerCreateNestedOneWithoutProcessInput
     game: GameCreateNestedOneWithoutProcessInput
+    user: UserCreateNestedOneWithoutProcessInput
   }
 
   export type ProcessUncheckedCreateInput = {
@@ -21796,9 +21796,9 @@ export namespace Prisma {
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     completion?: DateTimeFieldUpdateOperationsInput | Date | string
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutProcessNestedInput
     computer?: ComputerUpdateOneRequiredWithoutProcessNestedInput
     game?: GameUpdateOneRequiredWithoutProcessNestedInput
+    user?: UserUpdateOneRequiredWithoutProcessNestedInput
   }
 
   export type ProcessUncheckedUpdateInput = {
@@ -21903,9 +21903,9 @@ export namespace Prisma {
     senderIp: string
     message: string
     created?: Date | string
-    user: UserCreateNestedOneWithoutLogsInput
     computer: ComputerCreateNestedOneWithoutLogsInput
     game: GameCreateNestedOneWithoutLogsInput
+    user: UserCreateNestedOneWithoutLogsInput
   }
 
   export type LogsUncheckedCreateInput = {
@@ -21924,9 +21924,9 @@ export namespace Prisma {
     senderIp?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutLogsNestedInput
     computer?: ComputerUpdateOneRequiredWithoutLogsNestedInput
     game?: GameUpdateOneRequiredWithoutLogsNestedInput
+    user?: UserUpdateOneRequiredWithoutLogsNestedInput
   }
 
   export type LogsUncheckedUpdateInput = {
@@ -22028,40 +22028,10 @@ export namespace Prisma {
     not?: NestedEnumGroupsFilter<$PrismaModel> | $Enums.Groups
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
-  }
-
-  export type ComputerListRelationFilter = {
-    every?: ComputerWhereInput
-    some?: ComputerWhereInput
-    none?: ComputerWhereInput
-  }
-
-  export type SoftwareListRelationFilter = {
-    every?: SoftwareWhereInput
-    some?: SoftwareWhereInput
-    none?: SoftwareWhereInput
-  }
-
-  export type MemoryListRelationFilter = {
-    every?: MemoryWhereInput
-    some?: MemoryWhereInput
-    none?: MemoryWhereInput
-  }
-
-  export type ProcessListRelationFilter = {
-    every?: ProcessWhereInput
-    some?: ProcessWhereInput
-    none?: ProcessWhereInput
-  }
-
-  export type UserQuestsListRelationFilter = {
-    every?: UserQuestsWhereInput
-    some?: UserQuestsWhereInput
-    none?: UserQuestsWhereInput
+  export type AccountBookListRelationFilter = {
+    every?: AccountBookWhereInput
+    some?: AccountBookWhereInput
+    none?: AccountBookWhereInput
   }
 
   export type AddressBookListRelationFilter = {
@@ -22070,16 +22040,10 @@ export namespace Prisma {
     none?: AddressBookWhereInput
   }
 
-  export type AccountBookListRelationFilter = {
-    every?: AccountBookWhereInput
-    some?: AccountBookWhereInput
-    none?: AccountBookWhereInput
-  }
-
-  export type LogsListRelationFilter = {
-    every?: LogsWhereInput
-    some?: LogsWhereInput
-    none?: LogsWhereInput
+  export type ComputerListRelationFilter = {
+    every?: ComputerWhereInput
+    some?: ComputerWhereInput
+    none?: ComputerWhereInput
   }
 
   export type DNSListRelationFilter = {
@@ -22088,10 +22052,16 @@ export namespace Prisma {
     none?: DNSWhereInput
   }
 
-  export type ProfileListRelationFilter = {
-    every?: ProfileWhereInput
-    some?: ProfileWhereInput
-    none?: ProfileWhereInput
+  export type LogsListRelationFilter = {
+    every?: LogsWhereInput
+    some?: LogsWhereInput
+    none?: LogsWhereInput
+  }
+
+  export type MemoryListRelationFilter = {
+    every?: MemoryWhereInput
+    some?: MemoryWhereInput
+    none?: MemoryWhereInput
   }
 
   export type NotificationsListRelationFilter = {
@@ -22100,32 +22070,42 @@ export namespace Prisma {
     none?: NotificationsWhereInput
   }
 
+  export type ProcessListRelationFilter = {
+    every?: ProcessWhereInput
+    some?: ProcessWhereInput
+    none?: ProcessWhereInput
+  }
+
+  export type ProfileListRelationFilter = {
+    every?: ProfileWhereInput
+    some?: ProfileWhereInput
+    none?: ProfileWhereInput
+  }
+
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
+  }
+
+  export type SoftwareListRelationFilter = {
+    every?: SoftwareWhereInput
+    some?: SoftwareWhereInput
+    none?: SoftwareWhereInput
+  }
+
+  export type UserQuestsListRelationFilter = {
+    every?: UserQuestsWhereInput
+    some?: UserQuestsWhereInput
+    none?: UserQuestsWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
-  export type SessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ComputerOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type SoftwareOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type MemoryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ProcessOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserQuestsOrderByRelationAggregateInput = {
+  export type AccountBookOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22133,11 +22113,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type AccountBookOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type LogsOrderByRelationAggregateInput = {
+  export type ComputerOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22145,11 +22121,35 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ProfileOrderByRelationAggregateInput = {
+  export type LogsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MemoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type NotificationsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProcessOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProfileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoftwareOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserQuestsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -23096,46 +23096,11 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type ComputerCreateNestedManyWithoutUserInput = {
-    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
-    createMany?: ComputerCreateManyUserInputEnvelope
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-  }
-
-  export type SoftwareCreateNestedManyWithoutUserInput = {
-    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
-    createMany?: SoftwareCreateManyUserInputEnvelope
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-  }
-
-  export type MemoryCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-  }
-
-  export type ProcessCreateNestedManyWithoutUserInput = {
-    create?: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput> | ProcessCreateWithoutUserInput[] | ProcessUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProcessCreateOrConnectWithoutUserInput | ProcessCreateOrConnectWithoutUserInput[]
-    createMany?: ProcessCreateManyUserInputEnvelope
-    connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
-  }
-
-  export type UserQuestsCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserQuestsCreateWithoutUserInput, UserQuestsUncheckedCreateWithoutUserInput> | UserQuestsCreateWithoutUserInput[] | UserQuestsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
-    createMany?: UserQuestsCreateManyUserInputEnvelope
-    connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
+  export type AccountBookCreateNestedManyWithoutUserInput = {
+    create?: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput> | AccountBookCreateWithoutUserInput[] | AccountBookUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutUserInput | AccountBookCreateOrConnectWithoutUserInput[]
+    createMany?: AccountBookCreateManyUserInputEnvelope
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
   }
 
   export type AddressBookCreateNestedManyWithoutUserInput = {
@@ -23145,18 +23110,11 @@ export namespace Prisma {
     connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
   }
 
-  export type AccountBookCreateNestedManyWithoutUserInput = {
-    create?: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput> | AccountBookCreateWithoutUserInput[] | AccountBookUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutUserInput | AccountBookCreateOrConnectWithoutUserInput[]
-    createMany?: AccountBookCreateManyUserInputEnvelope
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-  }
-
-  export type LogsCreateNestedManyWithoutUserInput = {
-    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
-    createMany?: LogsCreateManyUserInputEnvelope
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+  export type ComputerCreateNestedManyWithoutUserInput = {
+    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
+    createMany?: ComputerCreateManyUserInputEnvelope
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
   }
 
   export type DNSCreateNestedManyWithoutUserInput = {
@@ -23166,11 +23124,18 @@ export namespace Prisma {
     connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
   }
 
-  export type ProfileCreateNestedManyWithoutUserInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
-    createMany?: ProfileCreateManyUserInputEnvelope
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+  export type LogsCreateNestedManyWithoutUserInput = {
+    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
+    createMany?: LogsCreateManyUserInputEnvelope
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+  }
+
+  export type MemoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
   }
 
   export type NotificationsCreateNestedManyWithoutUserInput = {
@@ -23180,53 +23145,39 @@ export namespace Prisma {
     connect?: NotificationsWhereUniqueInput | NotificationsWhereUniqueInput[]
   }
 
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type ComputerUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
-    createMany?: ComputerCreateManyUserInputEnvelope
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-  }
-
-  export type SoftwareUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
-    createMany?: SoftwareCreateManyUserInputEnvelope
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-  }
-
-  export type MemoryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-  }
-
-  export type ProcessUncheckedCreateNestedManyWithoutUserInput = {
+  export type ProcessCreateNestedManyWithoutUserInput = {
     create?: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput> | ProcessCreateWithoutUserInput[] | ProcessUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProcessCreateOrConnectWithoutUserInput | ProcessCreateOrConnectWithoutUserInput[]
     createMany?: ProcessCreateManyUserInputEnvelope
     connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
   }
 
-  export type UserQuestsUncheckedCreateNestedManyWithoutUserInput = {
+  export type ProfileCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
+    createMany?: ProfileCreateManyUserInputEnvelope
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+  }
+
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type SoftwareCreateNestedManyWithoutUserInput = {
+    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
+    createMany?: SoftwareCreateManyUserInputEnvelope
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+  }
+
+  export type UserQuestsCreateNestedManyWithoutUserInput = {
     create?: XOR<UserQuestsCreateWithoutUserInput, UserQuestsUncheckedCreateWithoutUserInput> | UserQuestsCreateWithoutUserInput[] | UserQuestsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
     createMany?: UserQuestsCreateManyUserInputEnvelope
     connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
-  }
-
-  export type AddressBookUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput> | AddressBookCreateWithoutUserInput[] | AddressBookUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutUserInput | AddressBookCreateOrConnectWithoutUserInput[]
-    createMany?: AddressBookCreateManyUserInputEnvelope
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
   }
 
   export type AccountBookUncheckedCreateNestedManyWithoutUserInput = {
@@ -23236,11 +23187,18 @@ export namespace Prisma {
     connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
   }
 
-  export type LogsUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
-    createMany?: LogsCreateManyUserInputEnvelope
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+  export type AddressBookUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput> | AddressBookCreateWithoutUserInput[] | AddressBookUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutUserInput | AddressBookCreateOrConnectWithoutUserInput[]
+    createMany?: AddressBookCreateManyUserInputEnvelope
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+  }
+
+  export type ComputerUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
+    createMany?: ComputerCreateManyUserInputEnvelope
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
   }
 
   export type DNSUncheckedCreateNestedManyWithoutUserInput = {
@@ -23250,11 +23208,18 @@ export namespace Prisma {
     connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
   }
 
-  export type ProfileUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
-    createMany?: ProfileCreateManyUserInputEnvelope
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+  export type LogsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
+    createMany?: LogsCreateManyUserInputEnvelope
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+  }
+
+  export type MemoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
   }
 
   export type NotificationsUncheckedCreateNestedManyWithoutUserInput = {
@@ -23262,6 +23227,41 @@ export namespace Prisma {
     connectOrCreate?: NotificationsCreateOrConnectWithoutUserInput | NotificationsCreateOrConnectWithoutUserInput[]
     createMany?: NotificationsCreateManyUserInputEnvelope
     connect?: NotificationsWhereUniqueInput | NotificationsWhereUniqueInput[]
+  }
+
+  export type ProcessUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput> | ProcessCreateWithoutUserInput[] | ProcessUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProcessCreateOrConnectWithoutUserInput | ProcessCreateOrConnectWithoutUserInput[]
+    createMany?: ProcessCreateManyUserInputEnvelope
+    connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
+  }
+
+  export type ProfileUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
+    createMany?: ProfileCreateManyUserInputEnvelope
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+  }
+
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type SoftwareUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
+    createMany?: SoftwareCreateManyUserInputEnvelope
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+  }
+
+  export type UserQuestsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserQuestsCreateWithoutUserInput, UserQuestsUncheckedCreateWithoutUserInput> | UserQuestsCreateWithoutUserInput[] | UserQuestsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
+    createMany?: UserQuestsCreateManyUserInputEnvelope
+    connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -23280,88 +23280,18 @@ export namespace Prisma {
     set?: $Enums.Groups
   }
 
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type ComputerUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
-    upsert?: ComputerUpsertWithWhereUniqueWithoutUserInput | ComputerUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ComputerCreateManyUserInputEnvelope
-    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    update?: ComputerUpdateWithWhereUniqueWithoutUserInput | ComputerUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ComputerUpdateManyWithWhereWithoutUserInput | ComputerUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
-  }
-
-  export type SoftwareUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
-    upsert?: SoftwareUpsertWithWhereUniqueWithoutUserInput | SoftwareUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SoftwareCreateManyUserInputEnvelope
-    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    update?: SoftwareUpdateWithWhereUniqueWithoutUserInput | SoftwareUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SoftwareUpdateManyWithWhereWithoutUserInput | SoftwareUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
-  }
-
-  export type MemoryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-  }
-
-  export type ProcessUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput> | ProcessCreateWithoutUserInput[] | ProcessUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProcessCreateOrConnectWithoutUserInput | ProcessCreateOrConnectWithoutUserInput[]
-    upsert?: ProcessUpsertWithWhereUniqueWithoutUserInput | ProcessUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ProcessCreateManyUserInputEnvelope
-    set?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
-    disconnect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
-    delete?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
-    connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
-    update?: ProcessUpdateWithWhereUniqueWithoutUserInput | ProcessUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ProcessUpdateManyWithWhereWithoutUserInput | ProcessUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
-  }
-
-  export type UserQuestsUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserQuestsCreateWithoutUserInput, UserQuestsUncheckedCreateWithoutUserInput> | UserQuestsCreateWithoutUserInput[] | UserQuestsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
-    upsert?: UserQuestsUpsertWithWhereUniqueWithoutUserInput | UserQuestsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserQuestsCreateManyUserInputEnvelope
-    set?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
-    disconnect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
-    delete?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
-    connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
-    update?: UserQuestsUpdateWithWhereUniqueWithoutUserInput | UserQuestsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserQuestsUpdateManyWithWhereWithoutUserInput | UserQuestsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
+  export type AccountBookUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput> | AccountBookCreateWithoutUserInput[] | AccountBookUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutUserInput | AccountBookCreateOrConnectWithoutUserInput[]
+    upsert?: AccountBookUpsertWithWhereUniqueWithoutUserInput | AccountBookUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AccountBookCreateManyUserInputEnvelope
+    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    update?: AccountBookUpdateWithWhereUniqueWithoutUserInput | AccountBookUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AccountBookUpdateManyWithWhereWithoutUserInput | AccountBookUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
   export type AddressBookUpdateManyWithoutUserNestedInput = {
@@ -23378,32 +23308,18 @@ export namespace Prisma {
     deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
   }
 
-  export type AccountBookUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput> | AccountBookCreateWithoutUserInput[] | AccountBookUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutUserInput | AccountBookCreateOrConnectWithoutUserInput[]
-    upsert?: AccountBookUpsertWithWhereUniqueWithoutUserInput | AccountBookUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AccountBookCreateManyUserInputEnvelope
-    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    update?: AccountBookUpdateWithWhereUniqueWithoutUserInput | AccountBookUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AccountBookUpdateManyWithWhereWithoutUserInput | AccountBookUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
-  }
-
-  export type LogsUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
-    upsert?: LogsUpsertWithWhereUniqueWithoutUserInput | LogsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LogsCreateManyUserInputEnvelope
-    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    update?: LogsUpdateWithWhereUniqueWithoutUserInput | LogsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LogsUpdateManyWithWhereWithoutUserInput | LogsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
+  export type ComputerUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
+    upsert?: ComputerUpsertWithWhereUniqueWithoutUserInput | ComputerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ComputerCreateManyUserInputEnvelope
+    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    update?: ComputerUpdateWithWhereUniqueWithoutUserInput | ComputerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ComputerUpdateManyWithWhereWithoutUserInput | ComputerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
   }
 
   export type DNSUpdateManyWithoutUserNestedInput = {
@@ -23420,18 +23336,32 @@ export namespace Prisma {
     deleteMany?: DNSScalarWhereInput | DNSScalarWhereInput[]
   }
 
-  export type ProfileUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
-    upsert?: ProfileUpsertWithWhereUniqueWithoutUserInput | ProfileUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ProfileCreateManyUserInputEnvelope
-    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    update?: ProfileUpdateWithWhereUniqueWithoutUserInput | ProfileUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ProfileUpdateManyWithWhereWithoutUserInput | ProfileUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+  export type LogsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
+    upsert?: LogsUpsertWithWhereUniqueWithoutUserInput | LogsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LogsCreateManyUserInputEnvelope
+    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    update?: LogsUpdateWithWhereUniqueWithoutUserInput | LogsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LogsUpdateManyWithWhereWithoutUserInput | LogsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
+  }
+
+  export type MemoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
   }
 
   export type NotificationsUpdateManyWithoutUserNestedInput = {
@@ -23448,71 +23378,7 @@ export namespace Prisma {
     deleteMany?: NotificationsScalarWhereInput | NotificationsScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type ComputerUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
-    upsert?: ComputerUpsertWithWhereUniqueWithoutUserInput | ComputerUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ComputerCreateManyUserInputEnvelope
-    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    update?: ComputerUpdateWithWhereUniqueWithoutUserInput | ComputerUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ComputerUpdateManyWithWhereWithoutUserInput | ComputerUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
-  }
-
-  export type SoftwareUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
-    upsert?: SoftwareUpsertWithWhereUniqueWithoutUserInput | SoftwareUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SoftwareCreateManyUserInputEnvelope
-    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    update?: SoftwareUpdateWithWhereUniqueWithoutUserInput | SoftwareUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SoftwareUpdateManyWithWhereWithoutUserInput | SoftwareUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
-  }
-
-  export type MemoryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-  }
-
-  export type ProcessUncheckedUpdateManyWithoutUserNestedInput = {
+  export type ProcessUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput> | ProcessCreateWithoutUserInput[] | ProcessUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProcessCreateOrConnectWithoutUserInput | ProcessCreateOrConnectWithoutUserInput[]
     upsert?: ProcessUpsertWithWhereUniqueWithoutUserInput | ProcessUpsertWithWhereUniqueWithoutUserInput[]
@@ -23526,7 +23392,49 @@ export namespace Prisma {
     deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
   }
 
-  export type UserQuestsUncheckedUpdateManyWithoutUserNestedInput = {
+  export type ProfileUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
+    upsert?: ProfileUpsertWithWhereUniqueWithoutUserInput | ProfileUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProfileCreateManyUserInputEnvelope
+    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    update?: ProfileUpdateWithWhereUniqueWithoutUserInput | ProfileUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProfileUpdateManyWithWhereWithoutUserInput | ProfileUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+  }
+
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type SoftwareUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
+    upsert?: SoftwareUpsertWithWhereUniqueWithoutUserInput | SoftwareUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SoftwareCreateManyUserInputEnvelope
+    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    update?: SoftwareUpdateWithWhereUniqueWithoutUserInput | SoftwareUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SoftwareUpdateManyWithWhereWithoutUserInput | SoftwareUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
+  }
+
+  export type UserQuestsUpdateManyWithoutUserNestedInput = {
     create?: XOR<UserQuestsCreateWithoutUserInput, UserQuestsUncheckedCreateWithoutUserInput> | UserQuestsCreateWithoutUserInput[] | UserQuestsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
     upsert?: UserQuestsUpsertWithWhereUniqueWithoutUserInput | UserQuestsUpsertWithWhereUniqueWithoutUserInput[]
@@ -23540,18 +23448,12 @@ export namespace Prisma {
     deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
   }
 
-  export type AddressBookUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput> | AddressBookCreateWithoutUserInput[] | AddressBookUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutUserInput | AddressBookCreateOrConnectWithoutUserInput[]
-    upsert?: AddressBookUpsertWithWhereUniqueWithoutUserInput | AddressBookUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AddressBookCreateManyUserInputEnvelope
-    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    update?: AddressBookUpdateWithWhereUniqueWithoutUserInput | AddressBookUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AddressBookUpdateManyWithWhereWithoutUserInput | AddressBookUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type AccountBookUncheckedUpdateManyWithoutUserNestedInput = {
@@ -23568,18 +23470,32 @@ export namespace Prisma {
     deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
-  export type LogsUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
-    upsert?: LogsUpsertWithWhereUniqueWithoutUserInput | LogsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LogsCreateManyUserInputEnvelope
-    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    update?: LogsUpdateWithWhereUniqueWithoutUserInput | LogsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LogsUpdateManyWithWhereWithoutUserInput | LogsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
+  export type AddressBookUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput> | AddressBookCreateWithoutUserInput[] | AddressBookUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutUserInput | AddressBookCreateOrConnectWithoutUserInput[]
+    upsert?: AddressBookUpsertWithWhereUniqueWithoutUserInput | AddressBookUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AddressBookCreateManyUserInputEnvelope
+    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    update?: AddressBookUpdateWithWhereUniqueWithoutUserInput | AddressBookUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AddressBookUpdateManyWithWhereWithoutUserInput | AddressBookUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+  }
+
+  export type ComputerUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput> | ComputerCreateWithoutUserInput[] | ComputerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutUserInput | ComputerCreateOrConnectWithoutUserInput[]
+    upsert?: ComputerUpsertWithWhereUniqueWithoutUserInput | ComputerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ComputerCreateManyUserInputEnvelope
+    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    update?: ComputerUpdateWithWhereUniqueWithoutUserInput | ComputerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ComputerUpdateManyWithWhereWithoutUserInput | ComputerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
   }
 
   export type DNSUncheckedUpdateManyWithoutUserNestedInput = {
@@ -23596,18 +23512,32 @@ export namespace Prisma {
     deleteMany?: DNSScalarWhereInput | DNSScalarWhereInput[]
   }
 
-  export type ProfileUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
-    upsert?: ProfileUpsertWithWhereUniqueWithoutUserInput | ProfileUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ProfileCreateManyUserInputEnvelope
-    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    update?: ProfileUpdateWithWhereUniqueWithoutUserInput | ProfileUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ProfileUpdateManyWithWhereWithoutUserInput | ProfileUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+  export type LogsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput> | LogsCreateWithoutUserInput[] | LogsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutUserInput | LogsCreateOrConnectWithoutUserInput[]
+    upsert?: LogsUpsertWithWhereUniqueWithoutUserInput | LogsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LogsCreateManyUserInputEnvelope
+    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    update?: LogsUpdateWithWhereUniqueWithoutUserInput | LogsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LogsUpdateManyWithWhereWithoutUserInput | LogsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
+  }
+
+  export type MemoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
   }
 
   export type NotificationsUncheckedUpdateManyWithoutUserNestedInput = {
@@ -23624,11 +23554,102 @@ export namespace Prisma {
     deleteMany?: NotificationsScalarWhereInput | NotificationsScalarWhereInput[]
   }
 
-  export type SoftwareCreateNestedManyWithoutGameInput = {
-    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
-    createMany?: SoftwareCreateManyGameInputEnvelope
+  export type ProcessUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput> | ProcessCreateWithoutUserInput[] | ProcessUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProcessCreateOrConnectWithoutUserInput | ProcessCreateOrConnectWithoutUserInput[]
+    upsert?: ProcessUpsertWithWhereUniqueWithoutUserInput | ProcessUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProcessCreateManyUserInputEnvelope
+    set?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
+    disconnect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
+    delete?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
+    connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
+    update?: ProcessUpdateWithWhereUniqueWithoutUserInput | ProcessUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProcessUpdateManyWithWhereWithoutUserInput | ProcessUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
+  }
+
+  export type ProfileUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput> | ProfileCreateWithoutUserInput[] | ProfileUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput | ProfileCreateOrConnectWithoutUserInput[]
+    upsert?: ProfileUpsertWithWhereUniqueWithoutUserInput | ProfileUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProfileCreateManyUserInputEnvelope
+    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    update?: ProfileUpdateWithWhereUniqueWithoutUserInput | ProfileUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProfileUpdateManyWithWhereWithoutUserInput | ProfileUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type SoftwareUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SoftwareCreateWithoutUserInput, SoftwareUncheckedCreateWithoutUserInput> | SoftwareCreateWithoutUserInput[] | SoftwareUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutUserInput | SoftwareCreateOrConnectWithoutUserInput[]
+    upsert?: SoftwareUpsertWithWhereUniqueWithoutUserInput | SoftwareUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SoftwareCreateManyUserInputEnvelope
+    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
     connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    update?: SoftwareUpdateWithWhereUniqueWithoutUserInput | SoftwareUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SoftwareUpdateManyWithWhereWithoutUserInput | SoftwareUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
+  }
+
+  export type UserQuestsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserQuestsCreateWithoutUserInput, UserQuestsUncheckedCreateWithoutUserInput> | UserQuestsCreateWithoutUserInput[] | UserQuestsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserQuestsCreateOrConnectWithoutUserInput | UserQuestsCreateOrConnectWithoutUserInput[]
+    upsert?: UserQuestsUpsertWithWhereUniqueWithoutUserInput | UserQuestsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserQuestsCreateManyUserInputEnvelope
+    set?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
+    disconnect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
+    delete?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
+    connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
+    update?: UserQuestsUpdateWithWhereUniqueWithoutUserInput | UserQuestsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserQuestsUpdateManyWithWhereWithoutUserInput | UserQuestsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
+  }
+
+  export type AccountBookCreateNestedManyWithoutGameInput = {
+    create?: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput> | AccountBookCreateWithoutGameInput[] | AccountBookUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutGameInput | AccountBookCreateOrConnectWithoutGameInput[]
+    createMany?: AccountBookCreateManyGameInputEnvelope
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+  }
+
+  export type AddressBookCreateNestedManyWithoutGameInput = {
+    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
+    createMany?: AddressBookCreateManyGameInputEnvelope
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+  }
+
+  export type ComputerCreateNestedManyWithoutGameInput = {
+    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
+    createMany?: ComputerCreateManyGameInputEnvelope
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+  }
+
+  export type DNSCreateNestedManyWithoutGameInput = {
+    create?: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput> | DNSCreateWithoutGameInput[] | DNSUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: DNSCreateOrConnectWithoutGameInput | DNSCreateOrConnectWithoutGameInput[]
+    createMany?: DNSCreateManyGameInputEnvelope
+    connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
   }
 
   export type HardwareCreateNestedManyWithoutGameInput = {
@@ -23638,11 +23659,11 @@ export namespace Prisma {
     connect?: HardwareWhereUniqueInput | HardwareWhereUniqueInput[]
   }
 
-  export type ComputerCreateNestedManyWithoutGameInput = {
-    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
-    createMany?: ComputerCreateManyGameInputEnvelope
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+  export type LogsCreateNestedManyWithoutGameInput = {
+    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
+    createMany?: LogsCreateManyGameInputEnvelope
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
   }
 
   export type MemoryCreateNestedManyWithoutGameInput = {
@@ -23659,11 +23680,25 @@ export namespace Prisma {
     connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
   }
 
+  export type ProfileCreateNestedManyWithoutGameInput = {
+    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
+    createMany?: ProfileCreateManyGameInputEnvelope
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+  }
+
   export type QuestsCreateNestedManyWithoutGameInput = {
     create?: XOR<QuestsCreateWithoutGameInput, QuestsUncheckedCreateWithoutGameInput> | QuestsCreateWithoutGameInput[] | QuestsUncheckedCreateWithoutGameInput[]
     connectOrCreate?: QuestsCreateOrConnectWithoutGameInput | QuestsCreateOrConnectWithoutGameInput[]
     createMany?: QuestsCreateManyGameInputEnvelope
     connect?: QuestsWhereUniqueInput | QuestsWhereUniqueInput[]
+  }
+
+  export type SoftwareCreateNestedManyWithoutGameInput = {
+    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
+    createMany?: SoftwareCreateManyGameInputEnvelope
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
   }
 
   export type UserQuestsCreateNestedManyWithoutGameInput = {
@@ -23673,46 +23708,32 @@ export namespace Prisma {
     connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
   }
 
-  export type LogsCreateNestedManyWithoutGameInput = {
-    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
-    createMany?: LogsCreateManyGameInputEnvelope
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-  }
-
-  export type AddressBookCreateNestedManyWithoutGameInput = {
-    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
-    createMany?: AddressBookCreateManyGameInputEnvelope
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-  }
-
-  export type AccountBookCreateNestedManyWithoutGameInput = {
+  export type AccountBookUncheckedCreateNestedManyWithoutGameInput = {
     create?: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput> | AccountBookCreateWithoutGameInput[] | AccountBookUncheckedCreateWithoutGameInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutGameInput | AccountBookCreateOrConnectWithoutGameInput[]
     createMany?: AccountBookCreateManyGameInputEnvelope
     connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
   }
 
-  export type DNSCreateNestedManyWithoutGameInput = {
+  export type AddressBookUncheckedCreateNestedManyWithoutGameInput = {
+    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
+    createMany?: AddressBookCreateManyGameInputEnvelope
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+  }
+
+  export type ComputerUncheckedCreateNestedManyWithoutGameInput = {
+    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
+    createMany?: ComputerCreateManyGameInputEnvelope
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+  }
+
+  export type DNSUncheckedCreateNestedManyWithoutGameInput = {
     create?: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput> | DNSCreateWithoutGameInput[] | DNSUncheckedCreateWithoutGameInput[]
     connectOrCreate?: DNSCreateOrConnectWithoutGameInput | DNSCreateOrConnectWithoutGameInput[]
     createMany?: DNSCreateManyGameInputEnvelope
     connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
-  }
-
-  export type ProfileCreateNestedManyWithoutGameInput = {
-    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
-    createMany?: ProfileCreateManyGameInputEnvelope
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-  }
-
-  export type SoftwareUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
-    createMany?: SoftwareCreateManyGameInputEnvelope
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
   }
 
   export type HardwareUncheckedCreateNestedManyWithoutGameInput = {
@@ -23722,11 +23743,11 @@ export namespace Prisma {
     connect?: HardwareWhereUniqueInput | HardwareWhereUniqueInput[]
   }
 
-  export type ComputerUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
-    createMany?: ComputerCreateManyGameInputEnvelope
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+  export type LogsUncheckedCreateNestedManyWithoutGameInput = {
+    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
+    createMany?: LogsCreateManyGameInputEnvelope
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
   }
 
   export type MemoryUncheckedCreateNestedManyWithoutGameInput = {
@@ -23743,11 +23764,25 @@ export namespace Prisma {
     connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
   }
 
+  export type ProfileUncheckedCreateNestedManyWithoutGameInput = {
+    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
+    createMany?: ProfileCreateManyGameInputEnvelope
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+  }
+
   export type QuestsUncheckedCreateNestedManyWithoutGameInput = {
     create?: XOR<QuestsCreateWithoutGameInput, QuestsUncheckedCreateWithoutGameInput> | QuestsCreateWithoutGameInput[] | QuestsUncheckedCreateWithoutGameInput[]
     connectOrCreate?: QuestsCreateOrConnectWithoutGameInput | QuestsCreateOrConnectWithoutGameInput[]
     createMany?: QuestsCreateManyGameInputEnvelope
     connect?: QuestsWhereUniqueInput | QuestsWhereUniqueInput[]
+  }
+
+  export type SoftwareUncheckedCreateNestedManyWithoutGameInput = {
+    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
+    createMany?: SoftwareCreateManyGameInputEnvelope
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
   }
 
   export type UserQuestsUncheckedCreateNestedManyWithoutGameInput = {
@@ -23757,57 +23792,64 @@ export namespace Prisma {
     connect?: UserQuestsWhereUniqueInput | UserQuestsWhereUniqueInput[]
   }
 
-  export type LogsUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
-    createMany?: LogsCreateManyGameInputEnvelope
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-  }
-
-  export type AddressBookUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
-    createMany?: AddressBookCreateManyGameInputEnvelope
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-  }
-
-  export type AccountBookUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput> | AccountBookCreateWithoutGameInput[] | AccountBookUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutGameInput | AccountBookCreateOrConnectWithoutGameInput[]
-    createMany?: AccountBookCreateManyGameInputEnvelope
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-  }
-
-  export type DNSUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput> | DNSCreateWithoutGameInput[] | DNSUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: DNSCreateOrConnectWithoutGameInput | DNSCreateOrConnectWithoutGameInput[]
-    createMany?: DNSCreateManyGameInputEnvelope
-    connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
-  }
-
-  export type ProfileUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
-    createMany?: ProfileCreateManyGameInputEnvelope
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
 
-  export type SoftwareUpdateManyWithoutGameNestedInput = {
-    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
-    upsert?: SoftwareUpsertWithWhereUniqueWithoutGameInput | SoftwareUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: SoftwareCreateManyGameInputEnvelope
-    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    update?: SoftwareUpdateWithWhereUniqueWithoutGameInput | SoftwareUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: SoftwareUpdateManyWithWhereWithoutGameInput | SoftwareUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
+  export type AccountBookUpdateManyWithoutGameNestedInput = {
+    create?: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput> | AccountBookCreateWithoutGameInput[] | AccountBookUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutGameInput | AccountBookCreateOrConnectWithoutGameInput[]
+    upsert?: AccountBookUpsertWithWhereUniqueWithoutGameInput | AccountBookUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: AccountBookCreateManyGameInputEnvelope
+    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    update?: AccountBookUpdateWithWhereUniqueWithoutGameInput | AccountBookUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: AccountBookUpdateManyWithWhereWithoutGameInput | AccountBookUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
+  }
+
+  export type AddressBookUpdateManyWithoutGameNestedInput = {
+    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
+    upsert?: AddressBookUpsertWithWhereUniqueWithoutGameInput | AddressBookUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: AddressBookCreateManyGameInputEnvelope
+    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    update?: AddressBookUpdateWithWhereUniqueWithoutGameInput | AddressBookUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: AddressBookUpdateManyWithWhereWithoutGameInput | AddressBookUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+  }
+
+  export type ComputerUpdateManyWithoutGameNestedInput = {
+    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
+    upsert?: ComputerUpsertWithWhereUniqueWithoutGameInput | ComputerUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: ComputerCreateManyGameInputEnvelope
+    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    update?: ComputerUpdateWithWhereUniqueWithoutGameInput | ComputerUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: ComputerUpdateManyWithWhereWithoutGameInput | ComputerUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
+  }
+
+  export type DNSUpdateManyWithoutGameNestedInput = {
+    create?: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput> | DNSCreateWithoutGameInput[] | DNSUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: DNSCreateOrConnectWithoutGameInput | DNSCreateOrConnectWithoutGameInput[]
+    upsert?: DNSUpsertWithWhereUniqueWithoutGameInput | DNSUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: DNSCreateManyGameInputEnvelope
+    set?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
+    disconnect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
+    delete?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
+    connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
+    update?: DNSUpdateWithWhereUniqueWithoutGameInput | DNSUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: DNSUpdateManyWithWhereWithoutGameInput | DNSUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: DNSScalarWhereInput | DNSScalarWhereInput[]
   }
 
   export type HardwareUpdateManyWithoutGameNestedInput = {
@@ -23824,18 +23866,18 @@ export namespace Prisma {
     deleteMany?: HardwareScalarWhereInput | HardwareScalarWhereInput[]
   }
 
-  export type ComputerUpdateManyWithoutGameNestedInput = {
-    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
-    upsert?: ComputerUpsertWithWhereUniqueWithoutGameInput | ComputerUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: ComputerCreateManyGameInputEnvelope
-    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    update?: ComputerUpdateWithWhereUniqueWithoutGameInput | ComputerUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: ComputerUpdateManyWithWhereWithoutGameInput | ComputerUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
+  export type LogsUpdateManyWithoutGameNestedInput = {
+    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
+    upsert?: LogsUpsertWithWhereUniqueWithoutGameInput | LogsUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: LogsCreateManyGameInputEnvelope
+    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    update?: LogsUpdateWithWhereUniqueWithoutGameInput | LogsUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: LogsUpdateManyWithWhereWithoutGameInput | LogsUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
   }
 
   export type MemoryUpdateManyWithoutGameNestedInput = {
@@ -23866,6 +23908,20 @@ export namespace Prisma {
     deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
   }
 
+  export type ProfileUpdateManyWithoutGameNestedInput = {
+    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
+    upsert?: ProfileUpsertWithWhereUniqueWithoutGameInput | ProfileUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: ProfileCreateManyGameInputEnvelope
+    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    update?: ProfileUpdateWithWhereUniqueWithoutGameInput | ProfileUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: ProfileUpdateManyWithWhereWithoutGameInput | ProfileUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+  }
+
   export type QuestsUpdateManyWithoutGameNestedInput = {
     create?: XOR<QuestsCreateWithoutGameInput, QuestsUncheckedCreateWithoutGameInput> | QuestsCreateWithoutGameInput[] | QuestsUncheckedCreateWithoutGameInput[]
     connectOrCreate?: QuestsCreateOrConnectWithoutGameInput | QuestsCreateOrConnectWithoutGameInput[]
@@ -23878,6 +23934,20 @@ export namespace Prisma {
     update?: QuestsUpdateWithWhereUniqueWithoutGameInput | QuestsUpdateWithWhereUniqueWithoutGameInput[]
     updateMany?: QuestsUpdateManyWithWhereWithoutGameInput | QuestsUpdateManyWithWhereWithoutGameInput[]
     deleteMany?: QuestsScalarWhereInput | QuestsScalarWhereInput[]
+  }
+
+  export type SoftwareUpdateManyWithoutGameNestedInput = {
+    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
+    upsert?: SoftwareUpsertWithWhereUniqueWithoutGameInput | SoftwareUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: SoftwareCreateManyGameInputEnvelope
+    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    update?: SoftwareUpdateWithWhereUniqueWithoutGameInput | SoftwareUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: SoftwareUpdateManyWithWhereWithoutGameInput | SoftwareUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
   }
 
   export type UserQuestsUpdateManyWithoutGameNestedInput = {
@@ -23894,35 +23964,7 @@ export namespace Prisma {
     deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
   }
 
-  export type LogsUpdateManyWithoutGameNestedInput = {
-    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
-    upsert?: LogsUpsertWithWhereUniqueWithoutGameInput | LogsUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: LogsCreateManyGameInputEnvelope
-    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    update?: LogsUpdateWithWhereUniqueWithoutGameInput | LogsUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: LogsUpdateManyWithWhereWithoutGameInput | LogsUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
-  }
-
-  export type AddressBookUpdateManyWithoutGameNestedInput = {
-    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
-    upsert?: AddressBookUpsertWithWhereUniqueWithoutGameInput | AddressBookUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: AddressBookCreateManyGameInputEnvelope
-    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    update?: AddressBookUpdateWithWhereUniqueWithoutGameInput | AddressBookUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: AddressBookUpdateManyWithWhereWithoutGameInput | AddressBookUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
-  }
-
-  export type AccountBookUpdateManyWithoutGameNestedInput = {
+  export type AccountBookUncheckedUpdateManyWithoutGameNestedInput = {
     create?: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput> | AccountBookCreateWithoutGameInput[] | AccountBookUncheckedCreateWithoutGameInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutGameInput | AccountBookCreateOrConnectWithoutGameInput[]
     upsert?: AccountBookUpsertWithWhereUniqueWithoutGameInput | AccountBookUpsertWithWhereUniqueWithoutGameInput[]
@@ -23936,7 +23978,35 @@ export namespace Prisma {
     deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
-  export type DNSUpdateManyWithoutGameNestedInput = {
+  export type AddressBookUncheckedUpdateManyWithoutGameNestedInput = {
+    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
+    upsert?: AddressBookUpsertWithWhereUniqueWithoutGameInput | AddressBookUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: AddressBookCreateManyGameInputEnvelope
+    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    update?: AddressBookUpdateWithWhereUniqueWithoutGameInput | AddressBookUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: AddressBookUpdateManyWithWhereWithoutGameInput | AddressBookUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+  }
+
+  export type ComputerUncheckedUpdateManyWithoutGameNestedInput = {
+    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
+    upsert?: ComputerUpsertWithWhereUniqueWithoutGameInput | ComputerUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: ComputerCreateManyGameInputEnvelope
+    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
+    update?: ComputerUpdateWithWhereUniqueWithoutGameInput | ComputerUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: ComputerUpdateManyWithWhereWithoutGameInput | ComputerUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
+  }
+
+  export type DNSUncheckedUpdateManyWithoutGameNestedInput = {
     create?: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput> | DNSCreateWithoutGameInput[] | DNSUncheckedCreateWithoutGameInput[]
     connectOrCreate?: DNSCreateOrConnectWithoutGameInput | DNSCreateOrConnectWithoutGameInput[]
     upsert?: DNSUpsertWithWhereUniqueWithoutGameInput | DNSUpsertWithWhereUniqueWithoutGameInput[]
@@ -23948,34 +24018,6 @@ export namespace Prisma {
     update?: DNSUpdateWithWhereUniqueWithoutGameInput | DNSUpdateWithWhereUniqueWithoutGameInput[]
     updateMany?: DNSUpdateManyWithWhereWithoutGameInput | DNSUpdateManyWithWhereWithoutGameInput[]
     deleteMany?: DNSScalarWhereInput | DNSScalarWhereInput[]
-  }
-
-  export type ProfileUpdateManyWithoutGameNestedInput = {
-    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
-    upsert?: ProfileUpsertWithWhereUniqueWithoutGameInput | ProfileUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: ProfileCreateManyGameInputEnvelope
-    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    update?: ProfileUpdateWithWhereUniqueWithoutGameInput | ProfileUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: ProfileUpdateManyWithWhereWithoutGameInput | ProfileUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
-  }
-
-  export type SoftwareUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
-    upsert?: SoftwareUpsertWithWhereUniqueWithoutGameInput | SoftwareUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: SoftwareCreateManyGameInputEnvelope
-    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    update?: SoftwareUpdateWithWhereUniqueWithoutGameInput | SoftwareUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: SoftwareUpdateManyWithWhereWithoutGameInput | SoftwareUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
   }
 
   export type HardwareUncheckedUpdateManyWithoutGameNestedInput = {
@@ -23992,18 +24034,18 @@ export namespace Prisma {
     deleteMany?: HardwareScalarWhereInput | HardwareScalarWhereInput[]
   }
 
-  export type ComputerUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput> | ComputerCreateWithoutGameInput[] | ComputerUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ComputerCreateOrConnectWithoutGameInput | ComputerCreateOrConnectWithoutGameInput[]
-    upsert?: ComputerUpsertWithWhereUniqueWithoutGameInput | ComputerUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: ComputerCreateManyGameInputEnvelope
-    set?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    disconnect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    delete?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    connect?: ComputerWhereUniqueInput | ComputerWhereUniqueInput[]
-    update?: ComputerUpdateWithWhereUniqueWithoutGameInput | ComputerUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: ComputerUpdateManyWithWhereWithoutGameInput | ComputerUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: ComputerScalarWhereInput | ComputerScalarWhereInput[]
+  export type LogsUncheckedUpdateManyWithoutGameNestedInput = {
+    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
+    upsert?: LogsUpsertWithWhereUniqueWithoutGameInput | LogsUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: LogsCreateManyGameInputEnvelope
+    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    update?: LogsUpdateWithWhereUniqueWithoutGameInput | LogsUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: LogsUpdateManyWithWhereWithoutGameInput | LogsUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
   }
 
   export type MemoryUncheckedUpdateManyWithoutGameNestedInput = {
@@ -24034,6 +24076,20 @@ export namespace Prisma {
     deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
   }
 
+  export type ProfileUncheckedUpdateManyWithoutGameNestedInput = {
+    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
+    upsert?: ProfileUpsertWithWhereUniqueWithoutGameInput | ProfileUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: ProfileCreateManyGameInputEnvelope
+    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
+    update?: ProfileUpdateWithWhereUniqueWithoutGameInput | ProfileUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: ProfileUpdateManyWithWhereWithoutGameInput | ProfileUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+  }
+
   export type QuestsUncheckedUpdateManyWithoutGameNestedInput = {
     create?: XOR<QuestsCreateWithoutGameInput, QuestsUncheckedCreateWithoutGameInput> | QuestsCreateWithoutGameInput[] | QuestsUncheckedCreateWithoutGameInput[]
     connectOrCreate?: QuestsCreateOrConnectWithoutGameInput | QuestsCreateOrConnectWithoutGameInput[]
@@ -24048,6 +24104,20 @@ export namespace Prisma {
     deleteMany?: QuestsScalarWhereInput | QuestsScalarWhereInput[]
   }
 
+  export type SoftwareUncheckedUpdateManyWithoutGameNestedInput = {
+    create?: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput> | SoftwareCreateWithoutGameInput[] | SoftwareUncheckedCreateWithoutGameInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutGameInput | SoftwareCreateOrConnectWithoutGameInput[]
+    upsert?: SoftwareUpsertWithWhereUniqueWithoutGameInput | SoftwareUpsertWithWhereUniqueWithoutGameInput[]
+    createMany?: SoftwareCreateManyGameInputEnvelope
+    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    update?: SoftwareUpdateWithWhereUniqueWithoutGameInput | SoftwareUpdateWithWhereUniqueWithoutGameInput[]
+    updateMany?: SoftwareUpdateManyWithWhereWithoutGameInput | SoftwareUpdateManyWithWhereWithoutGameInput[]
+    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
+  }
+
   export type UserQuestsUncheckedUpdateManyWithoutGameNestedInput = {
     create?: XOR<UserQuestsCreateWithoutGameInput, UserQuestsUncheckedCreateWithoutGameInput> | UserQuestsCreateWithoutGameInput[] | UserQuestsUncheckedCreateWithoutGameInput[]
     connectOrCreate?: UserQuestsCreateOrConnectWithoutGameInput | UserQuestsCreateOrConnectWithoutGameInput[]
@@ -24060,76 +24130,6 @@ export namespace Prisma {
     update?: UserQuestsUpdateWithWhereUniqueWithoutGameInput | UserQuestsUpdateWithWhereUniqueWithoutGameInput[]
     updateMany?: UserQuestsUpdateManyWithWhereWithoutGameInput | UserQuestsUpdateManyWithWhereWithoutGameInput[]
     deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
-  }
-
-  export type LogsUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput> | LogsCreateWithoutGameInput[] | LogsUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutGameInput | LogsCreateOrConnectWithoutGameInput[]
-    upsert?: LogsUpsertWithWhereUniqueWithoutGameInput | LogsUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: LogsCreateManyGameInputEnvelope
-    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    update?: LogsUpdateWithWhereUniqueWithoutGameInput | LogsUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: LogsUpdateManyWithWhereWithoutGameInput | LogsUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
-  }
-
-  export type AddressBookUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput> | AddressBookCreateWithoutGameInput[] | AddressBookUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutGameInput | AddressBookCreateOrConnectWithoutGameInput[]
-    upsert?: AddressBookUpsertWithWhereUniqueWithoutGameInput | AddressBookUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: AddressBookCreateManyGameInputEnvelope
-    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    update?: AddressBookUpdateWithWhereUniqueWithoutGameInput | AddressBookUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: AddressBookUpdateManyWithWhereWithoutGameInput | AddressBookUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
-  }
-
-  export type AccountBookUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput> | AccountBookCreateWithoutGameInput[] | AccountBookUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutGameInput | AccountBookCreateOrConnectWithoutGameInput[]
-    upsert?: AccountBookUpsertWithWhereUniqueWithoutGameInput | AccountBookUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: AccountBookCreateManyGameInputEnvelope
-    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    update?: AccountBookUpdateWithWhereUniqueWithoutGameInput | AccountBookUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: AccountBookUpdateManyWithWhereWithoutGameInput | AccountBookUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
-  }
-
-  export type DNSUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput> | DNSCreateWithoutGameInput[] | DNSUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: DNSCreateOrConnectWithoutGameInput | DNSCreateOrConnectWithoutGameInput[]
-    upsert?: DNSUpsertWithWhereUniqueWithoutGameInput | DNSUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: DNSCreateManyGameInputEnvelope
-    set?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
-    disconnect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
-    delete?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
-    connect?: DNSWhereUniqueInput | DNSWhereUniqueInput[]
-    update?: DNSUpdateWithWhereUniqueWithoutGameInput | DNSUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: DNSUpdateManyWithWhereWithoutGameInput | DNSUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: DNSScalarWhereInput | DNSScalarWhereInput[]
-  }
-
-  export type ProfileUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput> | ProfileCreateWithoutGameInput[] | ProfileUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: ProfileCreateOrConnectWithoutGameInput | ProfileCreateOrConnectWithoutGameInput[]
-    upsert?: ProfileUpsertWithWhereUniqueWithoutGameInput | ProfileUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: ProfileCreateManyGameInputEnvelope
-    set?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    disconnect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    delete?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    connect?: ProfileWhereUniqueInput | ProfileWhereUniqueInput[]
-    update?: ProfileUpdateWithWhereUniqueWithoutGameInput | ProfileUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: ProfileUpdateManyWithWhereWithoutGameInput | ProfileUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionInput = {
@@ -24186,12 +24186,6 @@ export namespace Prisma {
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutHardwareInput, GameUpdateWithoutHardwareInput>, GameUncheckedUpdateWithoutHardwareInput>
   }
 
-  export type UserCreateNestedOneWithoutAddressBookInput = {
-    create?: XOR<UserCreateWithoutAddressBookInput, UserUncheckedCreateWithoutAddressBookInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAddressBookInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type ComputerCreateNestedOneWithoutAddressBookInput = {
     create?: XOR<ComputerCreateWithoutAddressBookInput, ComputerUncheckedCreateWithoutAddressBookInput>
     connectOrCreate?: ComputerCreateOrConnectWithoutAddressBookInput
@@ -24204,16 +24198,14 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput
   }
 
-  export type EnumAccessLevelFieldUpdateOperationsInput = {
-    set?: $Enums.AccessLevel
-  }
-
-  export type UserUpdateOneRequiredWithoutAddressBookNestedInput = {
+  export type UserCreateNestedOneWithoutAddressBookInput = {
     create?: XOR<UserCreateWithoutAddressBookInput, UserUncheckedCreateWithoutAddressBookInput>
     connectOrCreate?: UserCreateOrConnectWithoutAddressBookInput
-    upsert?: UserUpsertWithoutAddressBookInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAddressBookInput, UserUpdateWithoutAddressBookInput>, UserUncheckedUpdateWithoutAddressBookInput>
+  }
+
+  export type EnumAccessLevelFieldUpdateOperationsInput = {
+    set?: $Enums.AccessLevel
   }
 
   export type ComputerUpdateOneRequiredWithoutAddressBookNestedInput = {
@@ -24232,10 +24224,12 @@ export namespace Prisma {
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutAddressBookInput, GameUpdateWithoutAddressBookInput>, GameUncheckedUpdateWithoutAddressBookInput>
   }
 
-  export type UserCreateNestedOneWithoutDnsInput = {
-    create?: XOR<UserCreateWithoutDnsInput, UserUncheckedCreateWithoutDnsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDnsInput
+  export type UserUpdateOneRequiredWithoutAddressBookNestedInput = {
+    create?: XOR<UserCreateWithoutAddressBookInput, UserUncheckedCreateWithoutAddressBookInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAddressBookInput
+    upsert?: UserUpsertWithoutAddressBookInput
     connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAddressBookInput, UserUpdateWithoutAddressBookInput>, UserUncheckedUpdateWithoutAddressBookInput>
   }
 
   export type ComputerCreateNestedOneWithoutDnsInput = {
@@ -24250,12 +24244,10 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutDnsNestedInput = {
+  export type UserCreateNestedOneWithoutDnsInput = {
     create?: XOR<UserCreateWithoutDnsInput, UserUncheckedCreateWithoutDnsInput>
     connectOrCreate?: UserCreateOrConnectWithoutDnsInput
-    upsert?: UserUpsertWithoutDnsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDnsInput, UserUpdateWithoutDnsInput>, UserUncheckedUpdateWithoutDnsInput>
   }
 
   export type ComputerUpdateOneRequiredWithoutDnsNestedInput = {
@@ -24274,10 +24266,12 @@ export namespace Prisma {
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutDnsInput, GameUpdateWithoutDnsInput>, GameUncheckedUpdateWithoutDnsInput>
   }
 
-  export type UserCreateNestedOneWithoutAccountBookInput = {
-    create?: XOR<UserCreateWithoutAccountBookInput, UserUncheckedCreateWithoutAccountBookInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAccountBookInput
+  export type UserUpdateOneRequiredWithoutDnsNestedInput = {
+    create?: XOR<UserCreateWithoutDnsInput, UserUncheckedCreateWithoutDnsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDnsInput
+    upsert?: UserUpsertWithoutDnsInput
     connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDnsInput, UserUpdateWithoutDnsInput>, UserUncheckedUpdateWithoutDnsInput>
   }
 
   export type ComputerCreateNestedOneWithoutAccountBookInput = {
@@ -24286,24 +24280,22 @@ export namespace Prisma {
     connect?: ComputerWhereUniqueInput
   }
 
-  export type MemoryCreateNestedOneWithoutAccountBookInput = {
-    create?: XOR<MemoryCreateWithoutAccountBookInput, MemoryUncheckedCreateWithoutAccountBookInput>
-    connectOrCreate?: MemoryCreateOrConnectWithoutAccountBookInput
-    connect?: MemoryWhereUniqueInput
-  }
-
   export type GameCreateNestedOneWithoutAccountBookInput = {
     create?: XOR<GameCreateWithoutAccountBookInput, GameUncheckedCreateWithoutAccountBookInput>
     connectOrCreate?: GameCreateOrConnectWithoutAccountBookInput
     connect?: GameWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutAccountBookNestedInput = {
+  export type MemoryCreateNestedOneWithoutAccountBookInput = {
+    create?: XOR<MemoryCreateWithoutAccountBookInput, MemoryUncheckedCreateWithoutAccountBookInput>
+    connectOrCreate?: MemoryCreateOrConnectWithoutAccountBookInput
+    connect?: MemoryWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutAccountBookInput = {
     create?: XOR<UserCreateWithoutAccountBookInput, UserUncheckedCreateWithoutAccountBookInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountBookInput
-    upsert?: UserUpsertWithoutAccountBookInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountBookInput, UserUpdateWithoutAccountBookInput>, UserUncheckedUpdateWithoutAccountBookInput>
   }
 
   export type ComputerUpdateOneRequiredWithoutAccountBookNestedInput = {
@@ -24314,14 +24306,6 @@ export namespace Prisma {
     update?: XOR<XOR<ComputerUpdateToOneWithWhereWithoutAccountBookInput, ComputerUpdateWithoutAccountBookInput>, ComputerUncheckedUpdateWithoutAccountBookInput>
   }
 
-  export type MemoryUpdateOneRequiredWithoutAccountBookNestedInput = {
-    create?: XOR<MemoryCreateWithoutAccountBookInput, MemoryUncheckedCreateWithoutAccountBookInput>
-    connectOrCreate?: MemoryCreateOrConnectWithoutAccountBookInput
-    upsert?: MemoryUpsertWithoutAccountBookInput
-    connect?: MemoryWhereUniqueInput
-    update?: XOR<XOR<MemoryUpdateToOneWithWhereWithoutAccountBookInput, MemoryUpdateWithoutAccountBookInput>, MemoryUncheckedUpdateWithoutAccountBookInput>
-  }
-
   export type GameUpdateOneRequiredWithoutAccountBookNestedInput = {
     create?: XOR<GameCreateWithoutAccountBookInput, GameUncheckedCreateWithoutAccountBookInput>
     connectOrCreate?: GameCreateOrConnectWithoutAccountBookInput
@@ -24330,16 +24314,40 @@ export namespace Prisma {
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutAccountBookInput, GameUpdateWithoutAccountBookInput>, GameUncheckedUpdateWithoutAccountBookInput>
   }
 
-  export type UserCreateNestedOneWithoutProfileInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+  export type MemoryUpdateOneRequiredWithoutAccountBookNestedInput = {
+    create?: XOR<MemoryCreateWithoutAccountBookInput, MemoryUncheckedCreateWithoutAccountBookInput>
+    connectOrCreate?: MemoryCreateOrConnectWithoutAccountBookInput
+    upsert?: MemoryUpsertWithoutAccountBookInput
+    connect?: MemoryWhereUniqueInput
+    update?: XOR<XOR<MemoryUpdateToOneWithWhereWithoutAccountBookInput, MemoryUpdateWithoutAccountBookInput>, MemoryUncheckedUpdateWithoutAccountBookInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutAccountBookNestedInput = {
+    create?: XOR<UserCreateWithoutAccountBookInput, UserUncheckedCreateWithoutAccountBookInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAccountBookInput
+    upsert?: UserUpsertWithoutAccountBookInput
     connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountBookInput, UserUpdateWithoutAccountBookInput>, UserUncheckedUpdateWithoutAccountBookInput>
   }
 
   export type GameCreateNestedOneWithoutProfileInput = {
     create?: XOR<GameCreateWithoutProfileInput, GameUncheckedCreateWithoutProfileInput>
     connectOrCreate?: GameCreateOrConnectWithoutProfileInput
     connect?: GameWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutProfileInput = {
+    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type GameUpdateOneRequiredWithoutProfileNestedInput = {
+    create?: XOR<GameCreateWithoutProfileInput, GameUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: GameCreateOrConnectWithoutProfileInput
+    upsert?: GameUpsertWithoutProfileInput
+    connect?: GameWhereUniqueInput
+    update?: XOR<XOR<GameUpdateToOneWithWhereWithoutProfileInput, GameUpdateWithoutProfileInput>, GameUncheckedUpdateWithoutProfileInput>
   }
 
   export type UserUpdateOneRequiredWithoutProfileNestedInput = {
@@ -24350,12 +24358,11 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileInput, UserUpdateWithoutProfileInput>, UserUncheckedUpdateWithoutProfileInput>
   }
 
-  export type GameUpdateOneRequiredWithoutProfileNestedInput = {
-    create?: XOR<GameCreateWithoutProfileInput, GameUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: GameCreateOrConnectWithoutProfileInput
-    upsert?: GameUpsertWithoutProfileInput
-    connect?: GameWhereUniqueInput
-    update?: XOR<XOR<GameUpdateToOneWithWhereWithoutProfileInput, GameUpdateWithoutProfileInput>, GameUncheckedUpdateWithoutProfileInput>
+  export type AccountBookCreateNestedManyWithoutMemoryInput = {
+    create?: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput> | AccountBookCreateWithoutMemoryInput[] | AccountBookUncheckedCreateWithoutMemoryInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutMemoryInput | AccountBookCreateOrConnectWithoutMemoryInput[]
+    createMany?: AccountBookCreateManyMemoryInputEnvelope
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
   }
 
   export type ComputerCreateNestedOneWithoutMemoryInput = {
@@ -24376,13 +24383,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type AccountBookCreateNestedManyWithoutMemoryInput = {
-    create?: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput> | AccountBookCreateWithoutMemoryInput[] | AccountBookUncheckedCreateWithoutMemoryInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutMemoryInput | AccountBookCreateOrConnectWithoutMemoryInput[]
-    createMany?: AccountBookCreateManyMemoryInputEnvelope
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-  }
-
   export type AccountBookUncheckedCreateNestedManyWithoutMemoryInput = {
     create?: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput> | AccountBookCreateWithoutMemoryInput[] | AccountBookUncheckedCreateWithoutMemoryInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutMemoryInput | AccountBookCreateOrConnectWithoutMemoryInput[]
@@ -24396,6 +24396,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type AccountBookUpdateManyWithoutMemoryNestedInput = {
+    create?: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput> | AccountBookCreateWithoutMemoryInput[] | AccountBookUncheckedCreateWithoutMemoryInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutMemoryInput | AccountBookCreateOrConnectWithoutMemoryInput[]
+    upsert?: AccountBookUpsertWithWhereUniqueWithoutMemoryInput | AccountBookUpsertWithWhereUniqueWithoutMemoryInput[]
+    createMany?: AccountBookCreateManyMemoryInputEnvelope
+    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    update?: AccountBookUpdateWithWhereUniqueWithoutMemoryInput | AccountBookUpdateWithWhereUniqueWithoutMemoryInput[]
+    updateMany?: AccountBookUpdateManyWithWhereWithoutMemoryInput | AccountBookUpdateManyWithWhereWithoutMemoryInput[]
+    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
   export type ComputerUpdateOneRequiredWithoutMemoryNestedInput = {
@@ -24422,20 +24436,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMemoryInput, UserUpdateWithoutMemoryInput>, UserUncheckedUpdateWithoutMemoryInput>
   }
 
-  export type AccountBookUpdateManyWithoutMemoryNestedInput = {
-    create?: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput> | AccountBookCreateWithoutMemoryInput[] | AccountBookUncheckedCreateWithoutMemoryInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutMemoryInput | AccountBookCreateOrConnectWithoutMemoryInput[]
-    upsert?: AccountBookUpsertWithWhereUniqueWithoutMemoryInput | AccountBookUpsertWithWhereUniqueWithoutMemoryInput[]
-    createMany?: AccountBookCreateManyMemoryInputEnvelope
-    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    update?: AccountBookUpdateWithWhereUniqueWithoutMemoryInput | AccountBookUpdateWithWhereUniqueWithoutMemoryInput[]
-    updateMany?: AccountBookUpdateManyWithWhereWithoutMemoryInput | AccountBookUpdateManyWithWhereWithoutMemoryInput[]
-    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
-  }
-
   export type AccountBookUncheckedUpdateManyWithoutMemoryNestedInput = {
     create?: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput> | AccountBookCreateWithoutMemoryInput[] | AccountBookUncheckedCreateWithoutMemoryInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutMemoryInput | AccountBookCreateOrConnectWithoutMemoryInput[]
@@ -24450,16 +24450,30 @@ export namespace Prisma {
     deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutComputerInput = {
-    create?: XOR<UserCreateWithoutComputerInput, UserUncheckedCreateWithoutComputerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutComputerInput
-    connect?: UserWhereUniqueInput
+  export type AccountBookCreateNestedManyWithoutComputerInput = {
+    create?: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput> | AccountBookCreateWithoutComputerInput[] | AccountBookUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: AccountBookCreateOrConnectWithoutComputerInput | AccountBookCreateOrConnectWithoutComputerInput[]
+    createMany?: AccountBookCreateManyComputerInputEnvelope
+    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+  }
+
+  export type AddressBookCreateNestedManyWithoutComputerInput = {
+    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
+    createMany?: AddressBookCreateManyComputerInputEnvelope
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
   }
 
   export type GameCreateNestedOneWithoutComputerInput = {
     create?: XOR<GameCreateWithoutComputerInput, GameUncheckedCreateWithoutComputerInput>
     connectOrCreate?: GameCreateOrConnectWithoutComputerInput
     connect?: GameWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutComputerInput = {
+    create?: XOR<UserCreateWithoutComputerInput, UserUncheckedCreateWithoutComputerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutComputerInput
+    connect?: UserWhereUniqueInput
   }
 
   export type DNSCreateNestedManyWithoutComputerInput = {
@@ -24476,11 +24490,11 @@ export namespace Prisma {
     connect?: HardwareWhereUniqueInput | HardwareWhereUniqueInput[]
   }
 
-  export type SoftwareCreateNestedManyWithoutComputerInput = {
-    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
-    createMany?: SoftwareCreateManyComputerInputEnvelope
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+  export type LogsCreateNestedManyWithoutComputerInput = {
+    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
+    createMany?: LogsCreateManyComputerInputEnvelope
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
   }
 
   export type MemoryCreateNestedManyWithoutComputerInput = {
@@ -24497,25 +24511,25 @@ export namespace Prisma {
     connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
   }
 
-  export type AddressBookCreateNestedManyWithoutComputerInput = {
-    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
-    createMany?: AddressBookCreateManyComputerInputEnvelope
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+  export type SoftwareCreateNestedManyWithoutComputerInput = {
+    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
+    createMany?: SoftwareCreateManyComputerInputEnvelope
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
   }
 
-  export type AccountBookCreateNestedManyWithoutComputerInput = {
+  export type AccountBookUncheckedCreateNestedManyWithoutComputerInput = {
     create?: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput> | AccountBookCreateWithoutComputerInput[] | AccountBookUncheckedCreateWithoutComputerInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutComputerInput | AccountBookCreateOrConnectWithoutComputerInput[]
     createMany?: AccountBookCreateManyComputerInputEnvelope
     connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
   }
 
-  export type LogsCreateNestedManyWithoutComputerInput = {
-    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
-    createMany?: LogsCreateManyComputerInputEnvelope
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+  export type AddressBookUncheckedCreateNestedManyWithoutComputerInput = {
+    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
+    createMany?: AddressBookCreateManyComputerInputEnvelope
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
   }
 
   export type DNSUncheckedCreateNestedManyWithoutComputerInput = {
@@ -24532,11 +24546,11 @@ export namespace Prisma {
     connect?: HardwareWhereUniqueInput | HardwareWhereUniqueInput[]
   }
 
-  export type SoftwareUncheckedCreateNestedManyWithoutComputerInput = {
-    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
-    createMany?: SoftwareCreateManyComputerInputEnvelope
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+  export type LogsUncheckedCreateNestedManyWithoutComputerInput = {
+    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
+    createMany?: LogsCreateManyComputerInputEnvelope
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
   }
 
   export type MemoryUncheckedCreateNestedManyWithoutComputerInput = {
@@ -24553,33 +24567,39 @@ export namespace Prisma {
     connect?: ProcessWhereUniqueInput | ProcessWhereUniqueInput[]
   }
 
-  export type AddressBookUncheckedCreateNestedManyWithoutComputerInput = {
-    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
-    createMany?: AddressBookCreateManyComputerInputEnvelope
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+  export type SoftwareUncheckedCreateNestedManyWithoutComputerInput = {
+    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
+    createMany?: SoftwareCreateManyComputerInputEnvelope
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
   }
 
-  export type AccountBookUncheckedCreateNestedManyWithoutComputerInput = {
+  export type AccountBookUpdateManyWithoutComputerNestedInput = {
     create?: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput> | AccountBookCreateWithoutComputerInput[] | AccountBookUncheckedCreateWithoutComputerInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutComputerInput | AccountBookCreateOrConnectWithoutComputerInput[]
+    upsert?: AccountBookUpsertWithWhereUniqueWithoutComputerInput | AccountBookUpsertWithWhereUniqueWithoutComputerInput[]
     createMany?: AccountBookCreateManyComputerInputEnvelope
+    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
     connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
+    update?: AccountBookUpdateWithWhereUniqueWithoutComputerInput | AccountBookUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: AccountBookUpdateManyWithWhereWithoutComputerInput | AccountBookUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
-  export type LogsUncheckedCreateNestedManyWithoutComputerInput = {
-    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
-    createMany?: LogsCreateManyComputerInputEnvelope
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutComputerNestedInput = {
-    create?: XOR<UserCreateWithoutComputerInput, UserUncheckedCreateWithoutComputerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutComputerInput
-    upsert?: UserUpsertWithoutComputerInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutComputerInput, UserUpdateWithoutComputerInput>, UserUncheckedUpdateWithoutComputerInput>
+  export type AddressBookUpdateManyWithoutComputerNestedInput = {
+    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
+    upsert?: AddressBookUpsertWithWhereUniqueWithoutComputerInput | AddressBookUpsertWithWhereUniqueWithoutComputerInput[]
+    createMany?: AddressBookCreateManyComputerInputEnvelope
+    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    update?: AddressBookUpdateWithWhereUniqueWithoutComputerInput | AddressBookUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: AddressBookUpdateManyWithWhereWithoutComputerInput | AddressBookUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
   }
 
   export type GameUpdateOneRequiredWithoutComputerNestedInput = {
@@ -24588,6 +24608,14 @@ export namespace Prisma {
     upsert?: GameUpsertWithoutComputerInput
     connect?: GameWhereUniqueInput
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutComputerInput, GameUpdateWithoutComputerInput>, GameUncheckedUpdateWithoutComputerInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutComputerNestedInput = {
+    create?: XOR<UserCreateWithoutComputerInput, UserUncheckedCreateWithoutComputerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutComputerInput
+    upsert?: UserUpsertWithoutComputerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutComputerInput, UserUpdateWithoutComputerInput>, UserUncheckedUpdateWithoutComputerInput>
   }
 
   export type DNSUpdateManyWithoutComputerNestedInput = {
@@ -24618,18 +24646,18 @@ export namespace Prisma {
     deleteMany?: HardwareScalarWhereInput | HardwareScalarWhereInput[]
   }
 
-  export type SoftwareUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
-    upsert?: SoftwareUpsertWithWhereUniqueWithoutComputerInput | SoftwareUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: SoftwareCreateManyComputerInputEnvelope
-    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    update?: SoftwareUpdateWithWhereUniqueWithoutComputerInput | SoftwareUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: SoftwareUpdateManyWithWhereWithoutComputerInput | SoftwareUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
+  export type LogsUpdateManyWithoutComputerNestedInput = {
+    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
+    upsert?: LogsUpsertWithWhereUniqueWithoutComputerInput | LogsUpsertWithWhereUniqueWithoutComputerInput[]
+    createMany?: LogsCreateManyComputerInputEnvelope
+    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    update?: LogsUpdateWithWhereUniqueWithoutComputerInput | LogsUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: LogsUpdateManyWithWhereWithoutComputerInput | LogsUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
   }
 
   export type MemoryUpdateManyWithoutComputerNestedInput = {
@@ -24660,21 +24688,21 @@ export namespace Prisma {
     deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
   }
 
-  export type AddressBookUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
-    upsert?: AddressBookUpsertWithWhereUniqueWithoutComputerInput | AddressBookUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: AddressBookCreateManyComputerInputEnvelope
-    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    update?: AddressBookUpdateWithWhereUniqueWithoutComputerInput | AddressBookUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: AddressBookUpdateManyWithWhereWithoutComputerInput | AddressBookUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+  export type SoftwareUpdateManyWithoutComputerNestedInput = {
+    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
+    upsert?: SoftwareUpsertWithWhereUniqueWithoutComputerInput | SoftwareUpsertWithWhereUniqueWithoutComputerInput[]
+    createMany?: SoftwareCreateManyComputerInputEnvelope
+    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    update?: SoftwareUpdateWithWhereUniqueWithoutComputerInput | SoftwareUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: SoftwareUpdateManyWithWhereWithoutComputerInput | SoftwareUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
   }
 
-  export type AccountBookUpdateManyWithoutComputerNestedInput = {
+  export type AccountBookUncheckedUpdateManyWithoutComputerNestedInput = {
     create?: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput> | AccountBookCreateWithoutComputerInput[] | AccountBookUncheckedCreateWithoutComputerInput[]
     connectOrCreate?: AccountBookCreateOrConnectWithoutComputerInput | AccountBookCreateOrConnectWithoutComputerInput[]
     upsert?: AccountBookUpsertWithWhereUniqueWithoutComputerInput | AccountBookUpsertWithWhereUniqueWithoutComputerInput[]
@@ -24688,18 +24716,18 @@ export namespace Prisma {
     deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
   }
 
-  export type LogsUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
-    upsert?: LogsUpsertWithWhereUniqueWithoutComputerInput | LogsUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: LogsCreateManyComputerInputEnvelope
-    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    update?: LogsUpdateWithWhereUniqueWithoutComputerInput | LogsUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: LogsUpdateManyWithWhereWithoutComputerInput | LogsUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
+  export type AddressBookUncheckedUpdateManyWithoutComputerNestedInput = {
+    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
+    upsert?: AddressBookUpsertWithWhereUniqueWithoutComputerInput | AddressBookUpsertWithWhereUniqueWithoutComputerInput[]
+    createMany?: AddressBookCreateManyComputerInputEnvelope
+    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
+    update?: AddressBookUpdateWithWhereUniqueWithoutComputerInput | AddressBookUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: AddressBookUpdateManyWithWhereWithoutComputerInput | AddressBookUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
   }
 
   export type DNSUncheckedUpdateManyWithoutComputerNestedInput = {
@@ -24730,18 +24758,18 @@ export namespace Prisma {
     deleteMany?: HardwareScalarWhereInput | HardwareScalarWhereInput[]
   }
 
-  export type SoftwareUncheckedUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
-    upsert?: SoftwareUpsertWithWhereUniqueWithoutComputerInput | SoftwareUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: SoftwareCreateManyComputerInputEnvelope
-    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
-    update?: SoftwareUpdateWithWhereUniqueWithoutComputerInput | SoftwareUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: SoftwareUpdateManyWithWhereWithoutComputerInput | SoftwareUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
+  export type LogsUncheckedUpdateManyWithoutComputerNestedInput = {
+    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
+    upsert?: LogsUpsertWithWhereUniqueWithoutComputerInput | LogsUpsertWithWhereUniqueWithoutComputerInput[]
+    createMany?: LogsCreateManyComputerInputEnvelope
+    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
+    update?: LogsUpdateWithWhereUniqueWithoutComputerInput | LogsUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: LogsUpdateManyWithWhereWithoutComputerInput | LogsUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
   }
 
   export type MemoryUncheckedUpdateManyWithoutComputerNestedInput = {
@@ -24772,46 +24800,18 @@ export namespace Prisma {
     deleteMany?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
   }
 
-  export type AddressBookUncheckedUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput> | AddressBookCreateWithoutComputerInput[] | AddressBookUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: AddressBookCreateOrConnectWithoutComputerInput | AddressBookCreateOrConnectWithoutComputerInput[]
-    upsert?: AddressBookUpsertWithWhereUniqueWithoutComputerInput | AddressBookUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: AddressBookCreateManyComputerInputEnvelope
-    set?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    disconnect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    delete?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    connect?: AddressBookWhereUniqueInput | AddressBookWhereUniqueInput[]
-    update?: AddressBookUpdateWithWhereUniqueWithoutComputerInput | AddressBookUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: AddressBookUpdateManyWithWhereWithoutComputerInput | AddressBookUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
-  }
-
-  export type AccountBookUncheckedUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput> | AccountBookCreateWithoutComputerInput[] | AccountBookUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: AccountBookCreateOrConnectWithoutComputerInput | AccountBookCreateOrConnectWithoutComputerInput[]
-    upsert?: AccountBookUpsertWithWhereUniqueWithoutComputerInput | AccountBookUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: AccountBookCreateManyComputerInputEnvelope
-    set?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    disconnect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    delete?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    connect?: AccountBookWhereUniqueInput | AccountBookWhereUniqueInput[]
-    update?: AccountBookUpdateWithWhereUniqueWithoutComputerInput | AccountBookUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: AccountBookUpdateManyWithWhereWithoutComputerInput | AccountBookUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
-  }
-
-  export type LogsUncheckedUpdateManyWithoutComputerNestedInput = {
-    create?: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput> | LogsCreateWithoutComputerInput[] | LogsUncheckedCreateWithoutComputerInput[]
-    connectOrCreate?: LogsCreateOrConnectWithoutComputerInput | LogsCreateOrConnectWithoutComputerInput[]
-    upsert?: LogsUpsertWithWhereUniqueWithoutComputerInput | LogsUpsertWithWhereUniqueWithoutComputerInput[]
-    createMany?: LogsCreateManyComputerInputEnvelope
-    set?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    disconnect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    delete?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    connect?: LogsWhereUniqueInput | LogsWhereUniqueInput[]
-    update?: LogsUpdateWithWhereUniqueWithoutComputerInput | LogsUpdateWithWhereUniqueWithoutComputerInput[]
-    updateMany?: LogsUpdateManyWithWhereWithoutComputerInput | LogsUpdateManyWithWhereWithoutComputerInput[]
-    deleteMany?: LogsScalarWhereInput | LogsScalarWhereInput[]
+  export type SoftwareUncheckedUpdateManyWithoutComputerNestedInput = {
+    create?: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput> | SoftwareCreateWithoutComputerInput[] | SoftwareUncheckedCreateWithoutComputerInput[]
+    connectOrCreate?: SoftwareCreateOrConnectWithoutComputerInput | SoftwareCreateOrConnectWithoutComputerInput[]
+    upsert?: SoftwareUpsertWithWhereUniqueWithoutComputerInput | SoftwareUpsertWithWhereUniqueWithoutComputerInput[]
+    createMany?: SoftwareCreateManyComputerInputEnvelope
+    set?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    disconnect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    delete?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    connect?: SoftwareWhereUniqueInput | SoftwareWhereUniqueInput[]
+    update?: SoftwareUpdateWithWhereUniqueWithoutComputerInput | SoftwareUpdateWithWhereUniqueWithoutComputerInput[]
+    updateMany?: SoftwareUpdateManyWithWhereWithoutComputerInput | SoftwareUpdateManyWithWhereWithoutComputerInput[]
+    deleteMany?: SoftwareScalarWhereInput | SoftwareScalarWhereInput[]
   }
 
   export type GameCreateNestedOneWithoutQuestsInput = {
@@ -24874,6 +24874,12 @@ export namespace Prisma {
     deleteMany?: UserQuestsScalarWhereInput | UserQuestsScalarWhereInput[]
   }
 
+  export type GameCreateNestedOneWithoutUserQuestsInput = {
+    create?: XOR<GameCreateWithoutUserQuestsInput, GameUncheckedCreateWithoutUserQuestsInput>
+    connectOrCreate?: GameCreateOrConnectWithoutUserQuestsInput
+    connect?: GameWhereUniqueInput
+  }
+
   export type QuestsCreateNestedOneWithoutUserQuestsInput = {
     create?: XOR<QuestsCreateWithoutUserQuestsInput, QuestsUncheckedCreateWithoutUserQuestsInput>
     connectOrCreate?: QuestsCreateOrConnectWithoutUserQuestsInput
@@ -24886,10 +24892,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type GameCreateNestedOneWithoutUserQuestsInput = {
+  export type GameUpdateOneRequiredWithoutUserQuestsNestedInput = {
     create?: XOR<GameCreateWithoutUserQuestsInput, GameUncheckedCreateWithoutUserQuestsInput>
     connectOrCreate?: GameCreateOrConnectWithoutUserQuestsInput
+    upsert?: GameUpsertWithoutUserQuestsInput
     connect?: GameWhereUniqueInput
+    update?: XOR<XOR<GameUpdateToOneWithWhereWithoutUserQuestsInput, GameUpdateWithoutUserQuestsInput>, GameUncheckedUpdateWithoutUserQuestsInput>
   }
 
   export type QuestsUpdateOneRequiredWithoutUserQuestsNestedInput = {
@@ -24908,20 +24916,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserQuestsInput, UserUpdateWithoutUserQuestsInput>, UserUncheckedUpdateWithoutUserQuestsInput>
   }
 
-  export type GameUpdateOneRequiredWithoutUserQuestsNestedInput = {
-    create?: XOR<GameCreateWithoutUserQuestsInput, GameUncheckedCreateWithoutUserQuestsInput>
-    connectOrCreate?: GameCreateOrConnectWithoutUserQuestsInput
-    upsert?: GameUpsertWithoutUserQuestsInput
-    connect?: GameWhereUniqueInput
-    update?: XOR<XOR<GameUpdateToOneWithWhereWithoutUserQuestsInput, GameUpdateWithoutUserQuestsInput>, GameUncheckedUpdateWithoutUserQuestsInput>
-  }
-
-  export type UserCreateNestedOneWithoutSoftwareInput = {
-    create?: XOR<UserCreateWithoutSoftwareInput, UserUncheckedCreateWithoutSoftwareInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSoftwareInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type ComputerCreateNestedOneWithoutSoftwareInput = {
     create?: XOR<ComputerCreateWithoutSoftwareInput, ComputerUncheckedCreateWithoutSoftwareInput>
     connectOrCreate?: ComputerCreateOrConnectWithoutSoftwareInput
@@ -24934,12 +24928,10 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutSoftwareNestedInput = {
+  export type UserCreateNestedOneWithoutSoftwareInput = {
     create?: XOR<UserCreateWithoutSoftwareInput, UserUncheckedCreateWithoutSoftwareInput>
     connectOrCreate?: UserCreateOrConnectWithoutSoftwareInput
-    upsert?: UserUpsertWithoutSoftwareInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSoftwareInput, UserUpdateWithoutSoftwareInput>, UserUncheckedUpdateWithoutSoftwareInput>
   }
 
   export type ComputerUpdateOneRequiredWithoutSoftwareNestedInput = {
@@ -24958,10 +24950,12 @@ export namespace Prisma {
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutSoftwareInput, GameUpdateWithoutSoftwareInput>, GameUncheckedUpdateWithoutSoftwareInput>
   }
 
-  export type UserCreateNestedOneWithoutProcessInput = {
-    create?: XOR<UserCreateWithoutProcessInput, UserUncheckedCreateWithoutProcessInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProcessInput
+  export type UserUpdateOneRequiredWithoutSoftwareNestedInput = {
+    create?: XOR<UserCreateWithoutSoftwareInput, UserUncheckedCreateWithoutSoftwareInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSoftwareInput
+    upsert?: UserUpsertWithoutSoftwareInput
     connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSoftwareInput, UserUpdateWithoutSoftwareInput>, UserUncheckedUpdateWithoutSoftwareInput>
   }
 
   export type ComputerCreateNestedOneWithoutProcessInput = {
@@ -24976,12 +24970,10 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutProcessNestedInput = {
+  export type UserCreateNestedOneWithoutProcessInput = {
     create?: XOR<UserCreateWithoutProcessInput, UserUncheckedCreateWithoutProcessInput>
     connectOrCreate?: UserCreateOrConnectWithoutProcessInput
-    upsert?: UserUpsertWithoutProcessInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProcessInput, UserUpdateWithoutProcessInput>, UserUncheckedUpdateWithoutProcessInput>
   }
 
   export type ComputerUpdateOneRequiredWithoutProcessNestedInput = {
@@ -25000,6 +24992,14 @@ export namespace Prisma {
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutProcessInput, GameUpdateWithoutProcessInput>, GameUncheckedUpdateWithoutProcessInput>
   }
 
+  export type UserUpdateOneRequiredWithoutProcessNestedInput = {
+    create?: XOR<UserCreateWithoutProcessInput, UserUncheckedCreateWithoutProcessInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProcessInput
+    upsert?: UserUpsertWithoutProcessInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProcessInput, UserUpdateWithoutProcessInput>, UserUncheckedUpdateWithoutProcessInput>
+  }
+
   export type UserCreateNestedOneWithoutNotificationsInput = {
     create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
     connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
@@ -25014,12 +25014,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
   }
 
-  export type UserCreateNestedOneWithoutLogsInput = {
-    create?: XOR<UserCreateWithoutLogsInput, UserUncheckedCreateWithoutLogsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLogsInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type ComputerCreateNestedOneWithoutLogsInput = {
     create?: XOR<ComputerCreateWithoutLogsInput, ComputerUncheckedCreateWithoutLogsInput>
     connectOrCreate?: ComputerCreateOrConnectWithoutLogsInput
@@ -25032,12 +25026,10 @@ export namespace Prisma {
     connect?: GameWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutLogsNestedInput = {
+  export type UserCreateNestedOneWithoutLogsInput = {
     create?: XOR<UserCreateWithoutLogsInput, UserUncheckedCreateWithoutLogsInput>
     connectOrCreate?: UserCreateOrConnectWithoutLogsInput
-    upsert?: UserUpsertWithoutLogsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLogsInput, UserUpdateWithoutLogsInput>, UserUncheckedUpdateWithoutLogsInput>
   }
 
   export type ComputerUpdateOneRequiredWithoutLogsNestedInput = {
@@ -25054,6 +25046,14 @@ export namespace Prisma {
     upsert?: GameUpsertWithoutLogsInput
     connect?: GameWhereUniqueInput
     update?: XOR<XOR<GameUpdateToOneWithWhereWithoutLogsInput, GameUpdateWithoutLogsInput>, GameUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutLogsNestedInput = {
+    create?: XOR<UserCreateWithoutLogsInput, UserUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLogsInput
+    upsert?: UserUpsertWithoutLogsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLogsInput, UserUpdateWithoutLogsInput>, UserUncheckedUpdateWithoutLogsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -25368,6 +25368,272 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type AccountBookCreateWithoutUserInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    computer: ComputerCreateNestedOneWithoutAccountBookInput
+    game: GameCreateNestedOneWithoutAccountBookInput
+    memory: MemoryCreateNestedOneWithoutAccountBookInput
+  }
+
+  export type AccountBookUncheckedCreateWithoutUserInput = {
+    id?: number
+    computerId: string
+    memoryId: string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId: string
+  }
+
+  export type AccountBookCreateOrConnectWithoutUserInput = {
+    where: AccountBookWhereUniqueInput
+    create: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput>
+  }
+
+  export type AccountBookCreateManyUserInputEnvelope = {
+    data: AccountBookCreateManyUserInput | AccountBookCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddressBookCreateWithoutUserInput = {
+    access: $Enums.AccessLevel
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    computer: ComputerCreateNestedOneWithoutAddressBookInput
+    game: GameCreateNestedOneWithoutAddressBookInput
+  }
+
+  export type AddressBookUncheckedCreateWithoutUserInput = {
+    id?: number
+    access: $Enums.AccessLevel
+    computerId: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId: string
+  }
+
+  export type AddressBookCreateOrConnectWithoutUserInput = {
+    where: AddressBookWhereUniqueInput
+    create: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput>
+  }
+
+  export type AddressBookCreateManyUserInputEnvelope = {
+    data: AddressBookCreateManyUserInput | AddressBookCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComputerCreateWithoutUserInput = {
+    id?: string
+    type?: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: Date | string
+    updated?: Date | string
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
+    game: GameCreateNestedOneWithoutComputerInput
+    dns?: DNSCreateNestedManyWithoutComputerInput
+    hardware?: HardwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
+    memory?: MemoryCreateNestedManyWithoutComputerInput
+    process?: ProcessCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
+  }
+
+  export type ComputerUncheckedCreateWithoutUserInput = {
+    id?: string
+    type?: string
+    gameId: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: Date | string
+    updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
+    dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
+    process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+  }
+
+  export type ComputerCreateOrConnectWithoutUserInput = {
+    where: ComputerWhereUniqueInput
+    create: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput>
+  }
+
+  export type ComputerCreateManyUserInputEnvelope = {
+    data: ComputerCreateManyUserInput | ComputerCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DNSCreateWithoutUserInput = {
+    website: string
+    tags: string
+    description?: string
+    updated?: Date | string
+    created?: Date | string
+    computer: ComputerCreateNestedOneWithoutDnsInput
+    game: GameCreateNestedOneWithoutDnsInput
+  }
+
+  export type DNSUncheckedCreateWithoutUserInput = {
+    id?: number
+    computerId: string
+    gameId: string
+    website: string
+    tags: string
+    description?: string
+    updated?: Date | string
+    created?: Date | string
+  }
+
+  export type DNSCreateOrConnectWithoutUserInput = {
+    where: DNSWhereUniqueInput
+    create: XOR<DNSCreateWithoutUserInput, DNSUncheckedCreateWithoutUserInput>
+  }
+
+  export type DNSCreateManyUserInputEnvelope = {
+    data: DNSCreateManyUserInput | DNSCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LogsCreateWithoutUserInput = {
+    senderId: string
+    senderIp: string
+    message: string
+    created?: Date | string
+    computer: ComputerCreateNestedOneWithoutLogsInput
+    game: GameCreateNestedOneWithoutLogsInput
+  }
+
+  export type LogsUncheckedCreateWithoutUserInput = {
+    id?: number
+    computerId: string
+    senderId: string
+    senderIp: string
+    gameId: string
+    message: string
+    created?: Date | string
+  }
+
+  export type LogsCreateOrConnectWithoutUserInput = {
+    where: LogsWhereUniqueInput
+    create: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput>
+  }
+
+  export type LogsCreateManyUserInputEnvelope = {
+    data: LogsCreateManyUserInput | LogsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MemoryCreateWithoutUserInput = {
+    id?: string
+    type: string
+    key: string
+    value?: number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
+    computer: ComputerCreateNestedOneWithoutMemoryInput
+    game: GameCreateNestedOneWithoutMemoryInput
+  }
+
+  export type MemoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    computerId: string
+    gameId: string
+    type: string
+    key: string
+    value?: number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutMemoryInput
+  }
+
+  export type MemoryCreateOrConnectWithoutUserInput = {
+    where: MemoryWhereUniqueInput
+    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type MemoryCreateManyUserInputEnvelope = {
+    data: MemoryCreateManyUserInput | MemoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationsCreateWithoutUserInput = {
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    read?: boolean
+  }
+
+  export type NotificationsUncheckedCreateWithoutUserInput = {
+    id?: number
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    read?: boolean
+  }
+
+  export type NotificationsCreateOrConnectWithoutUserInput = {
+    where: NotificationsWhereUniqueInput
+    create: XOR<NotificationsCreateWithoutUserInput, NotificationsUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationsCreateManyUserInputEnvelope = {
+    data: NotificationsCreateManyUserInput | NotificationsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProcessCreateWithoutUserInput = {
+    id?: string
+    ip?: string | null
+    type: string
+    started?: Date | string
+    completion: Date | string
+    data: JsonNullValueInput | InputJsonValue
+    computer: ComputerCreateNestedOneWithoutProcessInput
+    game: GameCreateNestedOneWithoutProcessInput
+  }
+
+  export type ProcessUncheckedCreateWithoutUserInput = {
+    id?: string
+    computerId: string
+    ip?: string | null
+    gameId: string
+    type: string
+    started?: Date | string
+    completion: Date | string
+    data: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProcessCreateOrConnectWithoutUserInput = {
+    where: ProcessWhereUniqueInput
+    create: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProcessCreateManyUserInputEnvelope = {
+    data: ProcessCreateManyUserInput | ProcessCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProfileCreateWithoutUserInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    game: GameCreateNestedOneWithoutProfileInput
+  }
+
+  export type ProfileUncheckedCreateWithoutUserInput = {
+    id?: number
+    gameId: string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileCreateOrConnectWithoutUserInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProfileCreateManyUserInputEnvelope = {
+    data: ProfileCreateManyUserInput | ProfileCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SessionCreateWithoutUserInput = {
     id: string
     token: string
@@ -25391,52 +25657,6 @@ export namespace Prisma {
 
   export type SessionCreateManyUserInputEnvelope = {
     data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ComputerCreateWithoutUserInput = {
-    id?: string
-    type?: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: Date | string
-    updated?: Date | string
-    game: GameCreateNestedOneWithoutComputerInput
-    dns?: DNSCreateNestedManyWithoutComputerInput
-    hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
-    memory?: MemoryCreateNestedManyWithoutComputerInput
-    process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
-  }
-
-  export type ComputerUncheckedCreateWithoutUserInput = {
-    id?: string
-    type?: string
-    gameId: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: Date | string
-    updated?: Date | string
-    dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
-    process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
-  }
-
-  export type ComputerCreateOrConnectWithoutUserInput = {
-    where: ComputerWhereUniqueInput
-    create: XOR<ComputerCreateWithoutUserInput, ComputerUncheckedCreateWithoutUserInput>
-  }
-
-  export type ComputerCreateManyUserInputEnvelope = {
-    data: ComputerCreateManyUserInput | ComputerCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -25480,77 +25700,13 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MemoryCreateWithoutUserInput = {
-    id?: string
-    type: string
-    key: string
-    value?: number | null
-    data?: JsonNullValueInput | InputJsonValue
-    computer: ComputerCreateNestedOneWithoutMemoryInput
-    game: GameCreateNestedOneWithoutMemoryInput
-    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
-  }
-
-  export type MemoryUncheckedCreateWithoutUserInput = {
-    id?: string
-    computerId: string
-    gameId: string
-    type: string
-    key: string
-    value?: number | null
-    data?: JsonNullValueInput | InputJsonValue
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutMemoryInput
-  }
-
-  export type MemoryCreateOrConnectWithoutUserInput = {
-    where: MemoryWhereUniqueInput
-    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type MemoryCreateManyUserInputEnvelope = {
-    data: MemoryCreateManyUserInput | MemoryCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ProcessCreateWithoutUserInput = {
-    id?: string
-    ip?: string | null
-    type: string
-    started?: Date | string
-    completion: Date | string
-    data: JsonNullValueInput | InputJsonValue
-    computer: ComputerCreateNestedOneWithoutProcessInput
-    game: GameCreateNestedOneWithoutProcessInput
-  }
-
-  export type ProcessUncheckedCreateWithoutUserInput = {
-    id?: string
-    computerId: string
-    ip?: string | null
-    gameId: string
-    type: string
-    started?: Date | string
-    completion: Date | string
-    data: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessCreateOrConnectWithoutUserInput = {
-    where: ProcessWhereUniqueInput
-    create: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput>
-  }
-
-  export type ProcessCreateManyUserInputEnvelope = {
-    data: ProcessCreateManyUserInput | ProcessCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserQuestsCreateWithoutUserInput = {
     id?: string
     completed: boolean
     created?: Date | string
     updated?: Date | string
-    quest: QuestsCreateNestedOneWithoutUserQuestsInput
     game: GameCreateNestedOneWithoutUserQuestsInput
+    quest: QuestsCreateNestedOneWithoutUserQuestsInput
   }
 
   export type UserQuestsUncheckedCreateWithoutUserInput = {
@@ -25572,188 +25728,61 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AddressBookCreateWithoutUserInput = {
-    access: $Enums.AccessLevel
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    computer: ComputerCreateNestedOneWithoutAddressBookInput
-    game: GameCreateNestedOneWithoutAddressBookInput
-  }
-
-  export type AddressBookUncheckedCreateWithoutUserInput = {
-    id?: number
-    access: $Enums.AccessLevel
-    computerId: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId: string
-  }
-
-  export type AddressBookCreateOrConnectWithoutUserInput = {
-    where: AddressBookWhereUniqueInput
-    create: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput>
-  }
-
-  export type AddressBookCreateManyUserInputEnvelope = {
-    data: AddressBookCreateManyUserInput | AddressBookCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AccountBookCreateWithoutUserInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    computer: ComputerCreateNestedOneWithoutAccountBookInput
-    memory: MemoryCreateNestedOneWithoutAccountBookInput
-    game: GameCreateNestedOneWithoutAccountBookInput
-  }
-
-  export type AccountBookUncheckedCreateWithoutUserInput = {
-    id?: number
-    computerId: string
-    memoryId: string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId: string
-  }
-
-  export type AccountBookCreateOrConnectWithoutUserInput = {
+  export type AccountBookUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountBookWhereUniqueInput
+    update: XOR<AccountBookUpdateWithoutUserInput, AccountBookUncheckedUpdateWithoutUserInput>
     create: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput>
   }
 
-  export type AccountBookCreateManyUserInputEnvelope = {
-    data: AccountBookCreateManyUserInput | AccountBookCreateManyUserInput[]
-    skipDuplicates?: boolean
+  export type AccountBookUpdateWithWhereUniqueWithoutUserInput = {
+    where: AccountBookWhereUniqueInput
+    data: XOR<AccountBookUpdateWithoutUserInput, AccountBookUncheckedUpdateWithoutUserInput>
   }
 
-  export type LogsCreateWithoutUserInput = {
-    senderId: string
-    senderIp: string
-    message: string
-    created?: Date | string
-    computer: ComputerCreateNestedOneWithoutLogsInput
-    game: GameCreateNestedOneWithoutLogsInput
+  export type AccountBookUpdateManyWithWhereWithoutUserInput = {
+    where: AccountBookScalarWhereInput
+    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type LogsUncheckedCreateWithoutUserInput = {
-    id?: number
-    computerId: string
-    senderId: string
-    senderIp: string
-    gameId: string
-    message: string
-    created?: Date | string
+  export type AccountBookScalarWhereInput = {
+    AND?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
+    OR?: AccountBookScalarWhereInput[]
+    NOT?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
+    id?: IntFilter<"AccountBook"> | number
+    userId?: IntFilter<"AccountBook"> | number
+    computerId?: StringFilter<"AccountBook"> | string
+    memoryId?: StringFilter<"AccountBook"> | string
+    data?: JsonFilter<"AccountBook">
+    gameId?: StringFilter<"AccountBook"> | string
   }
 
-  export type LogsCreateOrConnectWithoutUserInput = {
-    where: LogsWhereUniqueInput
-    create: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput>
+  export type AddressBookUpsertWithWhereUniqueWithoutUserInput = {
+    where: AddressBookWhereUniqueInput
+    update: XOR<AddressBookUpdateWithoutUserInput, AddressBookUncheckedUpdateWithoutUserInput>
+    create: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput>
   }
 
-  export type LogsCreateManyUserInputEnvelope = {
-    data: LogsCreateManyUserInput | LogsCreateManyUserInput[]
-    skipDuplicates?: boolean
+  export type AddressBookUpdateWithWhereUniqueWithoutUserInput = {
+    where: AddressBookWhereUniqueInput
+    data: XOR<AddressBookUpdateWithoutUserInput, AddressBookUncheckedUpdateWithoutUserInput>
   }
 
-  export type DNSCreateWithoutUserInput = {
-    website: string
-    tags: string
-    description?: string
-    updated?: Date | string
-    created?: Date | string
-    computer: ComputerCreateNestedOneWithoutDnsInput
-    game: GameCreateNestedOneWithoutDnsInput
+  export type AddressBookUpdateManyWithWhereWithoutUserInput = {
+    where: AddressBookScalarWhereInput
+    data: XOR<AddressBookUpdateManyMutationInput, AddressBookUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type DNSUncheckedCreateWithoutUserInput = {
-    id?: number
-    computerId: string
-    gameId: string
-    website: string
-    tags: string
-    description?: string
-    updated?: Date | string
-    created?: Date | string
-  }
-
-  export type DNSCreateOrConnectWithoutUserInput = {
-    where: DNSWhereUniqueInput
-    create: XOR<DNSCreateWithoutUserInput, DNSUncheckedCreateWithoutUserInput>
-  }
-
-  export type DNSCreateManyUserInputEnvelope = {
-    data: DNSCreateManyUserInput | DNSCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ProfileCreateWithoutUserInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    game: GameCreateNestedOneWithoutProfileInput
-  }
-
-  export type ProfileUncheckedCreateWithoutUserInput = {
-    id?: number
-    gameId: string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProfileCreateOrConnectWithoutUserInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-  }
-
-  export type ProfileCreateManyUserInputEnvelope = {
-    data: ProfileCreateManyUserInput | ProfileCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type NotificationsCreateWithoutUserInput = {
-    type: string
-    content: JsonNullValueInput | InputJsonValue
-    read?: boolean
-  }
-
-  export type NotificationsUncheckedCreateWithoutUserInput = {
-    id?: number
-    type: string
-    content: JsonNullValueInput | InputJsonValue
-    read?: boolean
-  }
-
-  export type NotificationsCreateOrConnectWithoutUserInput = {
-    where: NotificationsWhereUniqueInput
-    create: XOR<NotificationsCreateWithoutUserInput, NotificationsUncheckedCreateWithoutUserInput>
-  }
-
-  export type NotificationsCreateManyUserInputEnvelope = {
-    data: NotificationsCreateManyUserInput | NotificationsCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    userId?: IntFilter<"Session"> | number
-    token?: StringFilter<"Session"> | string
-    lastAction?: DateTimeFilter<"Session"> | Date | string
-    created?: DateTimeFilter<"Session"> | Date | string
-    expires?: DateTimeFilter<"Session"> | Date | string
+  export type AddressBookScalarWhereInput = {
+    AND?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+    OR?: AddressBookScalarWhereInput[]
+    NOT?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
+    id?: IntFilter<"AddressBook"> | number
+    userId?: IntFilter<"AddressBook"> | number
+    access?: EnumAccessLevelFilter<"AddressBook"> | $Enums.AccessLevel
+    computerId?: StringFilter<"AddressBook"> | string
+    ip?: StringFilter<"AddressBook"> | string
+    data?: JsonFilter<"AddressBook">
+    gameId?: StringFilter<"AddressBook"> | string
   }
 
   export type ComputerUpsertWithWhereUniqueWithoutUserInput = {
@@ -25784,6 +25813,209 @@ export namespace Prisma {
     data?: JsonFilter<"Computer">
     created?: DateTimeFilter<"Computer"> | Date | string
     updated?: DateTimeFilter<"Computer"> | Date | string
+  }
+
+  export type DNSUpsertWithWhereUniqueWithoutUserInput = {
+    where: DNSWhereUniqueInput
+    update: XOR<DNSUpdateWithoutUserInput, DNSUncheckedUpdateWithoutUserInput>
+    create: XOR<DNSCreateWithoutUserInput, DNSUncheckedCreateWithoutUserInput>
+  }
+
+  export type DNSUpdateWithWhereUniqueWithoutUserInput = {
+    where: DNSWhereUniqueInput
+    data: XOR<DNSUpdateWithoutUserInput, DNSUncheckedUpdateWithoutUserInput>
+  }
+
+  export type DNSUpdateManyWithWhereWithoutUserInput = {
+    where: DNSScalarWhereInput
+    data: XOR<DNSUpdateManyMutationInput, DNSUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type DNSScalarWhereInput = {
+    AND?: DNSScalarWhereInput | DNSScalarWhereInput[]
+    OR?: DNSScalarWhereInput[]
+    NOT?: DNSScalarWhereInput | DNSScalarWhereInput[]
+    id?: IntFilter<"DNS"> | number
+    userId?: IntFilter<"DNS"> | number
+    computerId?: StringFilter<"DNS"> | string
+    gameId?: StringFilter<"DNS"> | string
+    website?: StringFilter<"DNS"> | string
+    tags?: StringFilter<"DNS"> | string
+    description?: StringFilter<"DNS"> | string
+    updated?: DateTimeFilter<"DNS"> | Date | string
+    created?: DateTimeFilter<"DNS"> | Date | string
+  }
+
+  export type LogsUpsertWithWhereUniqueWithoutUserInput = {
+    where: LogsWhereUniqueInput
+    update: XOR<LogsUpdateWithoutUserInput, LogsUncheckedUpdateWithoutUserInput>
+    create: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput>
+  }
+
+  export type LogsUpdateWithWhereUniqueWithoutUserInput = {
+    where: LogsWhereUniqueInput
+    data: XOR<LogsUpdateWithoutUserInput, LogsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LogsUpdateManyWithWhereWithoutUserInput = {
+    where: LogsScalarWhereInput
+    data: XOR<LogsUpdateManyMutationInput, LogsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LogsScalarWhereInput = {
+    AND?: LogsScalarWhereInput | LogsScalarWhereInput[]
+    OR?: LogsScalarWhereInput[]
+    NOT?: LogsScalarWhereInput | LogsScalarWhereInput[]
+    id?: IntFilter<"Logs"> | number
+    userId?: IntFilter<"Logs"> | number
+    computerId?: StringFilter<"Logs"> | string
+    senderId?: StringFilter<"Logs"> | string
+    senderIp?: StringFilter<"Logs"> | string
+    gameId?: StringFilter<"Logs"> | string
+    message?: StringFilter<"Logs"> | string
+    created?: DateTimeFilter<"Logs"> | Date | string
+  }
+
+  export type MemoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: MemoryWhereUniqueInput
+    update: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
+    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type MemoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: MemoryWhereUniqueInput
+    data: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MemoryUpdateManyWithWhereWithoutUserInput = {
+    where: MemoryScalarWhereInput
+    data: XOR<MemoryUpdateManyMutationInput, MemoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MemoryScalarWhereInput = {
+    AND?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
+    OR?: MemoryScalarWhereInput[]
+    NOT?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
+    id?: StringFilter<"Memory"> | string
+    computerId?: StringFilter<"Memory"> | string
+    gameId?: StringFilter<"Memory"> | string
+    userId?: IntFilter<"Memory"> | number
+    type?: StringFilter<"Memory"> | string
+    key?: StringFilter<"Memory"> | string
+    value?: FloatNullableFilter<"Memory"> | number | null
+    data?: JsonFilter<"Memory">
+  }
+
+  export type NotificationsUpsertWithWhereUniqueWithoutUserInput = {
+    where: NotificationsWhereUniqueInput
+    update: XOR<NotificationsUpdateWithoutUserInput, NotificationsUncheckedUpdateWithoutUserInput>
+    create: XOR<NotificationsCreateWithoutUserInput, NotificationsUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationsUpdateWithWhereUniqueWithoutUserInput = {
+    where: NotificationsWhereUniqueInput
+    data: XOR<NotificationsUpdateWithoutUserInput, NotificationsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type NotificationsUpdateManyWithWhereWithoutUserInput = {
+    where: NotificationsScalarWhereInput
+    data: XOR<NotificationsUpdateManyMutationInput, NotificationsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type NotificationsScalarWhereInput = {
+    AND?: NotificationsScalarWhereInput | NotificationsScalarWhereInput[]
+    OR?: NotificationsScalarWhereInput[]
+    NOT?: NotificationsScalarWhereInput | NotificationsScalarWhereInput[]
+    id?: IntFilter<"Notifications"> | number
+    userId?: IntFilter<"Notifications"> | number
+    type?: StringFilter<"Notifications"> | string
+    content?: JsonFilter<"Notifications">
+    read?: BoolFilter<"Notifications"> | boolean
+  }
+
+  export type ProcessUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProcessWhereUniqueInput
+    update: XOR<ProcessUpdateWithoutUserInput, ProcessUncheckedUpdateWithoutUserInput>
+    create: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProcessUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProcessWhereUniqueInput
+    data: XOR<ProcessUpdateWithoutUserInput, ProcessUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProcessUpdateManyWithWhereWithoutUserInput = {
+    where: ProcessScalarWhereInput
+    data: XOR<ProcessUpdateManyMutationInput, ProcessUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProcessScalarWhereInput = {
+    AND?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
+    OR?: ProcessScalarWhereInput[]
+    NOT?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
+    id?: StringFilter<"Process"> | string
+    userId?: IntFilter<"Process"> | number
+    computerId?: StringFilter<"Process"> | string
+    ip?: StringNullableFilter<"Process"> | string | null
+    gameId?: StringFilter<"Process"> | string
+    type?: StringFilter<"Process"> | string
+    started?: DateTimeFilter<"Process"> | Date | string
+    completion?: DateTimeFilter<"Process"> | Date | string
+    data?: JsonFilter<"Process">
+  }
+
+  export type ProfileUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProfileWhereUniqueInput
+    update: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProfileUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProfileWhereUniqueInput
+    data: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProfileUpdateManyWithWhereWithoutUserInput = {
+    where: ProfileScalarWhereInput
+    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProfileScalarWhereInput = {
+    AND?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+    OR?: ProfileScalarWhereInput[]
+    NOT?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
+    id?: IntFilter<"Profile"> | number
+    userId?: IntFilter<"Profile"> | number
+    gameId?: StringFilter<"Profile"> | string
+    data?: JsonFilter<"Profile">
+  }
+
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    userId?: IntFilter<"Session"> | number
+    token?: StringFilter<"Session"> | string
+    lastAction?: DateTimeFilter<"Session"> | Date | string
+    created?: DateTimeFilter<"Session"> | Date | string
+    expires?: DateTimeFilter<"Session"> | Date | string
   }
 
   export type SoftwareUpsertWithWhereUniqueWithoutUserInput = {
@@ -25821,67 +26053,6 @@ export namespace Prisma {
     data?: JsonFilter<"Software">
   }
 
-  export type MemoryUpsertWithWhereUniqueWithoutUserInput = {
-    where: MemoryWhereUniqueInput
-    update: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
-    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type MemoryUpdateWithWhereUniqueWithoutUserInput = {
-    where: MemoryWhereUniqueInput
-    data: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
-  }
-
-  export type MemoryUpdateManyWithWhereWithoutUserInput = {
-    where: MemoryScalarWhereInput
-    data: XOR<MemoryUpdateManyMutationInput, MemoryUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type MemoryScalarWhereInput = {
-    AND?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-    OR?: MemoryScalarWhereInput[]
-    NOT?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-    id?: StringFilter<"Memory"> | string
-    computerId?: StringFilter<"Memory"> | string
-    gameId?: StringFilter<"Memory"> | string
-    userId?: IntFilter<"Memory"> | number
-    type?: StringFilter<"Memory"> | string
-    key?: StringFilter<"Memory"> | string
-    value?: FloatNullableFilter<"Memory"> | number | null
-    data?: JsonFilter<"Memory">
-  }
-
-  export type ProcessUpsertWithWhereUniqueWithoutUserInput = {
-    where: ProcessWhereUniqueInput
-    update: XOR<ProcessUpdateWithoutUserInput, ProcessUncheckedUpdateWithoutUserInput>
-    create: XOR<ProcessCreateWithoutUserInput, ProcessUncheckedCreateWithoutUserInput>
-  }
-
-  export type ProcessUpdateWithWhereUniqueWithoutUserInput = {
-    where: ProcessWhereUniqueInput
-    data: XOR<ProcessUpdateWithoutUserInput, ProcessUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ProcessUpdateManyWithWhereWithoutUserInput = {
-    where: ProcessScalarWhereInput
-    data: XOR<ProcessUpdateManyMutationInput, ProcessUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ProcessScalarWhereInput = {
-    AND?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
-    OR?: ProcessScalarWhereInput[]
-    NOT?: ProcessScalarWhereInput | ProcessScalarWhereInput[]
-    id?: StringFilter<"Process"> | string
-    userId?: IntFilter<"Process"> | number
-    computerId?: StringFilter<"Process"> | string
-    ip?: StringNullableFilter<"Process"> | string | null
-    gameId?: StringFilter<"Process"> | string
-    type?: StringFilter<"Process"> | string
-    started?: DateTimeFilter<"Process"> | Date | string
-    completion?: DateTimeFilter<"Process"> | Date | string
-    data?: JsonFilter<"Process">
-  }
-
   export type UserQuestsUpsertWithWhereUniqueWithoutUserInput = {
     where: UserQuestsWhereUniqueInput
     update: XOR<UserQuestsUpdateWithoutUserInput, UserQuestsUncheckedUpdateWithoutUserInput>
@@ -25911,214 +26082,132 @@ export namespace Prisma {
     updated?: DateTimeFilter<"UserQuests"> | Date | string
   }
 
-  export type AddressBookUpsertWithWhereUniqueWithoutUserInput = {
-    where: AddressBookWhereUniqueInput
-    update: XOR<AddressBookUpdateWithoutUserInput, AddressBookUncheckedUpdateWithoutUserInput>
-    create: XOR<AddressBookCreateWithoutUserInput, AddressBookUncheckedCreateWithoutUserInput>
-  }
-
-  export type AddressBookUpdateWithWhereUniqueWithoutUserInput = {
-    where: AddressBookWhereUniqueInput
-    data: XOR<AddressBookUpdateWithoutUserInput, AddressBookUncheckedUpdateWithoutUserInput>
-  }
-
-  export type AddressBookUpdateManyWithWhereWithoutUserInput = {
-    where: AddressBookScalarWhereInput
-    data: XOR<AddressBookUpdateManyMutationInput, AddressBookUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type AddressBookScalarWhereInput = {
-    AND?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
-    OR?: AddressBookScalarWhereInput[]
-    NOT?: AddressBookScalarWhereInput | AddressBookScalarWhereInput[]
-    id?: IntFilter<"AddressBook"> | number
-    userId?: IntFilter<"AddressBook"> | number
-    access?: EnumAccessLevelFilter<"AddressBook"> | $Enums.AccessLevel
-    computerId?: StringFilter<"AddressBook"> | string
-    ip?: StringFilter<"AddressBook"> | string
-    data?: JsonFilter<"AddressBook">
-    gameId?: StringFilter<"AddressBook"> | string
-  }
-
-  export type AccountBookUpsertWithWhereUniqueWithoutUserInput = {
-    where: AccountBookWhereUniqueInput
-    update: XOR<AccountBookUpdateWithoutUserInput, AccountBookUncheckedUpdateWithoutUserInput>
-    create: XOR<AccountBookCreateWithoutUserInput, AccountBookUncheckedCreateWithoutUserInput>
-  }
-
-  export type AccountBookUpdateWithWhereUniqueWithoutUserInput = {
-    where: AccountBookWhereUniqueInput
-    data: XOR<AccountBookUpdateWithoutUserInput, AccountBookUncheckedUpdateWithoutUserInput>
-  }
-
-  export type AccountBookUpdateManyWithWhereWithoutUserInput = {
-    where: AccountBookScalarWhereInput
-    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type AccountBookScalarWhereInput = {
-    AND?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
-    OR?: AccountBookScalarWhereInput[]
-    NOT?: AccountBookScalarWhereInput | AccountBookScalarWhereInput[]
-    id?: IntFilter<"AccountBook"> | number
-    userId?: IntFilter<"AccountBook"> | number
-    computerId?: StringFilter<"AccountBook"> | string
-    memoryId?: StringFilter<"AccountBook"> | string
-    data?: JsonFilter<"AccountBook">
-    gameId?: StringFilter<"AccountBook"> | string
-  }
-
-  export type LogsUpsertWithWhereUniqueWithoutUserInput = {
-    where: LogsWhereUniqueInput
-    update: XOR<LogsUpdateWithoutUserInput, LogsUncheckedUpdateWithoutUserInput>
-    create: XOR<LogsCreateWithoutUserInput, LogsUncheckedCreateWithoutUserInput>
-  }
-
-  export type LogsUpdateWithWhereUniqueWithoutUserInput = {
-    where: LogsWhereUniqueInput
-    data: XOR<LogsUpdateWithoutUserInput, LogsUncheckedUpdateWithoutUserInput>
-  }
-
-  export type LogsUpdateManyWithWhereWithoutUserInput = {
-    where: LogsScalarWhereInput
-    data: XOR<LogsUpdateManyMutationInput, LogsUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type LogsScalarWhereInput = {
-    AND?: LogsScalarWhereInput | LogsScalarWhereInput[]
-    OR?: LogsScalarWhereInput[]
-    NOT?: LogsScalarWhereInput | LogsScalarWhereInput[]
-    id?: IntFilter<"Logs"> | number
-    userId?: IntFilter<"Logs"> | number
-    computerId?: StringFilter<"Logs"> | string
-    senderId?: StringFilter<"Logs"> | string
-    senderIp?: StringFilter<"Logs"> | string
-    gameId?: StringFilter<"Logs"> | string
-    message?: StringFilter<"Logs"> | string
-    created?: DateTimeFilter<"Logs"> | Date | string
-  }
-
-  export type DNSUpsertWithWhereUniqueWithoutUserInput = {
-    where: DNSWhereUniqueInput
-    update: XOR<DNSUpdateWithoutUserInput, DNSUncheckedUpdateWithoutUserInput>
-    create: XOR<DNSCreateWithoutUserInput, DNSUncheckedCreateWithoutUserInput>
-  }
-
-  export type DNSUpdateWithWhereUniqueWithoutUserInput = {
-    where: DNSWhereUniqueInput
-    data: XOR<DNSUpdateWithoutUserInput, DNSUncheckedUpdateWithoutUserInput>
-  }
-
-  export type DNSUpdateManyWithWhereWithoutUserInput = {
-    where: DNSScalarWhereInput
-    data: XOR<DNSUpdateManyMutationInput, DNSUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type DNSScalarWhereInput = {
-    AND?: DNSScalarWhereInput | DNSScalarWhereInput[]
-    OR?: DNSScalarWhereInput[]
-    NOT?: DNSScalarWhereInput | DNSScalarWhereInput[]
-    id?: IntFilter<"DNS"> | number
-    userId?: IntFilter<"DNS"> | number
-    computerId?: StringFilter<"DNS"> | string
-    gameId?: StringFilter<"DNS"> | string
-    website?: StringFilter<"DNS"> | string
-    tags?: StringFilter<"DNS"> | string
-    description?: StringFilter<"DNS"> | string
-    updated?: DateTimeFilter<"DNS"> | Date | string
-    created?: DateTimeFilter<"DNS"> | Date | string
-  }
-
-  export type ProfileUpsertWithWhereUniqueWithoutUserInput = {
-    where: ProfileWhereUniqueInput
-    update: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
-    create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
-  }
-
-  export type ProfileUpdateWithWhereUniqueWithoutUserInput = {
-    where: ProfileWhereUniqueInput
-    data: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ProfileUpdateManyWithWhereWithoutUserInput = {
-    where: ProfileScalarWhereInput
-    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ProfileScalarWhereInput = {
-    AND?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
-    OR?: ProfileScalarWhereInput[]
-    NOT?: ProfileScalarWhereInput | ProfileScalarWhereInput[]
-    id?: IntFilter<"Profile"> | number
-    userId?: IntFilter<"Profile"> | number
-    gameId?: StringFilter<"Profile"> | string
-    data?: JsonFilter<"Profile">
-  }
-
-  export type NotificationsUpsertWithWhereUniqueWithoutUserInput = {
-    where: NotificationsWhereUniqueInput
-    update: XOR<NotificationsUpdateWithoutUserInput, NotificationsUncheckedUpdateWithoutUserInput>
-    create: XOR<NotificationsCreateWithoutUserInput, NotificationsUncheckedCreateWithoutUserInput>
-  }
-
-  export type NotificationsUpdateWithWhereUniqueWithoutUserInput = {
-    where: NotificationsWhereUniqueInput
-    data: XOR<NotificationsUpdateWithoutUserInput, NotificationsUncheckedUpdateWithoutUserInput>
-  }
-
-  export type NotificationsUpdateManyWithWhereWithoutUserInput = {
-    where: NotificationsScalarWhereInput
-    data: XOR<NotificationsUpdateManyMutationInput, NotificationsUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type NotificationsScalarWhereInput = {
-    AND?: NotificationsScalarWhereInput | NotificationsScalarWhereInput[]
-    OR?: NotificationsScalarWhereInput[]
-    NOT?: NotificationsScalarWhereInput | NotificationsScalarWhereInput[]
-    id?: IntFilter<"Notifications"> | number
-    userId?: IntFilter<"Notifications"> | number
-    type?: StringFilter<"Notifications"> | string
-    content?: JsonFilter<"Notifications">
-    read?: BoolFilter<"Notifications"> | boolean
-  }
-
-  export type SoftwareCreateWithoutGameInput = {
-    id?: string
-    type: string
-    level: number
-    size: number
-    opacity: number
-    installed: boolean
-    executed?: Date | string
-    created?: Date | string
-    updated?: Date | string
+  export type AccountBookCreateWithoutGameInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutSoftwareInput
-    computer: ComputerCreateNestedOneWithoutSoftwareInput
+    computer: ComputerCreateNestedOneWithoutAccountBookInput
+    memory: MemoryCreateNestedOneWithoutAccountBookInput
+    user: UserCreateNestedOneWithoutAccountBookInput
   }
 
-  export type SoftwareUncheckedCreateWithoutGameInput = {
-    id?: string
+  export type AccountBookUncheckedCreateWithoutGameInput = {
+    id?: number
     userId: number
     computerId: string
-    type: string
-    level: number
-    size: number
-    opacity: number
-    installed: boolean
-    executed?: Date | string
-    created?: Date | string
-    updated?: Date | string
+    memoryId: string
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type SoftwareCreateOrConnectWithoutGameInput = {
-    where: SoftwareWhereUniqueInput
-    create: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput>
+  export type AccountBookCreateOrConnectWithoutGameInput = {
+    where: AccountBookWhereUniqueInput
+    create: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput>
   }
 
-  export type SoftwareCreateManyGameInputEnvelope = {
-    data: SoftwareCreateManyGameInput | SoftwareCreateManyGameInput[]
+  export type AccountBookCreateManyGameInputEnvelope = {
+    data: AccountBookCreateManyGameInput | AccountBookCreateManyGameInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddressBookCreateWithoutGameInput = {
+    access: $Enums.AccessLevel
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    computer: ComputerCreateNestedOneWithoutAddressBookInput
+    user: UserCreateNestedOneWithoutAddressBookInput
+  }
+
+  export type AddressBookUncheckedCreateWithoutGameInput = {
+    id?: number
+    userId: number
+    access: $Enums.AccessLevel
+    computerId: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type AddressBookCreateOrConnectWithoutGameInput = {
+    where: AddressBookWhereUniqueInput
+    create: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput>
+  }
+
+  export type AddressBookCreateManyGameInputEnvelope = {
+    data: AddressBookCreateManyGameInput | AddressBookCreateManyGameInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComputerCreateWithoutGameInput = {
+    id?: string
+    type?: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: Date | string
+    updated?: Date | string
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
+    dns?: DNSCreateNestedManyWithoutComputerInput
+    hardware?: HardwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
+    memory?: MemoryCreateNestedManyWithoutComputerInput
+    process?: ProcessCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
+  }
+
+  export type ComputerUncheckedCreateWithoutGameInput = {
+    id?: string
+    userId: number
+    type?: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: Date | string
+    updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
+    dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
+    process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+  }
+
+  export type ComputerCreateOrConnectWithoutGameInput = {
+    where: ComputerWhereUniqueInput
+    create: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput>
+  }
+
+  export type ComputerCreateManyGameInputEnvelope = {
+    data: ComputerCreateManyGameInput | ComputerCreateManyGameInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DNSCreateWithoutGameInput = {
+    website: string
+    tags: string
+    description?: string
+    updated?: Date | string
+    created?: Date | string
+    computer: ComputerCreateNestedOneWithoutDnsInput
+    user: UserCreateNestedOneWithoutDnsInput
+  }
+
+  export type DNSUncheckedCreateWithoutGameInput = {
+    id?: number
+    userId: number
+    computerId: string
+    website: string
+    tags: string
+    description?: string
+    updated?: Date | string
+    created?: Date | string
+  }
+
+  export type DNSCreateOrConnectWithoutGameInput = {
+    where: DNSWhereUniqueInput
+    create: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput>
+  }
+
+  export type DNSCreateManyGameInputEnvelope = {
+    data: DNSCreateManyGameInput | DNSCreateManyGameInput[]
     skipDuplicates?: boolean
   }
 
@@ -26145,49 +26234,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ComputerCreateWithoutGameInput = {
-    id?: string
-    type?: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
+  export type LogsCreateWithoutGameInput = {
+    senderId: string
+    senderIp: string
+    message: string
     created?: Date | string
-    updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
-    dns?: DNSCreateNestedManyWithoutComputerInput
-    hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
-    memory?: MemoryCreateNestedManyWithoutComputerInput
-    process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
+    computer: ComputerCreateNestedOneWithoutLogsInput
+    user: UserCreateNestedOneWithoutLogsInput
   }
 
-  export type ComputerUncheckedCreateWithoutGameInput = {
-    id?: string
+  export type LogsUncheckedCreateWithoutGameInput = {
+    id?: number
     userId: number
-    type?: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
+    computerId: string
+    senderId: string
+    senderIp: string
+    message: string
     created?: Date | string
-    updated?: Date | string
-    dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
-    process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
-  export type ComputerCreateOrConnectWithoutGameInput = {
-    where: ComputerWhereUniqueInput
-    create: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput>
+  export type LogsCreateOrConnectWithoutGameInput = {
+    where: LogsWhereUniqueInput
+    create: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput>
   }
 
-  export type ComputerCreateManyGameInputEnvelope = {
-    data: ComputerCreateManyGameInput | ComputerCreateManyGameInput[]
+  export type LogsCreateManyGameInputEnvelope = {
+    data: LogsCreateManyGameInput | LogsCreateManyGameInput[]
     skipDuplicates?: boolean
   }
 
@@ -26197,9 +26269,9 @@ export namespace Prisma {
     key: string
     value?: number | null
     data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
     computer: ComputerCreateNestedOneWithoutMemoryInput
     user: UserCreateNestedOneWithoutMemoryInput
-    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
   }
 
   export type MemoryUncheckedCreateWithoutGameInput = {
@@ -26230,8 +26302,8 @@ export namespace Prisma {
     started?: Date | string
     completion: Date | string
     data: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutProcessInput
     computer: ComputerCreateNestedOneWithoutProcessInput
+    user: UserCreateNestedOneWithoutProcessInput
   }
 
   export type ProcessUncheckedCreateWithoutGameInput = {
@@ -26252,6 +26324,27 @@ export namespace Prisma {
 
   export type ProcessCreateManyGameInputEnvelope = {
     data: ProcessCreateManyGameInput | ProcessCreateManyGameInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProfileCreateWithoutGameInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    user: UserCreateNestedOneWithoutProfileInput
+  }
+
+  export type ProfileUncheckedCreateWithoutGameInput = {
+    id?: number
+    userId: number
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileCreateOrConnectWithoutGameInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput>
+  }
+
+  export type ProfileCreateManyGameInputEnvelope = {
+    data: ProfileCreateManyGameInput | ProfileCreateManyGameInput[]
     skipDuplicates?: boolean
   }
 
@@ -26283,6 +26376,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SoftwareCreateWithoutGameInput = {
+    id?: string
+    type: string
+    level: number
+    size: number
+    opacity: number
+    installed: boolean
+    executed?: Date | string
+    created?: Date | string
+    updated?: Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    computer: ComputerCreateNestedOneWithoutSoftwareInput
+    user: UserCreateNestedOneWithoutSoftwareInput
+  }
+
+  export type SoftwareUncheckedCreateWithoutGameInput = {
+    id?: string
+    userId: number
+    computerId: string
+    type: string
+    level: number
+    size: number
+    opacity: number
+    installed: boolean
+    executed?: Date | string
+    created?: Date | string
+    updated?: Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type SoftwareCreateOrConnectWithoutGameInput = {
+    where: SoftwareWhereUniqueInput
+    create: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput>
+  }
+
+  export type SoftwareCreateManyGameInputEnvelope = {
+    data: SoftwareCreateManyGameInput | SoftwareCreateManyGameInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserQuestsCreateWithoutGameInput = {
     id?: string
     completed: boolean
@@ -26311,153 +26444,68 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type LogsCreateWithoutGameInput = {
-    senderId: string
-    senderIp: string
-    message: string
-    created?: Date | string
-    user: UserCreateNestedOneWithoutLogsInput
-    computer: ComputerCreateNestedOneWithoutLogsInput
-  }
-
-  export type LogsUncheckedCreateWithoutGameInput = {
-    id?: number
-    userId: number
-    computerId: string
-    senderId: string
-    senderIp: string
-    message: string
-    created?: Date | string
-  }
-
-  export type LogsCreateOrConnectWithoutGameInput = {
-    where: LogsWhereUniqueInput
-    create: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput>
-  }
-
-  export type LogsCreateManyGameInputEnvelope = {
-    data: LogsCreateManyGameInput | LogsCreateManyGameInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AddressBookCreateWithoutGameInput = {
-    access: $Enums.AccessLevel
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAddressBookInput
-    computer: ComputerCreateNestedOneWithoutAddressBookInput
-  }
-
-  export type AddressBookUncheckedCreateWithoutGameInput = {
-    id?: number
-    userId: number
-    access: $Enums.AccessLevel
-    computerId: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type AddressBookCreateOrConnectWithoutGameInput = {
-    where: AddressBookWhereUniqueInput
-    create: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput>
-  }
-
-  export type AddressBookCreateManyGameInputEnvelope = {
-    data: AddressBookCreateManyGameInput | AddressBookCreateManyGameInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AccountBookCreateWithoutGameInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAccountBookInput
-    computer: ComputerCreateNestedOneWithoutAccountBookInput
-    memory: MemoryCreateNestedOneWithoutAccountBookInput
-  }
-
-  export type AccountBookUncheckedCreateWithoutGameInput = {
-    id?: number
-    userId: number
-    computerId: string
-    memoryId: string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type AccountBookCreateOrConnectWithoutGameInput = {
+  export type AccountBookUpsertWithWhereUniqueWithoutGameInput = {
     where: AccountBookWhereUniqueInput
+    update: XOR<AccountBookUpdateWithoutGameInput, AccountBookUncheckedUpdateWithoutGameInput>
     create: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput>
   }
 
-  export type AccountBookCreateManyGameInputEnvelope = {
-    data: AccountBookCreateManyGameInput | AccountBookCreateManyGameInput[]
-    skipDuplicates?: boolean
+  export type AccountBookUpdateWithWhereUniqueWithoutGameInput = {
+    where: AccountBookWhereUniqueInput
+    data: XOR<AccountBookUpdateWithoutGameInput, AccountBookUncheckedUpdateWithoutGameInput>
   }
 
-  export type DNSCreateWithoutGameInput = {
-    website: string
-    tags: string
-    description?: string
-    updated?: Date | string
-    created?: Date | string
-    user: UserCreateNestedOneWithoutDnsInput
-    computer: ComputerCreateNestedOneWithoutDnsInput
+  export type AccountBookUpdateManyWithWhereWithoutGameInput = {
+    where: AccountBookScalarWhereInput
+    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutGameInput>
   }
 
-  export type DNSUncheckedCreateWithoutGameInput = {
-    id?: number
-    userId: number
-    computerId: string
-    website: string
-    tags: string
-    description?: string
-    updated?: Date | string
-    created?: Date | string
+  export type AddressBookUpsertWithWhereUniqueWithoutGameInput = {
+    where: AddressBookWhereUniqueInput
+    update: XOR<AddressBookUpdateWithoutGameInput, AddressBookUncheckedUpdateWithoutGameInput>
+    create: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput>
   }
 
-  export type DNSCreateOrConnectWithoutGameInput = {
+  export type AddressBookUpdateWithWhereUniqueWithoutGameInput = {
+    where: AddressBookWhereUniqueInput
+    data: XOR<AddressBookUpdateWithoutGameInput, AddressBookUncheckedUpdateWithoutGameInput>
+  }
+
+  export type AddressBookUpdateManyWithWhereWithoutGameInput = {
+    where: AddressBookScalarWhereInput
+    data: XOR<AddressBookUpdateManyMutationInput, AddressBookUncheckedUpdateManyWithoutGameInput>
+  }
+
+  export type ComputerUpsertWithWhereUniqueWithoutGameInput = {
+    where: ComputerWhereUniqueInput
+    update: XOR<ComputerUpdateWithoutGameInput, ComputerUncheckedUpdateWithoutGameInput>
+    create: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput>
+  }
+
+  export type ComputerUpdateWithWhereUniqueWithoutGameInput = {
+    where: ComputerWhereUniqueInput
+    data: XOR<ComputerUpdateWithoutGameInput, ComputerUncheckedUpdateWithoutGameInput>
+  }
+
+  export type ComputerUpdateManyWithWhereWithoutGameInput = {
+    where: ComputerScalarWhereInput
+    data: XOR<ComputerUpdateManyMutationInput, ComputerUncheckedUpdateManyWithoutGameInput>
+  }
+
+  export type DNSUpsertWithWhereUniqueWithoutGameInput = {
     where: DNSWhereUniqueInput
+    update: XOR<DNSUpdateWithoutGameInput, DNSUncheckedUpdateWithoutGameInput>
     create: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput>
   }
 
-  export type DNSCreateManyGameInputEnvelope = {
-    data: DNSCreateManyGameInput | DNSCreateManyGameInput[]
-    skipDuplicates?: boolean
+  export type DNSUpdateWithWhereUniqueWithoutGameInput = {
+    where: DNSWhereUniqueInput
+    data: XOR<DNSUpdateWithoutGameInput, DNSUncheckedUpdateWithoutGameInput>
   }
 
-  export type ProfileCreateWithoutGameInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutProfileInput
-  }
-
-  export type ProfileUncheckedCreateWithoutGameInput = {
-    id?: number
-    userId: number
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProfileCreateOrConnectWithoutGameInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput>
-  }
-
-  export type ProfileCreateManyGameInputEnvelope = {
-    data: ProfileCreateManyGameInput | ProfileCreateManyGameInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SoftwareUpsertWithWhereUniqueWithoutGameInput = {
-    where: SoftwareWhereUniqueInput
-    update: XOR<SoftwareUpdateWithoutGameInput, SoftwareUncheckedUpdateWithoutGameInput>
-    create: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput>
-  }
-
-  export type SoftwareUpdateWithWhereUniqueWithoutGameInput = {
-    where: SoftwareWhereUniqueInput
-    data: XOR<SoftwareUpdateWithoutGameInput, SoftwareUncheckedUpdateWithoutGameInput>
-  }
-
-  export type SoftwareUpdateManyWithWhereWithoutGameInput = {
-    where: SoftwareScalarWhereInput
-    data: XOR<SoftwareUpdateManyMutationInput, SoftwareUncheckedUpdateManyWithoutGameInput>
+  export type DNSUpdateManyWithWhereWithoutGameInput = {
+    where: DNSScalarWhereInput
+    data: XOR<DNSUpdateManyMutationInput, DNSUncheckedUpdateManyWithoutGameInput>
   }
 
   export type HardwareUpsertWithWhereUniqueWithoutGameInput = {
@@ -26487,20 +26535,20 @@ export namespace Prisma {
     strength?: FloatFilter<"Hardware"> | number
   }
 
-  export type ComputerUpsertWithWhereUniqueWithoutGameInput = {
-    where: ComputerWhereUniqueInput
-    update: XOR<ComputerUpdateWithoutGameInput, ComputerUncheckedUpdateWithoutGameInput>
-    create: XOR<ComputerCreateWithoutGameInput, ComputerUncheckedCreateWithoutGameInput>
+  export type LogsUpsertWithWhereUniqueWithoutGameInput = {
+    where: LogsWhereUniqueInput
+    update: XOR<LogsUpdateWithoutGameInput, LogsUncheckedUpdateWithoutGameInput>
+    create: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput>
   }
 
-  export type ComputerUpdateWithWhereUniqueWithoutGameInput = {
-    where: ComputerWhereUniqueInput
-    data: XOR<ComputerUpdateWithoutGameInput, ComputerUncheckedUpdateWithoutGameInput>
+  export type LogsUpdateWithWhereUniqueWithoutGameInput = {
+    where: LogsWhereUniqueInput
+    data: XOR<LogsUpdateWithoutGameInput, LogsUncheckedUpdateWithoutGameInput>
   }
 
-  export type ComputerUpdateManyWithWhereWithoutGameInput = {
-    where: ComputerScalarWhereInput
-    data: XOR<ComputerUpdateManyMutationInput, ComputerUncheckedUpdateManyWithoutGameInput>
+  export type LogsUpdateManyWithWhereWithoutGameInput = {
+    where: LogsScalarWhereInput
+    data: XOR<LogsUpdateManyMutationInput, LogsUncheckedUpdateManyWithoutGameInput>
   }
 
   export type MemoryUpsertWithWhereUniqueWithoutGameInput = {
@@ -26535,6 +26583,22 @@ export namespace Prisma {
     data: XOR<ProcessUpdateManyMutationInput, ProcessUncheckedUpdateManyWithoutGameInput>
   }
 
+  export type ProfileUpsertWithWhereUniqueWithoutGameInput = {
+    where: ProfileWhereUniqueInput
+    update: XOR<ProfileUpdateWithoutGameInput, ProfileUncheckedUpdateWithoutGameInput>
+    create: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput>
+  }
+
+  export type ProfileUpdateWithWhereUniqueWithoutGameInput = {
+    where: ProfileWhereUniqueInput
+    data: XOR<ProfileUpdateWithoutGameInput, ProfileUncheckedUpdateWithoutGameInput>
+  }
+
+  export type ProfileUpdateManyWithWhereWithoutGameInput = {
+    where: ProfileScalarWhereInput
+    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyWithoutGameInput>
+  }
+
   export type QuestsUpsertWithWhereUniqueWithoutGameInput = {
     where: QuestsWhereUniqueInput
     update: XOR<QuestsUpdateWithoutGameInput, QuestsUncheckedUpdateWithoutGameInput>
@@ -26563,6 +26627,22 @@ export namespace Prisma {
     open?: BoolFilter<"Quests"> | boolean
   }
 
+  export type SoftwareUpsertWithWhereUniqueWithoutGameInput = {
+    where: SoftwareWhereUniqueInput
+    update: XOR<SoftwareUpdateWithoutGameInput, SoftwareUncheckedUpdateWithoutGameInput>
+    create: XOR<SoftwareCreateWithoutGameInput, SoftwareUncheckedCreateWithoutGameInput>
+  }
+
+  export type SoftwareUpdateWithWhereUniqueWithoutGameInput = {
+    where: SoftwareWhereUniqueInput
+    data: XOR<SoftwareUpdateWithoutGameInput, SoftwareUncheckedUpdateWithoutGameInput>
+  }
+
+  export type SoftwareUpdateManyWithWhereWithoutGameInput = {
+    where: SoftwareScalarWhereInput
+    data: XOR<SoftwareUpdateManyMutationInput, SoftwareUncheckedUpdateManyWithoutGameInput>
+  }
+
   export type UserQuestsUpsertWithWhereUniqueWithoutGameInput = {
     where: UserQuestsWhereUniqueInput
     update: XOR<UserQuestsUpdateWithoutGameInput, UserQuestsUncheckedUpdateWithoutGameInput>
@@ -26579,86 +26659,6 @@ export namespace Prisma {
     data: XOR<UserQuestsUpdateManyMutationInput, UserQuestsUncheckedUpdateManyWithoutGameInput>
   }
 
-  export type LogsUpsertWithWhereUniqueWithoutGameInput = {
-    where: LogsWhereUniqueInput
-    update: XOR<LogsUpdateWithoutGameInput, LogsUncheckedUpdateWithoutGameInput>
-    create: XOR<LogsCreateWithoutGameInput, LogsUncheckedCreateWithoutGameInput>
-  }
-
-  export type LogsUpdateWithWhereUniqueWithoutGameInput = {
-    where: LogsWhereUniqueInput
-    data: XOR<LogsUpdateWithoutGameInput, LogsUncheckedUpdateWithoutGameInput>
-  }
-
-  export type LogsUpdateManyWithWhereWithoutGameInput = {
-    where: LogsScalarWhereInput
-    data: XOR<LogsUpdateManyMutationInput, LogsUncheckedUpdateManyWithoutGameInput>
-  }
-
-  export type AddressBookUpsertWithWhereUniqueWithoutGameInput = {
-    where: AddressBookWhereUniqueInput
-    update: XOR<AddressBookUpdateWithoutGameInput, AddressBookUncheckedUpdateWithoutGameInput>
-    create: XOR<AddressBookCreateWithoutGameInput, AddressBookUncheckedCreateWithoutGameInput>
-  }
-
-  export type AddressBookUpdateWithWhereUniqueWithoutGameInput = {
-    where: AddressBookWhereUniqueInput
-    data: XOR<AddressBookUpdateWithoutGameInput, AddressBookUncheckedUpdateWithoutGameInput>
-  }
-
-  export type AddressBookUpdateManyWithWhereWithoutGameInput = {
-    where: AddressBookScalarWhereInput
-    data: XOR<AddressBookUpdateManyMutationInput, AddressBookUncheckedUpdateManyWithoutGameInput>
-  }
-
-  export type AccountBookUpsertWithWhereUniqueWithoutGameInput = {
-    where: AccountBookWhereUniqueInput
-    update: XOR<AccountBookUpdateWithoutGameInput, AccountBookUncheckedUpdateWithoutGameInput>
-    create: XOR<AccountBookCreateWithoutGameInput, AccountBookUncheckedCreateWithoutGameInput>
-  }
-
-  export type AccountBookUpdateWithWhereUniqueWithoutGameInput = {
-    where: AccountBookWhereUniqueInput
-    data: XOR<AccountBookUpdateWithoutGameInput, AccountBookUncheckedUpdateWithoutGameInput>
-  }
-
-  export type AccountBookUpdateManyWithWhereWithoutGameInput = {
-    where: AccountBookScalarWhereInput
-    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutGameInput>
-  }
-
-  export type DNSUpsertWithWhereUniqueWithoutGameInput = {
-    where: DNSWhereUniqueInput
-    update: XOR<DNSUpdateWithoutGameInput, DNSUncheckedUpdateWithoutGameInput>
-    create: XOR<DNSCreateWithoutGameInput, DNSUncheckedCreateWithoutGameInput>
-  }
-
-  export type DNSUpdateWithWhereUniqueWithoutGameInput = {
-    where: DNSWhereUniqueInput
-    data: XOR<DNSUpdateWithoutGameInput, DNSUncheckedUpdateWithoutGameInput>
-  }
-
-  export type DNSUpdateManyWithWhereWithoutGameInput = {
-    where: DNSScalarWhereInput
-    data: XOR<DNSUpdateManyMutationInput, DNSUncheckedUpdateManyWithoutGameInput>
-  }
-
-  export type ProfileUpsertWithWhereUniqueWithoutGameInput = {
-    where: ProfileWhereUniqueInput
-    update: XOR<ProfileUpdateWithoutGameInput, ProfileUncheckedUpdateWithoutGameInput>
-    create: XOR<ProfileCreateWithoutGameInput, ProfileUncheckedCreateWithoutGameInput>
-  }
-
-  export type ProfileUpdateWithWhereUniqueWithoutGameInput = {
-    where: ProfileWhereUniqueInput
-    data: XOR<ProfileUpdateWithoutGameInput, ProfileUncheckedUpdateWithoutGameInput>
-  }
-
-  export type ProfileUpdateManyWithWhereWithoutGameInput = {
-    where: ProfileScalarWhereInput
-    data: XOR<ProfileUpdateManyMutationInput, ProfileUncheckedUpdateManyWithoutGameInput>
-  }
-
   export type UserCreateWithoutSessionInput = {
     email: string
     name?: string
@@ -26668,17 +26668,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionInput = {
@@ -26691,17 +26691,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionInput = {
@@ -26729,17 +26729,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionInput = {
@@ -26752,17 +26752,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerCreateWithoutHardwareInput = {
@@ -26772,15 +26772,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutHardwareInput = {
@@ -26792,13 +26792,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutHardwareInput = {
@@ -26811,17 +26811,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutHardwareInput = {
@@ -26829,17 +26829,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutHardwareInput = {
@@ -26865,15 +26865,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
     dns?: DNSUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
     memory?: MemoryUpdateManyWithoutComputerNestedInput
     process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutHardwareInput = {
@@ -26885,13 +26885,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutHardwareInput = {
@@ -26910,17 +26910,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
     computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
     memory?: MemoryUpdateManyWithoutGameNestedInput
     process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
     profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
   }
 
   export type GameUncheckedUpdateWithoutHardwareInput = {
@@ -26928,67 +26928,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
     process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
     profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type UserCreateWithoutAddressBookInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutAddressBookInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutAddressBookInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAddressBookInput, UserUncheckedCreateWithoutAddressBookInput>
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type ComputerCreateWithoutAddressBookInput = {
@@ -26998,15 +26948,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutAddressBookInput = {
@@ -27018,13 +26968,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutAddressBookInput = {
@@ -27037,17 +26987,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutAddressBookInput = {
@@ -27055,22 +27005,166 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutAddressBookInput = {
     where: GameWhereUniqueInput
     create: XOR<GameCreateWithoutAddressBookInput, GameUncheckedCreateWithoutAddressBookInput>
+  }
+
+  export type UserCreateWithoutAddressBookInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAddressBookInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAddressBookInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAddressBookInput, UserUncheckedCreateWithoutAddressBookInput>
+  }
+
+  export type ComputerUpsertWithoutAddressBookInput = {
+    update: XOR<ComputerUpdateWithoutAddressBookInput, ComputerUncheckedUpdateWithoutAddressBookInput>
+    create: XOR<ComputerCreateWithoutAddressBookInput, ComputerUncheckedCreateWithoutAddressBookInput>
+    where?: ComputerWhereInput
+  }
+
+  export type ComputerUpdateToOneWithWhereWithoutAddressBookInput = {
+    where?: ComputerWhereInput
+    data: XOR<ComputerUpdateWithoutAddressBookInput, ComputerUncheckedUpdateWithoutAddressBookInput>
+  }
+
+  export type ComputerUpdateWithoutAddressBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    dns?: DNSUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutAddressBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type GameUpsertWithoutAddressBookInput = {
+    update: XOR<GameUpdateWithoutAddressBookInput, GameUncheckedUpdateWithoutAddressBookInput>
+    create: XOR<GameCreateWithoutAddressBookInput, GameUncheckedCreateWithoutAddressBookInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutAddressBookInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutAddressBookInput, GameUncheckedUpdateWithoutAddressBookInput>
+  }
+
+  export type GameUpdateWithoutAddressBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutAddressBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutAddressBookInput = {
@@ -27093,17 +27187,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressBookInput = {
@@ -27116,161 +27210,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ComputerUpsertWithoutAddressBookInput = {
-    update: XOR<ComputerUpdateWithoutAddressBookInput, ComputerUncheckedUpdateWithoutAddressBookInput>
-    create: XOR<ComputerCreateWithoutAddressBookInput, ComputerUncheckedCreateWithoutAddressBookInput>
-    where?: ComputerWhereInput
-  }
-
-  export type ComputerUpdateToOneWithWhereWithoutAddressBookInput = {
-    where?: ComputerWhereInput
-    data: XOR<ComputerUpdateWithoutAddressBookInput, ComputerUncheckedUpdateWithoutAddressBookInput>
-  }
-
-  export type ComputerUpdateWithoutAddressBookInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
-    game?: GameUpdateOneRequiredWithoutComputerNestedInput
-    dns?: DNSUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateWithoutAddressBookInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type GameUpsertWithoutAddressBookInput = {
-    update: XOR<GameUpdateWithoutAddressBookInput, GameUncheckedUpdateWithoutAddressBookInput>
-    create: XOR<GameCreateWithoutAddressBookInput, GameUncheckedCreateWithoutAddressBookInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutAddressBookInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutAddressBookInput, GameUncheckedUpdateWithoutAddressBookInput>
-  }
-
-  export type GameUpdateWithoutAddressBookInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutAddressBookInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type UserCreateWithoutDnsInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutDnsInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutDnsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutDnsInput, UserUncheckedCreateWithoutDnsInput>
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerCreateWithoutDnsInput = {
@@ -27280,15 +27230,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutDnsInput = {
@@ -27300,13 +27250,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutDnsInput = {
@@ -27319,17 +27269,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutDnsInput = {
@@ -27337,22 +27287,166 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutDnsInput = {
     where: GameWhereUniqueInput
     create: XOR<GameCreateWithoutDnsInput, GameUncheckedCreateWithoutDnsInput>
+  }
+
+  export type UserCreateWithoutDnsInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutDnsInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDnsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDnsInput, UserUncheckedCreateWithoutDnsInput>
+  }
+
+  export type ComputerUpsertWithoutDnsInput = {
+    update: XOR<ComputerUpdateWithoutDnsInput, ComputerUncheckedUpdateWithoutDnsInput>
+    create: XOR<ComputerCreateWithoutDnsInput, ComputerUncheckedCreateWithoutDnsInput>
+    where?: ComputerWhereInput
+  }
+
+  export type ComputerUpdateToOneWithWhereWithoutDnsInput = {
+    where?: ComputerWhereInput
+    data: XOR<ComputerUpdateWithoutDnsInput, ComputerUncheckedUpdateWithoutDnsInput>
+  }
+
+  export type ComputerUpdateWithoutDnsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
+    game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutDnsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type GameUpsertWithoutDnsInput = {
+    update: XOR<GameUpdateWithoutDnsInput, GameUncheckedUpdateWithoutDnsInput>
+    create: XOR<GameCreateWithoutDnsInput, GameUncheckedCreateWithoutDnsInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutDnsInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutDnsInput, GameUncheckedUpdateWithoutDnsInput>
+  }
+
+  export type GameUpdateWithoutDnsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutDnsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutDnsInput = {
@@ -27375,17 +27469,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     logs?: LogsUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDnsInput = {
@@ -27398,161 +27492,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ComputerUpsertWithoutDnsInput = {
-    update: XOR<ComputerUpdateWithoutDnsInput, ComputerUncheckedUpdateWithoutDnsInput>
-    create: XOR<ComputerCreateWithoutDnsInput, ComputerUncheckedCreateWithoutDnsInput>
-    where?: ComputerWhereInput
-  }
-
-  export type ComputerUpdateToOneWithWhereWithoutDnsInput = {
-    where?: ComputerWhereInput
-    data: XOR<ComputerUpdateWithoutDnsInput, ComputerUncheckedUpdateWithoutDnsInput>
-  }
-
-  export type ComputerUpdateWithoutDnsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
-    game?: GameUpdateOneRequiredWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateWithoutDnsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type GameUpsertWithoutDnsInput = {
-    update: XOR<GameUpdateWithoutDnsInput, GameUncheckedUpdateWithoutDnsInput>
-    create: XOR<GameCreateWithoutDnsInput, GameUncheckedCreateWithoutDnsInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutDnsInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutDnsInput, GameUncheckedUpdateWithoutDnsInput>
-  }
-
-  export type GameUpdateWithoutDnsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutDnsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type UserCreateWithoutAccountBookInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutAccountBookInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutAccountBookInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAccountBookInput, UserUncheckedCreateWithoutAccountBookInput>
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerCreateWithoutAccountBookInput = {
@@ -27562,15 +27512,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutAccountBookInput = {
@@ -27582,18 +27532,59 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutAccountBookInput = {
     where: ComputerWhereUniqueInput
     create: XOR<ComputerCreateWithoutAccountBookInput, ComputerUncheckedCreateWithoutAccountBookInput>
+  }
+
+  export type GameCreateWithoutAccountBookInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
+    computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
+    memory?: MemoryCreateNestedManyWithoutGameInput
+    process?: ProcessCreateNestedManyWithoutGameInput
+    profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
+  }
+
+  export type GameUncheckedCreateWithoutAccountBookInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
+    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
+  }
+
+  export type GameCreateOrConnectWithoutAccountBookInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutAccountBookInput, GameUncheckedCreateWithoutAccountBookInput>
   }
 
   export type MemoryCreateWithoutAccountBookInput = {
@@ -27623,101 +27614,54 @@ export namespace Prisma {
     create: XOR<MemoryCreateWithoutAccountBookInput, MemoryUncheckedCreateWithoutAccountBookInput>
   }
 
-  export type GameCreateWithoutAccountBookInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
-    computer?: ComputerCreateNestedManyWithoutGameInput
-    memory?: MemoryCreateNestedManyWithoutGameInput
-    process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
-    profile?: ProfileCreateNestedManyWithoutGameInput
+  export type UserCreateWithoutAccountBookInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
   }
 
-  export type GameUncheckedCreateWithoutAccountBookInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
-    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+  export type UserUncheckedCreateWithoutAccountBookInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type GameCreateOrConnectWithoutAccountBookInput = {
-    where: GameWhereUniqueInput
-    create: XOR<GameCreateWithoutAccountBookInput, GameUncheckedCreateWithoutAccountBookInput>
-  }
-
-  export type UserUpsertWithoutAccountBookInput = {
-    update: XOR<UserUpdateWithoutAccountBookInput, UserUncheckedUpdateWithoutAccountBookInput>
+  export type UserCreateOrConnectWithoutAccountBookInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAccountBookInput, UserUncheckedCreateWithoutAccountBookInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutAccountBookInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutAccountBookInput, UserUncheckedUpdateWithoutAccountBookInput>
-  }
-
-  export type UserUpdateWithoutAccountBookInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
-    dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutAccountBookInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    salt?: StringFieldUpdateOperationsInput | string
-    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerUpsertWithoutAccountBookInput = {
@@ -27738,15 +27682,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
     dns?: DNSUpdateManyWithoutComputerNestedInput
     hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
     memory?: MemoryUpdateManyWithoutComputerNestedInput
     process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutAccountBookInput = {
@@ -27758,13 +27702,60 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
     hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
     process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type GameUpsertWithoutAccountBookInput = {
+    update: XOR<GameUpdateWithoutAccountBookInput, GameUncheckedUpdateWithoutAccountBookInput>
+    create: XOR<GameCreateWithoutAccountBookInput, GameUncheckedCreateWithoutAccountBookInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutAccountBookInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutAccountBookInput, GameUncheckedUpdateWithoutAccountBookInput>
+  }
+
+  export type GameUpdateWithoutAccountBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutAccountBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type MemoryUpsertWithoutAccountBookInput = {
@@ -27800,51 +27791,101 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type GameUpsertWithoutAccountBookInput = {
-    update: XOR<GameUpdateWithoutAccountBookInput, GameUncheckedUpdateWithoutAccountBookInput>
-    create: XOR<GameCreateWithoutAccountBookInput, GameUncheckedCreateWithoutAccountBookInput>
-    where?: GameWhereInput
+  export type UserUpsertWithoutAccountBookInput = {
+    update: XOR<UserUpdateWithoutAccountBookInput, UserUncheckedUpdateWithoutAccountBookInput>
+    create: XOR<UserCreateWithoutAccountBookInput, UserUncheckedCreateWithoutAccountBookInput>
+    where?: UserWhereInput
   }
 
-  export type GameUpdateToOneWithWhereWithoutAccountBookInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutAccountBookInput, GameUncheckedUpdateWithoutAccountBookInput>
+  export type UserUpdateToOneWithWhereWithoutAccountBookInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAccountBookInput, UserUncheckedUpdateWithoutAccountBookInput>
   }
 
-  export type GameUpdateWithoutAccountBookInput = {
-    id?: StringFieldUpdateOperationsInput | string
+  export type UserUpdateWithoutAccountBookInput = {
+    email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
+    dns?: DNSUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
+    notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
-  export type GameUncheckedUpdateWithoutAccountBookInput = {
-    id?: StringFieldUpdateOperationsInput | string
+  export type UserUncheckedUpdateWithoutAccountBookInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type GameCreateWithoutProfileInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
+    computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
+    memory?: MemoryCreateNestedManyWithoutGameInput
+    process?: ProcessCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
+  }
+
+  export type GameUncheckedCreateWithoutProfileInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
+    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
+  }
+
+  export type GameCreateOrConnectWithoutProfileInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutProfileInput, GameUncheckedCreateWithoutProfileInput>
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -27856,17 +27897,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -27879,17 +27920,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -27897,45 +27938,51 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
   }
 
-  export type GameCreateWithoutProfileInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
-    computer?: ComputerCreateNestedManyWithoutGameInput
-    memory?: MemoryCreateNestedManyWithoutGameInput
-    process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
-  }
-
-  export type GameUncheckedCreateWithoutProfileInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
-    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
-  }
-
-  export type GameCreateOrConnectWithoutProfileInput = {
-    where: GameWhereUniqueInput
+  export type GameUpsertWithoutProfileInput = {
+    update: XOR<GameUpdateWithoutProfileInput, GameUncheckedUpdateWithoutProfileInput>
     create: XOR<GameCreateWithoutProfileInput, GameUncheckedCreateWithoutProfileInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutProfileInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutProfileInput, GameUncheckedUpdateWithoutProfileInput>
+  }
+
+  export type GameUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutProfileInput = {
@@ -27958,17 +28005,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -27981,203 +28028,24 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type GameUpsertWithoutProfileInput = {
-    update: XOR<GameUpdateWithoutProfileInput, GameUncheckedUpdateWithoutProfileInput>
-    create: XOR<GameCreateWithoutProfileInput, GameUncheckedCreateWithoutProfileInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutProfileInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutProfileInput, GameUncheckedUpdateWithoutProfileInput>
-  }
-
-  export type GameUpdateWithoutProfileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutProfileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type ComputerCreateWithoutMemoryInput = {
-    id?: string
-    type?: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: Date | string
-    updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
-    game: GameCreateNestedOneWithoutComputerInput
-    dns?: DNSCreateNestedManyWithoutComputerInput
-    hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
-    process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
-  }
-
-  export type ComputerUncheckedCreateWithoutMemoryInput = {
-    id?: string
-    userId: number
-    type?: string
-    gameId: string
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: Date | string
-    updated?: Date | string
-    dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
-    process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
-  }
-
-  export type ComputerCreateOrConnectWithoutMemoryInput = {
-    where: ComputerWhereUniqueInput
-    create: XOR<ComputerCreateWithoutMemoryInput, ComputerUncheckedCreateWithoutMemoryInput>
-  }
-
-  export type GameCreateWithoutMemoryInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
-    computer?: ComputerCreateNestedManyWithoutGameInput
-    process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
-    profile?: ProfileCreateNestedManyWithoutGameInput
-  }
-
-  export type GameUncheckedCreateWithoutMemoryInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
-    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
-  }
-
-  export type GameCreateOrConnectWithoutMemoryInput = {
-    where: GameWhereUniqueInput
-    create: XOR<GameCreateWithoutMemoryInput, GameUncheckedCreateWithoutMemoryInput>
-  }
-
-  export type UserCreateWithoutMemoryInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutMemoryInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutMemoryInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMemoryInput, UserUncheckedCreateWithoutMemoryInput>
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountBookCreateWithoutMemoryInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAccountBookInput
     computer: ComputerCreateNestedOneWithoutAccountBookInput
     game: GameCreateNestedOneWithoutAccountBookInput
+    user: UserCreateNestedOneWithoutAccountBookInput
   }
 
   export type AccountBookUncheckedCreateWithoutMemoryInput = {
@@ -28198,6 +28066,154 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ComputerCreateWithoutMemoryInput = {
+    id?: string
+    type?: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: Date | string
+    updated?: Date | string
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
+    game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
+    dns?: DNSCreateNestedManyWithoutComputerInput
+    hardware?: HardwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
+    process?: ProcessCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
+  }
+
+  export type ComputerUncheckedCreateWithoutMemoryInput = {
+    id?: string
+    userId: number
+    type?: string
+    gameId: string
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: Date | string
+    updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
+    dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
+  }
+
+  export type ComputerCreateOrConnectWithoutMemoryInput = {
+    where: ComputerWhereUniqueInput
+    create: XOR<ComputerCreateWithoutMemoryInput, ComputerUncheckedCreateWithoutMemoryInput>
+  }
+
+  export type GameCreateWithoutMemoryInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
+    computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
+    process?: ProcessCreateNestedManyWithoutGameInput
+    profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
+  }
+
+  export type GameUncheckedCreateWithoutMemoryInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
+    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
+  }
+
+  export type GameCreateOrConnectWithoutMemoryInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutMemoryInput, GameUncheckedCreateWithoutMemoryInput>
+  }
+
+  export type UserCreateWithoutMemoryInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMemoryInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMemoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMemoryInput, UserUncheckedCreateWithoutMemoryInput>
+  }
+
+  export type AccountBookUpsertWithWhereUniqueWithoutMemoryInput = {
+    where: AccountBookWhereUniqueInput
+    update: XOR<AccountBookUpdateWithoutMemoryInput, AccountBookUncheckedUpdateWithoutMemoryInput>
+    create: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput>
+  }
+
+  export type AccountBookUpdateWithWhereUniqueWithoutMemoryInput = {
+    where: AccountBookWhereUniqueInput
+    data: XOR<AccountBookUpdateWithoutMemoryInput, AccountBookUncheckedUpdateWithoutMemoryInput>
+  }
+
+  export type AccountBookUpdateManyWithWhereWithoutMemoryInput = {
+    where: AccountBookScalarWhereInput
+    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutMemoryInput>
+  }
+
   export type ComputerUpsertWithoutMemoryInput = {
     update: XOR<ComputerUpdateWithoutMemoryInput, ComputerUncheckedUpdateWithoutMemoryInput>
     create: XOR<ComputerCreateWithoutMemoryInput, ComputerUncheckedCreateWithoutMemoryInput>
@@ -28216,15 +28232,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
     game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
     dns?: DNSUpdateManyWithoutComputerNestedInput
     hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
     logs?: LogsUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
   }
 
   export type ComputerUncheckedUpdateWithoutMemoryInput = {
@@ -28236,13 +28252,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
     dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
     hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
     logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
   }
 
   export type GameUpsertWithoutMemoryInput = {
@@ -28261,17 +28277,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
     accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
     dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
     profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
   }
 
   export type GameUncheckedUpdateWithoutMemoryInput = {
@@ -28279,17 +28295,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
     dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
     profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutMemoryInput = {
@@ -28312,17 +28328,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMemoryInput = {
@@ -28335,33 +28351,110 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type AccountBookUpsertWithWhereUniqueWithoutMemoryInput = {
+  export type AccountBookCreateWithoutComputerInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    game: GameCreateNestedOneWithoutAccountBookInput
+    memory: MemoryCreateNestedOneWithoutAccountBookInput
+    user: UserCreateNestedOneWithoutAccountBookInput
+  }
+
+  export type AccountBookUncheckedCreateWithoutComputerInput = {
+    id?: number
+    userId: number
+    memoryId: string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId: string
+  }
+
+  export type AccountBookCreateOrConnectWithoutComputerInput = {
     where: AccountBookWhereUniqueInput
-    update: XOR<AccountBookUpdateWithoutMemoryInput, AccountBookUncheckedUpdateWithoutMemoryInput>
-    create: XOR<AccountBookCreateWithoutMemoryInput, AccountBookUncheckedCreateWithoutMemoryInput>
+    create: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput>
   }
 
-  export type AccountBookUpdateWithWhereUniqueWithoutMemoryInput = {
-    where: AccountBookWhereUniqueInput
-    data: XOR<AccountBookUpdateWithoutMemoryInput, AccountBookUncheckedUpdateWithoutMemoryInput>
+  export type AccountBookCreateManyComputerInputEnvelope = {
+    data: AccountBookCreateManyComputerInput | AccountBookCreateManyComputerInput[]
+    skipDuplicates?: boolean
   }
 
-  export type AccountBookUpdateManyWithWhereWithoutMemoryInput = {
-    where: AccountBookScalarWhereInput
-    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutMemoryInput>
+  export type AddressBookCreateWithoutComputerInput = {
+    access: $Enums.AccessLevel
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    game: GameCreateNestedOneWithoutAddressBookInput
+    user: UserCreateNestedOneWithoutAddressBookInput
+  }
+
+  export type AddressBookUncheckedCreateWithoutComputerInput = {
+    id?: number
+    userId: number
+    access: $Enums.AccessLevel
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId: string
+  }
+
+  export type AddressBookCreateOrConnectWithoutComputerInput = {
+    where: AddressBookWhereUniqueInput
+    create: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput>
+  }
+
+  export type AddressBookCreateManyComputerInputEnvelope = {
+    data: AddressBookCreateManyComputerInput | AddressBookCreateManyComputerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GameCreateWithoutComputerInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
+    memory?: MemoryCreateNestedManyWithoutGameInput
+    process?: ProcessCreateNestedManyWithoutGameInput
+    profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
+  }
+
+  export type GameUncheckedCreateWithoutComputerInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
+    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
+  }
+
+  export type GameCreateOrConnectWithoutComputerInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutComputerInput, GameUncheckedCreateWithoutComputerInput>
   }
 
   export type UserCreateWithoutComputerInput = {
@@ -28373,17 +28466,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
     session?: SessionCreateNestedManyWithoutUserInput
     software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutComputerInput = {
@@ -28396,63 +28489,22 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
     session?: SessionUncheckedCreateNestedManyWithoutUserInput
     software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutComputerInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutComputerInput, UserUncheckedCreateWithoutComputerInput>
-  }
-
-  export type GameCreateWithoutComputerInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
-    memory?: MemoryCreateNestedManyWithoutGameInput
-    process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
-    profile?: ProfileCreateNestedManyWithoutGameInput
-  }
-
-  export type GameUncheckedCreateWithoutComputerInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
-    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
-  }
-
-  export type GameCreateOrConnectWithoutComputerInput = {
-    where: GameWhereUniqueInput
-    create: XOR<GameCreateWithoutComputerInput, GameUncheckedCreateWithoutComputerInput>
   }
 
   export type DNSCreateWithoutComputerInput = {
@@ -28461,8 +28513,8 @@ export namespace Prisma {
     description?: string
     updated?: Date | string
     created?: Date | string
-    user: UserCreateNestedOneWithoutDnsInput
     game: GameCreateNestedOneWithoutDnsInput
+    user: UserCreateNestedOneWithoutDnsInput
   }
 
   export type DNSUncheckedCreateWithoutComputerInput = {
@@ -28509,43 +28561,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SoftwareCreateWithoutComputerInput = {
-    id?: string
-    type: string
-    level: number
-    size: number
-    opacity: number
-    installed: boolean
-    executed?: Date | string
+  export type LogsCreateWithoutComputerInput = {
+    senderId: string
+    senderIp: string
+    message: string
     created?: Date | string
-    updated?: Date | string
-    data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutSoftwareInput
-    game: GameCreateNestedOneWithoutSoftwareInput
+    game: GameCreateNestedOneWithoutLogsInput
+    user: UserCreateNestedOneWithoutLogsInput
   }
 
-  export type SoftwareUncheckedCreateWithoutComputerInput = {
-    id?: string
+  export type LogsUncheckedCreateWithoutComputerInput = {
+    id?: number
     userId: number
+    senderId: string
+    senderIp: string
     gameId: string
-    type: string
-    level: number
-    size: number
-    opacity: number
-    installed: boolean
-    executed?: Date | string
+    message: string
     created?: Date | string
-    updated?: Date | string
-    data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type SoftwareCreateOrConnectWithoutComputerInput = {
-    where: SoftwareWhereUniqueInput
-    create: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput>
+  export type LogsCreateOrConnectWithoutComputerInput = {
+    where: LogsWhereUniqueInput
+    create: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput>
   }
 
-  export type SoftwareCreateManyComputerInputEnvelope = {
-    data: SoftwareCreateManyComputerInput | SoftwareCreateManyComputerInput[]
+  export type LogsCreateManyComputerInputEnvelope = {
+    data: LogsCreateManyComputerInput | LogsCreateManyComputerInput[]
     skipDuplicates?: boolean
   }
 
@@ -28555,9 +28596,9 @@ export namespace Prisma {
     key: string
     value?: number | null
     data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
     game: GameCreateNestedOneWithoutMemoryInput
     user: UserCreateNestedOneWithoutMemoryInput
-    accountBook?: AccountBookCreateNestedManyWithoutMemoryInput
   }
 
   export type MemoryUncheckedCreateWithoutComputerInput = {
@@ -28588,8 +28629,8 @@ export namespace Prisma {
     started?: Date | string
     completion: Date | string
     data: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutProcessInput
     game: GameCreateNestedOneWithoutProcessInput
+    user: UserCreateNestedOneWithoutProcessInput
   }
 
   export type ProcessUncheckedCreateWithoutComputerInput = {
@@ -28613,85 +28654,123 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AddressBookCreateWithoutComputerInput = {
-    access: $Enums.AccessLevel
-    ip: string
+  export type SoftwareCreateWithoutComputerInput = {
+    id?: string
+    type: string
+    level: number
+    size: number
+    opacity: number
+    installed: boolean
+    executed?: Date | string
+    created?: Date | string
+    updated?: Date | string
     data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAddressBookInput
-    game: GameCreateNestedOneWithoutAddressBookInput
+    game: GameCreateNestedOneWithoutSoftwareInput
+    user: UserCreateNestedOneWithoutSoftwareInput
   }
 
-  export type AddressBookUncheckedCreateWithoutComputerInput = {
-    id?: number
+  export type SoftwareUncheckedCreateWithoutComputerInput = {
+    id?: string
     userId: number
-    access: $Enums.AccessLevel
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
     gameId: string
+    type: string
+    level: number
+    size: number
+    opacity: number
+    installed: boolean
+    executed?: Date | string
+    created?: Date | string
+    updated?: Date | string
+    data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type AddressBookCreateOrConnectWithoutComputerInput = {
-    where: AddressBookWhereUniqueInput
-    create: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput>
+  export type SoftwareCreateOrConnectWithoutComputerInput = {
+    where: SoftwareWhereUniqueInput
+    create: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput>
   }
 
-  export type AddressBookCreateManyComputerInputEnvelope = {
-    data: AddressBookCreateManyComputerInput | AddressBookCreateManyComputerInput[]
+  export type SoftwareCreateManyComputerInputEnvelope = {
+    data: SoftwareCreateManyComputerInput | SoftwareCreateManyComputerInput[]
     skipDuplicates?: boolean
   }
 
-  export type AccountBookCreateWithoutComputerInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutAccountBookInput
-    memory: MemoryCreateNestedOneWithoutAccountBookInput
-    game: GameCreateNestedOneWithoutAccountBookInput
-  }
-
-  export type AccountBookUncheckedCreateWithoutComputerInput = {
-    id?: number
-    userId: number
-    memoryId: string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId: string
-  }
-
-  export type AccountBookCreateOrConnectWithoutComputerInput = {
+  export type AccountBookUpsertWithWhereUniqueWithoutComputerInput = {
     where: AccountBookWhereUniqueInput
+    update: XOR<AccountBookUpdateWithoutComputerInput, AccountBookUncheckedUpdateWithoutComputerInput>
     create: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput>
   }
 
-  export type AccountBookCreateManyComputerInputEnvelope = {
-    data: AccountBookCreateManyComputerInput | AccountBookCreateManyComputerInput[]
-    skipDuplicates?: boolean
+  export type AccountBookUpdateWithWhereUniqueWithoutComputerInput = {
+    where: AccountBookWhereUniqueInput
+    data: XOR<AccountBookUpdateWithoutComputerInput, AccountBookUncheckedUpdateWithoutComputerInput>
   }
 
-  export type LogsCreateWithoutComputerInput = {
-    senderId: string
-    senderIp: string
-    message: string
-    created?: Date | string
-    user: UserCreateNestedOneWithoutLogsInput
-    game: GameCreateNestedOneWithoutLogsInput
+  export type AccountBookUpdateManyWithWhereWithoutComputerInput = {
+    where: AccountBookScalarWhereInput
+    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutComputerInput>
   }
 
-  export type LogsUncheckedCreateWithoutComputerInput = {
-    id?: number
-    userId: number
-    senderId: string
-    senderIp: string
-    gameId: string
-    message: string
-    created?: Date | string
+  export type AddressBookUpsertWithWhereUniqueWithoutComputerInput = {
+    where: AddressBookWhereUniqueInput
+    update: XOR<AddressBookUpdateWithoutComputerInput, AddressBookUncheckedUpdateWithoutComputerInput>
+    create: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput>
   }
 
-  export type LogsCreateOrConnectWithoutComputerInput = {
-    where: LogsWhereUniqueInput
-    create: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput>
+  export type AddressBookUpdateWithWhereUniqueWithoutComputerInput = {
+    where: AddressBookWhereUniqueInput
+    data: XOR<AddressBookUpdateWithoutComputerInput, AddressBookUncheckedUpdateWithoutComputerInput>
   }
 
-  export type LogsCreateManyComputerInputEnvelope = {
-    data: LogsCreateManyComputerInput | LogsCreateManyComputerInput[]
-    skipDuplicates?: boolean
+  export type AddressBookUpdateManyWithWhereWithoutComputerInput = {
+    where: AddressBookScalarWhereInput
+    data: XOR<AddressBookUpdateManyMutationInput, AddressBookUncheckedUpdateManyWithoutComputerInput>
+  }
+
+  export type GameUpsertWithoutComputerInput = {
+    update: XOR<GameUpdateWithoutComputerInput, GameUncheckedUpdateWithoutComputerInput>
+    create: XOR<GameCreateWithoutComputerInput, GameUncheckedCreateWithoutComputerInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutComputerInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutComputerInput, GameUncheckedUpdateWithoutComputerInput>
+  }
+
+  export type GameUpdateWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutComputerInput = {
@@ -28714,17 +28793,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    dns?: DNSUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
+    notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
     session?: SessionUpdateManyWithoutUserNestedInput
     software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
-    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
-    dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutComputerInput = {
@@ -28737,64 +28816,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
+    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
     session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
     userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
-    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type GameUpsertWithoutComputerInput = {
-    update: XOR<GameUpdateWithoutComputerInput, GameUncheckedUpdateWithoutComputerInput>
-    create: XOR<GameCreateWithoutComputerInput, GameUncheckedCreateWithoutComputerInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutComputerInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutComputerInput, GameUncheckedUpdateWithoutComputerInput>
-  }
-
-  export type GameUpdateWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type DNSUpsertWithWhereUniqueWithoutComputerInput = {
@@ -28829,20 +28861,20 @@ export namespace Prisma {
     data: XOR<HardwareUpdateManyMutationInput, HardwareUncheckedUpdateManyWithoutComputerInput>
   }
 
-  export type SoftwareUpsertWithWhereUniqueWithoutComputerInput = {
-    where: SoftwareWhereUniqueInput
-    update: XOR<SoftwareUpdateWithoutComputerInput, SoftwareUncheckedUpdateWithoutComputerInput>
-    create: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput>
+  export type LogsUpsertWithWhereUniqueWithoutComputerInput = {
+    where: LogsWhereUniqueInput
+    update: XOR<LogsUpdateWithoutComputerInput, LogsUncheckedUpdateWithoutComputerInput>
+    create: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput>
   }
 
-  export type SoftwareUpdateWithWhereUniqueWithoutComputerInput = {
-    where: SoftwareWhereUniqueInput
-    data: XOR<SoftwareUpdateWithoutComputerInput, SoftwareUncheckedUpdateWithoutComputerInput>
+  export type LogsUpdateWithWhereUniqueWithoutComputerInput = {
+    where: LogsWhereUniqueInput
+    data: XOR<LogsUpdateWithoutComputerInput, LogsUncheckedUpdateWithoutComputerInput>
   }
 
-  export type SoftwareUpdateManyWithWhereWithoutComputerInput = {
-    where: SoftwareScalarWhereInput
-    data: XOR<SoftwareUpdateManyMutationInput, SoftwareUncheckedUpdateManyWithoutComputerInput>
+  export type LogsUpdateManyWithWhereWithoutComputerInput = {
+    where: LogsScalarWhereInput
+    data: XOR<LogsUpdateManyMutationInput, LogsUncheckedUpdateManyWithoutComputerInput>
   }
 
   export type MemoryUpsertWithWhereUniqueWithoutComputerInput = {
@@ -28877,52 +28909,20 @@ export namespace Prisma {
     data: XOR<ProcessUpdateManyMutationInput, ProcessUncheckedUpdateManyWithoutComputerInput>
   }
 
-  export type AddressBookUpsertWithWhereUniqueWithoutComputerInput = {
-    where: AddressBookWhereUniqueInput
-    update: XOR<AddressBookUpdateWithoutComputerInput, AddressBookUncheckedUpdateWithoutComputerInput>
-    create: XOR<AddressBookCreateWithoutComputerInput, AddressBookUncheckedCreateWithoutComputerInput>
+  export type SoftwareUpsertWithWhereUniqueWithoutComputerInput = {
+    where: SoftwareWhereUniqueInput
+    update: XOR<SoftwareUpdateWithoutComputerInput, SoftwareUncheckedUpdateWithoutComputerInput>
+    create: XOR<SoftwareCreateWithoutComputerInput, SoftwareUncheckedCreateWithoutComputerInput>
   }
 
-  export type AddressBookUpdateWithWhereUniqueWithoutComputerInput = {
-    where: AddressBookWhereUniqueInput
-    data: XOR<AddressBookUpdateWithoutComputerInput, AddressBookUncheckedUpdateWithoutComputerInput>
+  export type SoftwareUpdateWithWhereUniqueWithoutComputerInput = {
+    where: SoftwareWhereUniqueInput
+    data: XOR<SoftwareUpdateWithoutComputerInput, SoftwareUncheckedUpdateWithoutComputerInput>
   }
 
-  export type AddressBookUpdateManyWithWhereWithoutComputerInput = {
-    where: AddressBookScalarWhereInput
-    data: XOR<AddressBookUpdateManyMutationInput, AddressBookUncheckedUpdateManyWithoutComputerInput>
-  }
-
-  export type AccountBookUpsertWithWhereUniqueWithoutComputerInput = {
-    where: AccountBookWhereUniqueInput
-    update: XOR<AccountBookUpdateWithoutComputerInput, AccountBookUncheckedUpdateWithoutComputerInput>
-    create: XOR<AccountBookCreateWithoutComputerInput, AccountBookUncheckedCreateWithoutComputerInput>
-  }
-
-  export type AccountBookUpdateWithWhereUniqueWithoutComputerInput = {
-    where: AccountBookWhereUniqueInput
-    data: XOR<AccountBookUpdateWithoutComputerInput, AccountBookUncheckedUpdateWithoutComputerInput>
-  }
-
-  export type AccountBookUpdateManyWithWhereWithoutComputerInput = {
-    where: AccountBookScalarWhereInput
-    data: XOR<AccountBookUpdateManyMutationInput, AccountBookUncheckedUpdateManyWithoutComputerInput>
-  }
-
-  export type LogsUpsertWithWhereUniqueWithoutComputerInput = {
-    where: LogsWhereUniqueInput
-    update: XOR<LogsUpdateWithoutComputerInput, LogsUncheckedUpdateWithoutComputerInput>
-    create: XOR<LogsCreateWithoutComputerInput, LogsUncheckedCreateWithoutComputerInput>
-  }
-
-  export type LogsUpdateWithWhereUniqueWithoutComputerInput = {
-    where: LogsWhereUniqueInput
-    data: XOR<LogsUpdateWithoutComputerInput, LogsUncheckedUpdateWithoutComputerInput>
-  }
-
-  export type LogsUpdateManyWithWhereWithoutComputerInput = {
-    where: LogsScalarWhereInput
-    data: XOR<LogsUpdateManyMutationInput, LogsUncheckedUpdateManyWithoutComputerInput>
+  export type SoftwareUpdateManyWithWhereWithoutComputerInput = {
+    where: SoftwareScalarWhereInput
+    data: XOR<SoftwareUpdateManyMutationInput, SoftwareUncheckedUpdateManyWithoutComputerInput>
   }
 
   export type GameCreateWithoutQuestsInput = {
@@ -28930,17 +28930,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutQuestsInput = {
@@ -28948,17 +28948,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutQuestsInput = {
@@ -28971,8 +28971,8 @@ export namespace Prisma {
     completed: boolean
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutUserQuestsInput
     game: GameCreateNestedOneWithoutUserQuestsInput
+    user: UserCreateNestedOneWithoutUserQuestsInput
   }
 
   export type UserQuestsUncheckedCreateWithoutQuestInput = {
@@ -29010,17 +29010,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
     computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
     memory?: MemoryUpdateManyWithoutGameNestedInput
     process?: ProcessUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
     profile?: ProfileUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
   }
 
   export type GameUncheckedUpdateWithoutQuestsInput = {
@@ -29028,17 +29028,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     started?: DateTimeFieldUpdateOperationsInput | Date | string
     ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
     process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
     profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserQuestsUpsertWithWhereUniqueWithoutQuestInput = {
@@ -29055,6 +29055,47 @@ export namespace Prisma {
   export type UserQuestsUpdateManyWithWhereWithoutQuestInput = {
     where: UserQuestsScalarWhereInput
     data: XOR<UserQuestsUpdateManyMutationInput, UserQuestsUncheckedUpdateManyWithoutQuestInput>
+  }
+
+  export type GameCreateWithoutUserQuestsInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
+    computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
+    memory?: MemoryCreateNestedManyWithoutGameInput
+    process?: ProcessCreateNestedManyWithoutGameInput
+    profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+  }
+
+  export type GameUncheckedCreateWithoutUserQuestsInput = {
+    id?: string
+    name: string
+    started?: Date | string
+    ended?: Date | string | null
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
+    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+  }
+
+  export type GameCreateOrConnectWithoutUserQuestsInput = {
+    where: GameWhereUniqueInput
+    create: XOR<GameCreateWithoutUserQuestsInput, GameUncheckedCreateWithoutUserQuestsInput>
   }
 
   export type QuestsCreateWithoutUserQuestsInput = {
@@ -29089,17 +29130,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
     accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
     dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserQuestsInput = {
@@ -29112,17 +29153,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
     dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserQuestsInput = {
@@ -29130,45 +29171,51 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutUserQuestsInput, UserUncheckedCreateWithoutUserQuestsInput>
   }
 
-  export type GameCreateWithoutUserQuestsInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
-    computer?: ComputerCreateNestedManyWithoutGameInput
-    memory?: MemoryCreateNestedManyWithoutGameInput
-    process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
-    profile?: ProfileCreateNestedManyWithoutGameInput
-  }
-
-  export type GameUncheckedCreateWithoutUserQuestsInput = {
-    id?: string
-    name: string
-    started?: Date | string
-    ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
-    process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
-  }
-
-  export type GameCreateOrConnectWithoutUserQuestsInput = {
-    where: GameWhereUniqueInput
+  export type GameUpsertWithoutUserQuestsInput = {
+    update: XOR<GameUpdateWithoutUserQuestsInput, GameUncheckedUpdateWithoutUserQuestsInput>
     create: XOR<GameCreateWithoutUserQuestsInput, GameUncheckedCreateWithoutUserQuestsInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutUserQuestsInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutUserQuestsInput, GameUncheckedUpdateWithoutUserQuestsInput>
+  }
+
+  export type GameUpdateWithoutUserQuestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutUserQuestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type QuestsUpsertWithoutUserQuestsInput = {
@@ -29220,17 +29267,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserQuestsInput = {
@@ -29243,114 +29290,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type GameUpsertWithoutUserQuestsInput = {
-    update: XOR<GameUpdateWithoutUserQuestsInput, GameUncheckedUpdateWithoutUserQuestsInput>
-    create: XOR<GameCreateWithoutUserQuestsInput, GameUncheckedCreateWithoutUserQuestsInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutUserQuestsInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutUserQuestsInput, GameUncheckedUpdateWithoutUserQuestsInput>
-  }
-
-  export type GameUpdateWithoutUserQuestsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutUserQuestsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type UserCreateWithoutSoftwareInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutSoftwareInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutSoftwareInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSoftwareInput, UserUncheckedCreateWithoutSoftwareInput>
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerCreateWithoutSoftwareInput = {
@@ -29360,15 +29310,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
+    logs?: LogsCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
-    logs?: LogsCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutSoftwareInput = {
@@ -29380,13 +29330,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
+    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
-    logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutSoftwareInput = {
@@ -29399,17 +29349,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    hardware?: HardwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
+    profile?: ProfileCreateNestedManyWithoutGameInput
     quests?: QuestsCreateNestedManyWithoutGameInput
     userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
-    profile?: ProfileCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutSoftwareInput = {
@@ -29417,22 +29367,166 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
     quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
     userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutSoftwareInput = {
     where: GameWhereUniqueInput
     create: XOR<GameCreateWithoutSoftwareInput, GameUncheckedCreateWithoutSoftwareInput>
+  }
+
+  export type UserCreateWithoutSoftwareInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSoftwareInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSoftwareInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSoftwareInput, UserUncheckedCreateWithoutSoftwareInput>
+  }
+
+  export type ComputerUpsertWithoutSoftwareInput = {
+    update: XOR<ComputerUpdateWithoutSoftwareInput, ComputerUncheckedUpdateWithoutSoftwareInput>
+    create: XOR<ComputerCreateWithoutSoftwareInput, ComputerUncheckedCreateWithoutSoftwareInput>
+    where?: ComputerWhereInput
+  }
+
+  export type ComputerUpdateToOneWithWhereWithoutSoftwareInput = {
+    where?: ComputerWhereInput
+    data: XOR<ComputerUpdateWithoutSoftwareInput, ComputerUncheckedUpdateWithoutSoftwareInput>
+  }
+
+  export type ComputerUpdateWithoutSoftwareInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
+    game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    dns?: DNSUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutSoftwareInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type GameUpsertWithoutSoftwareInput = {
+    update: XOR<GameUpdateWithoutSoftwareInput, GameUncheckedUpdateWithoutSoftwareInput>
+    create: XOR<GameCreateWithoutSoftwareInput, GameUncheckedCreateWithoutSoftwareInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutSoftwareInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutSoftwareInput, GameUncheckedUpdateWithoutSoftwareInput>
+  }
+
+  export type GameUpdateWithoutSoftwareInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutSoftwareInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutSoftwareInput = {
@@ -29455,17 +29549,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSoftwareInput = {
@@ -29478,161 +29572,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ComputerUpsertWithoutSoftwareInput = {
-    update: XOR<ComputerUpdateWithoutSoftwareInput, ComputerUncheckedUpdateWithoutSoftwareInput>
-    create: XOR<ComputerCreateWithoutSoftwareInput, ComputerUncheckedCreateWithoutSoftwareInput>
-    where?: ComputerWhereInput
-  }
-
-  export type ComputerUpdateToOneWithWhereWithoutSoftwareInput = {
-    where?: ComputerWhereInput
-    data: XOR<ComputerUpdateWithoutSoftwareInput, ComputerUncheckedUpdateWithoutSoftwareInput>
-  }
-
-  export type ComputerUpdateWithoutSoftwareInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
-    game?: GameUpdateOneRequiredWithoutComputerNestedInput
-    dns?: DNSUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateWithoutSoftwareInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type GameUpsertWithoutSoftwareInput = {
-    update: XOR<GameUpdateWithoutSoftwareInput, GameUncheckedUpdateWithoutSoftwareInput>
-    create: XOR<GameCreateWithoutSoftwareInput, GameUncheckedCreateWithoutSoftwareInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutSoftwareInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutSoftwareInput, GameUncheckedUpdateWithoutSoftwareInput>
-  }
-
-  export type GameUpdateWithoutSoftwareInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutSoftwareInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type UserCreateWithoutProcessInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutProcessInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutProcessInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProcessInput, UserUncheckedCreateWithoutProcessInput>
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerCreateWithoutProcessInput = {
@@ -29642,15 +29592,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
-    memory?: MemoryCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
     logs?: LogsCreateNestedManyWithoutComputerInput
+    memory?: MemoryCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutProcessInput = {
@@ -29662,13 +29612,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
     logs?: LogsUncheckedCreateNestedManyWithoutComputerInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutProcessInput = {
@@ -29681,17 +29631,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
-    computer?: ComputerCreateNestedManyWithoutGameInput
-    memory?: MemoryCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    logs?: LogsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
+    computer?: ComputerCreateNestedManyWithoutGameInput
     dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
+    logs?: LogsCreateNestedManyWithoutGameInput
+    memory?: MemoryCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutProcessInput = {
@@ -29699,22 +29649,166 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
     dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    logs?: LogsUncheckedCreateNestedManyWithoutGameInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutProcessInput = {
     where: GameWhereUniqueInput
     create: XOR<GameCreateWithoutProcessInput, GameUncheckedCreateWithoutProcessInput>
+  }
+
+  export type UserCreateWithoutProcessInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutProcessInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutProcessInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProcessInput, UserUncheckedCreateWithoutProcessInput>
+  }
+
+  export type ComputerUpsertWithoutProcessInput = {
+    update: XOR<ComputerUpdateWithoutProcessInput, ComputerUncheckedUpdateWithoutProcessInput>
+    create: XOR<ComputerCreateWithoutProcessInput, ComputerUncheckedCreateWithoutProcessInput>
+    where?: ComputerWhereInput
+  }
+
+  export type ComputerUpdateToOneWithWhereWithoutProcessInput = {
+    where?: ComputerWhereInput
+    data: XOR<ComputerUpdateWithoutProcessInput, ComputerUncheckedUpdateWithoutProcessInput>
+  }
+
+  export type ComputerUpdateWithoutProcessInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
+    game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    dns?: DNSUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutProcessInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type GameUpsertWithoutProcessInput = {
+    update: XOR<GameUpdateWithoutProcessInput, GameUncheckedUpdateWithoutProcessInput>
+    create: XOR<GameCreateWithoutProcessInput, GameUncheckedCreateWithoutProcessInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutProcessInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutProcessInput, GameUncheckedUpdateWithoutProcessInput>
+  }
+
+  export type GameUpdateWithoutProcessInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    logs?: LogsUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutProcessInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutProcessInput = {
@@ -29737,17 +29831,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProcessInput = {
@@ -29760,111 +29854,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ComputerUpsertWithoutProcessInput = {
-    update: XOR<ComputerUpdateWithoutProcessInput, ComputerUncheckedUpdateWithoutProcessInput>
-    create: XOR<ComputerCreateWithoutProcessInput, ComputerUncheckedCreateWithoutProcessInput>
-    where?: ComputerWhereInput
-  }
-
-  export type ComputerUpdateToOneWithWhereWithoutProcessInput = {
-    where?: ComputerWhereInput
-    data: XOR<ComputerUpdateWithoutProcessInput, ComputerUncheckedUpdateWithoutProcessInput>
-  }
-
-  export type ComputerUpdateWithoutProcessInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
-    game?: GameUpdateOneRequiredWithoutComputerNestedInput
-    dns?: DNSUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateWithoutProcessInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type GameUpsertWithoutProcessInput = {
-    update: XOR<GameUpdateWithoutProcessInput, GameUncheckedUpdateWithoutProcessInput>
-    create: XOR<GameCreateWithoutProcessInput, GameUncheckedCreateWithoutProcessInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutProcessInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutProcessInput, GameUncheckedUpdateWithoutProcessInput>
-  }
-
-  export type GameUpdateWithoutProcessInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    logs?: LogsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutProcessInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -29876,17 +29876,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
     computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    logs?: LogsCreateNestedManyWithoutUserInput
     memory?: MemoryCreateNestedManyWithoutUserInput
     process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    logs?: LogsCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
     profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -29899,17 +29899,17 @@ export namespace Prisma {
     created?: Date | string
     refreshToken?: string | null
     group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
     computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
     memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
     process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    logs?: LogsUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
     profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -29937,17 +29937,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
+    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
+    dns?: DNSUpdateManyWithoutUserNestedInput
+    logs?: LogsUpdateManyWithoutUserNestedInput
     memory?: MemoryUpdateManyWithoutUserNestedInput
     process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
-    accountBook?: AccountBookUpdateManyWithoutUserNestedInput
-    logs?: LogsUpdateManyWithoutUserNestedInput
-    dns?: DNSUpdateManyWithoutUserNestedInput
     profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -29960,67 +29960,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
     memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutUserNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
     profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutLogsInput = {
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionCreateNestedManyWithoutUserInput
-    computer?: ComputerCreateNestedManyWithoutUserInput
-    software?: SoftwareCreateNestedManyWithoutUserInput
-    memory?: MemoryCreateNestedManyWithoutUserInput
-    process?: ProcessCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookCreateNestedManyWithoutUserInput
-    dns?: DNSCreateNestedManyWithoutUserInput
-    profile?: ProfileCreateNestedManyWithoutUserInput
-    notifications?: NotificationsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLogsInput = {
-    id?: number
-    email: string
-    name?: string
-    password: string
-    salt: string
-    lastAction?: Date | string
-    created?: Date | string
-    refreshToken?: string | null
-    group?: $Enums.Groups
-    session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
-    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
-    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
-    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
-    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLogsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLogsInput, UserUncheckedCreateWithoutLogsInput>
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComputerCreateWithoutLogsInput = {
@@ -30030,15 +29980,15 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
-    user: UserCreateNestedOneWithoutComputerInput
+    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
     game: GameCreateNestedOneWithoutComputerInput
+    user: UserCreateNestedOneWithoutComputerInput
     dns?: DNSCreateNestedManyWithoutComputerInput
     hardware?: HardwareCreateNestedManyWithoutComputerInput
-    software?: SoftwareCreateNestedManyWithoutComputerInput
     memory?: MemoryCreateNestedManyWithoutComputerInput
     process?: ProcessCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookCreateNestedManyWithoutComputerInput
+    software?: SoftwareCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerUncheckedCreateWithoutLogsInput = {
@@ -30050,13 +30000,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
     dns?: DNSUncheckedCreateNestedManyWithoutComputerInput
     hardware?: HardwareUncheckedCreateNestedManyWithoutComputerInput
-    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
     memory?: MemoryUncheckedCreateNestedManyWithoutComputerInput
     process?: ProcessUncheckedCreateNestedManyWithoutComputerInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutComputerInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutComputerInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutComputerInput
   }
 
   export type ComputerCreateOrConnectWithoutLogsInput = {
@@ -30069,17 +30019,17 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareCreateNestedManyWithoutGameInput
-    hardware?: HardwareCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookCreateNestedManyWithoutGameInput
     computer?: ComputerCreateNestedManyWithoutGameInput
+    dns?: DNSCreateNestedManyWithoutGameInput
+    hardware?: HardwareCreateNestedManyWithoutGameInput
     memory?: MemoryCreateNestedManyWithoutGameInput
     process?: ProcessCreateNestedManyWithoutGameInput
-    quests?: QuestsCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookCreateNestedManyWithoutGameInput
-    dns?: DNSCreateNestedManyWithoutGameInput
     profile?: ProfileCreateNestedManyWithoutGameInput
+    quests?: QuestsCreateNestedManyWithoutGameInput
+    software?: SoftwareCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsCreateNestedManyWithoutGameInput
   }
 
   export type GameUncheckedCreateWithoutLogsInput = {
@@ -30087,22 +30037,166 @@ export namespace Prisma {
     name: string
     started?: Date | string
     ended?: Date | string | null
-    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
-    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
     computer?: ComputerUncheckedCreateNestedManyWithoutGameInput
+    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
+    hardware?: HardwareUncheckedCreateNestedManyWithoutGameInput
     memory?: MemoryUncheckedCreateNestedManyWithoutGameInput
     process?: ProcessUncheckedCreateNestedManyWithoutGameInput
-    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
-    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
-    addressBook?: AddressBookUncheckedCreateNestedManyWithoutGameInput
-    accountBook?: AccountBookUncheckedCreateNestedManyWithoutGameInput
-    dns?: DNSUncheckedCreateNestedManyWithoutGameInput
     profile?: ProfileUncheckedCreateNestedManyWithoutGameInput
+    quests?: QuestsUncheckedCreateNestedManyWithoutGameInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutGameInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutGameInput
   }
 
   export type GameCreateOrConnectWithoutLogsInput = {
     where: GameWhereUniqueInput
     create: XOR<GameCreateWithoutLogsInput, GameUncheckedCreateWithoutLogsInput>
+  }
+
+  export type UserCreateWithoutLogsInput = {
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookCreateNestedManyWithoutUserInput
+    computer?: ComputerCreateNestedManyWithoutUserInput
+    dns?: DNSCreateNestedManyWithoutUserInput
+    memory?: MemoryCreateNestedManyWithoutUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    process?: ProcessCreateNestedManyWithoutUserInput
+    profile?: ProfileCreateNestedManyWithoutUserInput
+    session?: SessionCreateNestedManyWithoutUserInput
+    software?: SoftwareCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLogsInput = {
+    id?: number
+    email: string
+    name?: string
+    password: string
+    salt: string
+    lastAction?: Date | string
+    created?: Date | string
+    refreshToken?: string | null
+    group?: $Enums.Groups
+    accountBook?: AccountBookUncheckedCreateNestedManyWithoutUserInput
+    addressBook?: AddressBookUncheckedCreateNestedManyWithoutUserInput
+    computer?: ComputerUncheckedCreateNestedManyWithoutUserInput
+    dns?: DNSUncheckedCreateNestedManyWithoutUserInput
+    memory?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    process?: ProcessUncheckedCreateNestedManyWithoutUserInput
+    profile?: ProfileUncheckedCreateNestedManyWithoutUserInput
+    session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    software?: SoftwareUncheckedCreateNestedManyWithoutUserInput
+    userQuests?: UserQuestsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLogsInput, UserUncheckedCreateWithoutLogsInput>
+  }
+
+  export type ComputerUpsertWithoutLogsInput = {
+    update: XOR<ComputerUpdateWithoutLogsInput, ComputerUncheckedUpdateWithoutLogsInput>
+    create: XOR<ComputerCreateWithoutLogsInput, ComputerUncheckedCreateWithoutLogsInput>
+    where?: ComputerWhereInput
+  }
+
+  export type ComputerUpdateToOneWithWhereWithoutLogsInput = {
+    where?: ComputerWhereInput
+    data: XOR<ComputerUpdateWithoutLogsInput, ComputerUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type ComputerUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
+    game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    dns?: DNSUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type GameUpsertWithoutLogsInput = {
+    update: XOR<GameUpdateWithoutLogsInput, GameUncheckedUpdateWithoutLogsInput>
+    create: XOR<GameCreateWithoutLogsInput, GameUncheckedCreateWithoutLogsInput>
+    where?: GameWhereInput
+  }
+
+  export type GameUpdateToOneWithWhereWithoutLogsInput = {
+    where?: GameWhereInput
+    data: XOR<GameUpdateWithoutLogsInput, GameUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type GameUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
+    computer?: ComputerUpdateManyWithoutGameNestedInput
+    dns?: DNSUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUpdateManyWithoutGameNestedInput
+    memory?: MemoryUpdateManyWithoutGameNestedInput
+    process?: ProcessUpdateManyWithoutGameNestedInput
+    profile?: ProfileUpdateManyWithoutGameNestedInput
+    quests?: QuestsUpdateManyWithoutGameNestedInput
+    software?: SoftwareUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
+  }
+
+  export type GameUncheckedUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
+    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
   }
 
   export type UserUpsertWithoutLogsInput = {
@@ -30125,17 +30219,17 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUpdateManyWithoutUserNestedInput
-    computer?: ComputerUpdateManyWithoutUserNestedInput
-    software?: SoftwareUpdateManyWithoutUserNestedInput
-    memory?: MemoryUpdateManyWithoutUserNestedInput
-    process?: ProcessUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUpdateManyWithoutUserNestedInput
+    computer?: ComputerUpdateManyWithoutUserNestedInput
     dns?: DNSUpdateManyWithoutUserNestedInput
-    profile?: ProfileUpdateManyWithoutUserNestedInput
+    memory?: MemoryUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    process?: ProcessUpdateManyWithoutUserNestedInput
+    profile?: ProfileUpdateManyWithoutUserNestedInput
+    session?: SessionUpdateManyWithoutUserNestedInput
+    software?: SoftwareUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLogsInput = {
@@ -30148,119 +30242,34 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     group?: EnumGroupsFieldUpdateOperationsInput | $Enums.Groups
-    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
     accountBook?: AccountBookUncheckedUpdateManyWithoutUserNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutUserNestedInput
+    computer?: ComputerUncheckedUpdateManyWithoutUserNestedInput
     dns?: DNSUncheckedUpdateManyWithoutUserNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutUserNestedInput
+    profile?: ProfileUncheckedUpdateManyWithoutUserNestedInput
+    session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutUserNestedInput
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type ComputerUpsertWithoutLogsInput = {
-    update: XOR<ComputerUpdateWithoutLogsInput, ComputerUncheckedUpdateWithoutLogsInput>
-    create: XOR<ComputerCreateWithoutLogsInput, ComputerUncheckedCreateWithoutLogsInput>
-    where?: ComputerWhereInput
-  }
-
-  export type ComputerUpdateToOneWithWhereWithoutLogsInput = {
-    where?: ComputerWhereInput
-    data: XOR<ComputerUpdateWithoutLogsInput, ComputerUncheckedUpdateWithoutLogsInput>
-  }
-
-  export type ComputerUpdateWithoutLogsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
+  export type AccountBookCreateManyUserInput = {
+    id?: number
+    computerId: string
+    memoryId: string
     data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
-    game?: GameUpdateOneRequiredWithoutComputerNestedInput
-    dns?: DNSUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    gameId: string
   }
 
-  export type ComputerUncheckedUpdateWithoutLogsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
+  export type AddressBookCreateManyUserInput = {
+    id?: number
+    access: $Enums.AccessLevel
+    computerId: string
+    ip: string
     data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type GameUpsertWithoutLogsInput = {
-    update: XOR<GameUpdateWithoutLogsInput, GameUncheckedUpdateWithoutLogsInput>
-    create: XOR<GameCreateWithoutLogsInput, GameUncheckedCreateWithoutLogsInput>
-    where?: GameWhereInput
-  }
-
-  export type GameUpdateToOneWithWhereWithoutLogsInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutLogsInput, GameUncheckedUpdateWithoutLogsInput>
-  }
-
-  export type GameUpdateWithoutLogsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUpdateManyWithoutGameNestedInput
-    computer?: ComputerUpdateManyWithoutGameNestedInput
-    memory?: MemoryUpdateManyWithoutGameNestedInput
-    process?: ProcessUpdateManyWithoutGameNestedInput
-    quests?: QuestsUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUpdateManyWithoutGameNestedInput
-    dns?: DNSUpdateManyWithoutGameNestedInput
-    profile?: ProfileUpdateManyWithoutGameNestedInput
-  }
-
-  export type GameUncheckedUpdateWithoutLogsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    ended?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    software?: SoftwareUncheckedUpdateManyWithoutGameNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutGameNestedInput
-    computer?: ComputerUncheckedUpdateManyWithoutGameNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutGameNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutGameNestedInput
-    quests?: QuestsUncheckedUpdateManyWithoutGameNestedInput
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutGameNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutGameNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutGameNestedInput
-    dns?: DNSUncheckedUpdateManyWithoutGameNestedInput
-    profile?: ProfileUncheckedUpdateManyWithoutGameNestedInput
-  }
-
-  export type SessionCreateManyUserInput = {
-    id: string
-    token: string
-    lastAction: Date | string
-    created?: Date | string
-    expires: Date | string
+    gameId: string
   }
 
   export type ComputerCreateManyUserInput = {
@@ -30271,6 +30280,69 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+  }
+
+  export type DNSCreateManyUserInput = {
+    id?: number
+    computerId: string
+    gameId: string
+    website: string
+    tags: string
+    description?: string
+    updated?: Date | string
+    created?: Date | string
+  }
+
+  export type LogsCreateManyUserInput = {
+    id?: number
+    computerId: string
+    senderId: string
+    senderIp: string
+    gameId: string
+    message: string
+    created?: Date | string
+  }
+
+  export type MemoryCreateManyUserInput = {
+    id?: string
+    computerId: string
+    gameId: string
+    type: string
+    key: string
+    value?: number | null
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type NotificationsCreateManyUserInput = {
+    id?: number
+    type: string
+    content: JsonNullValueInput | InputJsonValue
+    read?: boolean
+  }
+
+  export type ProcessCreateManyUserInput = {
+    id?: string
+    computerId: string
+    ip?: string | null
+    gameId: string
+    type: string
+    started?: Date | string
+    completion: Date | string
+    data: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileCreateManyUserInput = {
+    id?: number
+    gameId: string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type SessionCreateManyUserInput = {
+    id: string
+    token: string
+    lastAction: Date | string
+    created?: Date | string
+    expires: Date | string
   }
 
   export type SoftwareCreateManyUserInput = {
@@ -30288,27 +30360,6 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type MemoryCreateManyUserInput = {
-    id?: string
-    computerId: string
-    gameId: string
-    type: string
-    key: string
-    value?: number | null
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessCreateManyUserInput = {
-    id?: string
-    computerId: string
-    ip?: string | null
-    gameId: string
-    type: string
-    started?: Date | string
-    completion: Date | string
-    data: JsonNullValueInput | InputJsonValue
-  }
-
   export type UserQuestsCreateManyUserInput = {
     id?: string
     questsId: string
@@ -30318,55 +30369,262 @@ export namespace Prisma {
     updated?: Date | string
   }
 
-  export type AddressBookCreateManyUserInput = {
-    id?: number
-    access: $Enums.AccessLevel
-    computerId: string
-    ip: string
+  export type AccountBookUpdateWithoutUserInput = {
     data?: JsonNullValueInput | InputJsonValue
-    gameId: string
+    computer?: ComputerUpdateOneRequiredWithoutAccountBookNestedInput
+    game?: GameUpdateOneRequiredWithoutAccountBookNestedInput
+    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
   }
 
-  export type AccountBookCreateManyUserInput = {
-    id?: number
-    computerId: string
-    memoryId: string
+  export type AccountBookUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    memoryId?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
-    gameId: string
+    gameId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type LogsCreateManyUserInput = {
-    id?: number
-    computerId: string
-    senderId: string
-    senderIp: string
-    gameId: string
-    message: string
-    created?: Date | string
+  export type AccountBookUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    memoryId?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type DNSCreateManyUserInput = {
-    id?: number
-    computerId: string
-    gameId: string
-    website: string
-    tags: string
-    description?: string
-    updated?: Date | string
-    created?: Date | string
+  export type AddressBookUpdateWithoutUserInput = {
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    computer?: ComputerUpdateOneRequiredWithoutAddressBookNestedInput
+    game?: GameUpdateOneRequiredWithoutAddressBookNestedInput
   }
 
-  export type ProfileCreateManyUserInput = {
-    id?: number
-    gameId: string
+  export type AddressBookUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddressBookUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ComputerUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
+    game?: GameUpdateOneRequiredWithoutComputerNestedInput
+    dns?: DNSUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DNSUpdateWithoutUserInput = {
+    website?: StringFieldUpdateOperationsInput | string
+    tags?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    computer?: ComputerUpdateOneRequiredWithoutDnsNestedInput
+    game?: GameUpdateOneRequiredWithoutDnsNestedInput
+  }
+
+  export type DNSUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    tags?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DNSUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    tags?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogsUpdateWithoutUserInput = {
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    computer?: ComputerUpdateOneRequiredWithoutLogsNestedInput
+    game?: GameUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type LogsUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogsUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MemoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
+    computer?: ComputerUpdateOneRequiredWithoutMemoryNestedInput
+    game?: GameUpdateOneRequiredWithoutMemoryNestedInput
+  }
+
+  export type MemoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    computerId?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUncheckedUpdateManyWithoutMemoryNestedInput
+  }
+
+  export type MemoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    computerId?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type NotificationsCreateManyUserInput = {
-    id?: number
-    type: string
-    content: JsonNullValueInput | InputJsonValue
-    read?: boolean
+  export type NotificationsUpdateWithoutUserInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    read?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type NotificationsUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    read?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type NotificationsUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    content?: JsonNullValueInput | InputJsonValue
+    read?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ProcessUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    computer?: ComputerUpdateOneRequiredWithoutProcessNestedInput
+    game?: GameUpdateOneRequiredWithoutProcessNestedInput
+  }
+
+  export type ProcessUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    gameId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProcessUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    gameId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileUpdateWithoutUserInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    game?: GameUpdateOneRequiredWithoutProfileNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    gameId?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    gameId?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -30391,52 +30649,6 @@ export namespace Prisma {
     lastAction?: DateTimeFieldUpdateOperationsInput | Date | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ComputerUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    game?: GameUpdateOneRequiredWithoutComputerNestedInput
-    dns?: DNSUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SoftwareUpdateWithoutUserInput = {
@@ -30484,78 +30696,13 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type MemoryUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-    computer?: ComputerUpdateOneRequiredWithoutMemoryNestedInput
-    game?: GameUpdateOneRequiredWithoutMemoryNestedInput
-    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
-  }
-
-  export type MemoryUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    computerId?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-    accountBook?: AccountBookUncheckedUpdateManyWithoutMemoryNestedInput
-  }
-
-  export type MemoryUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    computerId?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-    computer?: ComputerUpdateOneRequiredWithoutProcessNestedInput
-    game?: GameUpdateOneRequiredWithoutProcessNestedInput
-  }
-
-  export type ProcessUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    gameId?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    gameId?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
   export type UserQuestsUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     completed?: BoolFieldUpdateOperationsInput | boolean
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    quest?: QuestsUpdateOneRequiredWithoutUserQuestsNestedInput
     game?: GameUpdateOneRequiredWithoutUserQuestsNestedInput
+    quest?: QuestsUpdateOneRequiredWithoutUserQuestsNestedInput
   }
 
   export type UserQuestsUncheckedUpdateWithoutUserInput = {
@@ -30576,173 +30723,21 @@ export namespace Prisma {
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AddressBookUpdateWithoutUserInput = {
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    computer?: ComputerUpdateOneRequiredWithoutAddressBookNestedInput
-    game?: GameUpdateOneRequiredWithoutAddressBookNestedInput
-  }
-
-  export type AddressBookUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AddressBookUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AccountBookUpdateWithoutUserInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    computer?: ComputerUpdateOneRequiredWithoutAccountBookNestedInput
-    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
-    game?: GameUpdateOneRequiredWithoutAccountBookNestedInput
-  }
-
-  export type AccountBookUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    memoryId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AccountBookUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    memoryId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LogsUpdateWithoutUserInput = {
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    computer?: ComputerUpdateOneRequiredWithoutLogsNestedInput
-    game?: GameUpdateOneRequiredWithoutLogsNestedInput
-  }
-
-  export type LogsUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LogsUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DNSUpdateWithoutUserInput = {
-    website?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    computer?: ComputerUpdateOneRequiredWithoutDnsNestedInput
-    game?: GameUpdateOneRequiredWithoutDnsNestedInput
-  }
-
-  export type DNSUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    website?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DNSUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    website?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ProfileUpdateWithoutUserInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    game?: GameUpdateOneRequiredWithoutProfileNestedInput
-  }
-
-  export type ProfileUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    gameId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProfileUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    gameId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type NotificationsUpdateWithoutUserInput = {
-    type?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    read?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type NotificationsUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    read?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type NotificationsUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    content?: JsonNullValueInput | InputJsonValue
-    read?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type SoftwareCreateManyGameInput = {
-    id?: string
+  export type AccountBookCreateManyGameInput = {
+    id?: number
     userId: number
     computerId: string
-    type: string
-    level: number
-    size: number
-    opacity: number
-    installed: boolean
-    executed?: Date | string
-    created?: Date | string
-    updated?: Date | string
+    memoryId: string
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type HardwareCreateManyGameInput = {
+  export type AddressBookCreateManyGameInput = {
     id?: number
+    userId: number
+    access: $Enums.AccessLevel
     computerId: string
-    type: $Enums.HardwareTypes
-    strength: number
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
   }
 
   export type ComputerCreateManyGameInput = {
@@ -30753,6 +30748,34 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
     created?: Date | string
     updated?: Date | string
+  }
+
+  export type DNSCreateManyGameInput = {
+    id?: number
+    userId: number
+    computerId: string
+    website: string
+    tags: string
+    description?: string
+    updated?: Date | string
+    created?: Date | string
+  }
+
+  export type HardwareCreateManyGameInput = {
+    id?: number
+    computerId: string
+    type: $Enums.HardwareTypes
+    strength: number
+  }
+
+  export type LogsCreateManyGameInput = {
+    id?: number
+    userId: number
+    computerId: string
+    senderId: string
+    senderIp: string
+    message: string
+    created?: Date | string
   }
 
   export type MemoryCreateManyGameInput = {
@@ -30776,12 +30799,33 @@ export namespace Prisma {
     data: JsonNullValueInput | InputJsonValue
   }
 
+  export type ProfileCreateManyGameInput = {
+    id?: number
+    userId: number
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
   export type QuestsCreateManyGameInput = {
     id?: string
     type: string
     title: string
     reward?: NullableJsonNullValueInput | InputJsonValue
     open: boolean
+  }
+
+  export type SoftwareCreateManyGameInput = {
+    id?: string
+    userId: number
+    computerId: string
+    type: string
+    level: number
+    size: number
+    opacity: number
+    installed: boolean
+    executed?: Date | string
+    created?: Date | string
+    updated?: Date | string
+    data?: JsonNullValueInput | InputJsonValue
   }
 
   export type UserQuestsCreateManyGameInput = {
@@ -30793,48 +30837,288 @@ export namespace Prisma {
     updated?: Date | string
   }
 
-  export type LogsCreateManyGameInput = {
-    id?: number
-    userId: number
-    computerId: string
-    senderId: string
-    senderIp: string
-    message: string
-    created?: Date | string
+  export type AccountBookUpdateWithoutGameInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    computer?: ComputerUpdateOneRequiredWithoutAccountBookNestedInput
+    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
   }
 
-  export type AddressBookCreateManyGameInput = {
-    id?: number
-    userId: number
-    access: $Enums.AccessLevel
-    computerId: string
-    ip: string
+  export type AccountBookUncheckedUpdateWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    memoryId?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type AccountBookCreateManyGameInput = {
-    id?: number
-    userId: number
-    computerId: string
-    memoryId: string
+  export type AccountBookUncheckedUpdateManyWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    memoryId?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type DNSCreateManyGameInput = {
-    id?: number
-    userId: number
-    computerId: string
-    website: string
-    tags: string
-    description?: string
-    updated?: Date | string
-    created?: Date | string
+  export type AddressBookUpdateWithoutGameInput = {
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    computer?: ComputerUpdateOneRequiredWithoutAddressBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAddressBookNestedInput
   }
 
-  export type ProfileCreateManyGameInput = {
-    id?: number
-    userId: number
+  export type AddressBookUncheckedUpdateWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type AddressBookUncheckedUpdateManyWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ComputerUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
+    user?: UserUpdateOneRequiredWithoutComputerNestedInput
+    dns?: DNSUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUpdateManyWithoutComputerNestedInput
+    logs?: LogsUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUpdateManyWithoutComputerNestedInput
+    process?: ProcessUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
+    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
+    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
+    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
+    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
+    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
+    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
+    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
+  }
+
+  export type ComputerUncheckedUpdateManyWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DNSUpdateWithoutGameInput = {
+    website?: StringFieldUpdateOperationsInput | string
+    tags?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    computer?: ComputerUpdateOneRequiredWithoutDnsNestedInput
+    user?: UserUpdateOneRequiredWithoutDnsNestedInput
+  }
+
+  export type DNSUncheckedUpdateWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    tags?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DNSUncheckedUpdateManyWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    tags?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HardwareUpdateWithoutGameInput = {
+    type?: EnumHardwareTypesFieldUpdateOperationsInput | $Enums.HardwareTypes
+    strength?: FloatFieldUpdateOperationsInput | number
+    computer?: ComputerUpdateOneRequiredWithoutHardwareNestedInput
+  }
+
+  export type HardwareUncheckedUpdateWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    type?: EnumHardwareTypesFieldUpdateOperationsInput | $Enums.HardwareTypes
+    strength?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type HardwareUncheckedUpdateManyWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    type?: EnumHardwareTypesFieldUpdateOperationsInput | $Enums.HardwareTypes
+    strength?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LogsUpdateWithoutGameInput = {
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    computer?: ComputerUpdateOneRequiredWithoutLogsNestedInput
+    user?: UserUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type LogsUncheckedUpdateWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogsUncheckedUpdateManyWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MemoryUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
+    computer?: ComputerUpdateOneRequiredWithoutMemoryNestedInput
+    user?: UserUpdateOneRequiredWithoutMemoryNestedInput
+  }
+
+  export type MemoryUncheckedUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    computerId?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUncheckedUpdateManyWithoutMemoryNestedInput
+  }
+
+  export type MemoryUncheckedUpdateManyWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    computerId?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProcessUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    computer?: ComputerUpdateOneRequiredWithoutProcessNestedInput
+    user?: UserUpdateOneRequiredWithoutProcessNestedInput
+  }
+
+  export type ProcessUncheckedUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProcessUncheckedUpdateManyWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    computerId?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileUpdateWithoutGameInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProfileUncheckedUpdateManyWithoutGameInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type QuestsUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    reward?: NullableJsonNullValueInput | InputJsonValue
+    open?: BoolFieldUpdateOperationsInput | boolean
+    userQuests?: UserQuestsUpdateManyWithoutQuestNestedInput
+  }
+
+  export type QuestsUncheckedUpdateWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    reward?: NullableJsonNullValueInput | InputJsonValue
+    open?: BoolFieldUpdateOperationsInput | boolean
+    userQuests?: UserQuestsUncheckedUpdateManyWithoutQuestNestedInput
+  }
+
+  export type QuestsUncheckedUpdateManyWithoutGameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    reward?: NullableJsonNullValueInput | InputJsonValue
+    open?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SoftwareUpdateWithoutGameInput = {
@@ -30848,8 +31132,8 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutSoftwareNestedInput
     computer?: ComputerUpdateOneRequiredWithoutSoftwareNestedInput
+    user?: UserUpdateOneRequiredWithoutSoftwareNestedInput
   }
 
   export type SoftwareUncheckedUpdateWithoutGameInput = {
@@ -30882,163 +31166,6 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type HardwareUpdateWithoutGameInput = {
-    type?: EnumHardwareTypesFieldUpdateOperationsInput | $Enums.HardwareTypes
-    strength?: FloatFieldUpdateOperationsInput | number
-    computer?: ComputerUpdateOneRequiredWithoutHardwareNestedInput
-  }
-
-  export type HardwareUncheckedUpdateWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    type?: EnumHardwareTypesFieldUpdateOperationsInput | $Enums.HardwareTypes
-    strength?: FloatFieldUpdateOperationsInput | number
-  }
-
-  export type HardwareUncheckedUpdateManyWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    type?: EnumHardwareTypesFieldUpdateOperationsInput | $Enums.HardwareTypes
-    strength?: FloatFieldUpdateOperationsInput | number
-  }
-
-  export type ComputerUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComputerNestedInput
-    dns?: DNSUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUpdateManyWithoutComputerNestedInput
-    process?: ProcessUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUpdateManyWithoutComputerNestedInput
-    logs?: LogsUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    dns?: DNSUncheckedUpdateManyWithoutComputerNestedInput
-    hardware?: HardwareUncheckedUpdateManyWithoutComputerNestedInput
-    software?: SoftwareUncheckedUpdateManyWithoutComputerNestedInput
-    memory?: MemoryUncheckedUpdateManyWithoutComputerNestedInput
-    process?: ProcessUncheckedUpdateManyWithoutComputerNestedInput
-    addressBook?: AddressBookUncheckedUpdateManyWithoutComputerNestedInput
-    accountBook?: AccountBookUncheckedUpdateManyWithoutComputerNestedInput
-    logs?: LogsUncheckedUpdateManyWithoutComputerNestedInput
-  }
-
-  export type ComputerUncheckedUpdateManyWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MemoryUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-    computer?: ComputerUpdateOneRequiredWithoutMemoryNestedInput
-    user?: UserUpdateOneRequiredWithoutMemoryNestedInput
-    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
-  }
-
-  export type MemoryUncheckedUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    computerId?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-    accountBook?: AccountBookUncheckedUpdateManyWithoutMemoryNestedInput
-  }
-
-  export type MemoryUncheckedUpdateManyWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    computerId?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutProcessNestedInput
-    computer?: ComputerUpdateOneRequiredWithoutProcessNestedInput
-  }
-
-  export type ProcessUncheckedUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessUncheckedUpdateManyWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type QuestsUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    reward?: NullableJsonNullValueInput | InputJsonValue
-    open?: BoolFieldUpdateOperationsInput | boolean
-    userQuests?: UserQuestsUpdateManyWithoutQuestNestedInput
-  }
-
-  export type QuestsUncheckedUpdateWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    reward?: NullableJsonNullValueInput | InputJsonValue
-    open?: BoolFieldUpdateOperationsInput | boolean
-    userQuests?: UserQuestsUncheckedUpdateManyWithoutQuestNestedInput
-  }
-
-  export type QuestsUncheckedUpdateManyWithoutGameInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    reward?: NullableJsonNullValueInput | InputJsonValue
-    open?: BoolFieldUpdateOperationsInput | boolean
-  }
-
   export type UserQuestsUpdateWithoutGameInput = {
     id?: StringFieldUpdateOperationsInput | string
     completed?: BoolFieldUpdateOperationsInput | boolean
@@ -31066,133 +31193,6 @@ export namespace Prisma {
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type LogsUpdateWithoutGameInput = {
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutLogsNestedInput
-    computer?: ComputerUpdateOneRequiredWithoutLogsNestedInput
-  }
-
-  export type LogsUncheckedUpdateWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LogsUncheckedUpdateManyWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AddressBookUpdateWithoutGameInput = {
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAddressBookNestedInput
-    computer?: ComputerUpdateOneRequiredWithoutAddressBookNestedInput
-  }
-
-  export type AddressBookUncheckedUpdateWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type AddressBookUncheckedUpdateManyWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    computerId?: StringFieldUpdateOperationsInput | string
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type AccountBookUpdateWithoutGameInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
-    computer?: ComputerUpdateOneRequiredWithoutAccountBookNestedInput
-    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
-  }
-
-  export type AccountBookUncheckedUpdateWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    memoryId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type AccountBookUncheckedUpdateManyWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    memoryId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type DNSUpdateWithoutGameInput = {
-    website?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutDnsNestedInput
-    computer?: ComputerUpdateOneRequiredWithoutDnsNestedInput
-  }
-
-  export type DNSUncheckedUpdateWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    website?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DNSUncheckedUpdateManyWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    computerId?: StringFieldUpdateOperationsInput | string
-    website?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ProfileUpdateWithoutGameInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutProfileNestedInput
-  }
-
-  export type ProfileUncheckedUpdateWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProfileUncheckedUpdateManyWithoutGameInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
   export type AccountBookCreateManyMemoryInput = {
     id?: number
     userId: number
@@ -31203,9 +31203,9 @@ export namespace Prisma {
 
   export type AccountBookUpdateWithoutMemoryInput = {
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
     computer?: ComputerUpdateOneRequiredWithoutAccountBookNestedInput
     game?: GameUpdateOneRequiredWithoutAccountBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
   }
 
   export type AccountBookUncheckedUpdateWithoutMemoryInput = {
@@ -31222,6 +31222,23 @@ export namespace Prisma {
     computerId?: StringFieldUpdateOperationsInput | string
     data?: JsonNullValueInput | InputJsonValue
     gameId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AccountBookCreateManyComputerInput = {
+    id?: number
+    userId: number
+    memoryId: string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId: string
+  }
+
+  export type AddressBookCreateManyComputerInput = {
+    id?: number
+    userId: number
+    access: $Enums.AccessLevel
+    ip: string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId: string
   }
 
   export type DNSCreateManyComputerInput = {
@@ -31242,19 +31259,14 @@ export namespace Prisma {
     strength: number
   }
 
-  export type SoftwareCreateManyComputerInput = {
-    id?: string
+  export type LogsCreateManyComputerInput = {
+    id?: number
     userId: number
+    senderId: string
+    senderIp: string
     gameId: string
-    type: string
-    level: number
-    size: number
-    opacity: number
-    installed: boolean
-    executed?: Date | string
+    message: string
     created?: Date | string
-    updated?: Date | string
-    data?: JsonNullValueInput | InputJsonValue
   }
 
   export type MemoryCreateManyComputerInput = {
@@ -31278,31 +31290,68 @@ export namespace Prisma {
     data: JsonNullValueInput | InputJsonValue
   }
 
-  export type AddressBookCreateManyComputerInput = {
-    id?: number
+  export type SoftwareCreateManyComputerInput = {
+    id?: string
     userId: number
-    access: $Enums.AccessLevel
-    ip: string
-    data?: JsonNullValueInput | InputJsonValue
     gameId: string
-  }
-
-  export type AccountBookCreateManyComputerInput = {
-    id?: number
-    userId: number
-    memoryId: string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId: string
-  }
-
-  export type LogsCreateManyComputerInput = {
-    id?: number
-    userId: number
-    senderId: string
-    senderIp: string
-    gameId: string
-    message: string
+    type: string
+    level: number
+    size: number
+    opacity: number
+    installed: boolean
+    executed?: Date | string
     created?: Date | string
+    updated?: Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type AccountBookUpdateWithoutComputerInput = {
+    data?: JsonNullValueInput | InputJsonValue
+    game?: GameUpdateOneRequiredWithoutAccountBookNestedInput
+    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
+  }
+
+  export type AccountBookUncheckedUpdateWithoutComputerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    memoryId?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AccountBookUncheckedUpdateManyWithoutComputerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    memoryId?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddressBookUpdateWithoutComputerInput = {
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    game?: GameUpdateOneRequiredWithoutAddressBookNestedInput
+    user?: UserUpdateOneRequiredWithoutAddressBookNestedInput
+  }
+
+  export type AddressBookUncheckedUpdateWithoutComputerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddressBookUncheckedUpdateManyWithoutComputerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
+    ip?: StringFieldUpdateOperationsInput | string
+    data?: JsonNullValueInput | InputJsonValue
+    gameId?: StringFieldUpdateOperationsInput | string
   }
 
   export type DNSUpdateWithoutComputerInput = {
@@ -31311,8 +31360,8 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutDnsNestedInput
     game?: GameUpdateOneRequiredWithoutDnsNestedInput
+    user?: UserUpdateOneRequiredWithoutDnsNestedInput
   }
 
   export type DNSUncheckedUpdateWithoutComputerInput = {
@@ -31357,6 +31406,100 @@ export namespace Prisma {
     strength?: FloatFieldUpdateOperationsInput | number
   }
 
+  export type LogsUpdateWithoutComputerInput = {
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+    game?: GameUpdateOneRequiredWithoutLogsNestedInput
+    user?: UserUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type LogsUncheckedUpdateWithoutComputerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogsUncheckedUpdateManyWithoutComputerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    senderId?: StringFieldUpdateOperationsInput | string
+    senderIp?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MemoryUpdateWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
+    game?: GameUpdateOneRequiredWithoutMemoryNestedInput
+    user?: UserUpdateOneRequiredWithoutMemoryNestedInput
+  }
+
+  export type MemoryUncheckedUpdateWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+    accountBook?: AccountBookUncheckedUpdateManyWithoutMemoryNestedInput
+  }
+
+  export type MemoryUncheckedUpdateManyWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gameId?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    value?: NullableFloatFieldUpdateOperationsInput | number | null
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProcessUpdateWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+    game?: GameUpdateOneRequiredWithoutProcessNestedInput
+    user?: UserUpdateOneRequiredWithoutProcessNestedInput
+  }
+
+  export type ProcessUncheckedUpdateWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    gameId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type ProcessUncheckedUpdateManyWithoutComputerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    gameId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    started?: DateTimeFieldUpdateOperationsInput | Date | string
+    completion?: DateTimeFieldUpdateOperationsInput | Date | string
+    data?: JsonNullValueInput | InputJsonValue
+  }
+
   export type SoftwareUpdateWithoutComputerInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
@@ -31368,8 +31511,8 @@ export namespace Prisma {
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
     data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutSoftwareNestedInput
     game?: GameUpdateOneRequiredWithoutSoftwareNestedInput
+    user?: UserUpdateOneRequiredWithoutSoftwareNestedInput
   }
 
   export type SoftwareUncheckedUpdateWithoutComputerInput = {
@@ -31402,149 +31545,6 @@ export namespace Prisma {
     data?: JsonNullValueInput | InputJsonValue
   }
 
-  export type MemoryUpdateWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-    game?: GameUpdateOneRequiredWithoutMemoryNestedInput
-    user?: UserUpdateOneRequiredWithoutMemoryNestedInput
-    accountBook?: AccountBookUpdateManyWithoutMemoryNestedInput
-  }
-
-  export type MemoryUncheckedUpdateWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-    accountBook?: AccountBookUncheckedUpdateManyWithoutMemoryNestedInput
-  }
-
-  export type MemoryUncheckedUpdateManyWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    value?: NullableFloatFieldUpdateOperationsInput | number | null
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessUpdateWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutProcessNestedInput
-    game?: GameUpdateOneRequiredWithoutProcessNestedInput
-  }
-
-  export type ProcessUncheckedUpdateWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    gameId?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type ProcessUncheckedUpdateManyWithoutComputerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    ip?: NullableStringFieldUpdateOperationsInput | string | null
-    gameId?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    started?: DateTimeFieldUpdateOperationsInput | Date | string
-    completion?: DateTimeFieldUpdateOperationsInput | Date | string
-    data?: JsonNullValueInput | InputJsonValue
-  }
-
-  export type AddressBookUpdateWithoutComputerInput = {
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAddressBookNestedInput
-    game?: GameUpdateOneRequiredWithoutAddressBookNestedInput
-  }
-
-  export type AddressBookUncheckedUpdateWithoutComputerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AddressBookUncheckedUpdateManyWithoutComputerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    access?: EnumAccessLevelFieldUpdateOperationsInput | $Enums.AccessLevel
-    ip?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AccountBookUpdateWithoutComputerInput = {
-    data?: JsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutAccountBookNestedInput
-    memory?: MemoryUpdateOneRequiredWithoutAccountBookNestedInput
-    game?: GameUpdateOneRequiredWithoutAccountBookNestedInput
-  }
-
-  export type AccountBookUncheckedUpdateWithoutComputerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    memoryId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AccountBookUncheckedUpdateManyWithoutComputerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    memoryId?: StringFieldUpdateOperationsInput | string
-    data?: JsonNullValueInput | InputJsonValue
-    gameId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LogsUpdateWithoutComputerInput = {
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutLogsNestedInput
-    game?: GameUpdateOneRequiredWithoutLogsNestedInput
-  }
-
-  export type LogsUncheckedUpdateWithoutComputerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LogsUncheckedUpdateManyWithoutComputerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    senderId?: StringFieldUpdateOperationsInput | string
-    senderIp?: StringFieldUpdateOperationsInput | string
-    gameId?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    created?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type UserQuestsCreateManyQuestInput = {
     id?: string
     userId: number
@@ -31559,8 +31559,8 @@ export namespace Prisma {
     completed?: BoolFieldUpdateOperationsInput | boolean
     created?: DateTimeFieldUpdateOperationsInput | Date | string
     updated?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutUserQuestsNestedInput
     game?: GameUpdateOneRequiredWithoutUserQuestsNestedInput
+    user?: UserUpdateOneRequiredWithoutUserQuestsNestedInput
   }
 
   export type UserQuestsUncheckedUpdateWithoutQuestInput = {

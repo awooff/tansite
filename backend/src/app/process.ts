@@ -1,4 +1,4 @@
-import { Process as Table } from "@prisma/client";
+import { Process as Table } from "@/db/client";
 import { Computer } from "./computer";
 import { server } from "../index";
 import processes from "@/app/processes/";

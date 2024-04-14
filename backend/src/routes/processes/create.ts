@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 import { processCreateSchema } from "@/lib/schemas/process.schema";
 import { ProcessType, getProcessZodObject } from "@/app/process";
 import processes from "@/app/processes";
@@ -129,7 +129,7 @@ const create = {
     if (gameProcess.settings?.utilizesHardware)
       delay *=
         (settings as any)?.[
-          gameProcess.settings?.utilizesHardware?.toLowerCase() + "Nerf"
+        gameProcess.settings?.utilizesHardware?.toLowerCase() + "Nerf"
         ] || 1;
 
     if (gameProcess.delay)
@@ -138,13 +138,13 @@ const create = {
       delay =
         delay -
         (gameProcess.settings?.utilizesHardware === "Download" ||
-        gameProcess.settings?.utilizesHardware === "Upload"
+          gameProcess.settings?.utilizesHardware === "Upload"
           ? executor.getCombinedHardwareStrength(
-              gameProcess.settings?.utilizesHardware,
-            ) * 24
+            gameProcess.settings?.utilizesHardware,
+          ) * 24
           : executor.getCombinedHardwareStrength(
-              gameProcess.settings?.utilizesHardware,
-            ));
+            gameProcess.settings?.utilizesHardware,
+          ));
     }
 
     delay = Math.max(

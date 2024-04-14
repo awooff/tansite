@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 import { profileFetchSchema } from "@/lib/schemas/profile.schema";
 import { ProfileData } from "@/lib/types/profile.type";
 

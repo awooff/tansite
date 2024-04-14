@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 
 const logout = {
   settings: {

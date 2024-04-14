@@ -4,7 +4,7 @@ import { ProcessData } from "@/lib/types/process.type";
 import GameException from "@/lib/exceptions/game.exception";
 import { AddressBook } from "../addressbook";
 import { getComputer } from "../computer";
-import { Software, AddressBook as Table } from "@prisma/client";
+import { Software, AddressBook as Table } from "@/db/client";
 import settings from "../../settings";
 import { server } from "../../index";
 

@@ -1,4 +1,4 @@
-import { Prisma, Software as Table } from "@prisma/client";
+import { Prisma, Software as Table } from "@/db/client";
 import { Computer } from "./computer";
 import { server } from "../index";
 import { SoftwareAction } from "@/lib/types/software.type";

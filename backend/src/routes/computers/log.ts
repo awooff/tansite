@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups, Logs, Prisma } from "@prisma/client";
+import { Groups, Logs, Prisma } from "@/db/client";
 import { getComputer } from "@/app/computer";
 import { computerIdSchema } from "@/lib/schemas/computer.schema";
 import { paginationSchema } from "@/lib/schemas/pagination.schema";

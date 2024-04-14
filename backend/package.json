@@ -8,7 +8,8 @@
 		"@/app": "dist/app",
 		"@/routes": "dist/routes",
 		"@/lib": "dist/lib",
-		"@/middleware": "dist/middleware"
+		"@/middleware": "dist/middleware",
+		"@/db": "src/generated"
 	},
 	"scripts": {
 		"dev": "tsc-watch --onSuccess \"node dist/index.js\"",
@@ -16,7 +17,7 @@
 		"start": "node dist/index.js",
 		"test": "ava",
 		"test:watch": "node_modules/.bin/ava --verbose --watch",
-		"postinstall": "prisma generate && tsc",
+		"postinstall": "prisma generate",
 		"lint": "ts-standard --fix | snazzy"
 	},
 	"ava": {

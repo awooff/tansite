@@ -1,7 +1,7 @@
 import { Route } from '@/lib/types/route.type'
 import { server } from '../index'
 import { Request, Response } from 'express'
-import { Groups } from '@prisma/client'
+import { Groups } from '@/db/client'
 import jwt from 'jsonwebtoken'
 
 export default async function authMiddleware(route: Route, req: Request, res: Response, next: any): Promise<void> {

@@ -1,5 +1,5 @@
 import { Route } from "../../lib/types/route.type";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 import { processCompleteSchema } from "@/lib/schemas/process.schema";
 import { ProcessType, getProcessZodObject } from "@/app/process";
 import processes from "@/app/processes";

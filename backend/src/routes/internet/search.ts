@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups } from "@prisma/client";
+import { Groups } from "@/db/client";
 import { homepageSchema } from "@/lib/schemas/homepage.schema";
 import { paginationSchema } from "@/lib/schemas/pagination.schema";
 
@@ -51,20 +51,20 @@ const logout = {
     let count =
       dns.length !== 0
         ? await server.prisma.dNS.count({
-            where: {
-              OR: [
-                {
-                  tags: { contains: domain },
-                },
-                {
-                  website: { contains: domain },
-                },
-                {
-                  description: { contains: domain },
-                },
-              ],
-            },
-          })
+          where: {
+            OR: [
+              {
+                tags: { contains: domain },
+              },
+              {
+                website: { contains: domain },
+              },
+              {
+                description: { contains: domain },
+              },
+            ],
+          },
+        })
         : 0;
 
     return res.send({

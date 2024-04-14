@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups, Prisma } from "@prisma/client";
+import { Groups, Prisma } from "@/db/client";
 import { paginationSchema } from "@/lib/schemas/pagination.schema";
 
 const network = {

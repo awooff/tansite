@@ -1,4 +1,4 @@
-import { AccessLevel, User } from "@prisma/client";
+import { AccessLevel, User } from "@/db/client";
 import { server } from "../index";
 import { Computer } from "./computer";
 import { Software } from "./software";

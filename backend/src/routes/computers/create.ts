@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups, HardwareTypes, Prisma } from "@prisma/client";
+import { Groups, HardwareTypes, Prisma } from "@/db/client";
 import { ComputerData, generateIpAddress, getComputer } from "@/app/computer";
 import settings from "../../settings";
 

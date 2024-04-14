@@ -1,6 +1,6 @@
 import { Route } from "../../lib/types/route.type";
 import { server } from "../../index";
-import { Groups, User } from "@prisma/client";
+import { Groups, User } from "@/db/client";
 import { removeFromObject } from "@/lib/helpers";
 
 const user = {

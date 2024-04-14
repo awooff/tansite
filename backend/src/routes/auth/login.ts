@@ -3,7 +3,7 @@ import { server } from "../../index";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { removeFromObject } from "@/lib/helpers";
-import { Groups, User } from "@prisma/client";
+import { Groups, User } from "@/db/client";
 import { loginSchema } from "@/lib/schemas/login.schema";
 
 const login = {

@@ -7,7 +7,7 @@ import express, {
 import path from "path";
 import { glob } from "glob";
 import { Route } from "./lib/types/route.type";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/db/client";
 import helmet from "helmet";
 import morgan from "morgan";
 import compression from "compression";
