@@ -20,7 +20,7 @@ export const postRequestHandler = <T>(route: string, data: object, onSuccess?: (
 
 				resolve(result);
 			} catch (error) {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				-disable-next-line @typescript-eslint/no-explicit-any
 				const axiosError = error as AxiosError<any, any>;
 				const result = axiosError.response;
 				const resultError = result?.data?.error || result?.data  || error;
@@ -29,7 +29,7 @@ export const postRequestHandler = <T>(route: string, data: object, onSuccess?: (
 				if (!resultError.message) {
 					//Zod Error
 					if (resultError.issues)
-						// eslint-disable-next-line @typescript-eslint/no-explicit-any
+						-disable-next-line @typescript-eslint/no-explicit-any
 						issue = resultError.issues.map((issue: any) => {
 							return issue.message
 						}).join('\n')

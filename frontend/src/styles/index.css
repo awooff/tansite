@@ -4,6 +4,10 @@
 
 @layer base {
 	:root {
+
+		--font-sans: Inria Sans, sans-serif;
+		--font-serif: Inria Serif, monospace;
+
 		--background: 0 0% 100%;
 		--foreground: 240 10% 3.9%;
 

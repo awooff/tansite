@@ -52,7 +52,7 @@ export const createProcess = async <T>(
 	});
 
 	toast.promise(promise, {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		-disable-next-line @typescript-eslint/no-explicit-any
 		loading:
 			"Executing " +
 			((data as any).action || result.data.process.type) +
@@ -62,7 +62,7 @@ export const createProcess = async <T>(
 			(new Date(result.data.process.completion).getTime() - Date.now()) / 1000 +
 			" seconds",
 		success:
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			-disable-next-line @typescript-eslint/no-explicit-any
 			autoComplete
 				? "Successfully executed " +
 					((data as any).action || result.data.process.type) +

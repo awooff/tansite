@@ -92,7 +92,6 @@ export function RegisterForm() {
 					else issue = "internal server error";
 				} else issue = resultError.message;
 
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 				setError(issue);
 				alertError();
 			});

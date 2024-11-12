@@ -16,10 +16,11 @@ function Navbar() {
 	const user = userStore((store) => store.user);
 
 	return (
-		<nav className="sticky top-0 z-50 py-8 bg-slate-950 text-white">
-			<div className="flex flex-row gap-4 justify-between my-auto">
-				<SidebarTrigger />
+		<nav className="sticky top-0 z-50 py-8 bg-slate-950 text-white px-4">
+			<div className="flex flex-row gap-4 justify-evenly my-auto">
 				<div id="index" className="flex flex-row  items-center gap-4">
+					<SidebarTrigger />
+
 					<h1 className="text-6xl text-pink-700">XLVII</h1>
 					<img src="" alt="tan" className="max-w-16 object-contain" />
 				</div>
@@ -30,7 +31,7 @@ function Navbar() {
 					<Link to="/store">Store</Link>
 					<Link to="/portfolio">Portfolio</Link>
 				</div>
-				<div className="flex flex-row my-auto">
+				<div className="flex flex-row my-auto gap-4">
 					Welcome, {user.username || " user"}
 					{user.username.length !== 0 ? (
 						<Dialog>

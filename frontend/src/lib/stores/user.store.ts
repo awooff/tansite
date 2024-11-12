@@ -66,16 +66,12 @@ export const userStore = create<State & Action>()(
 						},
 					})
 					.then(async (response) => {
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const { email, group, name } = response.data.user;
 						const { jwt } = response.data;
-						if (data.jwt !== "") {
-							get().removeUserData(data);
-						}
+
 						get().updateUser({
 							username: name,
 							email,
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							jwt,
 							group,
 							avatar: "",
@@ -99,7 +95,6 @@ export const userStore = create<State & Action>()(
 						} else issue = resultError.message;
 
 						return issue;
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 					});
 			},
 			updateUser(user: User): void {

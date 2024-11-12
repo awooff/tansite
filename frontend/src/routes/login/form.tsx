@@ -1,24 +1,32 @@
 import type React from "react";
 import { type ReactElement, useState } from "react";
-import * as Form from "@radix-ui/react-form";
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@ui/Form";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { Box, Button, TextField } from "@radix-ui/themes";
 import { userStore } from "@stores/user.store";
 import axios, { type AxiosError } from "axios";
-import toast, { Toaster } from "react-hot-toast";
-import type { LoginSchema } from "@schemas/login.schema";
+
+import { loginSchema, type LoginSchema } from "@schemas/login.schema";
+import { Button, Input } from "@/components/ui";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "@hooks/use-toast";
+import { Toaster } from "@/components/ui/Toaster";
 
 type Props = {
 	children?: unknown;
 };
 
 export const RegisterForm: React.FC<Props> = (): ReactElement => {
-	const user = userStore((state) => state.user);
 	const jwt = userStore((state) => state.user.jwt);
-	const { removeUserData, updateUser } = userStore();
+	const { updateUser } = userStore();
 	const [error, setError] = useState("");
-	const alertSuccess = () => toast("Welcome user! Let's get you back :)");
-	const alertError = () => toast(`An error happened!${error}`);
 
 	const {
 		register,
@@ -26,7 +34,33 @@ export const RegisterForm: React.FC<Props> = (): ReactElement => {
 		formState: { errors },
 	} = useForm<LoginSchema>();
 
+	const form = useForm<LoginSchema>({
+		resolver: zodResolver(loginSchema),
+		defaultValues: {
+			username: "",
+		},
+	});
+
 	const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
+		const alertSuccess = () =>
+			toast({
+				title: "You submitted the following values:",
+				description: (
+					<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+						<code className="text-white">{JSON.stringify(data, null, 2)}</code>
+					</pre>
+				),
+			});
+
+		const alertError = () =>
+			toast({
+				title: "Uh oh! There's been an error u.u",
+				description: (
+					<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+						<code className="text-white">{JSON.stringify(data, null, 2)}</code>
+					</pre>
+				),
+			});
 		console.log(data);
 		await axios
 			.post("http://localhost:1337/auth/login", data, {
@@ -36,20 +70,15 @@ export const RegisterForm: React.FC<Props> = (): ReactElement => {
 				},
 			})
 			.then(async (response) => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				const { email, group, name } = response.data.user;
-				const { token } = response.data;
-				if (user.jwt) {
-					removeUserData(user);
-				}
+				const { email, group, name, avatar } = response.data.user;
+				const { token: jwt } = response.data;
 
 				updateUser({
 					username: name,
 					email,
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					jwt: token,
+					jwt,
 					group,
-					avatar: "",
+					avatar,
 				});
 
 				alertSuccess();
@@ -71,50 +100,58 @@ export const RegisterForm: React.FC<Props> = (): ReactElement => {
 					else issue = "internal server error";
 				} else issue = resultError.message;
 
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 				setError(issue);
 				alertError();
 			});
 	};
 
 	return (
-		<Box width={"max-content"}>
-			<Form.Root onSubmit={handleSubmit(onSubmit)}>
-				<Form.Field name="username">
-					<Form.Label htmlFor="">Username</Form.Label>
-					<Form.Control asChild>
-						<TextField.Input
-							type="text"
-							{...register("username", { required: true })}
-						/>
-					</Form.Control>
-					{errors.username && (
-						<Form.FormMessage>
-							{errors.username.message?.toString()}
-						</Form.FormMessage>
-					)}
-				</Form.Field>
-				<Form.Field name="password">
-					<Form.Label>Password</Form.Label>
-					<Form.Control asChild>
-						<TextField.Input
-							type="password"
-							{...register("password", { required: true })}
-						/>
-					</Form.Control>
-					{errors.password && (
-						<Form.FormMessage>
-							{errors.password.message?.toString()}
-						</Form.FormMessage>
-					)}
-				</Form.Field>
-				<Button size="3" variant="soft" type="submit">
-					{" "}
-					Submit!{" "}
-				</Button>
-			</Form.Root>
+		<article>
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="w-2/3 space-y-6"
+				>
+					<FormField
+						control={form.control}
+						name="username"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Username</FormLabel>
+								<FormControl>
+									<Input placeholder="shadcn" {...field} />
+								</FormControl>
+								<FormDescription>
+									This is your public username .
+								</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="password"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>password</FormLabel>
+								<FormControl>
+									<Input placeholder="shadcn" type="password" {...field} />
+								</FormControl>
+								<FormDescription>This is your public email .</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<Button variant="outline" type="submit">
+						{" "}
+						Submit!{" "}
+					</Button>
+				</form>
+			</Form>
 			<Toaster />
-		</Box>
+		</article>
 	);
 };
 

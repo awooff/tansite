@@ -12,7 +12,6 @@ export type SessionType = {
 		logins: Record<string, ConnectedComputer[]>;
 		group: Groups;
 	};
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	user: User;
 	valid: boolean;
 	load: () => Promise<void>;

@@ -22,7 +22,7 @@ export const postRequestHandler = <T>(
 
 				resolve(result);
 			} catch (error) {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				-disable-next-line @typescript-eslint/no-explicit-any
 				const axiosError = error as AxiosError<any, any>;
 				const result = axiosError.response;
 				const resultError = result?.data?.error || result?.data || error;

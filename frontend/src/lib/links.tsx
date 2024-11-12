@@ -5,7 +5,7 @@ export const createLinks = (
 	links: Record<
 		string,
 		{
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			-disable-next-line @typescript-eslint/no-explicit-any
 			element?: null | any;
 			to?: string;
 			capitalize?: boolean;
