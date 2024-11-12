@@ -3,12 +3,12 @@ import Form from "./form";
 
 function RegisterPage() {
 	return (
-		<div>
-			RegisterPage
-			<div className="my-12 flex max-w-md align-center items-center justify-center">
+		<article className="my-12">
+			<section>
+				<h1>Let's get your registered today u.u</h1>
 				<Form />
-			</div>
-		</div>
+			</section>
+		</article>
 	);
 }
 

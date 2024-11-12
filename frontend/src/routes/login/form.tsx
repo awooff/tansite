@@ -23,7 +23,7 @@ type Props = {
 	children?: unknown;
 };
 
-export const RegisterForm: React.FC<Props> = (): ReactElement => {
+export const LoginForm: React.FC<Props> = (): ReactElement => {
 	const jwt = userStore((state) => state.user.jwt);
 	const { updateUser } = userStore();
 	const [error, setError] = useState("");
@@ -155,4 +155,4 @@ export const RegisterForm: React.FC<Props> = (): ReactElement => {
 	);
 };
 
-export default RegisterForm;
+export default LoginForm;

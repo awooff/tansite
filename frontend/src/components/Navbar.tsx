@@ -50,6 +50,7 @@ function Navbar() {
 					) : (
 						<>
 							<Link to="/user/login">Log In</Link>
+							<Link to="/user/register">Sign Up </Link>
 						</>
 					)}
 				</div>

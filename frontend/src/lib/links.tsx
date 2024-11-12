@@ -1,11 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 export const createLinks = (
 	links: Record<
 		string,
 		{
-			-disable-next-line @typescript-eslint/no-explicit-any
 			element?: null | any;
 			to?: string;
 			capitalize?: boolean;
@@ -16,7 +15,7 @@ export const createLinks = (
 ) => {
 	const components: ReactNode[] = [];
 
-	Object.keys(links).forEach((link) => {
+	for (const link of Object.keys(links)) {
 		const Element = links[link].element;
 
 		if (!links[link].to) links[link].to = `/${link}`;
@@ -34,7 +33,7 @@ export const createLinks = (
 				</Link>
 			</Element>,
 		);
-	});
+	}
 
 	return components;
 };

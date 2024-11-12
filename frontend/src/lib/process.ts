@@ -52,28 +52,11 @@ export const createProcess = async <T>(
 	});
 
 	toast.promise(promise, {
-		-disable-next-line @typescript-eslint/no-explicit-any
-		loading:
-			"Executing " +
-			((data as any).action || result.data.process.type) +
-			" on " +
-			result.data.process.ip +
-			" completed in " +
-			(new Date(result.data.process.completion).getTime() - Date.now()) / 1000 +
-			" seconds",
-		success:
-			-disable-next-line @typescript-eslint/no-explicit-any
-			autoComplete
-				? "Successfully executed " +
-					((data as any).action || result.data.process.type) +
-					" on " +
-					result.data.process.ip
-				: "Awaiting completion...",
-		error:
-			"Error executing " +
-			result.data.process.type +
-			" on " +
-			result.data.process.ip,
+		loading: `Executing ${(data as any).action || result.data.process.type} on ${result.data.process.ip} completed in ${(new Date(result.data.process.completion).getTime() - Date.now()) / 1000} seconds`,
+		success: autoComplete
+			? `Successfully executed ${(data as any).action || result.data.process.type} on ${result.data.process.ip}`
+			: "Awaiting completion...",
+		error: `Error executing ${result.data.process.type} on ${result.data.process.ip}`,
 	});
 
 	return promise as Promise<AxiosResponse<T, any>>;

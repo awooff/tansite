@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { registerSchema, type RegisterSchema } from "@schemas/register.schema";
 import { userStore } from "@lib/stores";
 import axios, { type AxiosError } from "axios";
@@ -98,78 +98,92 @@ export function RegisterForm() {
 	};
 
 	return (
-		<article className="max-w-max">
+		<>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="w-2/3 space-y-6"
 				>
-					<FormField
-						control={form.control}
-						name="username"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Username</FormLabel>
-								<FormControl>
-									<Input placeholder="shadcn" {...field} />
-								</FormControl>
-								<FormDescription>
-									This is your public display name.
-								</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+						{/* Username */}
+						<FormField
+							control={form.control}
+							name="username"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Username</FormLabel>
+									<FormControl>
+										<Input placeholder="shadcn" type="text" {...field} />
+									</FormControl>
+									<FormDescription>
+										This is your public display name.
+									</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-					<FormField
-						control={form.control}
-						name="email"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Email</FormLabel>
-								<FormControl>
-									<Input placeholder="shadcn" {...field} />
-								</FormControl>
-								<FormDescription>This is your public email .</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+						{/* Email */}
+						<FormField
+							control={form.control}
+							name="email"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Email</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="steve@oranges.space"
+											type="email"
+											{...field}
+										/>
+									</FormControl>
+									<FormDescription>This is your public email.</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-					<FormField
-						control={form.control}
-						name="password"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Username</FormLabel>
-								<FormControl>
-									<Input placeholder="shadcn" type="password" {...field} />
-								</FormControl>
-								<FormDescription>
-									This is your public display name.
-								</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+						{/* Password */}
+						<FormField
+							control={form.control}
+							name="password"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Password</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="mybloodyvalentine"
+											type="password"
+											{...field}
+										/>
+									</FormControl>
+									<FormDescription>
+										This is your public display name.
+									</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
 
-					<section>
-						<div className="flex justify-center">
-							<Checkbox {...register("terms")} /> I accept the terms and
-							conditions
+					<section className="grid grid-cols-2 gap-2">
+						<div className="flex justify-center gap-2">
+							<Checkbox {...register("terms")} />{" "}
+							<small>I accept the terms and conditions</small>
 						</div>
-						<div className="justify-center flex">
-							<Checkbox {...register("privacy")} /> I accept the privacy policy
+						<div className="justify-center flex gap-2">
+							<Checkbox {...register("privacy")} />{" "}
+							<small>I accept the privacy policy</small>
 						</div>
 					</section>
-					<Button variant="secondary" type="submit">
+					<Button variant="secondary" type="submit" className="w-full">
 						{" "}
 						Submit!{" "}
 					</Button>
 				</form>
 			</Form>
 			<Toaster />
-		</article>
+		</>
 	);
 }
 

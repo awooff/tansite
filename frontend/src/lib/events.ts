@@ -10,7 +10,6 @@ export declare interface WebEventEmitter {
 	on: (eventName: keyof WebEmitterEvents, cb: Function) => any;
 	emit: (eventName: keyof WebEmitterEvents, ...args: any[]) => any;
 }
--disable-next-line no-redeclare
 export class WebEventEmitter extends EventEmitter {}
 
 const WebEvents = new WebEventEmitter();
