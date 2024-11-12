@@ -1,13 +1,12 @@
-import React from "react";
+import type React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { userStore } from "@stores/user.store";
-import { Button } from "@radix-ui/themes";
+import { Button } from "@ui/Button";
 
 type Props = Record<string, unknown>;
 const LogoutButton: React.FC<Props> = () => {
 	const user = userStore((store) => store.user);
-	const { removeUserData } = userStore();
 	const navigate = useNavigate();
 
 	return (
@@ -20,7 +19,7 @@ const LogoutButton: React.FC<Props> = () => {
 						{
 							withCredentials: true,
 							headers: {
-								Authorization: "Bearer " + user.jwt,
+								Authorization: `Bearer ${user.jwt}`,
 							},
 						},
 					)
@@ -28,8 +27,9 @@ const LogoutButton: React.FC<Props> = () => {
 						throw new Error(String(err));
 					})
 					.then(() => {
-						removeUserData(user);
+						userStore.persist.clearStorage();
 						navigate("/");
+						window.location.reload();
 					});
 			}}
 		>

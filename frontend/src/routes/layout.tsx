@@ -8,10 +8,12 @@ export function Layout(props: { children?: ReactNode }): ReactElement {
 	return (
 		<SidebarProvider>
 			<AppSidebar />
-			<main className="flex flex-col">
+			<main className="flex flex-col w-full">
 				<Navbar />
-				<div className="max-w-full">{props.children}</div>
-				<Menubar />
+				<div className="w-full md:w-4/5 p-4 md:p-0 mx-auto">
+					{props.children}
+					<Menubar />
+				</div>
 			</main>
 		</SidebarProvider>
 	);

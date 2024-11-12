@@ -2,6 +2,15 @@ import React, { Fragment, useRef } from "react";
 import { userStore } from "@stores/user.store";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/Sidebar";
 import { Link } from "react-router-dom";
+import {
+	Dialog,
+	DialogTrigger,
+	DialogContent,
+	DialogTitle,
+	DialogDescription,
+} from "@ui/Dialog";
+import { DialogHeader } from "./ui";
+import LogoutButton from "./ui/LogoutButton";
 
 function Navbar() {
 	const user = userStore((store) => store.user);
@@ -23,6 +32,25 @@ function Navbar() {
 				</div>
 				<div className="flex flex-row my-auto">
 					Welcome, {user.username || " user"}
+					{user.username.length !== 0 ? (
+						<Dialog>
+							<DialogTrigger>Log Out</DialogTrigger>
+							<DialogContent>
+								<DialogHeader>
+									<DialogTitle>Are you absolutely sure?</DialogTitle>
+									<DialogDescription className="flex-col flex gap-4">
+										This action cannot be undone. This will permanently delete
+										your account and remove your data from our servers.
+										<LogoutButton />
+									</DialogDescription>
+								</DialogHeader>
+							</DialogContent>
+						</Dialog>
+					) : (
+						<>
+							<Link to="/user/login">Log In</Link>
+						</>
+					)}
 				</div>
 			</div>
 		</nav>

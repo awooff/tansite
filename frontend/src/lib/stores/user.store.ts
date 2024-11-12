@@ -36,7 +36,6 @@ type State = {
 type Action = {
 	updateUser: (user: State["user"]) => void;
 	loginUser: (user: State["user"]) => void;
-	removeUserData: (user: State["user"]) => void;
 };
 
 /**
@@ -105,17 +104,6 @@ export const userStore = create<State & Action>()(
 			},
 			updateUser(user: User): void {
 				set({ user });
-			},
-			removeUserData(): void {
-				set({
-					user: {
-						email: "",
-						username: "",
-						avatar: "",
-						jwt: "",
-						group: "GUEST",
-					},
-				});
 			},
 		}),
 		{
