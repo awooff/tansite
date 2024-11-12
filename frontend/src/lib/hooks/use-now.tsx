@@ -1,22 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 
-type UnitOfTime = 'year' | 'month' | 'date' | 'hour' | 'minute' | 'second' | 'millisecond';
+type UnitOfTime =
+	| "year"
+	| "month"
+	| "date"
+	| "hour"
+	| "minute"
+	| "second"
+	| "millisecond";
 
 function getDatePart(date: Date, part: UnitOfTime) {
 	switch (part) {
-		case 'year':
+		case "year":
 			return date.getFullYear();
-		case 'month':
+		case "month":
 			return date.getMonth();
-		case 'date':
+		case "date":
 			return date.getDate();
-		case 'hour':
+		case "hour":
 			return date.getHours();
-		case 'minute':
+		case "minute":
 			return date.getMinutes();
-		case 'second':
+		case "second":
 			return date.getSeconds();
-		case 'millisecond':
+		case "millisecond":
 			return date.getMilliseconds();
 		default:
 			return date.getDate();

@@ -327,7 +327,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/cass/Projects/Syscrack/backend/src/generated/client",
+      "value": "/Users/cass/Projects/tansite/backend/src/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -354,6 +354,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

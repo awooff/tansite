@@ -1,18 +1,19 @@
-import Taskbar from '@components/Taskbar';
-import React, {type ReactNode, type ReactElement} from 'react';
-import {Theme} from '@radix-ui/themes';
-import {useThemeStore} from '@stores/theme.store';
-import Navbar from '@components/Navbar';
+import Taskbar from "@components/Taskbar";
+import React, { type ReactNode, type ReactElement } from "react";
+import Navbar from "@components/Navbar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/ui/app-sidebar";
 
-export function Layout(props: {children?: ReactNode}): ReactElement {
-	const theme = useThemeStore(state => state.theme);
-
+export function Layout(props: { children?: ReactNode }): ReactElement {
 	return (
-		<Theme appearance={theme}>
-			<Navbar />
-			{props.children}
-			<Taskbar />
-		</Theme>
+		<SidebarProvider>
+			<AppSidebar />
+			<main className="flex flex-col">
+				<Navbar />
+				<div className="max-w-full">{props.children}</div>
+				<Taskbar />
+			</main>
+		</SidebarProvider>
 	);
 }
 

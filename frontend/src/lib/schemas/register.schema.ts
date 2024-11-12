@@ -1,5 +1,5 @@
-import * as z from 'zod';
-import {username, password, email} from './user.schema';
+import * as z from "zod";
+import { username, password, email } from "./user.schema";
 export const registerSchema = z.object({
 	email,
 	username,

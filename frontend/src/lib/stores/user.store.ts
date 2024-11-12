@@ -1,26 +1,26 @@
-import {create, type StoreApi, type UseBoundStore} from 'zustand';
-import {persist, createJSONStorage} from 'zustand/middleware';
-import axios, {type AxiosError} from 'axios';
+import { create, type StoreApi, type UseBoundStore } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import axios, { type AxiosError } from "axios";
 
-type WithSelectors<S> = S extends {getState: () => infer T}
-	? S & {use: {[K in keyof T]: () => T[K]}}
+type WithSelectors<S> = S extends { getState: () => infer T }
+	? S & { use: { [K in keyof T]: () => T[K] } }
 	: never;
 
 const createSelectors = <
-	S extends UseBoundStore<StoreApi<Record<string, unknown>>>>
-(
+	S extends UseBoundStore<StoreApi<Record<string, unknown>>>,
+>(
 	_store: S,
 ) => {
 	const store = _store as WithSelectors<typeof _store>;
 	store.use = {};
 	for (const k of Object.keys(store.getState())) {
-		(store.use as any)[k] = () => store(s => s[k]);
+		(store.use as any)[k] = () => store((s) => s[k]);
 	}
 
 	return store;
 };
 
-type Group = 'GUEST' | 'ADMIN' | 'USER';
+type Group = "GUEST" | "ADMIN" | "USER";
 export type User = {
 	username: string;
 	email: string;
@@ -34,9 +34,9 @@ type State = {
 };
 
 type Action = {
-	updateUser: (user: State['user']) => void;
-	loginUser: (user: State['user']) => void;
-	removeUserData: (user: State['user']) => void;
+	updateUser: (user: State["user"]) => void;
+	loginUser: (user: State["user"]) => void;
+	removeUserData: (user: State["user"]) => void;
 };
 
 /**
@@ -52,25 +52,26 @@ export const userStore = create<State & Action>()(
 	persist(
 		(set, get) => ({
 			user: {
-				username: '',
-				email: '',
-				avatar: '',
-				jwt: '',
-				group: 'GUEST',
+				username: "",
+				email: "",
+				avatar: "",
+				jwt: "",
+				group: "GUEST",
 			},
 			async loginUser(data: User) {
-				await axios.post('http://localhost:1337/auth/login', data, {
-					withCredentials: true,
-					headers: {
-						Authorization: data.jwt,
-					},
-				})
-					.then(async response => {
+				await axios
+					.post("http://localhost:1337/auth/login", data, {
+						withCredentials: true,
+						headers: {
+							Authorization: data.jwt,
+						},
+					})
+					.then(async (response) => {
 						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 						const { email, group, name } = response.data.user;
-						const { jwt } = response.data
-						if (data.jwt !== '') {
-							get().removeUserData(data)
+						const { jwt } = response.data;
+						if (data.jwt !== "") {
+							get().removeUserData(data);
 						}
 						get().updateUser({
 							username: name,
@@ -78,10 +79,10 @@ export const userStore = create<State & Action>()(
 							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							jwt,
 							group,
-							avatar: '',
-						})
+							avatar: "",
+						});
 					})
-					.catch(error => {
+					.catch((error) => {
 						const axiosError = error as AxiosError<any, any>;
 						const result = axiosError.response;
 						const resultError = result?.data?.error || result?.data || error;
@@ -90,39 +91,38 @@ export const userStore = create<State & Action>()(
 						if (!resultError.message) {
 							// Zod Error
 							if (resultError.issues)
-								issue = resultError.issues.map((issue: any) => {
-									return issue.message
-								}).join('\n')
-							else
-								issue = "internal server error"
-						} else
-							issue = resultError.message
+								issue = resultError.issues
+									.map((issue: any) => {
+										return issue.message;
+									})
+									.join("\n");
+							else issue = "internal server error";
+						} else issue = resultError.message;
 
 						return issue;
 						// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 					});
 			},
 			updateUser(user: User): void {
-				set({user});
+				set({ user });
 			},
 			removeUserData(): void {
 				set({
 					user: {
-						email: '',
-						username: '',
-						avatar: '',
-						jwt: '',
-						group: 'GUEST',
+						email: "",
+						username: "",
+						avatar: "",
+						jwt: "",
+						group: "GUEST",
 					},
 				});
 			},
 		}),
 		{
-			name: 'syscrack__user-storage', // Name of the item in the storage (must be unique)
+			name: "syscrack__user-storage", // Name of the item in the storage (must be unique)
 			storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
 		},
 	),
-
 );
 
 export const useAuthStore = createSelectors(userStore);

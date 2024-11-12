@@ -6,4 +6,4 @@ export type User = {
 	email: string;
 	group: Groups;
 	created?: string;
-}
+};
