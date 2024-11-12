@@ -1,19 +1,37 @@
 import React, { useState } from "react";
-import * as Form from "@radix-ui/react-form";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import type { RegisterSchema } from "@schemas/register.schema";
-import { Box, Button, TextField, Checkbox, Flex } from "@radix-ui/themes";
-import { userStore } from "@/lib/stores";
+import { registerSchema, type RegisterSchema } from "@schemas/register.schema";
+import { userStore } from "@lib/stores";
 import axios, { type AxiosError } from "axios";
-import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "@hooks/use-toast";
+import { Button } from "@ui/Button";
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@ui/Form";
+import { Input } from "@ui/Input";
+import { Toaster } from "@/components/ui/Toaster";
+import { Checkbox } from "@/components/ui";
+import { type SubmitHandler, useForm } from "react-hook-form";
 
-function RegisterForm() {
+export function RegisterForm() {
 	const jwt = userStore((state) => state.user.jwt);
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
-	const alertError = () => toast(`An error happened!${error}`);
-	const alertSuccess = () => toast(`You've registered! Congrats :)${error}`);
+
+	const form = useForm<RegisterSchema>({
+		resolver: zodResolver(registerSchema),
+		defaultValues: {
+			username: "",
+		},
+	});
+
 	const {
 		register,
 		handleSubmit,
@@ -21,7 +39,28 @@ function RegisterForm() {
 	} = useForm<RegisterSchema>();
 
 	const onSubmit: SubmitHandler<RegisterSchema> = async (data) => {
+		const alertError = () =>
+			toast({
+				title: "Uh oh! There's been an error u.u",
+				description: (
+					<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+						<code className="text-white">{JSON.stringify(data, null, 2)}</code>
+					</pre>
+				),
+			});
+
+		const alertSuccess = () =>
+			toast({
+				title: "You submitted the following values:",
+				description: (
+					<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+						<code className="text-white">{JSON.stringify(data, null, 2)}</code>
+					</pre>
+				),
+			});
+
 		console.log(data);
+
 		await axios
 			.post("http://localhost:1337/auth/register", data, {
 				withCredentials: true,
@@ -60,61 +99,78 @@ function RegisterForm() {
 	};
 
 	return (
-		<Box width={"max-content"}>
-			<Form.Root onSubmit={handleSubmit(onSubmit)}>
-				<Form.Field name="username">
-					<Form.Label htmlFor="">Username</Form.Label>
-					<Form.Control asChild>
-						<TextField.Input
-							type="text"
-							{...register("username", { required: true })}
-						/>
-					</Form.Control>
-					{errors.username && (
-						<Form.FormMessage>{errors.username.message}</Form.FormMessage>
-					)}
-				</Form.Field>
-				<Form.Field name="email">
-					<Form.Label>Email</Form.Label>
-					<Form.Control asChild>
-						<TextField.Input
-							type="email"
-							{...register("email", { required: true })}
-						/>
-					</Form.Control>
-					{errors.email && (
-						<Form.FormMessage>{errors.email.message}</Form.FormMessage>
-					)}
-				</Form.Field>
-				<Form.Field name="password">
-					<Form.Label>Password</Form.Label>
-					<Form.Control asChild>
-						<TextField.Input
-							type="password"
-							{...register("password", { required: true })}
-						/>
-					</Form.Control>
-					{errors.password && (
-						<Form.FormMessage>{errors.password.message}</Form.FormMessage>
-					)}
-				</Form.Field>
+		<article className="max-w-max">
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="w-2/3 space-y-6"
+				>
+					<FormField
+						control={form.control}
+						name="username"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Username</FormLabel>
+								<FormControl>
+									<Input placeholder="shadcn" {...field} />
+								</FormControl>
+								<FormDescription>
+									This is your public display name.
+								</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
 
-				<Flex dir="col">
-					<Flex dir="row" justify={"center"}>
-						<Checkbox {...register("terms")} /> I accept the terms and
-						conditions
-					</Flex>
-					<Flex dir="row" justify={"center"}>
-						<Checkbox {...register("privacy")} /> I accept the privacy policy
-					</Flex>
-				</Flex>
-				<Button size="3" variant="soft" type="submit">
-					{" "}
-					Submit!{" "}
-				</Button>
-			</Form.Root>
+					<FormField
+						control={form.control}
+						name="email"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Email</FormLabel>
+								<FormControl>
+									<Input placeholder="shadcn" {...field} />
+								</FormControl>
+								<FormDescription>This is your public email .</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="password"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Username</FormLabel>
+								<FormControl>
+									<Input placeholder="shadcn" type="password" {...field} />
+								</FormControl>
+								<FormDescription>
+									This is your public display name.
+								</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<section>
+						<div className="flex justify-center">
+							<Checkbox {...register("terms")} /> I accept the terms and
+							conditions
+						</div>
+						<div className="justify-center flex">
+							<Checkbox {...register("privacy")} /> I accept the privacy policy
+						</div>
+					</section>
+					<Button variant="secondary" type="submit">
+						{" "}
+						Submit!{" "}
+					</Button>
+				</form>
+			</Form>
 			<Toaster />
-		</Box>
+		</article>
 	);
 }
 

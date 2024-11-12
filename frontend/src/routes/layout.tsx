@@ -1,8 +1,8 @@
-import Taskbar from "@components/Taskbar";
 import React, { type ReactNode, type ReactElement } from "react";
 import Navbar from "@components/Navbar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/ui/app-sidebar";
+import { SidebarProvider } from "@/components/ui/Sidebar";
+import { AppSidebar } from "@/components/ui/AppSidebar";
+import { Menubar } from "@/components/ui/MenuBar";
 
 export function Layout(props: { children?: ReactNode }): ReactElement {
 	return (
@@ -11,7 +11,7 @@ export function Layout(props: { children?: ReactNode }): ReactElement {
 			<main className="flex flex-col">
 				<Navbar />
 				<div className="max-w-full">{props.children}</div>
-				<Taskbar />
+				<Menubar />
 			</main>
 		</SidebarProvider>
 	);

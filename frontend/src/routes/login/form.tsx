@@ -1,13 +1,16 @@
-import React, { ReactElement, useState } from "react";
+import type React from "react";
+import { type ReactElement, useState } from "react";
 import * as Form from "@radix-ui/react-form";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Box, Button, TextField } from "@radix-ui/themes";
 import { userStore } from "@stores/user.store";
 import axios, { type AxiosError } from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { LoginSchema } from "@schemas/login.schema";
+import type { LoginSchema } from "@schemas/login.schema";
 
-type Props = {};
+type Props = {
+	children?: unknown;
+};
 
 export const RegisterForm: React.FC<Props> = (): ReactElement => {
 	const user = userStore((state) => state.user);
@@ -15,7 +18,7 @@ export const RegisterForm: React.FC<Props> = (): ReactElement => {
 	const { removeUserData, updateUser } = userStore();
 	const [error, setError] = useState("");
 	const alertSuccess = () => toast("Welcome user! Let's get you back :)");
-	const alertError = () => toast("An error happened!" + error);
+	const alertError = () => toast(`An error happened!${error}`);
 
 	const {
 		register,
@@ -29,7 +32,7 @@ export const RegisterForm: React.FC<Props> = (): ReactElement => {
 			.post("http://localhost:1337/auth/login", data, {
 				withCredentials: true,
 				headers: {
-					Authorization: "Bearer " + jwt,
+					Authorization: `Bearer ${jwt}`,
 				},
 			})
 			.then(async (response) => {

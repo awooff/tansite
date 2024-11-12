@@ -9,7 +9,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/Sidebar";
 
 // Menu items.
 const items = [

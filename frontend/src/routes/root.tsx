@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from "react";
+import type React from "react";
+import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import MusicPlayer from "@components/MusicPlayer";
-import VideoLayout from "@layouts/VideoLayout";
 import {
 	Table,
 	TableBody,
 	TableCell,
 	TableHeader,
 	TableRow,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/Table";
+import { Button } from "@/components/ui/Button";
 
 function Leaderboard() {
 	const players = [

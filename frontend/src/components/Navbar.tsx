@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from "react";
 import { userStore } from "@stores/user.store";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/Sidebar";
 import { Link } from "react-router-dom";
 
 function Navbar() {
