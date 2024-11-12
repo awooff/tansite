@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import { Groups } from "backend/src/generated/client";
-import { User } from "backend/src/generated/client";
-import { Computer } from "backend/src/generated/client";
-import { ConnectedComputer } from "./game.context";
+import type { Groups } from "backend/src/generated/client";
+import type { User } from "backend/src/generated/client";
+import type { Computer } from "backend/src/generated/client";
+import type { ConnectedComputer } from "./game.context";
 
 export type SessionType = {
 	loaded: boolean;

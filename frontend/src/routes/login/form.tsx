@@ -14,10 +14,10 @@ import { userStore } from "@stores/user.store";
 import axios, { type AxiosError } from "axios";
 
 import { loginSchema, type LoginSchema } from "@schemas/login.schema";
-import { Button, Input } from "@/components/ui";
+import { Button, Input } from "@components/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@hooks/use-toast";
-import { Toaster } from "@/components/ui/Toaster";
+import { Toaster } from "@ui/Toaster";
 
 type Props = {
 	children?: unknown;
