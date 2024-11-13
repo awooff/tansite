@@ -22,6 +22,8 @@ import authMiddleware from "./middleware/auth.middleware";
 import "./lib/types/session.type";
 import GameException from "./lib/exceptions/game.exception";
 
+const pino = require('pino-http')()
+
 dotenv.config({
   override: true,
 });
@@ -57,6 +59,7 @@ class Server {
    * Should also ideally handle authentication checks as well!
    */
   private initialiseMiddleware(): void {
+    this.server.use(pino);
     this.server.use(helmet());
     this.server.use(morgan("dev"));
     this.server.use(compression());
@@ -126,14 +129,14 @@ class Server {
 
         if (route.get) {
           newRoute.get(
-            (req: Request, res: Response, next: any) => {
+            (_req: Request, _res: Response, next: any) => {
               next(route);
             },
             authMiddleware,
             async (req: Request, res: Response, next: any) => {
               try {
                 route.get !== undefined
-                  ? await route.get(req, res, next)
+                  ? route.get(req, res, next)
                   : null;
               } catch (error) {
                 if (error instanceof GameException === false) throw error;
@@ -147,14 +150,14 @@ class Server {
 
         if (route.post) {
           newRoute.post(
-            (req: Request, res: Response, next: any) => {
+            (_req: Request, _res: Response, next: any) => {
               next(route);
             },
             authMiddleware,
             async (req: Request, res: Response, next: any) => {
               try {
                 route.post !== undefined
-                  ? await route.post(req, res, next)
+                  ? route.post(req, res, next)
                   : null;
               } catch (error) {
                 if (error instanceof GameException === false) throw error;

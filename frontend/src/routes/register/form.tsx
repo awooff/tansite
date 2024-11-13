@@ -22,7 +22,6 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 
 export function RegisterForm() {
 	const jwt = userStore((state) => state.user.jwt);
-	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
 	const form = useForm<RegisterSchema>({
@@ -92,7 +91,6 @@ export function RegisterForm() {
 					else issue = "internal server error";
 				} else issue = resultError.message;
 
-				setError(issue);
 				alertError();
 			});
 	};

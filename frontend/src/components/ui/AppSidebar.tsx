@@ -14,30 +14,13 @@ import {
 // Menu items.
 const items = [
 	{
-		title: "Home",
-		url: "#",
-		icon: Home,
+		year: 2021,
+		path: '/2021',
 	},
 	{
-		title: "Inbox",
-		url: "#",
-		icon: Inbox,
-	},
-	{
-		title: "Calendar",
-		url: "#",
-		icon: Calendar,
-	},
-	{
-		title: "Search",
-		url: "#",
-		icon: Search,
-	},
-	{
-		title: "Settings",
-		url: "#",
-		icon: Settings,
-	},
+		year: 2022,
+		path: '/2022'
+	}
 ];
 
 export function AppSidebar() {
@@ -48,16 +31,19 @@ export function AppSidebar() {
 					<SidebarGroupLabel>Application</SidebarGroupLabel>
 					<SidebarGroupContent>
 						<SidebarMenu>
+							<div className='flex flex-col gap-2 text-center'>
+							<h1 className="text-8xl text-pink-400">ART</h1>
+							<p>THINGS I HAVE DONE</p>
 							{items.map((item) => (
-								<SidebarMenuItem key={item.title}>
+								<SidebarMenuItem key={item.year}>
 									<SidebarMenuButton asChild>
-										<a href={item.url}>
-											<item.icon />
-											<span>{item.title}</span>
+										<a className="text-center" href={item.path}>
+											{item.year}	
 										</a>
 									</SidebarMenuButton>
 								</SidebarMenuItem>
 							))}
+							</div>
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
